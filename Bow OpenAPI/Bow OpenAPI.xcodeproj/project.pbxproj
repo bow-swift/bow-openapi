@@ -1,0 +1,353 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
+		8BDE68E22332347D009342AD /* Swiftline in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E12332347D009342AD /* Swiftline */; };
+		8BDE68E52332357F009342AD /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E42332357F009342AD /* BowOptics */; };
+		8BDE68E72332357F009342AD /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E62332357F009342AD /* BowEffects */; };
+		8BDE68E92332357F009342AD /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E82332357F009342AD /* Bow */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8BDE68D4233233CE009342AD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8BDE68D6233233CE009342AD /* bow-openapi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bow-openapi"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BDE68D9233233CE009342AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8BDE68D3233233CE009342AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BDE68E22332347D009342AD /* Swiftline in Frameworks */,
+				8BDE68E52332357F009342AD /* BowOptics in Frameworks */,
+				8BDE68E72332357F009342AD /* BowEffects in Frameworks */,
+				8BDE68E92332357F009342AD /* Bow in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8BDE68CD233233CE009342AD = {
+			isa = PBXGroup;
+			children = (
+				8BDE68D8233233CE009342AD /* Bow OpenAPI */,
+				8BDE68EA23323602009342AD /* Templates */,
+				8BDE68D7233233CE009342AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8BDE68D7233233CE009342AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BDE68D6233233CE009342AD /* bow-openapi */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8BDE68D8233233CE009342AD /* Bow OpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				8BDE68D9233233CE009342AD /* main.swift */,
+			);
+			path = "Bow OpenAPI";
+			sourceTree = "<group>";
+		};
+		8BDE68EA23323602009342AD /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8BDE68D5233233CE009342AD /* Bow OpenAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BDE68DD233233CE009342AD /* Build configuration list for PBXNativeTarget "Bow OpenAPI" */;
+			buildPhases = (
+				8BDE68D2233233CE009342AD /* Sources */,
+				8BDE68D3233233CE009342AD /* Frameworks */,
+				8BDE68D4233233CE009342AD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bow OpenAPI";
+			packageProductDependencies = (
+				8BDE68E12332347D009342AD /* Swiftline */,
+				8BDE68E42332357F009342AD /* BowOptics */,
+				8BDE68E62332357F009342AD /* BowEffects */,
+				8BDE68E82332357F009342AD /* Bow */,
+			);
+			productName = "Bow OpenAPI";
+			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BDE68CE233233CE009342AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "47 Degrees";
+				TargetAttributes = {
+					8BDE68D5233233CE009342AD = {
+						CreatedOnToolsVersion = 11.0;
+					};
+				};
+			};
+			buildConfigurationList = 8BDE68D1233233CE009342AD /* Build configuration list for PBXProject "Bow OpenAPI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8BDE68CD233233CE009342AD;
+			packageReferences = (
+				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
+				8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */,
+			);
+			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8BDE68D5233233CE009342AD /* Bow OpenAPI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8BDE68D2233233CE009342AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BDE68DA233233CE009342AD /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8BDE68DB233233CE009342AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8BDE68DC233233CE009342AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8BDE68DE233233CE009342AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "bow-openapi";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8BDE68DF233233CE009342AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "bow-openapi";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8BDE68D1233233CE009342AD /* Build configuration list for PBXProject "Bow OpenAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BDE68DB233233CE009342AD /* Debug */,
+				8BDE68DC233233CE009342AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BDE68DD233233CE009342AD /* Build configuration list for PBXNativeTarget "Bow OpenAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BDE68DE233233CE009342AD /* Debug */,
+				8BDE68DF233233CE009342AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bow-swift/Swiftline.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.2;
+			};
+		};
+		8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bow-swift/bow.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BDE68E12332347D009342AD /* Swiftline */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */;
+			productName = Swiftline;
+		};
+		8BDE68E42332357F009342AD /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
+		};
+		8BDE68E62332357F009342AD /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8BDE68E82332357F009342AD /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
+			productName = Bow;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8BDE68CE233233CE009342AD /* Project object */;
+}

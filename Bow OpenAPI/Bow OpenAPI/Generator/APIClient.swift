@@ -13,7 +13,7 @@ enum APIClient {
         let script = binding(
                 |<-removeDirectory(output: output),
                 |<-createDirectory(output: output),
-        template <- templatePath(),
+        template <- getTemplatePath(),
                 |<-swaggerGenerator(scheme: scheme, output: output, template: template.get, logPath: logPath),
             yield: ("great!"))^
 
@@ -26,7 +26,7 @@ enum APIClient {
     // MARK: - attributes
     private static var logPath: String { "/tmp/bow-openapi.log" }
     
-    private static func templatePath() -> IO<APIClientError, String> {
+    private static func getTemplatePath() -> IO<APIClientError, String> {
         guard let template = Bundle(path: "bow/openapi/templates")?.resourcePath else {
             return IO<APIClientError, String>.raiseError(APIClientError.templateNotFound)^
         }
@@ -72,8 +72,8 @@ extension APIClientError: CustomStringConvertible {
             return "could not create project structure"
         case .generator:
             return "command 'swagger-codegen' failed"
-        default:
-            fatalError()
+        case .templateNotFound:
+            return "templates for generating Bow client have not been found"
         }
     }
 }

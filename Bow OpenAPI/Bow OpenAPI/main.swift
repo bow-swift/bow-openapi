@@ -1,12 +1,14 @@
-//
-//  main.swift
-//  Bow OpenAPI
-//
-//  Created by Miguel Angel on 18/09/2019.
-//  Copyright © 2019 47 Degrees. All rights reserved.
-//
+//  Copyright © 2019 The Bow Authors.
 
 import Foundation
 
-print("Hello, World!")
+func main() {
+    guard let arguments = CommandLine.input else { Console.help() }
+    guard FileManager.default.fileExists(atPath: arguments.scheme) else { Console.exit(failure: "received invalid scheme path") }
+    guard APIClient.bow(scheme: arguments.scheme, output: arguments.output) else { Console.exit(failure: "could not generate api client for scheme \(arguments.scheme)") }
+    
+    Console.exit(success: "RENDER SUCCEEDED")
+}
 
+// #: - MAIN <launcher>
+main()

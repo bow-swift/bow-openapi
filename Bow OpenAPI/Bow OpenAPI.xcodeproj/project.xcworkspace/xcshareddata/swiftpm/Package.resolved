@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/bow-swift/Swiftline.git",
         "state": {
           "branch": null,
-          "revision": "968a4f441c734ae63fbc9fb48e464f0a48f10086",
-          "version": "0.5.2"
+          "revision": "82298801b43ce7ea30b587bb22e130be3a644a7f",
+          "version": "0.5.3"
         }
       }
     ]

@@ -18,9 +18,7 @@ enum APIClient {
             yield: ("great!"))^
 
         let result = try? script.unsafeRunSync()
-        print(result ?? "error")
-        
-        return true
+        return result != nil ? true : false
     }
     
     // MARK: - attributes
@@ -52,10 +50,13 @@ enum APIClient {
                 settings.execution = .log(file: logPath)
             }
             
-            if result.stdout.contains("ERROR") { throw APIClientError.generator }
+            let hasError = result.exitStatus != 0 || result.stdout.contains("ERROR")
+            if hasError { throw APIClientError.generator }
         }
     }
 }
+
+
 
 
 /// APIClient errors

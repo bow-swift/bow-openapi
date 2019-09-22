@@ -54,6 +54,24 @@ enum APIClient {
             if hasError { throw APIClientError.generator }
         }
     }
+    
+    private static func flattenStructure() -> IO<APIClientError, ()> {
+        IO.invoke {
+            
+        }
+    }
+    
+    private static func removeUnusefulFiles(_ files: String...) -> IO<APIClientError, ()> {
+        IO.invoke { () -> Void in
+            try files.forEach { file in
+                do {
+                    try FileManager.default.removeItem(atPath: file)
+                } catch {
+                    throw APIClientError.removeOperation
+                }
+            }
+        }
+    }
 }
 
 
@@ -64,6 +82,7 @@ enum APIClientError: Error {
     case structure
     case generator
     case templateNotFound
+    case removeOperation
 }
 
 extension APIClientError: CustomStringConvertible {
@@ -75,6 +94,8 @@ extension APIClientError: CustomStringConvertible {
             return "command 'swagger-codegen' failed"
         case .templateNotFound:
             return "templates for generating Bow client have not been found"
+        default:
+            fatalError()
         }
     }
 }

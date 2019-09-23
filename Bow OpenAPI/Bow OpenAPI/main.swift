@@ -5,9 +5,12 @@ import Foundation
 func main() {
     guard let arguments = CommandLine.input else { Console.help() }
     guard FileManager.default.fileExists(atPath: arguments.scheme) else { Console.exit(failure: "received invalid scheme path") }
-    guard APIClient.bow(scheme: arguments.scheme, output: arguments.output) else { Console.exit(failure: "could not generate api client for scheme \(arguments.scheme)") }
     
-    Console.exit(success: "RENDER SUCCEEDED")
+    APIClient.bow(scheme: arguments.scheme, output: arguments.output)
+             .unsafeRunSyncEither()
+             .mapLeft { apiError in "could not generate api client for scheme '\(arguments.scheme)'\ninformation: \(apiError)" }
+             .fold({ failure in Console.exit(failure: failure) },
+                   { success in Console.exit(success: success) })
 }
 
 // #: - MAIN <launcher>

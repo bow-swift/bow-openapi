@@ -7,18 +7,19 @@ import BowEffects
 
 enum APIClient {
     
-    static func bow(scheme: String, output: String) -> Bool {
+    static func bow(scheme: String, output: String) -> IO<APIClientError, String> {
         let template = IO<APIClientError, String>.var()
         
-        let script = binding(
+        return binding(
+        template <- getTemplatePath(),
                 |<-removeDirectory(output: output),
                 |<-createDirectory(output: output),
-        template <- getTemplatePath(),
+                
                 |<-swaggerGenerator(scheme: scheme, output: output, template: template.get, logPath: logPath),
-            yield: ("great!"))^
-
-        let result = try? script.unsafeRunSync()
-        return result != nil ? true : false
+                |<-flattenStructure("\(output)/SwaggerClient/Classes/Swaggers", to: output),
+                |<-removeFiles("\(output)/Cartfile", "\(output)/git_push.sh", "\(output)/SwaggerClient.podspec", "\(output)/SwaggerClient"),
+                
+            yield: "RENDER SUCCEEDED")^
     }
     
     // MARK: - attributes
@@ -34,7 +35,7 @@ enum APIClient {
     
     // MARK: - private methods
     private static func removeDirectory(output: String) -> IO<APIClientError, ()> {
-        IO.invoke { () -> Void in
+        IO.invoke {
             let outputURL = URL(fileURLWithPath: output, isDirectory: true)
             let _ = try? FileManager.default.removeItem(at: outputURL)
         }
@@ -45,7 +46,7 @@ enum APIClient {
     }
     
     private static func swaggerGenerator(scheme: String, output: String, template: String, logPath: String) -> IO<APIClientError, ()> {
-        IO.invoke { () -> Void in
+        IO.invoke {
             let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"]) { settings in
                 settings.execution = .log(file: logPath)
             }
@@ -55,19 +56,25 @@ enum APIClient {
         }
     }
     
-    private static func flattenStructure() -> IO<APIClientError, ()> {
+    private static func flattenStructure(_ input: String, to output: String) -> IO<APIClientError, ()> {
         IO.invoke {
-            
+            do {
+                try FileManager.default.contentsOfDirectory(atPath: input).forEach { itemPath in
+                    try FileManager.default.copyItem(atPath: "\(input)/\(itemPath)", toPath: "\(output)/\(itemPath)")
+                }
+            } catch {
+                throw APIClientError.moveOperation(input: input, output: output)
+            }
         }
     }
     
-    private static func removeUnusefulFiles(_ files: String...) -> IO<APIClientError, ()> {
-        IO.invoke { () -> Void in
+    private static func removeFiles(_ files: String...) -> IO<APIClientError, ()> {
+        IO.invoke {
             try files.forEach { file in
                 do {
                     try FileManager.default.removeItem(atPath: file)
                 } catch {
-                    throw APIClientError.removeOperation
+                    throw APIClientError.removeOperation(file: file)
                 }
             }
         }
@@ -82,7 +89,8 @@ enum APIClientError: Error {
     case structure
     case generator
     case templateNotFound
-    case removeOperation
+    case removeOperation(file: String)
+    case moveOperation(input: String, output: String)
 }
 
 extension APIClientError: CustomStringConvertible {
@@ -94,8 +102,10 @@ extension APIClientError: CustomStringConvertible {
             return "command 'swagger-codegen' failed"
         case .templateNotFound:
             return "templates for generating Bow client have not been found"
-        default:
-            fatalError()
+        case .removeOperation(let file):
+            return "can not remove the file '\(file)'"
+        case let .moveOperation(input, output):
+            return "can not move items in '\(input)' to '\(output)'"
         }
     }
 }

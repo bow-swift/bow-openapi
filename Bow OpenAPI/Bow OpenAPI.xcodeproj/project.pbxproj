@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
 		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
 		8BD90F2F23328DAF00281786 /* AlamofireImplementations.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */; };
 		8BD90F3023328DAF00281786 /* api.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6911233280FE009342AD /* api.mustache */; };
@@ -73,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		8BD90F4423328E2600281786 /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		8BDE68D6233233CE009342AD /* bow-openapi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bow-openapi"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE68D9233233CE009342AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				8BDE691D233286CC009342AD /* APIClient.swift */,
+				8B22DD6B2338D2000000CED9 /* APIClientError.swift */,
 			);
 			path = Generator;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				8BDE691E233286CC009342AD /* APIClient.swift in Sources */,
 				8BDE68ED23326E42009342AD /* Console.swift in Sources */,
 				8BDE68DA233233CE009342AD /* main.swift in Sources */,
+				8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */,
 				8BD90F4523328E2600281786 /* String+Path.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

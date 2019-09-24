@@ -9,8 +9,8 @@ import Foundation
 import BowEffects
 
 /// {{classname}} <dependency injection>
-public extension BowAPI {
-    public static var {{classVarName}}: {{classname}} {
+public extension API {
+    var {{classVarName}}: {{classname}} {
         return {{classname}}Client()
     }
 }
@@ -27,13 +27,20 @@ public protocol {{classname}} {
      {{#summary}}
      {{{summary}}}
      {{/summary}}
+     {{#headerParams}}
+     {{^secondaryParam}}
+
+     You should configure the `API.Config` using the following headers:
+     {{/secondaryParam}}
+     - Parameter {{paramName}}: (header) {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     {{/headerParams}}
 
      {{#allParams}}{{^isHeaderParam}}
      - Parameter {{paramName}}: ({{#isFormParam}}form{{/isFormParam}}{{#isQueryParam}}query{{/isQueryParam}}{{#isPathParam}}path{{/isPathParam}}{{#isBodyParam}}body{{/isBodyParam}}) {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
      {{/isHeaderParam}}{{/allParams}}
-     - Returns: an `EnvIO` to perform IO operations that produce errors of type `Error` and values of type `{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}`, having access to an immutable environment of type `APIConfig`. It can be seen as a Kleisli function `(APIConfig) -> IO<Error, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>`.
+     - Returns: an `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>`.
      */
-    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<APIConfig, Error, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
+    static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
 {{/operation}}
 }
 {{/operations}}
@@ -42,172 +49,71 @@ public protocol {{classname}} {
 /// An HTTP client to perform networking operations related to `{{classVarName}}`
 public class {{classname}}Client: {{classname}} {
 {{#operation}}
-    {{#allParams}}
-    {{#isEnum}}
-    /**
-     * enum for parameter {{paramName}}
-     */
-    public enum {{enumName}}_{{operationId}}: {{^isContainer}}{{{dataType}}}{{/isContainer}}{{#isContainer}}String{{/isContainer}} { {{#allowableValues}}{{#enumVars}}
-        case {{name}} = {{#isContainer}}"{{/isContainer}}{{#isString}}"{{/isString}}{{{value}}}{{#isString}}"{{/isString}}{{#isContainer}}"{{/isContainer}}{{/enumVars}}{{/allowableValues}}
-    }
-    {{/isEnum}}
-    {{/allParams}}
 
-    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<APIConfig, Error, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
+    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
         return EnvIO { apiConfig in
-            {{^pathParams}}let{{/pathParams}}{{#pathParams}}{{^secondaryParam}}var{{/secondaryParam}}{{/pathParams}} path = "{{{path}}}"{{#pathParams}}
+            {{#bodyParam}}
+            guard let parameters = {{paramName}}?.encodingParameters else {
+                let error = API.HTTPError.other(error: NSError(domain: "{{classname}}.{{operationId}}.Parameter.{{paramName}}", code: 69, userInfo: nil))
+                return IO.raiseError(.other(error: error))
+            }
+
+            {{/bodyParam}}
+            // build request path
+            {{^pathParams}}let{{/pathParams}}{{#pathParams}}{{^secondaryParam}}var{{/secondaryParam}}{{/pathParams}} resourcePath = "{{{path}}}"{{#pathParams}}
             let {{paramName}}PreEscape = "\({{paramName}}{{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}.rawValue{{/isContainer}}{{/isEnum}})"
             let {{paramName}}PostEscape = {{paramName}}PreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-            path = path.replacingOccurrences(of: "{{=<% %>=}}{<%baseName%>}<%={{ }}=%>", with: {{paramName}}PostEscape, options: .literal, range: nil){{/pathParams}}
-            let URLString = {{projectName}}API.basePath + path
-            {{#bodyParam}}
-            let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: {{paramName}})
-            {{/bodyParam}}
-            {{^bodyParam}}
-                {{#hasFormParams}}
-            let formParams: [String:Any?] = [
-                    {{#formParams}}
-                {{> _param}}{{#hasMore}},{{/hasMore}}
-                    {{/formParams}}
-            ]
-
-            let nonNullParameters = APIHelper.rejectNil(formParams)
-            let parameters = APIHelper.convertBoolToString(nonNullParameters)
-                {{/hasFormParams}}
-                {{^hasFormParams}}
-            let parameters: [String:Any]? = nil
-                {{/hasFormParams}}
-            {{/bodyParam}}{{#hasQueryParams}}
-            var url = URLComponents(string: URLString)
-            url?.queryItems = APIHelper.mapValuesToQueryItems([
-                {{#queryParams}}
-                {{> _param}}{{#hasMore}}, {{/hasMore}}
-                {{/queryParams}}
-            ]){{/hasQueryParams}}{{^hasQueryParams}}
-            let url = URLComponents(string: URLString){{/hasQueryParams}}{{#headerParams}}{{^secondaryParam}}
-            let nillableHeaders: [String: Any?] = [{{/secondaryParam}}
-                {{> _param}}{{#hasMore}},{{/hasMore}}{{^hasMore}}
-            ]
-            let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders){{/hasMore}}{{/headerParams}}
-
-
-
-            request.httpMethod = "{{httpMethod}}"
-            let otherHeaders = [String: String]()
-            let headers = config.headers//.combine(otherHeaders)
-            headers.forEach { key, value in request.setValue(value, forHTTPHeaderField: key) }
+            resourcePath = resourcePath.replacingOccurrences(of: "{{=<% %>=}}{<%baseName%>}<%={{ }}=%>", with: {{paramName}}PostEscape, options: .literal, range: nil){{/pathParams}}
+            let path = apiConfig.basePath + resourcePath
+            let additionalHeaders = apiConfig.httpHeader.contentType.combine(apiConfig.additionalHeaders)
             
-            let body = Data()
-            request.httpBody = body
-            request.setValue(String(body.count), forHTTPHeaderField: URLRequest.Headers.contentLength)
-            
-            let io = URLSession.shared.dataTaskIO(with: request)
-            
-            return io.flatMap { response, data in
-                do {
-                    return try IO.pure(JSONDecoder().decode(User.self, from: data))
-                } catch {
-                    return IO.raiseError(error)
-                }
-            }^
-        }
-    }
-
-{{#useRxSwift}}
-    /**
-     {{#summary}}
-     {{{summary}}}
-     {{/summary}}{{#allParams}}
-     - parameter {{paramName}}: ({{#isFormParam}}form{{/isFormParam}}{{#isQueryParam}}query{{/isQueryParam}}{{#isPathParam}}path{{/isPathParam}}{{#isHeaderParam}}header{{/isHeaderParam}}{{#isBodyParam}}body{{/isBodyParam}}) {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/allParams}}
-     - returns: Observable<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
-     */
-    open class func {{operationId}}({{#allParams}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) -> Observable<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
-        return Observable.create { observer -> Disposable in
-            {{operationId}}({{#allParams}}{{paramName}}: {{paramName}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) { data, error in
-                if let error = error {
-                    observer.on(.error(error))
-                } else {
-                    observer.on(.next(data!))
-                }
-                observer.on(.completed)
-            }
-            return Disposables.create()
-        }
-    }
-{{/useRxSwift}}
-
-    /**
-     {{#summary}}
-     {{{summary}}}
-     {{/summary}}
-     - {{httpMethod}} {{{path}}}{{#notes}}
-     - {{{notes}}}{{/notes}}{{#subresourceOperation}}
-     - subresourceOperation: {{subresourceOperation}}{{/subresourceOperation}}{{#defaultResponse}}
-     - defaultResponse: {{defaultResponse}}{{/defaultResponse}}{{#authMethods}}
-     - {{#isBasic}}BASIC{{/isBasic}}{{#isOAuth}}OAuth{{/isOAuth}}{{#isApiKey}}API Key{{/isApiKey}}:
-       - type: {{type}}{{#keyParamName}} {{keyParamName}} {{#isKeyInQuery}}(QUERY){{/isKeyInQuery}}{{#isKeyInHeaer}}(HEADER){{/isKeyInHeaer}}{{/keyParamName}}
-       - name: {{name}}{{/authMethods}}{{#responseHeaders}}
-     - responseHeaders: {{responseHeaders}}{{/responseHeaders}}{{#examples}}
-     - examples: {{{examples}}}{{/examples}}{{#externalDocs}}
-     - externalDocs: {{externalDocs}}{{/externalDocs}}{{#hasParams}}
-     {{/hasParams}}{{#allParams}}
-     - parameter {{paramName}}: ({{#isFormParam}}form{{/isFormParam}}{{#isQueryParam}}query{{/isQueryParam}}{{#isPathParam}}path{{/isPathParam}}{{#isHeaderParam}}header{{/isHeaderParam}}{{#isBodyParam}}body{{/isBodyParam}}) {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/allParams}}
-
-     - returns: RequestBuilder<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {{description}}
-     */
-    open class func {{operationId}}WithRequestBuilder({{#allParams}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) -> RequestBuilder<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
-        {{^pathParams}}let{{/pathParams}}{{#pathParams}}{{^secondaryParam}}var{{/secondaryParam}}{{/pathParams}} path = "{{{path}}}"{{#pathParams}}
-        let {{paramName}}PreEscape = "\({{paramName}}{{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}.rawValue{{/isContainer}}{{/isEnum}})"
-        let {{paramName}}PostEscape = {{paramName}}PreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{{=<% %>=}}{<%baseName%>}<%={{ }}=%>", with: {{paramName}}PostEscape, options: .literal, range: nil){{/pathParams}}
-        let URLString = {{projectName}}API.basePath + path
-        {{#bodyParam}}
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: {{paramName}})
-        {{/bodyParam}}
-        {{^bodyParam}}
-            {{#hasFormParams}}
-        let formParams: [String:Any?] = [
+            // make parameters
+            {{^bodyParam}}{{#hasFormParams}}let formParams: [String: Any?] = [
                 {{#formParams}}
-            {{> _param}}{{#hasMore}},{{/hasMore}}
+                {{> _param}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
-        ]
+            ]
+            let parameters: [String: Any]? = API.Helper.mapValuesItems(formParams){{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
+            var components = URLComponents(string: path)
+            components?.queryItems = API.Helper.mapValuesToQueryItems([
+        {{#queryParams}}
+        {{> _param}}{{#hasMore}}, {{/hasMore}}
+        {{/queryParams}}
+            ]){{/hasQueryParams}}
+            {{^hasQueryParams}}
+            let components = URLComponents(string: path)
+            {{/hasQueryParams}}
+            
+            // request configuration
+            var request = URLRequest(url: components?.url ?? URL(string: path)!)
+            request.httpMethod = "{{httpMethod}}"
+            request.addHeaders(additionalHeaders)
+            request.setParameters(parameters)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-            {{/hasFormParams}}
-            {{^hasFormParams}}
-        let parameters: [String:Any]? = nil
-            {{/hasFormParams}}
-        {{/bodyParam}}{{#hasQueryParams}}
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            {{#queryParams}}
-            {{> _param}}{{#hasMore}}, {{/hasMore}}
-            {{/queryParams}}
-        ]){{/hasQueryParams}}{{^hasQueryParams}}
-        let url = URLComponents(string: URLString){{/hasQueryParams}}{{#headerParams}}{{^secondaryParam}}
-        let nillableHeaders: [String: Any?] = [{{/secondaryParam}}
-            {{> _param}}{{#hasMore}},{{/hasMore}}{{^hasMore}}
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders){{/hasMore}}{{/headerParams}}
-
-        let requestBuilder: RequestBuilder<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>.Type = {{projectName}}API.requestBuilderFactory.{{#returnType}}getBuilder(){{/returnType}}{{^returnType}}getNonDecodableBuilder(){{/returnType}}
-
-        return requestBuilder.init(method: "{{httpMethod}}", URLString: (url?.string ?? URLString), parameters: parameters, isBody: {{hasBodyParam}}{{#headerParams}}{{^secondaryParam}}, headers: headerParameters{{/secondaryParam}}{{/headerParams}})
+            // launch request
+            return API.Helper.send(request: request, session: URLSession.shared, decoder: JSONDecoder())
+        }
     }
-
 {{/operation}}
 }
 {{/operations}}
-
-
 {{#operations}}
-/// TODO
-extension APIConfig {
-{{#operation}}{{#allParams}}{{#isHeaderParam}}
-    func with({{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}) -> APIConfig {
-        fatalError()
-    }
-{{/isHeaderParam}}{{/allParams}}{{/operation}}
+{{#operation}}
+{{#allParams}}
+{{#isEnum}}
+
+/**
+ enum for parameter `{{paramName}}`
+ */
+public enum {{enumName}}_{{operationId}}: {{^isContainer}}{{{dataType}}}{{/isContainer}}{{#isContainer}}String{{/isContainer}} { {{#allowableValues}}{{#enumVars}}
+    case {{name}} = {{#isContainer}}"{{/isContainer}}{{#isString}}"{{/isString}}{{{value}}}{{#isString}}"{{/isString}}{{#isContainer}}"{{/isContainer}}{{/enumVars}}{{/allowableValues}}
 }
-{{/operations}}
+{{/isEnum}}
+{{/allParams}}
+{{/operation}}
+{{/operations}}{{#operations}}
+/* API.CONFIG.HEADERS
+{{#operation}}{{#allParams}}{{#isHeaderParam}}
+{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}
+{{/isHeaderParam}}{{/allParams}}{{/operation}}
+*/{{/operations}}

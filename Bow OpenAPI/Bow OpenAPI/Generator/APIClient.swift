@@ -17,7 +17,7 @@ enum APIClient {
                 
                 |<-swaggerGenerator(scheme: scheme, output: output, template: template.get, logPath: logPath),
                 |<-flattenStructure("\(output)/SwaggerClient/Classes/Swaggers", to: output),
-                |<-removeFiles("\(output)/Cartfile", "\(output)/git_push.sh", "\(output)/SwaggerClient.podspec", "\(output)/SwaggerClient"),
+                |<-removeFiles("\(output)/Cartfile", "\(output)/git_push.sh", "\(output)/SwaggerClient.podspec", "\(output)/SwaggerClient", "\(output)/.gitignore", "\(output)/.swagger-codegen", "\(output)/.swagger-codegen-ignore"),
                 
             yield: "RENDER SUCCEEDED")^
     }

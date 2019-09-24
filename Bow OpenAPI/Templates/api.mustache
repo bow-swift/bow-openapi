@@ -85,7 +85,12 @@ public class {{classname}}Client: {{classname}} {
             {{/hasQueryParams}}
             
             // request configuration
-            var request = URLRequest(url: components?.url ?? URL(string: path)!)
+            guard let url = components?.url ?? URL(string: path) else {
+                let data = "{{classname}}.{{operationId}}.URL".data(using: .utf8)!
+                return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
+            }
+
+            var request = URLRequest(url: url)
             request.httpMethod = "{{httpMethod}}"
             request.addHeaders(additionalHeaders)
             request.setParameters(parameters)

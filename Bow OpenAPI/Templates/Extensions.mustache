@@ -97,7 +97,7 @@ extension Data: JSONEncodable {
 
 extension Date: JSONEncodable {
     func encodeToJSON() -> Any {
-        return dateFormatter.string(from: self) as Any
+        return DateFormatter().string(from: self) as Any
     }
 }
 
@@ -198,10 +198,3 @@ private func encodeIfPossible<T>(_ object: T) -> Any {
         return object as Any
     }
 }
-
-private let dateFormatter: DateFormatter = {
-    let fmt = DateFormatter()
-    fmt.dateFormat = Configuration.dateFormat
-    fmt.locale = Locale(identifier: "en_US_POSIX")
-    return fmt
-}()

@@ -15,10 +15,6 @@ extension String {
         return (output, match.range)
     }
 
-    func advance(_ offset: Int) -> String {
-        return NSString(string: self).substring(from: offset) as String
-    }
-
     func clean(_ ocurrences: String...) -> String {
         return ocurrences.reduce(self) { (output, ocurrence) in
             output.replacingOccurrences(of: ocurrence, with: "")
@@ -27,10 +23,6 @@ extension String {
 
     var trimmingWhitespaces: String {
         return trimmingCharacters(in: .whitespaces)
-    }
-
-    var trimmingLeftWhitespaces: String {
-        return String(drop { $0 == " " })
     }
     
     var trimmingNewLines: String {

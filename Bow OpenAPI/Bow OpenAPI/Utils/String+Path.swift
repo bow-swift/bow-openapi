@@ -1,4 +1,4 @@
-//  Copyright © 2019 The nef Authors.
+//  Copyright © 2019 The Bow Authors.
 
 import Foundation
 

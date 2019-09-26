@@ -9,6 +9,8 @@ enum APIClientError: Error {
     case removeOperation(file: String)
     case moveOperation(input: String, output: String)
     case updateOperation(file: String)
+    case read(file: String)
+    case write(file: String)
 }
 
 extension APIClientError: CustomStringConvertible {
@@ -26,6 +28,10 @@ extension APIClientError: CustomStringConvertible {
             return "can not move items in '\(input)' to '\(output)'"
         case let .updateOperation(file):
             return "can not update the content of the file '\(file)'"
+        case let .read(file):
+            return "can not read the content of the file '\(file)'"
+        case let .write(file):
+            return "can not write in the file '\(file)'"
         }
     }
 }

@@ -12,15 +12,27 @@ import Foundation
 extension API {
     public struct Config {
         public let basePath: String
-        public let httpHeader: API.HTTPHeader
-        public let additionalHeaders: [String: String]
-        public let testing: Bool
+        public let headers: [String: String]
+        public let session: URLSession
         
-        public init (basePath: String, httpHeader: API.HTTPHeader = .json, additionalHeaders: [String: String] = [String: String](), testing: Bool = false) {
+        public init (basePath: String, session: URLSession = .shared) {
+            self.init(basePath: basePath, headers: [:], session: session)
+        }
+        
+        private init (basePath: String, headers: [String: String], session: URLSession) {
             self.basePath = basePath
-            self.httpHeader = httpHeader
-            self.additionalHeaders = additionalHeaders
-            self.testing = testing
+            self.headers = headers
+            self.session = session
+        }
+        
+        func copy(basePath: String? = nil, headers: [String: String]? = nil, session: URLSession? = nil) -> API.Config {
+            return API.Config(basePath: basePath ?? self.basePath,
+                              headers: headers ?? self.headers,
+                              session: session ?? self.session)
+        }
+        
+        var contentType: API.ContentType {
+            API.ContentType(rawValue: headers["Content-Type"]?.lowercased() ?? "") ?? .json
         }
     }
 }
@@ -28,10 +40,10 @@ extension API {
 
 /// Definition of HTTP Headers for the content type
 extension API {
-    public enum HTTPHeader: String {
-        public case json = "application/json"
+    public enum ContentType: String {
+        case json = "application/json"
         
-        var contentType: [String: String] {
+        var headers: [String: String] {
             return ["Accept": rawValue,
                     "Content-Type": rawValue]
         }

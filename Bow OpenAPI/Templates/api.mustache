@@ -40,7 +40,7 @@ public protocol {{classname}} {
      {{/isHeaderParam}}{{/allParams}}
      - Returns: an `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>`.
      */
-    static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
+    static func {{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
 {{/operation}}
 }
 {{/operations}}
@@ -50,7 +50,7 @@ public protocol {{classname}} {
 public class {{classname}}Client: {{classname}} {
 {{#operation}}
 
-    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{#hasMore}}, {{/hasMore}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
+    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
         return EnvIO { apiConfig in
             {{#bodyParam}}
             guard let parameters = {{paramName}}?.encodingParameters else {
@@ -65,7 +65,6 @@ public class {{classname}}Client: {{classname}} {
             let {{paramName}}PostEscape = {{paramName}}PreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
             resourcePath = resourcePath.replacingOccurrences(of: "{{=<% %>=}}{<%baseName%>}<%={{ }}=%>", with: {{paramName}}PostEscape, options: .literal, range: nil){{/pathParams}}
             let path = apiConfig.basePath + resourcePath
-            let additionalHeaders = apiConfig.httpHeader.contentType.combine(apiConfig.additionalHeaders)
             
             // make parameters
             {{^bodyParam}}{{#hasFormParams}}let formParams: [String: Any?] = [
@@ -92,11 +91,11 @@ public class {{classname}}Client: {{classname}} {
 
             var request = URLRequest(url: url)
             request.httpMethod = "{{httpMethod}}"
-            request.addHeaders(additionalHeaders)
+            request.addHeaders(apiConfig.headers)
             request.setParameters(parameters)
 
             // launch request
-            return API.Helper.send(request: request, session: URLSession.shared, decoder: JSONDecoder())
+            return API.Helper.send(request: request, session: apiConfig.session, decoder: JSONDecoder())
         }
     }
 {{/operation}}

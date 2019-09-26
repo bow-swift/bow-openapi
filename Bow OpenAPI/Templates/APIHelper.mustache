@@ -35,35 +35,30 @@ public extension API {
         }
         
         public static func send<T: Codable>(request: URLRequest, session: URLSession, decoder: ResponseDecoder) -> IO<API.HTTPError, T> {
-            return session.dataTaskIO(with: request)
-                          .mapLeft { error in .other(error: error) }
-                          .flatMap { response, data in
-                                guard let httpResponse = response as? HTTPURLResponse else {
-                                    return IO.raiseError(.malformedURL(response: response, data: data))
-                                }
-                            
-                                do {
-                                    switch httpResponse.statusCode {
-                                    case 200 ..< 300:
-                                        let result = try decoder.decode(T.self, from: data)
-                                        return IO.pure(result)
-                                    case 400:
-                                        return IO.raiseError(.badRequest(response: response, data: data))
-                                    case 403:
-                                        return IO.raiseError(.forbidden(response: response, data: data))
-                                    case 404:
-                                        return IO.raiseError(.notFound(response: response, data: data))
-                                    case 500:
-                                        return IO.raiseError(.serverError(response: response, data: data))
-                                    case 503:
-                                        return IO.raiseError(.serviceUnavailable(response: response, data: data))
-                                    default:
-                                        return IO.raiseError(.unknown(response: response, data: data))
-                                    }
-                                } catch {
-                                    return IO.raiseError(.parsingError(response: response, data: data))
-                                }
-                          }^
+            session.dataTaskIO(with: request)
+                   .mapLeft { error in .other(error: error) }
+                   .flatMap { response, data in
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            return IO.raiseError(.malformedURL(response: response, data: data))
+                        }
+                      
+                        switch httpResponse.statusCode {
+                        case 200 ..< 300:
+                            return decoder.safeDecode(T.self, from: data).mapLeft { _ in .parsingError(response: response, data: data) }
+                        case 400:
+                            return IO.raiseError(.badRequest(response: response, data: data))
+                        case 403:
+                            return IO.raiseError(.forbidden(response: response, data: data))
+                        case 404:
+                            return IO.raiseError(.notFound(response: response, data: data))
+                        case 500:
+                            return IO.raiseError(.serverError(response: response, data: data))
+                        case 503:
+                            return IO.raiseError(.serviceUnavailable(response: response, data: data))
+                        default:
+                            return IO.raiseError(.unknown(response: response, data: data))
+                        }
+                   }^
         }
     }
 }

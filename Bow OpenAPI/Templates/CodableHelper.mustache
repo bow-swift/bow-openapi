@@ -6,13 +6,32 @@
 //
 
 import Foundation
+import BowEffects
 
 // MARK: - decoder helpers
-public protocol ResponseDecoder {
-    func decode<T: Decodable>(_ type: T.Type, from: Data) throws -> T
+public enum DecodingError: Error {
+    case decoding(Swift.DecodingError)
+    case other(Error)
 }
 
-extension JSONDecoder: ResponseDecoder {}
+public protocol ResponseDecoder {
+    func safeDecode<T: Decodable>(_ type: T.Type, from: Data) -> IO<DecodingError, T>
+}
+
+extension JSONDecoder: ResponseDecoder {
+    
+    public func safeDecode<T: Decodable>(_ type: T.Type, from data: Data) -> IO<DecodingError, T> {
+        IO.invoke {
+            do {
+                return try self.decode(T.self, from: data)
+            } catch let error as Swift.DecodingError {
+                throw DecodingError.decoding(error)
+            } catch {
+                throw DecodingError.other(error)
+            }
+        }
+    }
+}
 
 // MARK: - encoder helpers
 extension Encodable {

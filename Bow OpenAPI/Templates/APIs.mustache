@@ -8,3 +8,17 @@
 import Foundation
 
 public enum API {}
+
+extension API.Config {
+    func with(headers: [String: String]) -> API.Config {
+        copy(headers: self.headers.combine(headers))
+    }
+    
+    func with(contentType: API.ContentType) -> API.Config {
+        copy(headers: self.headers.combine(contentType.headers))
+    }
+    
+    func withHeader(value: String, forKey key: String) -> API.Config {
+        copy(headers: self.headers.combine([key: value]))
+    }
+}

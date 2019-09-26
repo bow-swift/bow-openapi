@@ -95,7 +95,7 @@ public class {{classname}}Client: {{classname}} {
             request.setParameters(parameters)
 
             // launch request
-            return API.Helper.send(request: request, session: apiConfig.session, decoder: JSONDecoder())
+            return API.Helper.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }
     }
 {{/operation}}

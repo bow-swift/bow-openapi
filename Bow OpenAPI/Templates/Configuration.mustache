@@ -14,21 +14,24 @@ extension API {
         public let basePath: String
         public let headers: [String: String]
         public let session: URLSession
+        public let decoder: ResponseDecoder
         
-        public init (basePath: String, session: URLSession = .shared) {
-            self.init(basePath: basePath, headers: [:], session: session)
+        public init (basePath: String, session: URLSession = .shared, decoder: ResponseDecoder = JSONDecoder()) {
+            self.init(basePath: basePath, headers: [:], session: session, decoder: decoder)
         }
         
-        private init (basePath: String, headers: [String: String], session: URLSession) {
+        private init (basePath: String, headers: [String: String], session: URLSession, decoder: ResponseDecoder) {
             self.basePath = basePath
             self.headers = headers
             self.session = session
+            self.decoder = decoder
         }
         
-        func copy(basePath: String? = nil, headers: [String: String]? = nil, session: URLSession? = nil) -> API.Config {
+        func copy(basePath: String? = nil, headers: [String: String]? = nil, session: URLSession? = nil, decoder: ResponseDecoder? = nil) -> API.Config {
             return API.Config(basePath: basePath ?? self.basePath,
                               headers: headers ?? self.headers,
-                              session: session ?? self.session)
+                              session: session ?? self.session,
+                              decoder: decoder ?? self.decoder)
         }
         
         var contentType: API.ContentType {

@@ -21,6 +21,7 @@ enum APIClient {
                 |<-removeFiles("\(output)/SwaggerClient.podspec", "\(output)/SwaggerClient", "\(output)/.swagger-codegen", "\(output)/.swagger-codegen-ignore"),
                 |<-removeFiles("\(output)/JSONEncodableEncoding.swift", "\(output)/JSONEncodingHelper.swift", "\(output)/AlamofireImplementations.swift", "\(output)/Models.swift"),
                 
+                |<-fixSignatureParameters(atFolder: "\(output)/APIs"),
             yield: "RENDER SUCCEEDED")^
     }
     
@@ -59,26 +60,65 @@ enum APIClient {
     }
     
     private static func flattenStructure(_ input: String, to output: String) -> IO<APIClientError, ()> {
-        IO.invoke {
-            do {
-                try FileManager.default.contentsOfDirectory(atPath: input).forEach { itemPath in
-                    try FileManager.default.copyItem(atPath: "\(input)/\(itemPath)", toPath: "\(output)/\(itemPath)")
-                }
-            } catch {
-                throw APIClientError.moveOperation(input: input, output: output)
-            }
+        func copy(itemPath: String, from input: String, to output: String) -> IO<Error, ()> {
+            FileManager.default.copyItemIO(atPath: "\(input)/\(itemPath)", toPath: "\(output)/\(itemPath)")
         }
+        
+        func copy(items: [String], from input: String, to output: String) -> IO<Error, ()> {
+            sequence(items.map { itemPath in
+                copy(itemPath: itemPath, from: input, to: output)
+            }).void()^
+        }
+        
+        let items = IO<Error, [String]>.var()
+        
+        return binding(
+            items <- FileManager.default.contentsOfDirectoryIO(atPath: input),
+            |<-copy(items: items.get, from: input, to: output),
+        yield: ())^.mapLeft { _ in .moveOperation(input: input, output: output) }
     }
     
     private static func removeFiles(_ files: String...) -> IO<APIClientError, ()> {
-        IO.invoke {
-            try files.forEach { file in
+        let result = files.map { file in
+                        FileManager.default.removeItemIO(atPath: file)
+                                           .mapLeft { _ in APIClientError.removeOperation(file: file) }
+        }
+        
+        return sequence(result).void()^
+    }
+    
+    private static func fixSignatureParameters(atFolder path: String) -> IO<APIClientError, ()> {
+        func fixSignatureParameters(toFiles files: [String]) -> IO<APIClientError, ()> {
+            sequence(files.map(fixSignatureParameters(atFile:))).void()^
+        }
+        
+        func fixSignatureParameters(atFile path: String) -> IO<APIClientError, ()> {
+            IO.invoke {
                 do {
-                    try FileManager.default.removeItem(atPath: file)
+                    let content = try String(contentsOfFile: path)
+                    let modified = content.replacingOccurrences(of: "(, ", with: "(")
+                    try modified.write(toFile: path, atomically: true, encoding: .utf8)
                 } catch {
-                    throw APIClientError.removeOperation(file: file)
+                    throw APIClientError.updateOperation(file: path)
                 }
             }
         }
+        
+        let items = IO<APIClientError, [String]>.var()
+        
+        return binding(
+            items <- FileManager.default.contentsOfDirectoryIO(atPath: path).mapLeft {_ in .structure },
+            items <- items.get.map { item in "\(path)/\(item)" },
+                 |<-fixSignatureParameters(toFiles: items.get),
+            yield: ()
+        )^
     }
+    
+    // MARK: Helpers
+    private static func sequence<E: Error, A>(_ x: [IO<E, A>]) -> IO<E, [A]> {
+        x.reduce(IO<E, [A]>.pure([])^) { partial, next in
+            partial.flatMap { array in next.map { item in array + [item] }}^
+        }
+    }
+    
 }

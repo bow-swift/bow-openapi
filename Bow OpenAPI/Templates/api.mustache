@@ -8,7 +8,7 @@
 import Foundation
 import BowEffects
 
-/// {{classname}} <dependency injection>
+/// `{{classname}}` provider
 public extension API {
     var {{classVarName}}: {{classname}} {
         return {{classname}}Client()
@@ -118,6 +118,6 @@ public enum {{enumName}}_{{operationId}}: {{^isContainer}}{{{dataType}}}{{/isCon
 {{/operations}}{{#operations}}
 /* API.CONFIG.HEADERS
 {{#operation}}{{#allParams}}{{#isHeaderParam}}
-{{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}
+{{paramName}}:{{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}:{{baseName}}
 {{/isHeaderParam}}{{/allParams}}{{/operation}}
 */{{/operations}}

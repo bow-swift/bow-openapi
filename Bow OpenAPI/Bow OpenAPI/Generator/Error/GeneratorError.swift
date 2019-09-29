@@ -2,28 +2,14 @@
 
 import Foundation
 
-/// API Client <Error>
-struct APIClientError: Error {
-    let operation: String
-    let error: Error & CustomStringConvertible
-    
-}
-
-extension APIClientError: CustomStringConvertible {
-    var description: String {
-        return "operation: \(operation)\nerror: \(error)"
-    }
-}
-
-
-/// API Client <step information>
-enum APIClientStepError: Error {
+/// General information about the errors in the generator
+enum GeneratorError: Error {
     case templateNotFound
     case structure
     case generator
 }
 
-extension APIClientStepError: CustomStringConvertible {
+extension GeneratorError: CustomStringConvertible {
     var description: String {
         switch self {
         case .templateNotFound:

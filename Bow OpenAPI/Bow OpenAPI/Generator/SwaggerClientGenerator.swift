@@ -5,10 +5,6 @@ import Bow
 import BowEffects
 import Swiftline
 
-protocol ClientGenerator {
-    func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()>
-}
-
 class SwaggerClientGenerator: ClientGenerator {
     func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
@@ -28,7 +24,7 @@ class SwaggerClientGenerator: ClientGenerator {
                 }
                 
                 let hasError = result.exitStatus != 0 || result.stdout.contains("ERROR")
-                if hasError { throw APIClientError(operation: "swaggerGenerator(scheme:output:template:logPath:)", error: APIClientStepError.generator) }
+                if hasError { throw APIClientError(operation: "swaggerGenerator(scheme:output:template:logPath:)", error: GeneratorError.generator) }
             }
         }
         

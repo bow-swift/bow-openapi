@@ -20,7 +20,7 @@ enum APIClient {
     // MARK: attributes
     private static func getTemplatePath() -> IO<APIClientError, String> {
         guard let template = Bundle(path: "bow/openapi/templates")?.resourcePath else {
-            return IO.raiseError(APIClientError(operation: "getTemplatePath()", error: APIClientStepError.templateNotFound))^
+            return IO.raiseError(APIClientError(operation: "getTemplatePath()", error: GeneratorError.templateNotFound))^
         }
         
         return IO.pure(template)^
@@ -31,7 +31,7 @@ enum APIClient {
         EnvIO { (fileSystem: FileSystem) in
             fileSystem.removeDirectory(output: path).attempt()^
                       .followedBy(fileSystem.createDirectory(atPath: path))^
-                      .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: APIClientStepError.structure) }
+                      .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }
 }

@@ -32,3 +32,11 @@ extension FileSystemError: CustomStringConvertible {
         }
     }
 }
+
+
+/// MARK: Helper to get APIClientError given a FileSystemError
+extension FileSystemError {
+    static func toAPIClientError(_ error: FileSystemError) -> APIClientError {
+        APIClientError(operation: "FileSystem", error: error)
+    }
+}

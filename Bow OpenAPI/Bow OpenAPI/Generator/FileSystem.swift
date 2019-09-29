@@ -5,85 +5,86 @@ import Bow
 import BowEffects
 
 protocol FileSystem {
-    func createDirectory(output: String) -> IO<APIClientError, ()>
-    func copy(item: String, from input: String, to output: String) -> IO<APIClientError, ()>
-    func move(from input: String, to output: String) -> IO<APIClientError, ()>
-    func files(atPath path: String) -> IO<APIClientError, [String]>
-    func removeFiles(_ files: String...) -> IO<APIClientError, ()>
-    func readFile(atPath path: String) -> IO<APIClientError, String>
-    func write(content: String, atPath path: String) -> IO<APIClientError, ()>
-    func removeDirectory(output: String) -> IO<APIClientError, ()>
+    func createDirectory(atPath: String) -> IO<FileSystemError, ()>
+    func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
+    func remove(itemPath: String) -> IO<FileSystemError, ()>
+    func move(from input: String, to output: String) -> IO<FileSystemError, ()>
+    func items(atPath path: String) -> IO<FileSystemError, [String]>
+    func readFile(atPath path: String) -> IO<FileSystemError, String>
+    func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
 }
 
 extension FileSystem {
-    func copy(items: [String], from input: String, to output: String) -> IO<APIClientError, ()> {
+    func copy(item: String, from input: String, to output: String) -> IO<FileSystemError, ()> {
+        copy(itemPath: "\(input)/\(item)", toPath: "\(output)/\(item)")
+    }
+    
+    func copy(items: [String], from input: String, to output: String) -> IO<FileSystemError, ()> {
         items.traverse { (itemPath: String) in
             self.copy(item: itemPath.filename, from: input, to: output)
         }.void()^
     }
     
-    func remove(from folder: String, files: String...) -> IO<APIClientError, ()> {
-        files.traverse { file in self.removeFiles("\(folder)/\(file)") }.void()^
+    func remove(from folder: String, files: String...) -> IO<FileSystemError, ()> {
+        files.traverse { file in self.remove(itemPath: "\(folder)/\(file)") }.void()^
+    }
+    
+    func removeDirectory(output: String) -> IO<FileSystemError, ()> {
+        let outputURL = URL(fileURLWithPath: output, isDirectory: true)
+        return remove(itemPath: outputURL.path)
+    }
+    
+    func removeFiles(_ files: String...) -> IO<FileSystemError, ()> {
+        files.traverse(remove(itemPath:)).void()^
     }
 }
 
 class MacFileSystem: FileSystem {
-    func createDirectory(output: String) -> IO<APIClientError, ()> {
-        FileManager.default.createDirectoryIO(atPath: output, withIntermediateDirectories: false).mapLeft { _ in .structure }
+    func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
+        FileManager.default.createDirectoryIO(atPath: path, withIntermediateDirectories: false).mapLeft { _ in .create(item: path) }
     }
     
-    func copy(item: String, from input: String, to output: String) -> IO<APIClientError, ()> {
-        FileManager.default.copyItemIO(atPath: "\(input)/\(item)", toPath: "\(output)/\(item)")
-                           .mapLeft { _ in .moveOperation(input: input, output: output) }
+    func copy(itemPath atPath: String, toPath: String) -> IO<FileSystemError, ()> {
+        FileManager.default.copyItemIO(atPath: atPath, toPath: toPath).mapLeft { _ in .copy(from: atPath, to: toPath) }
     }
     
-    func move(from input: String, to output: String) -> IO<APIClientError, ()> {
-        let items = IO<APIClientError, [String]>.var()
+    func remove(itemPath: String) -> IO<FileSystemError, ()> {
+        FileManager.default.removeItemIO(atPath: itemPath).mapLeft { _ in .remove(item: itemPath) }
+    }
+    
+    func move(from input: String, to output: String) -> IO<FileSystemError, ()> {
+        let items = IO<FileSystemError, [String]>.var()
         
         return binding(
-            items <- self.files(atPath: input),
+            items <- self.items(atPath: input),
                   |<-self.copy(items: items.get, from: input, to: output),
             yield: ()
-        )^
+        )^.mapLeft { _ in .move(from: input, to: output) }
     }
     
-    func files(atPath path: String) -> IO<APIClientError, [String]> {
+    func items(atPath path: String) -> IO<FileSystemError, [String]> {
         FileManager.default.contentsOfDirectoryIO(atPath: path)
-                           .mapLeft {_ in .structure }
+                           .mapLeft { _ in .get(from: path) }
                            .map { files in files.map({ file in "\(path)/\(file)"}) }^
     }
     
-    func removeFiles(_ files: String...) -> IO<APIClientError, ()> {
-        files.traverse { file in
-            FileManager.default.removeItemIO(atPath: file)
-                .mapLeft { _ in APIClientError.removeOperation(file: file) }
-        }.void()^
-    }
-    
-    func readFile(atPath path: String) -> IO<APIClientError, String> {
+    func readFile(atPath path: String) -> IO<FileSystemError, String> {
         IO.invoke {
             do {
                 return try String(contentsOfFile: path)
             } catch {
-                throw APIClientError.read(file: path)
+                throw FileSystemError.read(file: path)
             }
         }
     }
     
-    func write(content: String, atPath path: String) -> IO<APIClientError, ()> {
+    func write(content: String, toFile path: String) -> IO<FileSystemError, ()> {
         IO.invoke {
             do {
                 try content.write(toFile: path, atomically: true, encoding: .utf8)
             } catch {
-                throw APIClientError.write(file: path)
+                throw FileSystemError.write(file: path)
             }
-        }
-    }
-    
-    func removeDirectory(output: String) -> IO<APIClientError, ()> {
-        IO.invoke {
-            let outputURL = URL(fileURLWithPath: output, isDirectory: true)
-            let _ = try? FileManager.default.removeItem(at: outputURL)
         }
     }
 }

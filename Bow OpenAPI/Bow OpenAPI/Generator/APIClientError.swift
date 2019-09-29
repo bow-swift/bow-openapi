@@ -2,36 +2,36 @@
 
 import Foundation
 
-enum APIClientError: Error {
-    case structure
-    case generator
-    case templateNotFound
-    case removeOperation(file: String)
-    case moveOperation(input: String, output: String)
-    case updateOperation(file: String)
-    case read(file: String)
-    case write(file: String)
+/// API Client <Error>
+struct APIClientError: Error {
+    let operation: String
+    let error: Error & CustomStringConvertible
+    
 }
 
 extension APIClientError: CustomStringConvertible {
     var description: String {
+        return "operation: \(operation)\nerror: \(error)"
+    }
+}
+
+
+/// API Client <step information>
+enum APIClientStepError: Error {
+    case templateNotFound
+    case structure
+    case generator
+}
+
+extension APIClientStepError: CustomStringConvertible {
+    var description: String {
         switch self {
+        case .templateNotFound:
+            return "templates for generating Bow client have not been found"
         case .structure:
             return "could not create project structure"
         case .generator:
             return "command 'swagger-codegen' failed"
-        case .templateNotFound:
-            return "templates for generating Bow client have not been found"
-        case let .removeOperation(file):
-            return "can not remove the file '\(file)'"
-        case let .moveOperation(input, output):
-            return "can not move items in '\(input)' to '\(output)'"
-        case let .updateOperation(file):
-            return "can not update the content of the file '\(file)'"
-        case let .read(file):
-            return "can not read the content of the file '\(file)'"
-        case let .write(file):
-            return "can not write in the file '\(file)'"
         }
     }
 }

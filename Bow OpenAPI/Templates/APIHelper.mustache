@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Bow
 import BowEffects
 
-public extension API {
+extension API {
     
     enum Helper {
-        public static func mapValuesItems(_ source: [String: Any?]) -> [String: String] {
+        static func mapValuesItems(_ source: [String: Any?]) -> [String: String] {
             return source.reduce(into: [String: String]()) { (result, item) in
                 if let collection = item.value as? [Any] {
                     result[item.key] = collection.compactMap { "\($0)" }.joined(separator: ",")
@@ -26,7 +27,7 @@ public extension API {
             }
         }
         
-        public static func mapValuesToQueryItems(_ source: [String: Any?]) -> [URLQueryItem]? {
+        static func mapValuesToQueryItems(_ source: [String: Any?]) -> [URLQueryItem]? {
             let destination = mapValuesItems(source).reduce(into: [URLQueryItem]()) { (result, item) in
                 result.append(URLQueryItem(name: item.key, value: item.value))
             }
@@ -34,7 +35,7 @@ public extension API {
             return destination.isEmpty ? nil : destination
         }
         
-        public static func send<T: Codable>(request: URLRequest, session: URLSession, decoder: ResponseDecoder) -> IO<API.HTTPError, T> {
+        static func send<T: Codable>(request: URLRequest, session: URLSession, decoder: ResponseDecoder) -> IO<API.HTTPError, T> {
             session.dataTaskIO(with: request)
                    .mapLeft { error in .other(error: error) }
                    .flatMap { response, data in

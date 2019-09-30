@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import Bow
 import BowEffects
 
 /// `{{classname}}` provider
 public extension API {
-    var {{classVarName}}: {{classname}} {
+    static var {{classVarName}}: {{classname}} {
         return {{classname}}Client()
     }
 }
@@ -21,6 +22,14 @@ public extension API {
 /// Protocol to define networking operations in `{{classVarName}}`
 {{/description}}
 public protocol {{classname}} {
+{{#operation}}
+    func _{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
+{{/operation}}
+}
+{{/operations}}
+
+{{#operations}}
+extension {{classname}} {
 {{#operation}}
 
     /**
@@ -40,7 +49,9 @@ public protocol {{classname}} {
      {{/isHeaderParam}}{{/allParams}}
      - Returns: an `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>`.
      */
-    static func {{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}>
+    public func {{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
+        return self._{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{paramName}}{{/isHeaderParam}}{{/allParams}})
+    }
 {{/operation}}
 }
 {{/operations}}
@@ -50,7 +61,7 @@ public protocol {{classname}} {
 public class {{classname}}Client: {{classname}} {
 {{#operation}}
 
-    public static func {{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}? = nil{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
+    public func _{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Void{{/returnType}}> {
         return EnvIO { apiConfig in
             {{#bodyParam}}
             guard let parameters = {{paramName}}?.encodingParameters else {

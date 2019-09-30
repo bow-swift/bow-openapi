@@ -6,8 +6,40 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8B8B19BF23426B47009D195A /* Fixtures */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8B8B19C023426B47009D195A /* Build configuration list for PBXAggregateTarget "Fixtures" */;
+			buildPhases = (
+				8B8B19C523426B52009D195A /* ShellScript */,
+			);
+			dependencies = (
+				8B8B19C423426B4E009D195A /* PBXTargetDependency */,
+			);
+			name = Fixtures;
+			productName = Fixtures;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
+		8B8B19B823426AE4009D195A /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* Tests.swift */; };
+		8B8B19C723426B68009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19C623426B68009D195A /* Bow */; };
+		8B8B19C923426B68009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19C823426B68009D195A /* BowEffects */; };
+		8B8B19CB23426B68009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19CA23426B68009D195A /* BowOptics */; };
+		8B8B19DE23426B98009D195A /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19CE23426B98009D195A /* APIHelper.swift */; };
+		8B8B19DF23426B98009D195A /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D023426B98009D195A /* DefaultAPI.swift */; };
+		8B8B19E023426B98009D195A /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D123426B98009D195A /* CodableHelper.swift */; };
+		8B8B19E123426B98009D195A /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D223426B98009D195A /* APIs.swift */; };
+		8B8B19E223426B98009D195A /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D423426B98009D195A /* PetError.swift */; };
+		8B8B19E323426B98009D195A /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D523426B98009D195A /* Pets.swift */; };
+		8B8B19E423426B98009D195A /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D623426B98009D195A /* OwnerPerson.swift */; };
+		8B8B19E523426B98009D195A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D723426B98009D195A /* Pet.swift */; };
+		8B8B19E623426B98009D195A /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D823426B98009D195A /* UpdatePet.swift */; };
+		8B8B19E723426B98009D195A /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D923426B98009D195A /* NewPet.swift */; };
+		8B8B19E823426B98009D195A /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DA23426B98009D195A /* Owner.swift */; };
+		8B8B19E923426B98009D195A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DB23426B98009D195A /* Extensions.swift */; };
+		8B8B19EA23426B98009D195A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DD23426B98009D195A /* Configuration.swift */; };
 		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
 		8BD70863233D2BE40018E06B /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */; };
 		8BD70914233E24430018E06B /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70913233E24430018E06B /* Array+Extensions.swift */; };
@@ -50,6 +82,16 @@
 		8BDEB0BC2340DBE10095A6E0 /* MacFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8B8B19C323426B4E009D195A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BDE68CE233233CE009342AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BDE68D5233233CE009342AD;
+			remoteInfo = "Bow OpenAPI";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8BDE68D4233233CE009342AD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -85,6 +127,23 @@
 
 /* Begin PBXFileReference section */
 		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B8B19B723426AE4009D195A /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
+		8B8B19CE23426B98009D195A /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		8B8B19D023426B98009D195A /* DefaultAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPI.swift; sourceTree = "<group>"; };
+		8B8B19D123426B98009D195A /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
+		8B8B19D223426B98009D195A /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		8B8B19D423426B98009D195A /* PetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
+		8B8B19D523426B98009D195A /* Pets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		8B8B19D623426B98009D195A /* OwnerPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPerson.swift; sourceTree = "<group>"; };
+		8B8B19D723426B98009D195A /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		8B8B19D823426B98009D195A /* UpdatePet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePet.swift; sourceTree = "<group>"; };
+		8B8B19D923426B98009D195A /* NewPet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPet.swift; sourceTree = "<group>"; };
+		8B8B19DA23426B98009D195A /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		8B8B19DB23426B98009D195A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8B8B19DD23426B98009D195A /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
 		8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		8BD70913233E24430018E06B /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -125,6 +184,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8B8B19B223426AE4009D195A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B8B19CB23426B68009D195A /* BowOptics in Frameworks */,
+				8B8B19C923426B68009D195A /* BowEffects in Frameworks */,
+				8B8B19C723426B68009D195A /* Bow in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BDE68D3233233CE009342AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,6 +208,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B8B199523426961009D195A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B8B19B623426AE4009D195A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19B723426AE4009D195A /* Tests.swift */,
+				8B8B19BD23426AEF009D195A /* Fixtures */,
+				8B8B19BE23426B15009D195A /* Support Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8B8B19BD23426AEF009D195A /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19CC23426B83009D195A /* petstore.yaml */,
+				8B8B19CD23426B98009D195A /* api */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		8B8B19BE23426B15009D195A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19B923426AE4009D195A /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		8B8B19CD23426B98009D195A /* api */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19CE23426B98009D195A /* APIHelper.swift */,
+				8B8B19D223426B98009D195A /* APIs.swift */,
+				8B8B19D123426B98009D195A /* CodableHelper.swift */,
+				8B8B19DD23426B98009D195A /* Configuration.swift */,
+				8B8B19DB23426B98009D195A /* Extensions.swift */,
+				8B8B19CF23426B98009D195A /* APIs */,
+				8B8B19D323426B98009D195A /* Models */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		8B8B19CF23426B98009D195A /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19D023426B98009D195A /* DefaultAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		8B8B19D323426B98009D195A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B19D923426B98009D195A /* NewPet.swift */,
+				8B8B19DA23426B98009D195A /* Owner.swift */,
+				8B8B19D623426B98009D195A /* OwnerPerson.swift */,
+				8B8B19D723426B98009D195A /* Pet.swift */,
+				8B8B19D423426B98009D195A /* PetError.swift */,
+				8B8B19D523426B98009D195A /* Pets.swift */,
+				8B8B19D823426B98009D195A /* UpdatePet.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8BD90F4323328E1D00281786 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +294,9 @@
 			children = (
 				8BDE68D8233233CE009342AD /* Bow OpenAPI */,
 				8BDE68EA23323602009342AD /* Templates */,
+				8B8B19B623426AE4009D195A /* Tests */,
 				8BDE68D7233233CE009342AD /* Products */,
+				8B8B199523426961009D195A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				8BDE68D6233233CE009342AD /* bow-openapi */,
+				8B8B19B523426AE4009D195A /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +392,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8B8B19B423426AE4009D195A /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B8B19BA23426AE4009D195A /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				8B8B19B123426AE4009D195A /* Sources */,
+				8B8B19B223426AE4009D195A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tests;
+			packageProductDependencies = (
+				8B8B19C623426B68009D195A /* Bow */,
+				8B8B19C823426B68009D195A /* BowEffects */,
+				8B8B19CA23426B68009D195A /* BowOptics */,
+			);
+			productName = Tests;
+			productReference = 8B8B19B523426AE4009D195A /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8BDE68D5233233CE009342AD /* Bow OpenAPI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BDE68DD233233CE009342AD /* Build configuration list for PBXNativeTarget "Bow OpenAPI" */;
@@ -283,6 +446,12 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
+					8B8B19B423426AE4009D195A = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					8B8B19BF23426B47009D195A = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					8BDE68D5233233CE009342AD = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -306,11 +475,54 @@
 			projectRoot = "";
 			targets = (
 				8BDE68D5233233CE009342AD /* Bow OpenAPI */,
+				8B8B19B423426AE4009D195A /* Tests */,
+				8B8B19BF23426B47009D195A /* Fixtures */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8B8B19C523426B52009D195A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${BUILT_PRODUCTS_DIR}\ntests=${SRCROOT}/Tests/Fixtures\n\n./bow-openapi --scheme \"$tests/petstore.yaml\" --output \"$tests/api\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		8B8B19B123426AE4009D195A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B8B19E623426B98009D195A /* UpdatePet.swift in Sources */,
+				8B8B19E823426B98009D195A /* Owner.swift in Sources */,
+				8B8B19EA23426B98009D195A /* Configuration.swift in Sources */,
+				8B8B19E323426B98009D195A /* Pets.swift in Sources */,
+				8B8B19E223426B98009D195A /* PetError.swift in Sources */,
+				8B8B19E023426B98009D195A /* CodableHelper.swift in Sources */,
+				8B8B19E523426B98009D195A /* Pet.swift in Sources */,
+				8B8B19DE23426B98009D195A /* APIHelper.swift in Sources */,
+				8B8B19DF23426B98009D195A /* DefaultAPI.swift in Sources */,
+				8B8B19E923426B98009D195A /* Extensions.swift in Sources */,
+				8B8B19E123426B98009D195A /* APIs.swift in Sources */,
+				8B8B19E423426B98009D195A /* OwnerPerson.swift in Sources */,
+				8B8B19B823426AE4009D195A /* Tests.swift in Sources */,
+				8B8B19E723426B98009D195A /* NewPet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BDE68D2233233CE009342AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,7 +548,67 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8B8B19C423426B4E009D195A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BDE68D5233233CE009342AD /* Bow OpenAPI */;
+			targetProxy = 8B8B19C323426B4E009D195A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		8B8B19BB23426AE4009D195A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendegress.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8B8B19BC23426AE4009D195A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendegress.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8B8B19C123426B47009D195A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8B8B19C223426B47009D195A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8BDE68DB233233CE009342AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -456,7 +728,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
+				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
 			};
 			name = Debug;
@@ -465,7 +739,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
+				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
 			};
 			name = Release;
@@ -473,6 +749,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8B8B19BA23426AE4009D195A /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B8B19BB23426AE4009D195A /* Debug */,
+				8B8B19BC23426AE4009D195A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B8B19C023426B47009D195A /* Build configuration list for PBXAggregateTarget "Fixtures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B8B19C123426B47009D195A /* Debug */,
+				8B8B19C223426B47009D195A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8BDE68D1233233CE009342AD /* Build configuration list for PBXProject "Bow OpenAPI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -513,6 +807,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B8B19C623426B68009D195A /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = Bow;
+		};
+		8B8B19C823426B68009D195A /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8B8B19CA23426B68009D195A /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
+		};
 		8BD7091D233E5AED0018E06B /* BowEffects */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;

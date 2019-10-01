@@ -20,7 +20,7 @@ extension FileSystemError: CustomStringConvertible {
         case .copy(let from, let to):
             return "cannot copy item at '\(from)' to '\(to)'"
         case .remove(let item):
-            return "can not remove item at '\(item)'"
+            return "cannot remove item at '\(item)'"
         case .move(let from, let to):
             return "cannot move item from '\(from)' to '\(to)'"
         case .get(let from):

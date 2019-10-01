@@ -28,7 +28,7 @@ extension FileSystemError: CustomStringConvertible {
         case .read(let file):
             return "cannot read content of file '\(file)'"
         case .write(let file):
-            return "can not write in the file '\(file)'"
+            return "cannot write in file '\(file)'"
         }
     }
 }

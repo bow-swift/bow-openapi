@@ -22,7 +22,7 @@ extension FileSystemError: CustomStringConvertible {
         case .remove(let item):
             return "can not remove item at '\(item)'"
         case .move(let from, let to):
-            return "can not move item from '\(from)' to '\(to)'"
+            return "cannot move item from '\(from)' to '\(to)'"
         case .get(let from):
             return "can not get the whole items from '\(from)'"
         case .read(let file):

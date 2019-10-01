@@ -1,12 +1,11 @@
-language: objective-c
+language: swift
 osx_image: xcode11
-sudo: required
-language: java
-jdk: oraclejdk8
+jdk: openjdk8
+
 addons:
   homebrew:
-    packages:
-    - swagger-codegen
+    taps: adoptopenjdk/openjdk
+    casks: adoptopenjdk8
 
 env:
   global:
@@ -18,8 +17,13 @@ env:
 jobs:
   include:
     - stage: test
+      name: "Tests"
+      addons:
+        homebrew:
+          packages: swagger-codegen
       before_install:
         - set -o pipefail
+        - java -version
         - cd "$ROOT"
         - xcodebuild build -project "$PROJECT" -scheme "Fixtures" -destination "$DEST" | xcpretty -c
       script:

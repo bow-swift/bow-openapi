@@ -12,6 +12,13 @@ paths:
       summary: List all pets
       operationId: getPets
       parameters:
+        - name: idToken
+          in: header
+          name: Test-Token
+          description: How many items to return at one time
+          required: true
+          schema:
+            type: string
         - name: limit
           in: query
           description: How many items to return at one time
@@ -60,6 +67,13 @@ paths:
     put:
       summary: Update a pet
       parameters:
+        - name: idToken
+          in: header
+          name: Test-Token
+          description: How many items to return at one time
+          required: false
+          schema:
+            type: string
         - name: petId
           in: path
           required: true

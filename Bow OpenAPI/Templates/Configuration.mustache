@@ -9,7 +9,7 @@ import Foundation
 
 /// Definition of `Config` to set up the API Client
 extension API {
-    public struct Config {
+    public struct Config: Equatable {
         public let basePath: String
         public let headers: [String: String]
         public let session: URLSession
@@ -36,13 +36,19 @@ extension API {
         var contentType: API.ContentType {
             API.ContentType(rawValue: headers["Content-Type"]?.lowercased() ?? "") ?? .json
         }
+        
+        public static func == (lhs: API.Config, rhs: API.Config) -> Bool {
+            lhs.basePath == rhs.basePath &&
+            lhs.headers == rhs.headers &&
+            lhs.session == rhs.session
+        }
     }
 }
 
 
 /// Definition of HTTP Headers for the content type
 extension API {
-    public enum ContentType: String {
+    public enum ContentType: String, CaseIterable {
         case json = "application/json"
         
         var headers: [String: String] {

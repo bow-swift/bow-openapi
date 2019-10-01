@@ -18,7 +18,7 @@ extension FileSystemError: CustomStringConvertible {
         case .create(let item):
             return "cannot create item '\(item)'"
         case .copy(let from, let to):
-            return "can not copy item at '\(from)' to '\(to)'"
+            return "cannot copy item at '\(from)' to '\(to)'"
         case .remove(let item):
             return "can not remove item at '\(item)'"
         case .move(let from, let to):

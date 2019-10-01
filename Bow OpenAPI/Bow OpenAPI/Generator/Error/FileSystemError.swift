@@ -16,7 +16,7 @@ extension FileSystemError: CustomStringConvertible {
     var description: String {
         switch self {
         case .create(let item):
-            return "can not create item '\(item)'"
+            return "cannot create item '\(item)'"
         case .copy(let from, let to):
             return "can not copy item at '\(from)' to '\(to)'"
         case .remove(let item):

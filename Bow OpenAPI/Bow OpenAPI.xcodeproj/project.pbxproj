@@ -24,28 +24,28 @@
 /* Begin PBXBuildFile section */
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
-		8B8B1B5623426D96009D195A /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4623426D96009D195A /* APIHelper.swift */; };
-		8B8B1B5723426D96009D195A /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4823426D96009D195A /* DefaultAPI.swift */; };
-		8B8B1B5823426D96009D195A /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4923426D96009D195A /* CodableHelper.swift */; };
-		8B8B1B5923426D96009D195A /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4A23426D96009D195A /* APIs.swift */; };
-		8B8B1B5A23426D96009D195A /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4C23426D96009D195A /* PetError.swift */; };
-		8B8B1B5B23426D96009D195A /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4D23426D96009D195A /* Pets.swift */; };
-		8B8B1B5C23426D96009D195A /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4E23426D96009D195A /* OwnerPerson.swift */; };
-		8B8B1B5D23426D96009D195A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4F23426D96009D195A /* Pet.swift */; };
-		8B8B1B5E23426D96009D195A /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5023426D96009D195A /* UpdatePet.swift */; };
-		8B8B1B5F23426D96009D195A /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5123426D96009D195A /* NewPet.swift */; };
-		8B8B1B6023426D96009D195A /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5223426D96009D195A /* Owner.swift */; };
-		8B8B1B6123426D96009D195A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5323426D96009D195A /* Extensions.swift */; };
-		8B8B1B6223426D96009D195A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5523426D96009D195A /* Configuration.swift */; };
 		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Arbitrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Arbitrary.swift */; };
-		8B8B1C292343889A009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C282343889A009D195A /* Bow */; };
-		8B8B1C2B2343889A009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C2A2343889A009D195A /* BowEffects */; };
-		8B8B1C2D2343889A009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C2C2343889A009D195A /* BowOptics */; };
-		8B8B1C31234388AB009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C30234388AB009D195A /* Bow */; };
-		8B8B1C33234388AB009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C32234388AB009D195A /* BowEffects */; };
-		8B8B1C35234388AB009D195A /* BowGenerators in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C34234388AB009D195A /* BowGenerators */; };
-		8B8B1C37234388AB009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C36234388AB009D195A /* BowOptics */; };
+		8BBCE4D22343901A007FF1B2 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D12343901A007FF1B2 /* Bow */; };
+		8BBCE4D42343901A007FF1B2 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D32343901A007FF1B2 /* BowEffects */; };
+		8BBCE4D62343901A007FF1B2 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D52343901A007FF1B2 /* BowOptics */; };
+		8BBCE4DA23439028007FF1B2 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D923439028007FF1B2 /* Bow */; };
+		8BBCE4DC23439028007FF1B2 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DB23439028007FF1B2 /* BowEffects */; };
+		8BBCE4DE23439028007FF1B2 /* BowGenerators in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DD23439028007FF1B2 /* BowGenerators */; };
+		8BBCE4E023439028007FF1B2 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DF23439028007FF1B2 /* BowOptics */; };
+		8BBCE4F223439087007FF1B2 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E223439087007FF1B2 /* APIHelper.swift */; };
+		8BBCE4F323439087007FF1B2 /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E423439087007FF1B2 /* DefaultAPI.swift */; };
+		8BBCE4F423439087007FF1B2 /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E523439087007FF1B2 /* CodableHelper.swift */; };
+		8BBCE4F523439087007FF1B2 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E623439087007FF1B2 /* APIs.swift */; };
+		8BBCE4F623439087007FF1B2 /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E823439087007FF1B2 /* PetError.swift */; };
+		8BBCE4F723439087007FF1B2 /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E923439087007FF1B2 /* Pets.swift */; };
+		8BBCE4F823439087007FF1B2 /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4EA23439087007FF1B2 /* OwnerPerson.swift */; };
+		8BBCE4F923439087007FF1B2 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4EB23439087007FF1B2 /* Pet.swift */; };
+		8BBCE4FA23439087007FF1B2 /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4EC23439087007FF1B2 /* UpdatePet.swift */; };
+		8BBCE4FB23439087007FF1B2 /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4ED23439087007FF1B2 /* NewPet.swift */; };
+		8BBCE4FC23439087007FF1B2 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4EE23439087007FF1B2 /* Owner.swift */; };
+		8BBCE4FD23439087007FF1B2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4EF23439087007FF1B2 /* Extensions.swift */; };
+		8BBCE4FE23439087007FF1B2 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4F123439087007FF1B2 /* Configuration.swift */; };
 		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
 		8BD70916233E3D650018E06B /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70915233E3D650018E06B /* FileSystem.swift */; };
 		8BD70918233E3F0E0018E06B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70917233E3F0E0018E06B /* Environment.swift */; };
@@ -132,20 +132,20 @@
 		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
-		8B8B1B4623426D96009D195A /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
-		8B8B1B4823426D96009D195A /* DefaultAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPI.swift; sourceTree = "<group>"; };
-		8B8B1B4923426D96009D195A /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
-		8B8B1B4A23426D96009D195A /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
-		8B8B1B4C23426D96009D195A /* PetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
-		8B8B1B4D23426D96009D195A /* Pets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
-		8B8B1B4E23426D96009D195A /* OwnerPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPerson.swift; sourceTree = "<group>"; };
-		8B8B1B4F23426D96009D195A /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
-		8B8B1B5023426D96009D195A /* UpdatePet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePet.swift; sourceTree = "<group>"; };
-		8B8B1B5123426D96009D195A /* NewPet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPet.swift; sourceTree = "<group>"; };
-		8B8B1B5223426D96009D195A /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
-		8B8B1B5323426D96009D195A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8B8B1B5523426D96009D195A /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8B8B1C1623436195009D195A /* API+Arbitrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Arbitrary.swift"; sourceTree = "<group>"; };
+		8BBCE4E223439087007FF1B2 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		8BBCE4E423439087007FF1B2 /* DefaultAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPI.swift; sourceTree = "<group>"; };
+		8BBCE4E523439087007FF1B2 /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
+		8BBCE4E623439087007FF1B2 /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		8BBCE4E823439087007FF1B2 /* PetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
+		8BBCE4E923439087007FF1B2 /* Pets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		8BBCE4EA23439087007FF1B2 /* OwnerPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPerson.swift; sourceTree = "<group>"; };
+		8BBCE4EB23439087007FF1B2 /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		8BBCE4EC23439087007FF1B2 /* UpdatePet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePet.swift; sourceTree = "<group>"; };
+		8BBCE4ED23439087007FF1B2 /* NewPet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPet.swift; sourceTree = "<group>"; };
+		8BBCE4EE23439087007FF1B2 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		8BBCE4EF23439087007FF1B2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8BBCE4F123439087007FF1B2 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
 		8BD70915233E3D650018E06B /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		8BD70917233E3F0E0018E06B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -189,10 +189,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */,
-				8B8B1C31234388AB009D195A /* Bow in Frameworks */,
-				8B8B1C37234388AB009D195A /* BowOptics in Frameworks */,
-				8B8B1C33234388AB009D195A /* BowEffects in Frameworks */,
-				8B8B1C35234388AB009D195A /* BowGenerators in Frameworks */,
+				8BBCE4DA23439028007FF1B2 /* Bow in Frameworks */,
+				8BBCE4E023439028007FF1B2 /* BowOptics in Frameworks */,
+				8BBCE4DC23439028007FF1B2 /* BowEffects in Frameworks */,
+				8BBCE4DE23439028007FF1B2 /* BowGenerators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +201,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BDE68E22332347D009342AD /* Swiftline in Frameworks */,
-				8B8B1C292343889A009D195A /* Bow in Frameworks */,
-				8B8B1C2B2343889A009D195A /* BowEffects in Frameworks */,
-				8B8B1C2D2343889A009D195A /* BowOptics in Frameworks */,
+				8BBCE4D22343901A007FF1B2 /* Bow in Frameworks */,
+				8BBCE4D42343901A007FF1B2 /* BowEffects in Frameworks */,
+				8BBCE4D62343901A007FF1B2 /* BowOptics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8B19CC23426B83009D195A /* petstore.yaml */,
-				8B8B1B4523426D96009D195A /* api */,
+				8BBCE4E123439087007FF1B2 /* api */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -245,48 +245,48 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
-		8B8B1B4523426D96009D195A /* api */ = {
-			isa = PBXGroup;
-			children = (
-				8B8B1B4A23426D96009D195A /* APIs.swift */,
-				8B8B1B4623426D96009D195A /* APIHelper.swift */,
-				8B8B1B4923426D96009D195A /* CodableHelper.swift */,
-				8B8B1B5523426D96009D195A /* Configuration.swift */,
-				8B8B1B5323426D96009D195A /* Extensions.swift */,
-				8B8B1B4723426D96009D195A /* APIs */,
-				8B8B1B4B23426D96009D195A /* Models */,
-			);
-			path = api;
-			sourceTree = "<group>";
-		};
-		8B8B1B4723426D96009D195A /* APIs */ = {
-			isa = PBXGroup;
-			children = (
-				8B8B1B4823426D96009D195A /* DefaultAPI.swift */,
-			);
-			path = APIs;
-			sourceTree = "<group>";
-		};
-		8B8B1B4B23426D96009D195A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8B8B1B4C23426D96009D195A /* PetError.swift */,
-				8B8B1B4D23426D96009D195A /* Pets.swift */,
-				8B8B1B4E23426D96009D195A /* OwnerPerson.swift */,
-				8B8B1B4F23426D96009D195A /* Pet.swift */,
-				8B8B1B5023426D96009D195A /* UpdatePet.swift */,
-				8B8B1B5123426D96009D195A /* NewPet.swift */,
-				8B8B1B5223426D96009D195A /* Owner.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		8B8B1C152343617A009D195A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				8B8B1C1623436195009D195A /* API+Arbitrary.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8BBCE4E123439087007FF1B2 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				8BBCE4E223439087007FF1B2 /* APIHelper.swift */,
+				8BBCE4E623439087007FF1B2 /* APIs.swift */,
+				8BBCE4E523439087007FF1B2 /* CodableHelper.swift */,
+				8BBCE4F123439087007FF1B2 /* Configuration.swift */,
+				8BBCE4EF23439087007FF1B2 /* Extensions.swift */,
+				8BBCE4E323439087007FF1B2 /* APIs */,
+				8BBCE4E723439087007FF1B2 /* Models */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		8BBCE4E323439087007FF1B2 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				8BBCE4E423439087007FF1B2 /* DefaultAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		8BBCE4E723439087007FF1B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BBCE4ED23439087007FF1B2 /* NewPet.swift */,
+				8BBCE4EE23439087007FF1B2 /* Owner.swift */,
+				8BBCE4EA23439087007FF1B2 /* OwnerPerson.swift */,
+				8BBCE4EB23439087007FF1B2 /* Pet.swift */,
+				8BBCE4E823439087007FF1B2 /* PetError.swift */,
+				8BBCE4E923439087007FF1B2 /* Pets.swift */,
+				8BBCE4EC23439087007FF1B2 /* UpdatePet.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8BD90F4323328E1D00281786 /* Utils */ = {
@@ -415,10 +415,10 @@
 			name = Tests;
 			packageProductDependencies = (
 				8B8B1C1323435AC0009D195A /* SwiftCheck */,
-				8B8B1C30234388AB009D195A /* Bow */,
-				8B8B1C32234388AB009D195A /* BowEffects */,
-				8B8B1C34234388AB009D195A /* BowGenerators */,
-				8B8B1C36234388AB009D195A /* BowOptics */,
+				8BBCE4D923439028007FF1B2 /* Bow */,
+				8BBCE4DB23439028007FF1B2 /* BowEffects */,
+				8BBCE4DD23439028007FF1B2 /* BowGenerators */,
+				8BBCE4DF23439028007FF1B2 /* BowOptics */,
 			);
 			productName = Tests;
 			productReference = 8B8B19B523426AE4009D195A /* Tests.xctest */;
@@ -439,9 +439,9 @@
 			name = "Bow OpenAPI";
 			packageProductDependencies = (
 				8BDE68E12332347D009342AD /* Swiftline */,
-				8B8B1C282343889A009D195A /* Bow */,
-				8B8B1C2A2343889A009D195A /* BowEffects */,
-				8B8B1C2C2343889A009D195A /* BowOptics */,
+				8BBCE4D12343901A007FF1B2 /* Bow */,
+				8BBCE4D32343901A007FF1B2 /* BowEffects */,
+				8BBCE4D52343901A007FF1B2 /* BowOptics */,
 			);
 			productName = "Bow OpenAPI";
 			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
@@ -480,7 +480,7 @@
 			packageReferences = (
 				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
 				8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */,
-				8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */,
+				8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -518,21 +518,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8B1B5E23426D96009D195A /* UpdatePet.swift in Sources */,
-				8B8B1B6023426D96009D195A /* Owner.swift in Sources */,
-				8B8B1B6223426D96009D195A /* Configuration.swift in Sources */,
+				8BBCE4FB23439087007FF1B2 /* NewPet.swift in Sources */,
+				8BBCE4FD23439087007FF1B2 /* Extensions.swift in Sources */,
+				8BBCE4FE23439087007FF1B2 /* Configuration.swift in Sources */,
+				8BBCE4F923439087007FF1B2 /* Pet.swift in Sources */,
 				8B8B1C1723436195009D195A /* API+Arbitrary.swift in Sources */,
-				8B8B1B5B23426D96009D195A /* Pets.swift in Sources */,
-				8B8B1B5A23426D96009D195A /* PetError.swift in Sources */,
-				8B8B1B5823426D96009D195A /* CodableHelper.swift in Sources */,
-				8B8B1B5D23426D96009D195A /* Pet.swift in Sources */,
-				8B8B1B5623426D96009D195A /* APIHelper.swift in Sources */,
-				8B8B1B5723426D96009D195A /* DefaultAPI.swift in Sources */,
-				8B8B1B6123426D96009D195A /* Extensions.swift in Sources */,
-				8B8B1B5923426D96009D195A /* APIs.swift in Sources */,
-				8B8B1B5C23426D96009D195A /* OwnerPerson.swift in Sources */,
+				8BBCE4F823439087007FF1B2 /* OwnerPerson.swift in Sources */,
+				8BBCE4FA23439087007FF1B2 /* UpdatePet.swift in Sources */,
+				8BBCE4F223439087007FF1B2 /* APIHelper.swift in Sources */,
+				8BBCE4F523439087007FF1B2 /* APIs.swift in Sources */,
+				8BBCE4FC23439087007FF1B2 /* Owner.swift in Sources */,
+				8BBCE4F623439087007FF1B2 /* PetError.swift in Sources */,
+				8BBCE4F723439087007FF1B2 /* Pets.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
-				8B8B1B5F23426D96009D195A /* NewPet.swift in Sources */,
+				8BBCE4F323439087007FF1B2 /* DefaultAPI.swift in Sources */,
+				8BBCE4F423439087007FF1B2 /* CodableHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,7 +807,7 @@
 				minimumVersion = 0.12.0;
 			};
 		};
-		8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */ = {
+		8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bow-swift/bow.git";
 			requirement = {
@@ -831,39 +831,39 @@
 			package = 8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */;
 			productName = SwiftCheck;
 		};
-		8B8B1C282343889A009D195A /* Bow */ = {
+		8BBCE4D12343901A007FF1B2 /* Bow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = Bow;
 		};
-		8B8B1C2A2343889A009D195A /* BowEffects */ = {
+		8BBCE4D32343901A007FF1B2 /* BowEffects */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowEffects;
 		};
-		8B8B1C2C2343889A009D195A /* BowOptics */ = {
+		8BBCE4D52343901A007FF1B2 /* BowOptics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowOptics;
 		};
-		8B8B1C30234388AB009D195A /* Bow */ = {
+		8BBCE4D923439028007FF1B2 /* Bow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = Bow;
 		};
-		8B8B1C32234388AB009D195A /* BowEffects */ = {
+		8BBCE4DB23439028007FF1B2 /* BowEffects */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowEffects;
 		};
-		8B8B1C34234388AB009D195A /* BowGenerators */ = {
+		8BBCE4DD23439028007FF1B2 /* BowGenerators */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowGenerators;
 		};
-		8B8B1C36234388AB009D195A /* BowOptics */ = {
+		8BBCE4DF23439028007FF1B2 /* BowOptics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowOptics;
 		};
 		8BDE68E12332347D009342AD /* Swiftline */ = {

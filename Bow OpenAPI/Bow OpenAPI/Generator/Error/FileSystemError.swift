@@ -26,7 +26,7 @@ extension FileSystemError: CustomStringConvertible {
         case .get(let from):
             return "cannot get items from '\(from)'"
         case .read(let file):
-            return "can not read content of the file '\(file)'"
+            return "cannot read content of file '\(file)'"
         case .write(let file):
             return "can not write in the file '\(file)'"
         }

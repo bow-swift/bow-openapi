@@ -1,6 +1,10 @@
 language: objective-c
 osx_image: xcode11
 sudo: required
+addons:
+  homebrew:
+    packages:
+    - swagger-codegen
 
 env:
   global:

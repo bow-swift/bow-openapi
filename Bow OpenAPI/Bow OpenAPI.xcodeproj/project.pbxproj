@@ -7,28 +7,121 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
+		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
+		8BD70863233D2BE40018E06B /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */; };
+		8BD70914233E24430018E06B /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70913233E24430018E06B /* Array+Extensions.swift */; };
+		8BD70916233E3D650018E06B /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70915233E3D650018E06B /* FileSystem.swift */; };
+		8BD70918233E3F0E0018E06B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70917233E3F0E0018E06B /* Environment.swift */; };
+		8BD7091A233E3F610018E06B /* ClientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70919233E3F610018E06B /* ClientGenerator.swift */; };
+		8BD7091E233E5AED0018E06B /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD7091D233E5AED0018E06B /* BowEffects */; };
+		8BD70920233E5AED0018E06B /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD7091F233E5AED0018E06B /* BowOptics */; };
+		8BD70922233E5AED0018E06B /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD70921233E5AED0018E06B /* Bow */; };
+		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
+		8BD90F2F23328DAF00281786 /* AlamofireImplementations.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */; };
+		8BD90F3023328DAF00281786 /* api.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6911233280FE009342AD /* api.mustache */; };
+		8BD90F3123328DAF00281786 /* APIHelper.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690D233280FE009342AD /* APIHelper.mustache */; };
+		8BD90F3223328DAF00281786 /* APIs.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6914233280FF009342AD /* APIs.mustache */; };
+		8BD90F3323328DAF00281786 /* Cartfile.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690C233280FE009342AD /* Cartfile.mustache */; };
+		8BD90F3423328DAF00281786 /* CodableHelper.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6906233280FE009342AD /* CodableHelper.mustache */; };
+		8BD90F3523328DAF00281786 /* Configuration.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6916233280FF009342AD /* Configuration.mustache */; };
+		8BD90F3623328DAF00281786 /* Extensions.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6904233280FE009342AD /* Extensions.mustache */; };
+		8BD90F3723328DAF00281786 /* git_push.sh.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6910233280FE009342AD /* git_push.sh.mustache */; };
+		8BD90F3823328DAF00281786 /* gitignore.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6907233280FE009342AD /* gitignore.mustache */; };
+		8BD90F3923328DAF00281786 /* JSONEncodableEncoding.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690B233280FE009342AD /* JSONEncodableEncoding.mustache */; };
+		8BD90F3A23328DAF00281786 /* JSONEncodingHelper.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6917233280FF009342AD /* JSONEncodingHelper.mustache */; };
+		8BD90F3B23328DAF00281786 /* model.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6908233280FE009342AD /* model.mustache */; };
+		8BD90F3C23328DAF00281786 /* modelArray.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6915233280FF009342AD /* modelArray.mustache */; };
+		8BD90F3D23328DAF00281786 /* modelEnum.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6903233280FE009342AD /* modelEnum.mustache */; };
+		8BD90F3E23328DAF00281786 /* modelInlineEnumDeclaration.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690A233280FE009342AD /* modelInlineEnumDeclaration.mustache */; };
+		8BD90F3F23328DAF00281786 /* modelObject.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6905233280FE009342AD /* modelObject.mustache */; };
+		8BD90F4023328DAF00281786 /* Models.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690F233280FE009342AD /* Models.mustache */; };
+		8BD90F4123328DAF00281786 /* Podspec.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6912233280FE009342AD /* Podspec.mustache */; };
+		8BD90F4223328DAF00281786 /* README.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6913233280FF009342AD /* README.mustache */; };
+		8BD90F4523328E2600281786 /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD90F4423328E2600281786 /* String+Path.swift */; };
 		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
 		8BDE68E22332347D009342AD /* Swiftline in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E12332347D009342AD /* Swiftline */; };
-		8BDE68E52332357F009342AD /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E42332357F009342AD /* BowOptics */; };
-		8BDE68E72332357F009342AD /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E62332357F009342AD /* BowEffects */; };
-		8BDE68E92332357F009342AD /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE68E82332357F009342AD /* Bow */; };
+		8BDE68ED23326E42009342AD /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Console.swift */; };
+		8BDE691B23328538009342AD /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691A23328538009342AD /* CommandLine.swift */; };
+		8BDE691E233286CC009342AD /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691D233286CC009342AD /* APIClient.swift */; };
+		8BDEB0B42340D5850095A6E0 /* FileSystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEB0B32340D5850095A6E0 /* FileSystemError.swift */; };
+		8BDEB0B62340DAAF0095A6E0 /* GeneratorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */; };
+		8BDEB0BA2340DBC10095A6E0 /* SwaggerClientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEB0B92340DBC10095A6E0 /* SwaggerClientGenerator.swift */; };
+		8BDEB0BC2340DBE10095A6E0 /* MacFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8BDE68D4233233CE009342AD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = bow/openapi/templates;
+			dstSubfolderSpec = 16;
 			files = (
+				8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */,
+				8BD90F2F23328DAF00281786 /* AlamofireImplementations.mustache in CopyFiles */,
+				8BD90F3023328DAF00281786 /* api.mustache in CopyFiles */,
+				8BD90F3123328DAF00281786 /* APIHelper.mustache in CopyFiles */,
+				8BD90F3223328DAF00281786 /* APIs.mustache in CopyFiles */,
+				8BD90F3323328DAF00281786 /* Cartfile.mustache in CopyFiles */,
+				8BD90F3423328DAF00281786 /* CodableHelper.mustache in CopyFiles */,
+				8BD90F3523328DAF00281786 /* Configuration.mustache in CopyFiles */,
+				8BD90F3623328DAF00281786 /* Extensions.mustache in CopyFiles */,
+				8BD90F3723328DAF00281786 /* git_push.sh.mustache in CopyFiles */,
+				8BD90F3823328DAF00281786 /* gitignore.mustache in CopyFiles */,
+				8BD90F3923328DAF00281786 /* JSONEncodableEncoding.mustache in CopyFiles */,
+				8BD90F3A23328DAF00281786 /* JSONEncodingHelper.mustache in CopyFiles */,
+				8BD90F3B23328DAF00281786 /* model.mustache in CopyFiles */,
+				8BD90F3C23328DAF00281786 /* modelArray.mustache in CopyFiles */,
+				8BD90F3D23328DAF00281786 /* modelEnum.mustache in CopyFiles */,
+				8BD90F3E23328DAF00281786 /* modelInlineEnumDeclaration.mustache in CopyFiles */,
+				8BD90F3F23328DAF00281786 /* modelObject.mustache in CopyFiles */,
+				8BD90F4023328DAF00281786 /* Models.mustache in CopyFiles */,
+				8BD90F4123328DAF00281786 /* Podspec.mustache in CopyFiles */,
+				8BD90F4223328DAF00281786 /* README.mustache in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
+		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
+		8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
+		8BD70913233E24430018E06B /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		8BD70915233E3D650018E06B /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
+		8BD70917233E3F0E0018E06B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		8BD70919233E3F610018E06B /* ClientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGenerator.swift; sourceTree = "<group>"; };
+		8BD90F4423328E2600281786 /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		8BDE68D6233233CE009342AD /* bow-openapi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bow-openapi"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE68D9233233CE009342AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8BDE68EC23326E42009342AD /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		8BDE6903233280FE009342AD /* modelEnum.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelEnum.mustache; sourceTree = "<group>"; };
+		8BDE6904233280FE009342AD /* Extensions.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Extensions.mustache; sourceTree = "<group>"; };
+		8BDE6905233280FE009342AD /* modelObject.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelObject.mustache; sourceTree = "<group>"; };
+		8BDE6906233280FE009342AD /* CodableHelper.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CodableHelper.mustache; sourceTree = "<group>"; };
+		8BDE6907233280FE009342AD /* gitignore.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gitignore.mustache; sourceTree = "<group>"; };
+		8BDE6908233280FE009342AD /* model.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = model.mustache; sourceTree = "<group>"; };
+		8BDE6909233280FE009342AD /* _param.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _param.mustache; sourceTree = "<group>"; };
+		8BDE690A233280FE009342AD /* modelInlineEnumDeclaration.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelInlineEnumDeclaration.mustache; sourceTree = "<group>"; };
+		8BDE690B233280FE009342AD /* JSONEncodableEncoding.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONEncodableEncoding.mustache; sourceTree = "<group>"; };
+		8BDE690C233280FE009342AD /* Cartfile.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.mustache; sourceTree = "<group>"; };
+		8BDE690D233280FE009342AD /* APIHelper.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = APIHelper.mustache; sourceTree = "<group>"; };
+		8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AlamofireImplementations.mustache; sourceTree = "<group>"; };
+		8BDE690F233280FE009342AD /* Models.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Models.mustache; sourceTree = "<group>"; };
+		8BDE6910233280FE009342AD /* git_push.sh.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = git_push.sh.mustache; sourceTree = "<group>"; };
+		8BDE6911233280FE009342AD /* api.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.mustache; sourceTree = "<group>"; };
+		8BDE6912233280FE009342AD /* Podspec.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podspec.mustache; sourceTree = "<group>"; };
+		8BDE6913233280FF009342AD /* README.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mustache; sourceTree = "<group>"; };
+		8BDE6914233280FF009342AD /* APIs.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = APIs.mustache; sourceTree = "<group>"; };
+		8BDE6915233280FF009342AD /* modelArray.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelArray.mustache; sourceTree = "<group>"; };
+		8BDE6916233280FF009342AD /* Configuration.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Configuration.mustache; sourceTree = "<group>"; };
+		8BDE6917233280FF009342AD /* JSONEncodingHelper.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONEncodingHelper.mustache; sourceTree = "<group>"; };
+		8BDE691A23328538009342AD /* CommandLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLine.swift; sourceTree = "<group>"; };
+		8BDE691D233286CC009342AD /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		8BDEB0B32340D5850095A6E0 /* FileSystemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemError.swift; sourceTree = "<group>"; };
+		8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorError.swift; sourceTree = "<group>"; };
+		8BDEB0B92340DBC10095A6E0 /* SwaggerClientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaggerClientGenerator.swift; sourceTree = "<group>"; };
+		8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFileSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,16 +129,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD70920233E5AED0018E06B /* BowOptics in Frameworks */,
+				8BD7091E233E5AED0018E06B /* BowEffects in Frameworks */,
 				8BDE68E22332347D009342AD /* Swiftline in Frameworks */,
-				8BDE68E52332357F009342AD /* BowOptics in Frameworks */,
-				8BDE68E72332357F009342AD /* BowEffects in Frameworks */,
-				8BDE68E92332357F009342AD /* Bow in Frameworks */,
+				8BD70922233E5AED0018E06B /* Bow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8BD90F4323328E1D00281786 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8BD90F4423328E2600281786 /* String+Path.swift */,
+				8BD70860233D23280018E06B /* String+Format.swift */,
+				8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */,
+				8BD70913233E24430018E06B /* Array+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		8BDE68CD233233CE009342AD = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				8BDE68D9233233CE009342AD /* main.swift */,
+				8BDE691C2332854C009342AD /* UI */,
+				8BDE691F233286F7009342AD /* Generator */,
+				8BD90F4323328E1D00281786 /* Utils */,
 			);
 			path = "Bow OpenAPI";
 			sourceTree = "<group>";
@@ -74,8 +181,70 @@
 		8BDE68EA23323602009342AD /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				8BDE6909233280FE009342AD /* _param.mustache */,
+				8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */,
+				8BDE6911233280FE009342AD /* api.mustache */,
+				8BDE690D233280FE009342AD /* APIHelper.mustache */,
+				8BDE6914233280FF009342AD /* APIs.mustache */,
+				8BDE690C233280FE009342AD /* Cartfile.mustache */,
+				8BDE6906233280FE009342AD /* CodableHelper.mustache */,
+				8BDE6916233280FF009342AD /* Configuration.mustache */,
+				8BDE6904233280FE009342AD /* Extensions.mustache */,
+				8BDE6910233280FE009342AD /* git_push.sh.mustache */,
+				8BDE6907233280FE009342AD /* gitignore.mustache */,
+				8BDE690B233280FE009342AD /* JSONEncodableEncoding.mustache */,
+				8BDE6917233280FF009342AD /* JSONEncodingHelper.mustache */,
+				8BDE6908233280FE009342AD /* model.mustache */,
+				8BDE6915233280FF009342AD /* modelArray.mustache */,
+				8BDE6903233280FE009342AD /* modelEnum.mustache */,
+				8BDE690A233280FE009342AD /* modelInlineEnumDeclaration.mustache */,
+				8BDE6905233280FE009342AD /* modelObject.mustache */,
+				8BDE690F233280FE009342AD /* Models.mustache */,
+				8BDE6912233280FE009342AD /* Podspec.mustache */,
+				8BDE6913233280FF009342AD /* README.mustache */,
 			);
 			path = Templates;
+			sourceTree = "<group>";
+		};
+		8BDE691C2332854C009342AD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8BDE68EC23326E42009342AD /* Console.swift */,
+				8BDE691A23328538009342AD /* CommandLine.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		8BDE691F233286F7009342AD /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				8BD70917233E3F0E0018E06B /* Environment.swift */,
+				8BDE691D233286CC009342AD /* APIClient.swift */,
+				8BDEB0B92340DBC10095A6E0 /* SwaggerClientGenerator.swift */,
+				8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */,
+				8BDEB0B72340DB340095A6E0 /* Algebra */,
+				8BDEB0B82340DB4B0095A6E0 /* Error */,
+			);
+			path = Generator;
+			sourceTree = "<group>";
+		};
+		8BDEB0B72340DB340095A6E0 /* Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				8BD70915233E3D650018E06B /* FileSystem.swift */,
+				8BD70919233E3F610018E06B /* ClientGenerator.swift */,
+			);
+			path = Algebra;
+			sourceTree = "<group>";
+		};
+		8BDEB0B82340DB4B0095A6E0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				8B22DD6B2338D2000000CED9 /* APIClientError.swift */,
+				8BDEB0B32340D5850095A6E0 /* FileSystemError.swift */,
+				8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,9 +265,9 @@
 			name = "Bow OpenAPI";
 			packageProductDependencies = (
 				8BDE68E12332347D009342AD /* Swiftline */,
-				8BDE68E42332357F009342AD /* BowOptics */,
-				8BDE68E62332357F009342AD /* BowEffects */,
-				8BDE68E82332357F009342AD /* Bow */,
+				8BD7091D233E5AED0018E06B /* BowEffects */,
+				8BD7091F233E5AED0018E06B /* BowOptics */,
+				8BD70921233E5AED0018E06B /* Bow */,
 			);
 			productName = "Bow OpenAPI";
 			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
@@ -130,7 +299,7 @@
 			mainGroup = 8BDE68CD233233CE009342AD;
 			packageReferences = (
 				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
-				8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */,
+				8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -146,7 +315,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD70861233D23280018E06B /* String+Format.swift in Sources */,
+				8BDE691B23328538009342AD /* CommandLine.swift in Sources */,
+				8BDE691E233286CC009342AD /* APIClient.swift in Sources */,
+				8BDEB0B62340DAAF0095A6E0 /* GeneratorError.swift in Sources */,
+				8BDEB0BC2340DBE10095A6E0 /* MacFileSystem.swift in Sources */,
+				8BDE68ED23326E42009342AD /* Console.swift in Sources */,
+				8BD7091A233E3F610018E06B /* ClientGenerator.swift in Sources */,
 				8BDE68DA233233CE009342AD /* main.swift in Sources */,
+				8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */,
+				8BD70916233E3D650018E06B /* FileSystem.swift in Sources */,
+				8BD70918233E3F0E0018E06B /* Environment.swift in Sources */,
+				8BD90F4523328E2600281786 /* String+Path.swift in Sources */,
+				8BD70914233E24430018E06B /* Array+Extensions.swift in Sources */,
+				8BDEB0BA2340DBC10095A6E0 /* SwaggerClientGenerator.swift in Sources */,
+				8BD70863233D2BE40018E06B /* Dictionary+Extensions.swift in Sources */,
+				8BDEB0B42340D5850095A6E0 /* FileSystemError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,13 +387,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -257,12 +442,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -270,8 +456,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
 				PRODUCT_NAME = "bow-openapi";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -279,8 +465,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
 				PRODUCT_NAME = "bow-openapi";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -308,15 +494,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bow-swift/Swiftline.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.2;
-			};
-		};
-		8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */ = {
+		8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bow-swift/bow.git";
 			requirement = {
@@ -324,28 +502,36 @@
 				kind = branch;
 			};
 		};
+		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bow-swift/Swiftline.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8BD7091D233E5AED0018E06B /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8BD7091F233E5AED0018E06B /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
+		};
+		8BD70921233E5AED0018E06B /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			productName = Bow;
+		};
 		8BDE68E12332347D009342AD /* Swiftline */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */;
 			productName = Swiftline;
-		};
-		8BDE68E42332357F009342AD /* BowOptics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowOptics;
-		};
-		8BDE68E62332357F009342AD /* BowEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowEffects;
-		};
-		8BDE68E82332357F009342AD /* Bow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BDE68E32332357F009342AD /* XCRemoteSwiftPackageReference "bow" */;
-			productName = Bow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

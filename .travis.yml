@@ -1,0 +1,17 @@
+language: objective-c
+osx_image: xcode11
+sudo: required
+
+env:
+  global:
+    - PROJECT="Bow OpenAPI.xcodeproj"
+    - JOB="XCODE"
+    - DEST="platform=macOS,arch=x86_64"
+
+jobs:
+  include:
+    - stage: test
+      before_install:
+        - xcodebuild build -project "$PROJECT" -scheme "Fixtures" -destination "$DEST" | xcpretty -c
+      script:
+        - xcodebuild test -project "$PROJECT" -scheme "Tests" -destination "$DEST" | xcpretty -c

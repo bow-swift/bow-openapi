@@ -1,6 +1,8 @@
 language: objective-c
 osx_image: xcode11
 sudo: required
+language: java
+jdk: oraclejdk8
 addons:
   homebrew:
     packages:
@@ -17,7 +19,9 @@ jobs:
   include:
     - stage: test
       before_install:
+        - set -o pipefail
         - cd "$ROOT"
         - xcodebuild build -project "$PROJECT" -scheme "Fixtures" -destination "$DEST" | xcpretty -c
       script:
+        - set -o pipefail
         - xcodebuild test -project "$PROJECT" -scheme "Tests" -destination "$DEST" | xcpretty -c

@@ -24,7 +24,7 @@ extension FileSystemError: CustomStringConvertible {
         case .move(let from, let to):
             return "cannot move item from '\(from)' to '\(to)'"
         case .get(let from):
-            return "can not get the whole items from '\(from)'"
+            return "cannot get items from '\(from)'"
         case .read(let file):
             return "can not read content of the file '\(file)'"
         case .write(let file):

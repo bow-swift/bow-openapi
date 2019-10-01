@@ -23,32 +23,33 @@
 
 /* Begin PBXBuildFile section */
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
-		8B8B19B823426AE4009D195A /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* Tests.swift */; };
-		8B8B19C723426B68009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19C623426B68009D195A /* Bow */; };
-		8B8B19C923426B68009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19C823426B68009D195A /* BowEffects */; };
-		8B8B19CB23426B68009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B19CA23426B68009D195A /* BowOptics */; };
-		8B8B19DE23426B98009D195A /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19CE23426B98009D195A /* APIHelper.swift */; };
-		8B8B19DF23426B98009D195A /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D023426B98009D195A /* DefaultAPI.swift */; };
-		8B8B19E023426B98009D195A /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D123426B98009D195A /* CodableHelper.swift */; };
-		8B8B19E123426B98009D195A /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D223426B98009D195A /* APIs.swift */; };
-		8B8B19E223426B98009D195A /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D423426B98009D195A /* PetError.swift */; };
-		8B8B19E323426B98009D195A /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D523426B98009D195A /* Pets.swift */; };
-		8B8B19E423426B98009D195A /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D623426B98009D195A /* OwnerPerson.swift */; };
-		8B8B19E523426B98009D195A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D723426B98009D195A /* Pet.swift */; };
-		8B8B19E623426B98009D195A /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D823426B98009D195A /* UpdatePet.swift */; };
-		8B8B19E723426B98009D195A /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19D923426B98009D195A /* NewPet.swift */; };
-		8B8B19E823426B98009D195A /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DA23426B98009D195A /* Owner.swift */; };
-		8B8B19E923426B98009D195A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DB23426B98009D195A /* Extensions.swift */; };
-		8B8B19EA23426B98009D195A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19DD23426B98009D195A /* Configuration.swift */; };
+		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
+		8B8B1B5623426D96009D195A /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4623426D96009D195A /* APIHelper.swift */; };
+		8B8B1B5723426D96009D195A /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4823426D96009D195A /* DefaultAPI.swift */; };
+		8B8B1B5823426D96009D195A /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4923426D96009D195A /* CodableHelper.swift */; };
+		8B8B1B5923426D96009D195A /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4A23426D96009D195A /* APIs.swift */; };
+		8B8B1B5A23426D96009D195A /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4C23426D96009D195A /* PetError.swift */; };
+		8B8B1B5B23426D96009D195A /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4D23426D96009D195A /* Pets.swift */; };
+		8B8B1B5C23426D96009D195A /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4E23426D96009D195A /* OwnerPerson.swift */; };
+		8B8B1B5D23426D96009D195A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B4F23426D96009D195A /* Pet.swift */; };
+		8B8B1B5E23426D96009D195A /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5023426D96009D195A /* UpdatePet.swift */; };
+		8B8B1B5F23426D96009D195A /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5123426D96009D195A /* NewPet.swift */; };
+		8B8B1B6023426D96009D195A /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5223426D96009D195A /* Owner.swift */; };
+		8B8B1B6123426D96009D195A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5323426D96009D195A /* Extensions.swift */; };
+		8B8B1B6223426D96009D195A /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1B5523426D96009D195A /* Configuration.swift */; };
+		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
+		8B8B1C1723436195009D195A /* API+Arbitrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Arbitrary.swift */; };
+		8B8B1C292343889A009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C282343889A009D195A /* Bow */; };
+		8B8B1C2B2343889A009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C2A2343889A009D195A /* BowEffects */; };
+		8B8B1C2D2343889A009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C2C2343889A009D195A /* BowOptics */; };
+		8B8B1C31234388AB009D195A /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C30234388AB009D195A /* Bow */; };
+		8B8B1C33234388AB009D195A /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C32234388AB009D195A /* BowEffects */; };
+		8B8B1C35234388AB009D195A /* BowGenerators in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C34234388AB009D195A /* BowGenerators */; };
+		8B8B1C37234388AB009D195A /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C36234388AB009D195A /* BowOptics */; };
 		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
-		8BD70863233D2BE40018E06B /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */; };
-		8BD70914233E24430018E06B /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70913233E24430018E06B /* Array+Extensions.swift */; };
 		8BD70916233E3D650018E06B /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70915233E3D650018E06B /* FileSystem.swift */; };
 		8BD70918233E3F0E0018E06B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70917233E3F0E0018E06B /* Environment.swift */; };
 		8BD7091A233E3F610018E06B /* ClientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70919233E3F610018E06B /* ClientGenerator.swift */; };
-		8BD7091E233E5AED0018E06B /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD7091D233E5AED0018E06B /* BowEffects */; };
-		8BD70920233E5AED0018E06B /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD7091F233E5AED0018E06B /* BowOptics */; };
-		8BD70922233E5AED0018E06B /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD70921233E5AED0018E06B /* Bow */; };
 		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
 		8BD90F2F23328DAF00281786 /* AlamofireImplementations.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */; };
 		8BD90F3023328DAF00281786 /* api.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6911233280FE009342AD /* api.mustache */; };
@@ -128,25 +129,24 @@
 /* Begin PBXFileReference section */
 		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B8B19B723426AE4009D195A /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
-		8B8B19CE23426B98009D195A /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
-		8B8B19D023426B98009D195A /* DefaultAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPI.swift; sourceTree = "<group>"; };
-		8B8B19D123426B98009D195A /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
-		8B8B19D223426B98009D195A /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
-		8B8B19D423426B98009D195A /* PetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
-		8B8B19D523426B98009D195A /* Pets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
-		8B8B19D623426B98009D195A /* OwnerPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPerson.swift; sourceTree = "<group>"; };
-		8B8B19D723426B98009D195A /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
-		8B8B19D823426B98009D195A /* UpdatePet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePet.swift; sourceTree = "<group>"; };
-		8B8B19D923426B98009D195A /* NewPet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPet.swift; sourceTree = "<group>"; };
-		8B8B19DA23426B98009D195A /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
-		8B8B19DB23426B98009D195A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8B8B19DD23426B98009D195A /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8B8B1B4623426D96009D195A /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		8B8B1B4823426D96009D195A /* DefaultAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAPI.swift; sourceTree = "<group>"; };
+		8B8B1B4923426D96009D195A /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
+		8B8B1B4A23426D96009D195A /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		8B8B1B4C23426D96009D195A /* PetError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetError.swift; sourceTree = "<group>"; };
+		8B8B1B4D23426D96009D195A /* Pets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		8B8B1B4E23426D96009D195A /* OwnerPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPerson.swift; sourceTree = "<group>"; };
+		8B8B1B4F23426D96009D195A /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		8B8B1B5023426D96009D195A /* UpdatePet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePet.swift; sourceTree = "<group>"; };
+		8B8B1B5123426D96009D195A /* NewPet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPet.swift; sourceTree = "<group>"; };
+		8B8B1B5223426D96009D195A /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		8B8B1B5323426D96009D195A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8B8B1B5523426D96009D195A /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8B8B1C1623436195009D195A /* API+Arbitrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Arbitrary.swift"; sourceTree = "<group>"; };
 		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
-		8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
-		8BD70913233E24430018E06B /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		8BD70915233E3D650018E06B /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		8BD70917233E3F0E0018E06B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8BD70919233E3F610018E06B /* ClientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGenerator.swift; sourceTree = "<group>"; };
@@ -188,9 +188,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8B19CB23426B68009D195A /* BowOptics in Frameworks */,
-				8B8B19C923426B68009D195A /* BowEffects in Frameworks */,
-				8B8B19C723426B68009D195A /* Bow in Frameworks */,
+				8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */,
+				8B8B1C31234388AB009D195A /* Bow in Frameworks */,
+				8B8B1C37234388AB009D195A /* BowOptics in Frameworks */,
+				8B8B1C33234388AB009D195A /* BowEffects in Frameworks */,
+				8B8B1C35234388AB009D195A /* BowGenerators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,10 +200,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD70920233E5AED0018E06B /* BowOptics in Frameworks */,
-				8BD7091E233E5AED0018E06B /* BowEffects in Frameworks */,
 				8BDE68E22332347D009342AD /* Swiftline in Frameworks */,
-				8BD70922233E5AED0018E06B /* Bow in Frameworks */,
+				8B8B1C292343889A009D195A /* Bow in Frameworks */,
+				8B8B1C2B2343889A009D195A /* BowEffects in Frameworks */,
+				8B8B1C2D2343889A009D195A /* BowOptics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +220,8 @@
 		8B8B19B623426AE4009D195A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8B8B19B723426AE4009D195A /* Tests.swift */,
+				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
+				8B8B1C152343617A009D195A /* Utils */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
 			);
@@ -229,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				8B8B19CC23426B83009D195A /* petstore.yaml */,
-				8B8B19CD23426B98009D195A /* api */,
+				8B8B1B4523426D96009D195A /* api */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -242,40 +245,48 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
-		8B8B19CD23426B98009D195A /* api */ = {
+		8B8B1B4523426D96009D195A /* api */ = {
 			isa = PBXGroup;
 			children = (
-				8B8B19CE23426B98009D195A /* APIHelper.swift */,
-				8B8B19D223426B98009D195A /* APIs.swift */,
-				8B8B19D123426B98009D195A /* CodableHelper.swift */,
-				8B8B19DD23426B98009D195A /* Configuration.swift */,
-				8B8B19DB23426B98009D195A /* Extensions.swift */,
-				8B8B19CF23426B98009D195A /* APIs */,
-				8B8B19D323426B98009D195A /* Models */,
+				8B8B1B4A23426D96009D195A /* APIs.swift */,
+				8B8B1B4623426D96009D195A /* APIHelper.swift */,
+				8B8B1B4923426D96009D195A /* CodableHelper.swift */,
+				8B8B1B5523426D96009D195A /* Configuration.swift */,
+				8B8B1B5323426D96009D195A /* Extensions.swift */,
+				8B8B1B4723426D96009D195A /* APIs */,
+				8B8B1B4B23426D96009D195A /* Models */,
 			);
 			path = api;
 			sourceTree = "<group>";
 		};
-		8B8B19CF23426B98009D195A /* APIs */ = {
+		8B8B1B4723426D96009D195A /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				8B8B19D023426B98009D195A /* DefaultAPI.swift */,
+				8B8B1B4823426D96009D195A /* DefaultAPI.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
 		};
-		8B8B19D323426B98009D195A /* Models */ = {
+		8B8B1B4B23426D96009D195A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8B8B19D923426B98009D195A /* NewPet.swift */,
-				8B8B19DA23426B98009D195A /* Owner.swift */,
-				8B8B19D623426B98009D195A /* OwnerPerson.swift */,
-				8B8B19D723426B98009D195A /* Pet.swift */,
-				8B8B19D423426B98009D195A /* PetError.swift */,
-				8B8B19D523426B98009D195A /* Pets.swift */,
-				8B8B19D823426B98009D195A /* UpdatePet.swift */,
+				8B8B1B4C23426D96009D195A /* PetError.swift */,
+				8B8B1B4D23426D96009D195A /* Pets.swift */,
+				8B8B1B4E23426D96009D195A /* OwnerPerson.swift */,
+				8B8B1B4F23426D96009D195A /* Pet.swift */,
+				8B8B1B5023426D96009D195A /* UpdatePet.swift */,
+				8B8B1B5123426D96009D195A /* NewPet.swift */,
+				8B8B1B5223426D96009D195A /* Owner.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8B8B1C152343617A009D195A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8B8B1C1623436195009D195A /* API+Arbitrary.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		8BD90F4323328E1D00281786 /* Utils */ = {
@@ -283,8 +294,6 @@
 			children = (
 				8BD90F4423328E2600281786 /* String+Path.swift */,
 				8BD70860233D23280018E06B /* String+Format.swift */,
-				8BD70862233D2BE40018E06B /* Dictionary+Extensions.swift */,
-				8BD70913233E24430018E06B /* Array+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -405,9 +414,11 @@
 			);
 			name = Tests;
 			packageProductDependencies = (
-				8B8B19C623426B68009D195A /* Bow */,
-				8B8B19C823426B68009D195A /* BowEffects */,
-				8B8B19CA23426B68009D195A /* BowOptics */,
+				8B8B1C1323435AC0009D195A /* SwiftCheck */,
+				8B8B1C30234388AB009D195A /* Bow */,
+				8B8B1C32234388AB009D195A /* BowEffects */,
+				8B8B1C34234388AB009D195A /* BowGenerators */,
+				8B8B1C36234388AB009D195A /* BowOptics */,
 			);
 			productName = Tests;
 			productReference = 8B8B19B523426AE4009D195A /* Tests.xctest */;
@@ -428,9 +439,9 @@
 			name = "Bow OpenAPI";
 			packageProductDependencies = (
 				8BDE68E12332347D009342AD /* Swiftline */,
-				8BD7091D233E5AED0018E06B /* BowEffects */,
-				8BD7091F233E5AED0018E06B /* BowOptics */,
-				8BD70921233E5AED0018E06B /* Bow */,
+				8B8B1C282343889A009D195A /* Bow */,
+				8B8B1C2A2343889A009D195A /* BowEffects */,
+				8B8B1C2C2343889A009D195A /* BowOptics */,
 			);
 			productName = "Bow OpenAPI";
 			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
@@ -468,7 +479,8 @@
 			mainGroup = 8BDE68CD233233CE009342AD;
 			packageReferences = (
 				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
-				8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */,
+				8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */,
+				8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -506,20 +518,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8B19E623426B98009D195A /* UpdatePet.swift in Sources */,
-				8B8B19E823426B98009D195A /* Owner.swift in Sources */,
-				8B8B19EA23426B98009D195A /* Configuration.swift in Sources */,
-				8B8B19E323426B98009D195A /* Pets.swift in Sources */,
-				8B8B19E223426B98009D195A /* PetError.swift in Sources */,
-				8B8B19E023426B98009D195A /* CodableHelper.swift in Sources */,
-				8B8B19E523426B98009D195A /* Pet.swift in Sources */,
-				8B8B19DE23426B98009D195A /* APIHelper.swift in Sources */,
-				8B8B19DF23426B98009D195A /* DefaultAPI.swift in Sources */,
-				8B8B19E923426B98009D195A /* Extensions.swift in Sources */,
-				8B8B19E123426B98009D195A /* APIs.swift in Sources */,
-				8B8B19E423426B98009D195A /* OwnerPerson.swift in Sources */,
-				8B8B19B823426AE4009D195A /* Tests.swift in Sources */,
-				8B8B19E723426B98009D195A /* NewPet.swift in Sources */,
+				8B8B1B5E23426D96009D195A /* UpdatePet.swift in Sources */,
+				8B8B1B6023426D96009D195A /* Owner.swift in Sources */,
+				8B8B1B6223426D96009D195A /* Configuration.swift in Sources */,
+				8B8B1C1723436195009D195A /* API+Arbitrary.swift in Sources */,
+				8B8B1B5B23426D96009D195A /* Pets.swift in Sources */,
+				8B8B1B5A23426D96009D195A /* PetError.swift in Sources */,
+				8B8B1B5823426D96009D195A /* CodableHelper.swift in Sources */,
+				8B8B1B5D23426D96009D195A /* Pet.swift in Sources */,
+				8B8B1B5623426D96009D195A /* APIHelper.swift in Sources */,
+				8B8B1B5723426D96009D195A /* DefaultAPI.swift in Sources */,
+				8B8B1B6123426D96009D195A /* Extensions.swift in Sources */,
+				8B8B1B5923426D96009D195A /* APIs.swift in Sources */,
+				8B8B1B5C23426D96009D195A /* OwnerPerson.swift in Sources */,
+				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
+				8B8B1B5F23426D96009D195A /* NewPet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,9 +552,7 @@
 				8BD70916233E3D650018E06B /* FileSystem.swift in Sources */,
 				8BD70918233E3F0E0018E06B /* Environment.swift in Sources */,
 				8BD90F4523328E2600281786 /* String+Path.swift in Sources */,
-				8BD70914233E24430018E06B /* Array+Extensions.swift in Sources */,
 				8BDEB0BA2340DBC10095A6E0 /* SwaggerClientGenerator.swift in Sources */,
-				8BD70863233D2BE40018E06B /* Dictionary+Extensions.swift in Sources */,
 				8BDEB0B42340D5850095A6E0 /* FileSystemError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,7 +573,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -580,7 +591,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -788,7 +799,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */ = {
+		8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
+			};
+		};
+		8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bow-swift/bow.git";
 			requirement = {
@@ -807,35 +826,45 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8B8B19C623426B68009D195A /* Bow */ = {
+		8B8B1C1323435AC0009D195A /* SwiftCheck */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */;
+			productName = SwiftCheck;
+		};
+		8B8B1C282343889A009D195A /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
 			productName = Bow;
 		};
-		8B8B19C823426B68009D195A /* BowEffects */ = {
+		8B8B1C2A2343889A009D195A /* BowEffects */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowEffects;
 		};
-		8B8B19CA23426B68009D195A /* BowOptics */ = {
+		8B8B1C2C2343889A009D195A /* BowOptics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
 			productName = BowOptics;
 		};
-		8BD7091D233E5AED0018E06B /* BowEffects */ = {
+		8B8B1C30234388AB009D195A /* Bow */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowEffects;
-		};
-		8BD7091F233E5AED0018E06B /* BowOptics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowOptics;
-		};
-		8BD70921233E5AED0018E06B /* Bow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BD7091C233E5AED0018E06B /* XCRemoteSwiftPackageReference "bow" */;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
 			productName = Bow;
+		};
+		8B8B1C32234388AB009D195A /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8B8B1C34234388AB009D195A /* BowGenerators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowGenerators;
+		};
+		8B8B1C36234388AB009D195A /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B8B1C272343889A009D195A /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
 		};
 		8BDE68E12332347D009342AD /* Swiftline */ = {
 			isa = XCSwiftPackageProductDependency;

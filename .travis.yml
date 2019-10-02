@@ -8,7 +8,6 @@ addons:
 
 env:
   global:
-    - ROOT="Bow OpenAPI"
     - PROJECT="Bow OpenAPI.xcodeproj"
     - JOB="XCODE"
     - DEST="platform=macOS,arch=x86_64"
@@ -25,7 +24,6 @@ jobs:
       before_script:
         - set -o pipefail
         - brew install swagger-codegen
-        - cd "$ROOT"
         - xcodebuild build -project "$PROJECT" -scheme "Fixtures" -destination "$DEST" | xcpretty -c
       script:
         - set -o pipefail

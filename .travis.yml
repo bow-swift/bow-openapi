@@ -1,12 +1,13 @@
-language: swift
+language:
+    - swift
+    - java
 osx_image: xcode11
 jdk: openjdk8
 
 addons:
   homebrew:
-    taps: adoptopenjdk/openjdk
-    casks: adoptopenjdk8
-
+    packages: swagger-codegen
+    
 env:
   global:
     - ROOT="Bow OpenAPI"
@@ -18,9 +19,6 @@ jobs:
   include:
     - stage: test
       name: "Tests"
-      addons:
-        homebrew:
-          packages: swagger-codegen
       before_install:
         - set -o pipefail
         - java -version

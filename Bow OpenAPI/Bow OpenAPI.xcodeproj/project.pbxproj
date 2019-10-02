@@ -23,16 +23,16 @@
 
 /* Begin PBXBuildFile section */
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
+		8B48DAB6234491B50053CCC9 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB5234491B50053CCC9 /* Bow */; };
+		8B48DAB8234491B50053CCC9 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB7234491B50053CCC9 /* BowEffects */; };
+		8B48DABA234491B50053CCC9 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB9234491B50053CCC9 /* BowOptics */; };
+		8B48DABE234491C80053CCC9 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DABD234491C80053CCC9 /* Bow */; };
+		8B48DAC0234491C80053CCC9 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DABF234491C80053CCC9 /* BowEffects */; };
+		8B48DAC2234491C80053CCC9 /* BowGenerators in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAC1234491C80053CCC9 /* BowGenerators */; };
+		8B48DAC4234491C80053CCC9 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAC3234491C80053CCC9 /* BowOptics */; };
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
 		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Arbitrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Arbitrary.swift */; };
-		8BBCE4D22343901A007FF1B2 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D12343901A007FF1B2 /* Bow */; };
-		8BBCE4D42343901A007FF1B2 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D32343901A007FF1B2 /* BowEffects */; };
-		8BBCE4D62343901A007FF1B2 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D52343901A007FF1B2 /* BowOptics */; };
-		8BBCE4DA23439028007FF1B2 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4D923439028007FF1B2 /* Bow */; };
-		8BBCE4DC23439028007FF1B2 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DB23439028007FF1B2 /* BowEffects */; };
-		8BBCE4DE23439028007FF1B2 /* BowGenerators in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DD23439028007FF1B2 /* BowGenerators */; };
-		8BBCE4E023439028007FF1B2 /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BBCE4DF23439028007FF1B2 /* BowOptics */; };
 		8BBCE4F223439087007FF1B2 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E223439087007FF1B2 /* APIHelper.swift */; };
 		8BBCE4F323439087007FF1B2 /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E423439087007FF1B2 /* DefaultAPI.swift */; };
 		8BBCE4F423439087007FF1B2 /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCE4E523439087007FF1B2 /* CodableHelper.swift */; };
@@ -189,10 +189,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */,
-				8BBCE4DA23439028007FF1B2 /* Bow in Frameworks */,
-				8BBCE4E023439028007FF1B2 /* BowOptics in Frameworks */,
-				8BBCE4DC23439028007FF1B2 /* BowEffects in Frameworks */,
-				8BBCE4DE23439028007FF1B2 /* BowGenerators in Frameworks */,
+				8B48DABE234491C80053CCC9 /* Bow in Frameworks */,
+				8B48DAC4234491C80053CCC9 /* BowOptics in Frameworks */,
+				8B48DAC0234491C80053CCC9 /* BowEffects in Frameworks */,
+				8B48DAC2234491C80053CCC9 /* BowGenerators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +201,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BDE68E22332347D009342AD /* Swiftline in Frameworks */,
-				8BBCE4D22343901A007FF1B2 /* Bow in Frameworks */,
-				8BBCE4D42343901A007FF1B2 /* BowEffects in Frameworks */,
-				8BBCE4D62343901A007FF1B2 /* BowOptics in Frameworks */,
+				8B48DAB6234491B50053CCC9 /* Bow in Frameworks */,
+				8B48DAB8234491B50053CCC9 /* BowEffects in Frameworks */,
+				8B48DABA234491B50053CCC9 /* BowOptics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,8 +264,9 @@
 				8BBCE4E323439087007FF1B2 /* APIs */,
 				8BBCE4E723439087007FF1B2 /* Models */,
 			);
-			path = api;
-			sourceTree = "<group>";
+			name = api;
+			path = Tests/Fixtures/api;
+			sourceTree = SOURCE_ROOT;
 		};
 		8BBCE4E323439087007FF1B2 /* APIs */ = {
 			isa = PBXGroup;
@@ -415,10 +416,10 @@
 			name = Tests;
 			packageProductDependencies = (
 				8B8B1C1323435AC0009D195A /* SwiftCheck */,
-				8BBCE4D923439028007FF1B2 /* Bow */,
-				8BBCE4DB23439028007FF1B2 /* BowEffects */,
-				8BBCE4DD23439028007FF1B2 /* BowGenerators */,
-				8BBCE4DF23439028007FF1B2 /* BowOptics */,
+				8B48DABD234491C80053CCC9 /* Bow */,
+				8B48DABF234491C80053CCC9 /* BowEffects */,
+				8B48DAC1234491C80053CCC9 /* BowGenerators */,
+				8B48DAC3234491C80053CCC9 /* BowOptics */,
 			);
 			productName = Tests;
 			productReference = 8B8B19B523426AE4009D195A /* Tests.xctest */;
@@ -439,9 +440,9 @@
 			name = "Bow OpenAPI";
 			packageProductDependencies = (
 				8BDE68E12332347D009342AD /* Swiftline */,
-				8BBCE4D12343901A007FF1B2 /* Bow */,
-				8BBCE4D32343901A007FF1B2 /* BowEffects */,
-				8BBCE4D52343901A007FF1B2 /* BowOptics */,
+				8B48DAB5234491B50053CCC9 /* Bow */,
+				8B48DAB7234491B50053CCC9 /* BowEffects */,
+				8B48DAB9234491B50053CCC9 /* BowOptics */,
 			);
 			productName = "Bow OpenAPI";
 			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
@@ -480,7 +481,7 @@
 			packageReferences = (
 				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
 				8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */,
-				8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */,
+				8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -799,20 +800,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bow-swift/bow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 		8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.12.0;
-			};
-		};
-		8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bow-swift/bow.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
@@ -826,45 +827,45 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B48DAB5234491B50053CCC9 /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = Bow;
+		};
+		8B48DAB7234491B50053CCC9 /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8B48DAB9234491B50053CCC9 /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
+		};
+		8B48DABD234491C80053CCC9 /* Bow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = Bow;
+		};
+		8B48DABF234491C80053CCC9 /* BowEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowEffects;
+		};
+		8B48DAC1234491C80053CCC9 /* BowGenerators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowGenerators;
+		};
+		8B48DAC3234491C80053CCC9 /* BowOptics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B48DAB4234491B50053CCC9 /* XCRemoteSwiftPackageReference "bow" */;
+			productName = BowOptics;
+		};
 		8B8B1C1323435AC0009D195A /* SwiftCheck */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */;
 			productName = SwiftCheck;
-		};
-		8BBCE4D12343901A007FF1B2 /* Bow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = Bow;
-		};
-		8BBCE4D32343901A007FF1B2 /* BowEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowEffects;
-		};
-		8BBCE4D52343901A007FF1B2 /* BowOptics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowOptics;
-		};
-		8BBCE4D923439028007FF1B2 /* Bow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = Bow;
-		};
-		8BBCE4DB23439028007FF1B2 /* BowEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowEffects;
-		};
-		8BBCE4DD23439028007FF1B2 /* BowGenerators */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowGenerators;
-		};
-		8BBCE4DF23439028007FF1B2 /* BowOptics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BBCE4D02343901A007FF1B2 /* XCRemoteSwiftPackageReference "bow" */;
-			productName = BowOptics;
 		};
 		8BDE68E12332347D009342AD /* Swiftline */ = {
 			isa = XCSwiftPackageProductDependency;

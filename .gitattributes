@@ -1,2 +1,1 @@
-* linguist-vendored
-*.swift linguist-vendored=false
+*.mustache linguist-language=Swift

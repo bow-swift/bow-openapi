@@ -84,7 +84,7 @@ class SwaggerClientGenerator: ClientGenerator {
                 return [components[0].trimmingWhitespaces: (components[1].trimmingWhitespaces, components[2].trimmingWhitespaces)]
             }
             
-            return IO.pure(headers.fold())^
+            return IO.pure(headers.combineAll())^
         }
         
         func renderHelpers(headers: [String: HeaderValue]) -> String {
@@ -94,7 +94,7 @@ class SwaggerClientGenerator: ClientGenerator {
                 let (key, (type, header)) = arg
                 return """
                 
-                    func withHeader(\(key): \(type)) -> API.Config {
+                    func appendHeader(\(key): \(type)) -> API.Config {
                         self.copy(headers: self.headers.combine(["\(header)": \(key)]))
                     }
                 """
@@ -119,7 +119,7 @@ class SwaggerClientGenerator: ClientGenerator {
                          items <- fileSystem.items(atPath: path),
                       contents <- items.get.traverse(fileSystem.readFile(atPath:)),
                        headers <- contents.get.traverse(headerInformation),
-                flattenHeaders <- IO.pure(headers.get.fold()),
+                flattenHeaders <- IO.pure(headers.get.combineAll()),
                        helpers <- IO.pure(renderHelpers(headers: flattenHeaders.get)),
                           file <- fileSystem.readFile(atPath: output),
                                |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: output),

@@ -1,13 +1,11 @@
-language:
-    - swift
-    - java
+language: swift
 osx_image: xcode11
-jdk: openjdk8
+sudo: required
 
 addons:
   homebrew:
-    packages: swagger-codegen
-    
+    casks: homebrew/cask-versions/adoptopenjdk8
+
 env:
   global:
     - ROOT="Bow OpenAPI"
@@ -19,9 +17,14 @@ jobs:
   include:
     - stage: test
       name: "Tests"
-      before_install:
+      install:
         - set -o pipefail
+        - export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+        - export PATH=${JAVA_HOME}/bin:$PATH
         - java -version
+      before_script:
+        - set -o pipefail
+        - brew install swagger-codegen
         - cd "$ROOT"
         - xcodebuild build -project "$PROJECT" -scheme "Fixtures" -destination "$DEST" | xcpretty -c
       script:

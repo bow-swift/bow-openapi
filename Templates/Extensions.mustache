@@ -17,7 +17,6 @@ extension URLRequest {
     
     mutating func setParameters(_ parameters: [String: Any]?) {
         guard let body = parameters?.jsonData else { return }
-        
         httpBody = body
         setValue(String(body.count), forHTTPHeaderField: "Content-Length")
     }
@@ -26,16 +25,6 @@ extension URLRequest {
 extension Dictionary where Key == String {
     var jsonData: Data? {
         return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
-    }
-}
-
-extension Dictionary {
-    func combine(_ other: [Key: Value]) -> [Key: Value] {
-        var result = self
-        for (key, value) in other {
-            result[key] = value
-        }
-        return result
     }
 }
 

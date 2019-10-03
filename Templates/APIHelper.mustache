@@ -17,12 +17,7 @@ extension API {
                 if let collection = item.value as? [Any] {
                     result[item.key] = collection.compactMap { "\($0)" }.joined(separator: ",")
                 } else if let value = item.value {
-                    switch value {
-                    case let x as Bool:
-                        result[item.key] = x.description
-                    default:
-                        result[item.key] = "\(value)"
-                    }
+                    result[item.key] = "\(value)"
                 }
             }
         }

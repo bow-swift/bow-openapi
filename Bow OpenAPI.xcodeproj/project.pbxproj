@@ -50,7 +50,6 @@
 		8BD0851B23453A1F006D33DE /* StubURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851923453A1F006D33DE /* StubURL.swift */; };
 		8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* Mock+Utility.swift */; };
 		8BD085232345E9BD006D33DE /* APIClientSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD085222345E9BD006D33DE /* APIClientSendTests.swift */; };
-		8BD085252345EAAA006D33DE /* CodableHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD085242345EAAA006D33DE /* CodableHelperTests.swift */; };
 		8BD0852723460F65006D33DE /* BowLaws in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD0852623460F65006D33DE /* BowLaws */; };
 		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
 		8BD70916233E3D650018E06B /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70915233E3D650018E06B /* FileSystem.swift */; };
@@ -157,7 +156,6 @@
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
 		8BD0851C23453DAE006D33DE /* Mock+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock+Utility.swift"; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
-		8BD085242345EAAA006D33DE /* CodableHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableHelperTests.swift; sourceTree = "<group>"; };
 		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
 		8BD70915233E3D650018E06B /* FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		8BD70917233E3F0E0018E06B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
 				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
-				8BD085242345EAAA006D33DE /* CodableHelperTests.swift */,
 				8B8B1C152343617A009D195A /* Utils */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
@@ -556,7 +553,6 @@
 				8BBCE4F323439087007FF1B2 /* DefaultAPI.swift in Sources */,
 				8BD085232345E9BD006D33DE /* APIClientSendTests.swift in Sources */,
 				8BBCE4F423439087007FF1B2 /* CodableHelper.swift in Sources */,
-				8BD085252345EAAA006D33DE /* CodableHelperTests.swift in Sources */,
 				8BD0851A23453A1F006D33DE /* APITestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

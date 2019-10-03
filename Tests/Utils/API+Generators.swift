@@ -70,10 +70,3 @@ extension Data: Arbitrary {
         return Gen<Data>.pure(data)
     }
 }
-
-
-extension ResponseDecoder {
-    public static var arbitrary: Gen<Data> {
-        fatalError()
-    }
-}

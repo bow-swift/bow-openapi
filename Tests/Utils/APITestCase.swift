@@ -8,12 +8,12 @@ public class APITestCase {
     
     private let apiConfig: API.Config
     
-    init(apiConfig: API.Config) {
+    public init(apiConfig: API.Config) {
         self.apiConfig = apiConfig
     }
     
     // MARK: send
-    func send<T: Codable>(request: URLRequest) -> Either<API.HTTPError, T> {
+    public func send<T: Codable>(request: URLRequest) -> Either<API.HTTPError, T> {
         let envIO = EnvIO<API.Config, API.HTTPError, T> { config in
             API.send(request: request, session: config.session, decoder: config.decoder)
         }
@@ -29,14 +29,7 @@ public extension Either where A == API.HTTPError, B: Equatable {
     }
 }
 
-public extension Either where A == API.HTTPError, B: Codable {
-    func assert(error: API.HTTPError, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
-        fold({ err in XCTAssertEqual(error, err, file: file, line: line) },
-             { value in XCTFail("Expected error: \(error), but found successful value: \(value)") })
-    }
-}
-
-public extension Either where A == API.HTTPError, B == String {
+public extension Either where A == API.HTTPError {
     func assert(error: API.HTTPError, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
         fold({ err in XCTAssertEqual(error, err, file: file, line: line) },
              { value in XCTFail("Expected error: \(error), but found successful value: \(value)") })

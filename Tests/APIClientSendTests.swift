@@ -21,6 +21,7 @@ class APIClientSendTests: XCTestCase {
         
         APITestCase(apiConfig: apiConfig)
             .send(request: apiConfig.request)
+            .map(Either<API.HTTPError, String>.pure)^
             .assert(error: .other(error: Mock.Error.general))
     }
 

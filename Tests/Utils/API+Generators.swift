@@ -70,3 +70,17 @@ extension Data: Arbitrary {
         return Gen<Data>.pure(data)
     }
 }
+
+extension API.Config: Arbitrary {
+    public static var arbitrary: Gen<API.Config> {
+        String.arbitrary.map { path in
+            API.Config.init(basePath: path, session: URLSession.shared, decoder: StringUTF8Decoder())
+        }
+    }
+    
+    public static var arbitraryWithHeaders: Gen<API.Config> {
+        Gen.zip(API.Config.arbitrary, [String: String].arbitrary).map { config, headers in
+            config.append(headers: headers)
+        }
+    }
+}

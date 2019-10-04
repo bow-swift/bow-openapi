@@ -40,11 +40,11 @@ class APITestCase: XCTestCase {
     }
     
     // MARK: send
-    func send<T: Codable>(request: URLRequest, session: URLSession = Mock.URLSessionProvider.default, file: StaticString = #file, line: UInt = #line) -> Either<API.HTTPError, T> {
-        response = HTTPURLResponse(url: request.url!, statusCode: StubURL.statusCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!
-        return API.send(request: request, session: session, decoder: decoder)
-                         .unsafeRunSyncEither()
-    }
+//    func send<T: Codable>(request: URLRequest, session: URLSession = Mock.URLSessionProvider.default, file: StaticString = #file, line: UInt = #line) -> Either<API.HTTPError, T> {
+//        response = HTTPURLResponse(url: request.url!, statusCode: StubURL.statusCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!
+//        return API.send(request: request, session: session, decoder: decoder)
+//                         .unsafeRunSyncEither()
+//    }
     
     // MARK: asserts
     func assertSuccess<T: Equatable>(response either: Either<API.HTTPError, T>, expected: T, _ information: String = "", file: StaticString = #file, line: UInt = #line) {

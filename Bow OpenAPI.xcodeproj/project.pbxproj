@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1144E1FC234752E400CD5D46 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1144E1FB234752E400CD5D46 /* Person.swift */; };
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
 		8B48DAB6234491B50053CCC9 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB5234491B50053CCC9 /* Bow */; };
 		8B48DAB8234491B50053CCC9 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB7234491B50053CCC9 /* BowEffects */; };
@@ -132,6 +133,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1144E1FB234752E400CD5D46 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelperTests.swift; sourceTree = "<group>"; };
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +235,7 @@
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
 				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
+				1144E1FB234752E400CD5D46 /* Person.swift */,
 				8B8B1C152343617A009D195A /* Utils */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
@@ -550,6 +553,7 @@
 				8BBCE4F723439087007FF1B2 /* Pets.swift in Sources */,
 				8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
+				1144E1FC234752E400CD5D46 /* Person.swift in Sources */,
 				8BBCE4F323439087007FF1B2 /* DefaultAPI.swift in Sources */,
 				8BD085232345E9BD006D33DE /* APIClientSendTests.swift in Sources */,
 				8BBCE4F423439087007FF1B2 /* CodableHelper.swift in Sources */,

@@ -7,14 +7,14 @@ import BowEffects
 
 public enum Mock { }
 
-
-extension Mock {
-    public enum URLSessionProvider {
-        static var `default`: URLSession {
-            let configuration = URLSessionConfiguration.default
-            configuration.protocolClasses = [StubURL.self] as [AnyClass]
-            return URLSession(configuration: configuration)
-        }
+extension API.Config {
+    func stub(data: Data, code: Int = 200) -> API.Config {
+        StubURL.stub(data: data, code: code)
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [StubURL.self] as [AnyClass]
+        
+        return self.copy(session: URLSession(configuration: configuration))
     }
 }
 

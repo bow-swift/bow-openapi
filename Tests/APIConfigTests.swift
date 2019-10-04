@@ -6,77 +6,48 @@ import SwiftCheck
 
 class APIConfigTests: XCTestCase {
 
-    let original = API.Config(basePath: "http://test.openapi.com")
-                        .append(headers: ["test": "api.config"])
-                        .append(contentType: .json)
-                        .appendHeader(value: "api.config.2", forKey: "test.2")
-    
-    
     // MARK: - copy operations
     func testCopy() {
-        property("An API Config and its copy are isomorphic") <- forAll { (basePath: String, headers: [String: String]) in
-            let new = API.Config(basePath: basePath).append(headers: headers)
-            let copied = new.copy(basePath: self.original.basePath, headers: self.original.headers, session: self.original.session)
-            return  copied == self.original
+        property("An API config and its copy are equal") <- forAll(API.Config.arbitraryWithHeaders) { (config: API.Config) in
+            return config == config.copy()
         }
     }
     
     func testCopyHeaders() {
-        property("Consistent between append and copy operations") <- forAll { (headers: [String: String]) in
-            let append = self.original.append(headers: headers)
-            let copied = self.original.copy(headers: self.original.headers.combine(headers))
-            return append == copied
+        property("Appending headers with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
+            let x = config.append(headers: [key: value1]).append(headers: [key: value2])
+            let y = config.append(headers: [key: value2])
+            return x == y
         }
         
-        property("Consistent between append one header and copy operations") <- forAll { (key: String, value: String) in
-            let append = self.original.appendHeader(value: value, forKey: key)
-            let copied = self.original.copy(headers: self.original.headers.combine([key: value]))
-            return append == copied
-        }
-        
-        property("Consistent between content-type and copy operations") <- forAll { (contentType: API.ContentType) in
-            let append = self.original.append(contentType: contentType)
-            let copied = self.original.copy(headers: self.original.headers.combine(contentType.headers))
-            return append == copied
-        }
-    }
-    
-    // MARK: - validate auto-generated headers
-    func testGeneratedHeaders() {
-        property("Consistent between auto-generated header and copy operations") <- forAll { (value: String) in
-            let updated = self.original.appendHeader(value: value, forKey: "Test-Token")
-            let generated = self.original.appendHeader(testToken: value)
-            return updated == generated
+        property("Appending headers with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
+            let x = config.appendHeader(value: value1, forKey: key).appendHeader(value: value2, forKey: key)
+            let y = config.appendHeader(value: value2, forKey: key)
+            return x == y
         }
     }
     
     // MARK: - properties in headers
     func testHeaders_Identity() {
-        let identity = original.append(headers: [:])
-        XCTAssertEqual(original, identity)
+        property("Identity") <- forAll { (config: API.Config) in
+            return config == config.append(headers: [:])
+        }
     }
     
     func testHeaders_Idempotent() {
-        let apiconfig1 = original.append(headers: [:])
-        let apiconfig2 = original.append(headers: [:]).append(headers: [:])
-        
-        XCTAssertEqual(apiconfig1, apiconfig2)
+        property("Idempotence") <- forAll { (config: API.Config, headers: [String: String]) in
+            let x = config.append(headers: headers)
+            let y = config.append(headers: headers).append(headers: headers)
+            
+            return x == y
+        }
     }
     
+    let headerGen = [String: String].arbitrary
     func testHeaders() {
-        property("Property commutative in headers") <- forAll { (header1: [String: String], header2: [String: String]) in
-            return self.original.append(headers: header1).append(headers: header2) ==
-                   self.original.append(headers: header2).append(headers: header1)
-        }
-        
-        property("Property associative in headers") <- forAll { (header1: [String: String], header2: [String: String], header3: [String: String]) in
-            return self.original.append(headers: header1).append(headers: header2.combine(header3)) ==
-                   self.original.append(headers: header1.combine(header2)).append(headers: header3)
-        }
-        
-        property("Property distributive in headers") <- forAll { (header1: [String: String], header2: [String: String]) in
-            return self.original.append(headers: header1.combine(header2)) ==
-                   self.original.append(headers: header1).append(headers: header2)
+        property("Property associative in headers") <- forAll(API.Config.arbitraryWithHeaders, self.headerGen, self.headerGen, self.headerGen) { (config: API.Config, header1: [String: String], header2: [String: String], header3: [String: String]) in
+            return config.append(headers: header1).append(headers: header2.combine(header3)) ==
+                   config.append(headers: header1.combine(header2)).append(headers: header3)
         }
     }
 }

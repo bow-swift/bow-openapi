@@ -9,7 +9,7 @@ class SwaggerClientGenerator: ClientGenerator {
     func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
               |<-self.swaggerGenerator(scheme: scheme, output: output, template: template, logPath: logPath),
-              |<-self.reorganizeFiles(in: output),
+              |<-self.reorganizeFiles(in: output, template: template),
               |<-self.fixSignatureParameters(filesAt: "\(output)/APIs"),
               |<-self.renderHelpersForHeaders(filesAt: "\(output)/APIs", inFile: "\(output)/APIs.swift"),
               |<-self.removeHeadersDefinition(filesAt: "\(output)/APIs"),
@@ -31,12 +31,22 @@ class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    private func reorganizeFiles(in output: String) -> EnvIO<FileSystem, APIClientError, ()> {
-        EnvIO { fileSystem in
+    private func reorganizeFiles(in output: String, template: String) -> EnvIO<FileSystem, APIClientError, ()> {
+        func installTestsFiles(at input: String, into output: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+            EnvIO { fileSystem in
+                binding(
+                    |<-fileSystem.createDirectory(atPath: output),
+                    |<-fileSystem.copy(items: ["APITestCase.swift", "APIConfigTesting.swift", "StubURL.swift"], from: input, to: output),
+                yield: ())
+            }
+        }
+        
+        return EnvIO { fileSystem in
             binding(
                 |<-fileSystem.move(from: "\(output)/SwaggerClient/Classes/Swaggers", to: output),
                 |<-fileSystem.remove(from: output, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
                 |<-fileSystem.rename("APIConfiguration", itemAt: "\(output)/APIHelper.swift"),
+                |<-installTestsFiles(at: template, into: "\(output)/Test").provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }

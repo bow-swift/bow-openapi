@@ -12,7 +12,7 @@ public class APITestCase {
         self.apiConfig = apiConfig
     }
     
-    // MARK: send
+    // MARK: send operation
     public func send<T: Codable>(request: URLRequest) -> Either<API.HTTPError, T> {
         let envIO = EnvIO<API.Config, API.HTTPError, T> { config in
             API.send(request: request, session: config.session, decoder: config.decoder)

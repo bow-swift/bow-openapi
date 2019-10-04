@@ -24,10 +24,29 @@ extension URLRequest {
 
 extension Dictionary where Key == String {
     var jsonData: Data? {
-        return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
 }
 
+extension Dictionary where Key == String, Value == Any? {
+    var mapValuesItems: [String: String] {
+        self.reduce(into: [String: String]()) { (result, item) in
+            if let collection = item.value as? [Any] {
+                result[item.key] = collection.compactMap { "\($0)" }.joined(separator: ",")
+            } else if let value = item.value {
+                result[item.key] = "\(value)"
+            }
+        }
+    }
+    
+    var mapValuesToQueryItems: [URLQueryItem]? {
+        let destination = self.mapValuesItems.reduce(into: [URLQueryItem]()) { (result, item) in
+            result.append(URLQueryItem(name: item.key, value: item.value))
+        }
+        
+        return destination.isEmpty ? nil : destination
+    }
+}
 
 /// Definition to JSON Encodable
 protocol JSONEncodable {

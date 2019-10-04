@@ -83,13 +83,13 @@ public class {{classname}}Client: {{classname}} {
                 {{> _param}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
             ]
-            let parameters: [String: Any]? = API.Helper.mapValuesItems(formParams){{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
+            let parameters: [String: Any]? = formParams.mapValuesItems{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
             var components = URLComponents(string: path)
-            components?.queryItems = API.Helper.mapValuesToQueryItems([
-        {{#queryParams}}
-        {{> _param}}{{#hasMore}}, {{/hasMore}}
-        {{/queryParams}}
-            ]){{/hasQueryParams}}
+            components?.queryItems = [
+            {{#queryParams}}
+            {{> _param}}{{#hasMore}}, {{/hasMore}}
+            {{/queryParams}}
+            ].mapValuesToQueryItems{{/hasQueryParams}}
             {{^hasQueryParams}}
             let components = URLComponents(string: path)
             {{/hasQueryParams}}
@@ -106,7 +106,7 @@ public class {{classname}}Client: {{classname}} {
             request.setParameters(parameters)
 
             // launch request
-            return API.Helper.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
+            return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }
     }
 {{/operation}}

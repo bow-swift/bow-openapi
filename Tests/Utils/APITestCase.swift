@@ -4,18 +4,15 @@ import XCTest
 import Bow
 import BowEffects
 
-
 class APITestCase: XCTestCase {
     private var decoder: ResponseDecoder = JSONDecoder()
-    private var protocolClasses: StubURL? = nil
     var response: HTTPURLResponse? = nil
     
     override func tearDown() {
         StubURL.reset()
         super.tearDown()
     }
-    
-    
+        
     // MARK: stub operations
     func stub(data: Data, decoder: ResponseDecoder = JSONDecoder(), code: Int = 200) {
         self.decoder = decoder
@@ -42,14 +39,12 @@ class APITestCase: XCTestCase {
         StubURL.stub(contentsOfFile: url, code: code)
     }
     
-    
     // MARK: send
     func send<T: Codable>(request: URLRequest, session: URLSession = Mock.URLSessionProvider.default, file: StaticString = #file, line: UInt = #line) -> Either<API.HTTPError, T> {
         response = HTTPURLResponse(url: request.url!, statusCode: StubURL.statusCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!
-        return API.Helper.send(request: request, session: session, decoder: decoder)
+        return API.send(request: request, session: session, decoder: decoder)
                          .unsafeRunSyncEither()
     }
-    
     
     // MARK: asserts
     func assertSuccess<T: Equatable>(response either: Either<API.HTTPError, T>, expected: T, _ information: String = "", file: StaticString = #file, line: UInt = #line) {

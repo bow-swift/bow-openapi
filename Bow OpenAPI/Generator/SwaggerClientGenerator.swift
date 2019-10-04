@@ -6,13 +6,13 @@ import BowEffects
 import Swiftline
 
 class SwaggerClientGenerator: ClientGenerator {
-    func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    func generate(scheme: String, sources: String, tests: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
-              |<-self.swaggerGenerator(scheme: scheme, output: output, template: template, logPath: logPath),
-              |<-self.reorganizeFiles(in: output, template: template),
-              |<-self.fixSignatureParameters(filesAt: "\(output)/APIs"),
-              |<-self.renderHelpersForHeaders(filesAt: "\(output)/APIs", inFile: "\(output)/APIs.swift"),
-              |<-self.removeHeadersDefinition(filesAt: "\(output)/APIs"),
+              |<-self.swaggerGenerator(scheme: scheme, output: sources, template: template, logPath: logPath),
+              |<-self.reorganizeFiles(inSources: sources, andTests: tests, fromTemplate: template),
+              |<-self.fixSignatureParameters(filesAt: "\(sources)/APIs"),
+              |<-self.renderHelpersForHeaders(filesAt: "\(sources)/APIs", inFile: "\(sources)/APIs.swift"),
+              |<-self.removeHeadersDefinition(filesAt: "\(sources)/APIs"),
         yield: ())^
     }
     
@@ -31,22 +31,13 @@ class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    private func reorganizeFiles(in output: String, template: String) -> EnvIO<FileSystem, APIClientError, ()> {
-        func installTestsFiles(at input: String, into output: String) -> EnvIO<FileSystem, FileSystemError, ()> {
-            EnvIO { fileSystem in
-                binding(
-                    |<-fileSystem.createDirectory(atPath: output),
-                    |<-fileSystem.copy(items: ["APITestCase.swift", "APIConfigTesting.swift", "StubURL.swift"], from: input, to: output),
-                yield: ())
-            }
-        }
-        
-        return EnvIO { fileSystem in
+    private func reorganizeFiles(inSources sources: String, andTests tests: String, fromTemplate template: String) -> EnvIO<FileSystem, APIClientError, ()> {
+        EnvIO { fileSystem in
             binding(
-                |<-fileSystem.move(from: "\(output)/SwaggerClient/Classes/Swaggers", to: output),
-                |<-fileSystem.remove(from: output, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
-                |<-fileSystem.rename("APIConfiguration", itemAt: "\(output)/APIHelper.swift"),
-                |<-installTestsFiles(at: template, into: "\(output)/Test").provide(fileSystem),
+                |<-fileSystem.move(from: "\(sources)/SwaggerClient/Classes/Swaggers", to: sources),
+                |<-fileSystem.remove(from: sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration", itemAt: "\(sources)/APIHelper.swift"),
+                |<-fileSystem.copy(items: ["API+XCTest.swift", "APIConfigTesting.swift", "StubURL.swift"], from: template, to: tests),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }

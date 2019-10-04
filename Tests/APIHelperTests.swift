@@ -9,6 +9,8 @@ class APIHelperTests: XCTestCase {
     let allPresentGen = [String: QueryValue].arbitrary.map { dict in dict.mapValues { x in x as QueryValue? } }
     let nonePresentGen = [String: QueryValue?].arbitrary.map { dict in dict.mapValues { _ -> QueryValue? in nil } }
     
+    
+    
     func testQueryItems() {
         let args = CheckerArguments(replay: (StdGen(504558855, 9024), 2))
         property("Removes nil values", arguments: args) <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in

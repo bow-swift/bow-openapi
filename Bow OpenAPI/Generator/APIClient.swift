@@ -12,7 +12,7 @@ enum APIClient {
             return binding(
                 template <- getTemplatePath(),
                          |<-createStructure(atPath: output).provide(env.fileSystem),
-                         |<-env.generator.generate(scheme: scheme, output: output, template: template.get, logPath: env.logPath).provide(env.fileSystem),
+                         |<-env.generator.generate(scheme: scheme, sources: "\(output)/Sources", tests: "\(output)/Tests", template: template.get, logPath: env.logPath).provide(env.fileSystem),
             yield: "RENDER SUCCEEDED")^
         }
     }
@@ -31,6 +31,8 @@ enum APIClient {
         EnvIO { (fileSystem: FileSystem) in
             fileSystem.removeDirectory(output: path).handleError({ _ in })^
                       .followedBy(fileSystem.createDirectory(atPath: path))^
+                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/Sources"))^
+                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/Tests"))^
                       .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }

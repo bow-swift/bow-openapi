@@ -28,20 +28,30 @@ extension Dictionary where Key == String {
     }
 }
 
-extension Dictionary where Key == String, Value == Any? {
-    var mapValuesItems: [String: String] {
-        self.reduce(into: [String: String]()) { (result, item) in
-            if let collection = item.value as? [Any] {
-                result[item.key] = collection.compactMap { "\($0)" }.joined(separator: ",")
-            } else if let value = item.value {
-                result[item.key] = "\(value)"
-            }
+extension Dictionary {
+    init(fromTuples array: [(Key, Value)]) {
+        self = array.reduce([Key: Value]()) { partial, next in
+            partial.combine([next.0: next.1])
         }
     }
+}
+
+extension Dictionary where Key == String, Value == Any? {
+    var encodingValues: [String: String] {
+        Dictionary<String, String>(fromTuples: self.compactMap { item -> (String, String)? in
+            if let collection = item.value as? [Any] {
+                return (item.key, collection.compactMap { "\($0)" }.joined(separator: ","))
+            } else if let value = item.value {
+                return (item.key, "\(value)")
+            } else {
+                return nil
+            }
+        })
+    }
     
-    var mapValuesToQueryItems: [URLQueryItem]? {
-        let destination = self.mapValuesItems.reduce(into: [URLQueryItem]()) { (result, item) in
-            result.append(URLQueryItem(name: item.key, value: item.value))
+    var toQueryItems: [URLQueryItem]? {
+        let destination = self.encodingValues.map { item in
+            URLQueryItem(name: item.key, value: item.value)
         }
         
         return destination.isEmpty ? nil : destination

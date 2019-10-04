@@ -83,13 +83,13 @@ public class {{classname}}Client: {{classname}} {
                 {{> _param}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
             ]
-            let parameters: [String: Any]? = formParams.mapValuesItems{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
+            let parameters: [String: Any]? = formParams.encodingValues{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
             var components = URLComponents(string: path)
             components?.queryItems = [
             {{#queryParams}}
             {{> _param}}{{#hasMore}}, {{/hasMore}}
             {{/queryParams}}
-            ].mapValuesToQueryItems{{/hasQueryParams}}
+            ].toQueryItems{{/hasQueryParams}}
             {{^hasQueryParams}}
             let components = URLComponents(string: path)
             {{/hasQueryParams}}

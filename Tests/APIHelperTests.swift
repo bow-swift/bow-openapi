@@ -13,23 +13,23 @@ class APIHelperTests: XCTestCase {
         let args = CheckerArguments(replay: (StdGen(504558855, 9024), 2))
         property("Removes nil values", arguments: args) <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
             let both: [String: Any?] = present.combine(absent).mapValues { $0 as Any? }
-            let removed: [String: String] = both.mapValuesItems
-            let expected = present.mapValues { $0 as Any? }.mapValuesItems
+            let removed: [String: String] = both.encodingValues
+            let expected = present.mapValues { $0 as Any? }.encodingValues
             
             return removed == expected
         }
         
         property("Query items remove invalid parameters") <- forAll { (queryItems: [String: QueryValue?]) in
             let itemsAny = queryItems.map { (key, query) in [key: query?.value] }.combineAll()
-            let items = itemsAny.mapValuesItems
+            let items = itemsAny.encodingValues
             
             return itemsAny.filter { (_, value) in value != nil }.count == items.count
         }
         
         property("Query items and URLQueryItem are isomorphic") <- forAll { (queryItems: [String: QueryValue?]) in
             let itemsAny = queryItems.map { (key, query) in [key: query?.value] }.combineAll()
-            let items = itemsAny.mapValuesItems
-            let queryItems = itemsAny.mapValuesToQueryItems ?? []
+            let items = itemsAny.encodingValues
+            let queryItems = itemsAny.toQueryItems ?? []
             let reverseItems = queryItems.map { query in [query.name: query.value] }.combineAll()
             
             return items == reverseItems

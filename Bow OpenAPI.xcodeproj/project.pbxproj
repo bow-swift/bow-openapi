@@ -41,6 +41,7 @@
 		8B017DA22347A52E003975CF /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B017D912347A52E003975CF /* Owner.swift */; };
 		8B017DA32347A52E003975CF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B017D922347A52E003975CF /* Extensions.swift */; };
 		8B017DA42347A52F003975CF /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B017D942347A52E003975CF /* Configuration.swift */; };
+		8B017DA52347AC86003975CF /* APIClientSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD085222345E9BD006D33DE /* APIClientSendTests.swift */; };
 		8B22DD6C2338D2000000CED9 /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DD6B2338D2000000CED9 /* APIClientError.swift */; };
 		8B48DAB6234491B50053CCC9 /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB5234491B50053CCC9 /* Bow */; };
 		8B48DAB8234491B50053CCC9 /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B48DAB7234491B50053CCC9 /* BowEffects */; };
@@ -53,7 +54,6 @@
 		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Generators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Generators.swift */; };
 		8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* Mock+Utility.swift */; };
-		8BD085232345E9BD006D33DE /* APIClientSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD085222345E9BD006D33DE /* APIClientSendTests.swift */; };
 		8BD0852723460F65006D33DE /* BowLaws in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD0852623460F65006D33DE /* BowLaws */; };
 		8BD70861233D23280018E06B /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
 		8BD70916233E3D650018E06B /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70915233E3D650018E06B /* FileSystem.swift */; };
@@ -581,13 +581,13 @@
 				8B017D972347A52E003975CF /* API+XCTest.swift in Sources */,
 				8B017D982347A52E003975CF /* APIConfiguration.swift in Sources */,
 				8B017DA02347A52E003975CF /* UpdatePet.swift in Sources */,
+				8B017DA52347AC86003975CF /* APIClientSendTests.swift in Sources */,
 				8B017DA42347A52F003975CF /* Configuration.swift in Sources */,
 				8B017D9E2347A52E003975CF /* OwnerPerson.swift in Sources */,
 				8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */,
 				8B017D9D2347A52E003975CF /* Pets.swift in Sources */,
 				8B017D9C2347A52E003975CF /* PetError.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
-				8BD085232345E9BD006D33DE /* APIClientSendTests.swift in Sources */,
 				8B017DA32347A52E003975CF /* Extensions.swift in Sources */,
 				8B017D9A2347A52E003975CF /* CodableHelper.swift in Sources */,
 				8B017D9F2347A52E003975CF /* Pet.swift in Sources */,

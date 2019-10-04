@@ -36,6 +36,7 @@ class SwaggerClientGenerator: ClientGenerator {
             binding(
                 |<-fileSystem.move(from: "\(output)/SwaggerClient/Classes/Swaggers", to: output),
                 |<-fileSystem.remove(from: output, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration", itemAt: "\(output)/APIHelper.swift"),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }

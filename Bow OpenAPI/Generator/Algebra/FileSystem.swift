@@ -12,6 +12,7 @@ protocol FileSystem {
     func items(atPath path: String) -> IO<FileSystemError, [String]>
     func readFile(atPath path: String) -> IO<FileSystemError, String>
     func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
+    func rename(_ name: String, itemAt: String) -> IO<FileSystemError, ()>
 }
 
 extension FileSystem {
@@ -36,5 +37,12 @@ extension FileSystem {
     
     func removeFiles(_ files: String...) -> IO<FileSystemError, ()> {
         files.traverse(remove(itemPath:)).void()^
+    }
+    
+    func rename(_ name: String, itemAt: String) -> IO<FileSystemError, ()> {
+        let copyItem = copy(itemPath: itemAt, toPath: "\(itemAt.parentPath)/\(name).\(itemAt.extension)")
+        let removeCopiedItem = removeFiles(itemAt)
+        
+        return copyItem.followedBy(removeCopiedItem)^
     }
 }

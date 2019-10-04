@@ -7,21 +7,13 @@ import BowEffects
 
 public enum Mock { }
 
-extension API.Config {
-    func stub(data: Data, code: Int = 200) -> API.Config {
-        StubURL.stub(data: data, code: code)
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [StubURL.self] as [AnyClass]
-        
-        return self.copy(session: URLSession(configuration: configuration))
-    }
+extension Mock {
+    static let apiConfig = API.Config(basePath: "http://www.google.es")
 }
 
 extension Mock {
     public enum URLRequestProvider {
         static var `default`: URLRequest { URLRequest(url: URL(string: "http://www.google.es")!) }
-        static var invalid: URLRequest { URLRequest(url: URL(string: "invalid")!) }
     }
 }
 

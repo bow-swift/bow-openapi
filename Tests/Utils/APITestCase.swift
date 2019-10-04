@@ -4,56 +4,41 @@ import XCTest
 import Bow
 import BowEffects
 
-class APITestCase: XCTestCase {
-    private var decoder: ResponseDecoder = JSONDecoder()
-    var response: HTTPURLResponse? = nil
+public class APITestCase {
     
-    override func tearDown() {
-        StubURL.reset()
-        super.tearDown()
-    }
-        
-    // MARK: stub operations
-    func stub(data: Data, decoder: ResponseDecoder = JSONDecoder(), code: Int = 200) {
-        self.decoder = decoder
-        StubURL.stub(data: data, code: code)
-    }
+    private let apiConfig: API.Config
     
-    func stub(error: Error, decoder: ResponseDecoder = JSONDecoder(), code: Int = 400) {
-        self.decoder = decoder
-        StubURL.stub(error: error, code: code)
-    }
-    
-    func stub(dataRaw raw: String, decoder: ResponseDecoder = StringUTF8Decoder(), code: Int = 200) {
-        self.decoder = decoder
-        StubURL.stub(data: raw.data(using: .utf8)!, code: code)
-    }
-    
-    func stub(json: String, decoder: ResponseDecoder = JSONDecoder(), code: Int = 200) {
-        self.decoder = decoder
-        StubURL.stub(json: json, code: code)
-    }
-    
-    func stub(contentsOfFile url: URL, decoder: ResponseDecoder = JSONDecoder(), code: Int = 200) {
-        self.decoder = decoder
-        StubURL.stub(contentsOfFile: url, code: code)
+    init(apiConfig: API.Config) {
+        self.apiConfig = apiConfig
     }
     
     // MARK: send
-//    func send<T: Codable>(request: URLRequest, session: URLSession = Mock.URLSessionProvider.default, file: StaticString = #file, line: UInt = #line) -> Either<API.HTTPError, T> {
-//        response = HTTPURLResponse(url: request.url!, statusCode: StubURL.statusCode, httpVersion: nil, headerFields: request.allHTTPHeaderFields)!
-//        return API.send(request: request, session: session, decoder: decoder)
-//                         .unsafeRunSyncEither()
-//    }
-    
-    // MARK: asserts
-    func assertSuccess<T: Equatable>(response either: Either<API.HTTPError, T>, expected: T, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
-        either.fold({ error in XCTFail("Expected successful value \(expected), but found an error: \(error).", file: file, line: line) },
-                    { value in XCTAssertEqual(expected, value, file: file, line: line) })
+    func send<T: Codable>(request: URLRequest) -> Either<API.HTTPError, T> {
+        let envIO = EnvIO<API.Config, API.HTTPError, T> { config in
+            API.send(request: request, session: config.session, decoder: config.decoder)
+        }
+            
+        return envIO.provide(self.apiConfig).unsafeRunSyncEither()
     }
-    
-    func assertFailure<T: Codable>(response either: Either<API.HTTPError, T>, expected error: API.HTTPError, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
-        either.fold({ err in XCTAssertEqual(error, err, file: file, line: line) },
-                    { value in XCTFail("Expected error: \(error), but found successful value: \(value)") })
+}
+
+public extension Either where A == API.HTTPError, B: Equatable {
+    func assert(success expected: B, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
+        fold({ error in XCTFail("Expected successful value \(expected), but found an error: \(error).", file: file, line: line) },
+             { value in XCTAssertEqual(expected, value, file: file, line: line) })
+    }
+}
+
+public extension Either where A == API.HTTPError, B: Codable {
+    func assert(error: API.HTTPError, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
+        fold({ err in XCTAssertEqual(error, err, file: file, line: line) },
+             { value in XCTFail("Expected error: \(error), but found successful value: \(value)") })
+    }
+}
+
+public extension Either where A == API.HTTPError, B == String {
+    func assert(error: API.HTTPError, _ information: String = "", file: StaticString = #file, line: UInt = #line) {
+        fold({ err in XCTAssertEqual(error, err, file: file, line: line) },
+             { value in XCTFail("Expected error: \(error), but found successful value: \(value)") })
     }
 }

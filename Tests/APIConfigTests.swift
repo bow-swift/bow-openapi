@@ -14,13 +14,13 @@ class APIConfigTests: XCTestCase {
     }
     
     func testCopyHeaders() {
-        property("Appending headers with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
+        property("Appending headers using `append(headers:)` with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
             let x = config.append(headers: [key: value1]).append(headers: [key: value2])
             let y = config.append(headers: [key: value2])
             return x == y
         }
         
-        property("Appending headers with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
+        property("Appending headers using `appendHeader(value:forKey:)` with same key overrides value") <- forAll { (config: API.Config, key: String, value1: String, value2: String) in
             let x = config.appendHeader(value: value1, forKey: key).appendHeader(value: value2, forKey: key)
             let y = config.appendHeader(value: value2, forKey: key)
             return x == y

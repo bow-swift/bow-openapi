@@ -5,36 +5,34 @@ import SwiftCheck
 
 
 class APIHelperTests: XCTestCase {
-
-    let allPresentGen = [String: QueryValue].arbitrary.map { dict in dict.mapValues { x in x as QueryValue? } }
-    let nonePresentGen = [String: QueryValue?].arbitrary.map { dict in dict.mapValues { _ -> QueryValue? in nil } }
-    
-    
+    let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.mapValues { x in x as String? } }
+    let nonePresentGen: Gen<[String: String?]> = [String: String?].arbitrary.map { dict in dict.mapValues { _ -> String? in nil } }
     
     func testQueryItems() {
-        let args = CheckerArguments(replay: (StdGen(504558855, 9024), 2))
-        property("Removes nil values", arguments: args) <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
-            let both: [String: Any?] = present.combine(absent).mapValues { $0 as Any? }
-            let removed: [String: String] = both.encodingValues
-            let expected = present.mapValues { $0 as Any? }.encodingValues
+        property("encodingValues remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
+            let both: [String: Any?] = present.combine(absent).any
+            let removed: [String: String]  = both.encodingValues
+            let expected: [String: String] = present.any.encodingValues
             
             return removed == expected
         }
         
-        property("Query items remove invalid parameters") <- forAll { (queryItems: [String: QueryValue?]) in
-            let itemsAny = queryItems.map { (key, query) in [key: query?.value] }.combineAll()
-            let items = itemsAny.encodingValues
+        property("toQueryItems remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
+            let both: [String: Any?] = present.combine(absent).any
+            let removed: Set<URLQueryItem>  = Set(both.toQueryItems ?? [])
+            let expected: Set<URLQueryItem> = Set(present.any.toQueryItems ?? [])
             
-            return itemsAny.filter { (_, value) in value != nil }.count == items.count
+            return removed == expected
         }
         
-        property("Query items and URLQueryItem are isomorphic") <- forAll { (queryItems: [String: QueryValue?]) in
-            let itemsAny = queryItems.map { (key, query) in [key: query?.value] }.combineAll()
-            let items = itemsAny.encodingValues
-            let queryItems = itemsAny.toQueryItems ?? []
-            let reverseItems = queryItems.map { query in [query.name: query.value] }.combineAll()
-            
-            return items == reverseItems
+        property("Only items with nil values generate an empty URLQueryItem") <- forAll(self.nonePresentGen) { (absent) in
+            return absent.any.toQueryItems == nil
         }
     }
+}
+
+
+// MARK: helpers
+fileprivate extension Dictionary {
+    var any: [Key: Any?] { mapValues { x in x as Any? } }
 }

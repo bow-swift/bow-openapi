@@ -21,7 +21,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .otherError(Mock.Error.general))
+               fails: .otherError(Mock.Error.general))
     }
 
     func testAPIClient_ValidRequestAndInvalidDecoder_ReturnParsingError() {
@@ -30,7 +30,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .parsingError)
+               fails: .parsingError)
     }
 
     func testAPIClient_ValidRequestWithWrongDecoder_ReturnParsingError() {
@@ -39,7 +39,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .parsingError)
+               fails: .parsingError)
     }
 
     func testAPIClient_InvalidResponseWithCode400_ReturnBadRequest() {
@@ -48,7 +48,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .badRequest)
+               fails: .badRequest)
     }
 
     func testAPIClient_InvalidResponseWithCode403_ReturnForbiddenError() {
@@ -57,7 +57,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .forbidden)
+               fails: .forbidden)
     }
 
     func testAPIClient_InvalidResponseWithCode404_ReturnNotFoundError() {
@@ -66,7 +66,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .notFound)
+               fails: .notFound)
     }
 
     func testAPIClient_InvalidResponseWithCode500_ReturnServerError() {
@@ -75,7 +75,7 @@ class APIClientSendTests: XCTestCase {
         
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .serverError)
+               fails: .serverError)
     }
 
     func testAPIClient_InvalidResponseWithCode503_ReturnServiceUnavailable() {
@@ -83,7 +83,7 @@ class APIClientSendTests: XCTestCase {
                                       .stub(dataRaw: "data-success", code: 503)
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .serviceUnavailable)
+               fails: .serviceUnavailable)
     }
 
     func testAPIClient_InvalidResponseWithUnknownCode_ReturnUnknownError() {
@@ -91,7 +91,7 @@ class APIClientSendTests: XCTestCase {
                                       .stub(dataRaw: "data-success", code: 69)
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               failures: .unknown)
+               fails: .unknown)
     }
 
     func testAPIClient_EmptyJSONResponse_ReturnNoResponse() {

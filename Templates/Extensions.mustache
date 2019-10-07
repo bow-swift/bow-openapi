@@ -39,24 +39,22 @@ extension Dictionary {
 extension Dictionary where Key == String, Value == Any? {
     var encodingValues: [String: String] {
         Dictionary<String, String>(fromTuples: self.compactMap { item -> (String, String)? in
-            if let collection = item.value as? [Any] {
+            guard let value = item.value, "\(value)" != "nil" else { return nil }
+            
+            if let collection = value as? [Any] {
                 return (item.key, collection.compactMap { "\($0)" }.joined(separator: ","))
-            } else if let value = item.value {
-                return (item.key, "\(value)")
             } else {
-                return nil
+                return (item.key, "\(value)")
             }
         })
     }
     
     var toQueryItems: [URLQueryItem]? {
-        let destination = self.encodingValues.map { item in
-            URLQueryItem(name: item.key, value: item.value)
-        }
-        
+        let destination = self.encodingValues.map(URLQueryItem.init)
         return destination.isEmpty ? nil : destination
     }
 }
+
 
 /// Definition to JSON Encodable
 protocol JSONEncodable {

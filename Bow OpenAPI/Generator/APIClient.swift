@@ -4,8 +4,8 @@ import Foundation
 import Bow
 import BowEffects
 
-enum APIClient {
-    static func bow(scheme: String, output: String) -> EnvIO<Environment, APIClientError, String> {
+public enum APIClient {
+    public static func bow(scheme: String, output: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
             let template = IO<APIClientError, String>.var()
             

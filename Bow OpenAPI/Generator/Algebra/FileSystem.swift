@@ -8,12 +8,9 @@ protocol FileSystem {
     func createDirectory(atPath: String) -> IO<FileSystemError, ()>
     func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
     func remove(itemPath: String) -> IO<FileSystemError, ()>
-    func moveFile(from origin: String, to destination: String) -> IO<FileSystemError, Void>
-    func moveFiles(in input: String, to output: String) -> IO<FileSystemError, ()>
     func items(atPath path: String) -> IO<FileSystemError, [String]>
     func readFile(atPath path: String) -> IO<FileSystemError, String>
     func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
-    func rename(_ newName: String, itemAt: String) -> IO<FileSystemError, ()>
 }
 
 extension FileSystem {

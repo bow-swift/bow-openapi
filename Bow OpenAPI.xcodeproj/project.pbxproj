@@ -253,8 +253,9 @@
 				8B30B86D2348FC1A00E4D852 /* Sources */,
 				8B30B8682348FC1A00E4D852 /* XCTest */,
 			);
-			path = api;
-			sourceTree = "<group>";
+			name = api;
+			path = Tests/Fixtures/api;
+			sourceTree = SOURCE_ROOT;
 		};
 		8B30B8682348FC1A00E4D852 /* XCTest */ = {
 			isa = PBXGroup;

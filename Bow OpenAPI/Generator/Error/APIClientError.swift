@@ -3,13 +3,13 @@
 import Foundation
 
 /// API Client <Error>
-struct APIClientError: Error {
+public struct APIClientError: Error {
     let operation: String
     let error: Error & CustomStringConvertible
 }
 
 extension APIClientError: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         return "operation: \(operation)\nerror: \(error)"
     }
 }

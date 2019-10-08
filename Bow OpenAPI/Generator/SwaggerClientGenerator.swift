@@ -5,8 +5,11 @@ import Bow
 import BowEffects
 import Swiftline
 
-class SwaggerClientGenerator: ClientGenerator {
-    func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+public class SwaggerClientGenerator: ClientGenerator {
+    
+    public init() { }
+    
+    public func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
               |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
               |<-self.reorganizeFiles(in: outputPath, fromTemplate: templatePath),

@@ -8,11 +8,12 @@ protocol FileSystem {
     func createDirectory(atPath: String) -> IO<FileSystemError, ()>
     func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
     func remove(itemPath: String) -> IO<FileSystemError, ()>
-    func move(from input: String, to output: String) -> IO<FileSystemError, ()>
+    func moveFile(from origin: String, to destination: String) -> IO<FileSystemError, Void>
+    func moveFiles(in input: String, to output: String) -> IO<FileSystemError, ()>
     func items(atPath path: String) -> IO<FileSystemError, [String]>
     func readFile(atPath path: String) -> IO<FileSystemError, String>
     func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
-    func rename(_ name: String, itemAt: String) -> IO<FileSystemError, ()>
+    func rename(_ newName: String, itemAt: String) -> IO<FileSystemError, ()>
 }
 
 extension FileSystem {
@@ -30,7 +31,7 @@ extension FileSystem {
         files.traverse { file in self.remove(itemPath: "\(folder)/\(file)") }.void()^
     }
     
-    func removeDirectory(output: String) -> IO<FileSystemError, ()> {
+    func removeDirectory(_ output: String) -> IO<FileSystemError, ()> {
         let outputURL = URL(fileURLWithPath: output, isDirectory: true)
         return remove(itemPath: outputURL.path)
     }
@@ -39,10 +40,24 @@ extension FileSystem {
         files.traverse(remove(itemPath:)).void()^
     }
     
-    func rename(_ name: String, itemAt: String) -> IO<FileSystemError, ()> {
-        let copyItem = copy(itemPath: itemAt, toPath: "\(itemAt.parentPath)/\(name).\(itemAt.extension)")
-        let removeCopiedItem = removeFiles(itemAt)
+    func moveFile(from origin: String, to destination: String) -> IO<FileSystemError, Void> {
+        copy(itemPath: origin, toPath: destination)
+            .followedBy(removeFiles(origin))^
+            .mapLeft { _ in .move(from: origin, to: destination) }
+    }
+    
+    func moveFiles(in input: String, to output: String) -> IO<FileSystemError, ()> {
+        let items = IO<FileSystemError, [String]>.var()
         
-        return copyItem.followedBy(removeCopiedItem)^
+        return binding(
+            items <- self.items(atPath: input),
+                  |<-self.copy(items: items.get, from: input, to: output),
+                  |<-self.removeDirectory(input),
+            yield: ()
+        )^.mapLeft { _ in .move(from: input, to: output) }
+    }
+    
+    func rename(_ newName: String, itemAt: String) -> IO<FileSystemError, ()> {
+        moveFile(from: itemAt, to: "\(itemAt.parentPath)/\(newName)")
     }
 }

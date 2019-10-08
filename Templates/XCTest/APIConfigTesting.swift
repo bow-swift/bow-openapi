@@ -50,11 +50,6 @@ public extension API.Config {
     }
 }
 
-public extension API.Config {
-    var request: URLRequest {
-        return URLRequest(url: URL(string: basePath)!)
-    }
-}
 
 private extension URLSessionConfiguration {
     static var testing: URLSessionConfiguration {

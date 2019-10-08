@@ -18,11 +18,11 @@ public extension XCTest {
     
     func assert<T: Equatable>(_ envIO: EnvIO<API.Config, API.HTTPError, T>,
                               withConfig apiConfig: API.Config,
-                              failures: HTTPErrorTest,
+                              fails: HTTPErrorTest,
                               _ information: String? = nil, file: StaticString = #file, line: UInt = #line) {
         envIO.provide(apiConfig)
              .unsafeRunSyncEither()
-             .assert(error: failures, information: information, file: file, line: line)
+             .assert(error: fails, information: information, file: file, line: line)
     }
 }
 

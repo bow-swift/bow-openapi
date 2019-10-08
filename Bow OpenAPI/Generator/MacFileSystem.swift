@@ -5,6 +5,7 @@ import Bow
 import BowEffects
 
 class MacFileSystem: FileSystem {
+    
     func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
         FileManager.default.createDirectoryIO(atPath: path, withIntermediateDirectories: false)
             .mapLeft { _ in .create(item: path) }
@@ -18,16 +19,6 @@ class MacFileSystem: FileSystem {
     func remove(itemPath: String) -> IO<FileSystemError, ()> {
         FileManager.default.removeItemIO(atPath: itemPath)
             .mapLeft { _ in .remove(item: itemPath) }
-    }
-    
-    func move(from input: String, to output: String) -> IO<FileSystemError, ()> {
-        let items = IO<FileSystemError, [String]>.var()
-        
-        return binding(
-            items <- self.items(atPath: input),
-                  |<-self.copy(items: items.get, from: input, to: output),
-            yield: ()
-        )^.mapLeft { _ in .move(from: input, to: output) }
     }
     
     func items(atPath path: String) -> IO<FileSystemError, [String]> {

@@ -125,3 +125,10 @@ class APIClientSendTests: XCTestCase {
         }
     }
 }
+
+
+fileprivate extension API.Config {
+    var request: URLRequest {
+        return URLRequest(url: URL(string: basePath)!)
+    }
+}

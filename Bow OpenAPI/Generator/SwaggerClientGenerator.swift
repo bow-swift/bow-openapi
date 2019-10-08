@@ -5,11 +5,8 @@ import Bow
 import BowEffects
 import Swiftline
 
-public class SwaggerClientGenerator: ClientGenerator {
-    
-    public init() { }
-    
-    public func generate(schemePath: String, outputPath: GeneratorOutput, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+class SwaggerClientGenerator: ClientGenerator {
+    func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
               |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
               |<-self.reorganizeFiles(in: outputPath, fromTemplate: templatePath),
@@ -34,12 +31,12 @@ public class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    private func reorganizeFiles(in outputPath: GeneratorOutput, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    private func reorganizeFiles(in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             binding(
-                |<-fileSystem.move(from: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
+                |<-fileSystem.moveFiles(in: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
                 |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
-                |<-fileSystem.rename("APIConfiguration", itemAt: "\(outputPath.sources)/APIHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
                 |<-fileSystem.copy(items: ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"], from: templatePath, to: outputPath.tests),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }

@@ -15,8 +15,7 @@ extension API.ContentType: Arbitrary {
 // MARK: Common <generator>
 extension Data: Arbitrary {
     public static var arbitrary: Gen<Data> {
-        let data = String.arbitrary.generate.data(using: .utf8)!
-        return Gen<Data>.pure(data)
+        String.arbitrary.map { str in str.data(using: .utf8)! }
     }
 }
 

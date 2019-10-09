@@ -1,7 +1,8 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
-import Generator
+import OpenApiGenerator
+
 
 func main() {
     guard let arguments = CommandLine.input else { Console.help() }

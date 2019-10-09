@@ -34,6 +34,27 @@ extension JSONDecoder: ResponseDecoder {
     }
 }
 
+public class StringUTF8Decoder: ResponseDecoder {
+    
+    public init() { }
+
+    public func safeDecode<T: Decodable>(_ type: T.Type, from data: Data) -> IO<DecodingError, T> {
+        IO.invoke {
+            guard let value = String(data: data, encoding: .utf8) else {
+                throw DecodingError.other(NSError(domain: "StringUTF8Decoder", code: 1))
+            }
+            
+            if value.isEmpty, T.self == NoResponse.self {
+                return NoResponse() as! T
+            } else if let value = value as? T {
+                return value
+            } else {
+                throw DecodingError.other(NSError(domain: "StringUTF8Decoder", code: 2))
+            }
+        }
+    }
+}
+
 // MARK: - encoder helpers
 extension Encodable {
     var encodingParameters: [String: Any]? {
@@ -46,7 +67,4 @@ extension Encodable {
 }
 
 // MARK: - response helpers
-public struct NoResponse: Codable {
-    public init(from decoder: Decoder) throws { }
-    public func encode(to encoder: Encoder) throws { }
-}
+public struct NoResponse: Codable, Equatable {}

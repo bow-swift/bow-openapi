@@ -6,13 +6,13 @@ import BowEffects
 import Swiftline
 
 class SwaggerClientGenerator: ClientGenerator {
-    func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
-              |<-self.swaggerGenerator(scheme: scheme, output: output, template: template, logPath: logPath),
-              |<-self.reorganizeFiles(in: output),
-              |<-self.fixSignatureParameters(filesAt: "\(output)/APIs"),
-              |<-self.renderHelpersForHeaders(filesAt: "\(output)/APIs", inFile: "\(output)/APIs.swift"),
-              |<-self.removeHeadersDefinition(filesAt: "\(output)/APIs"),
+              |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
+              |<-self.reorganizeFiles(in: outputPath, fromTemplate: templatePath),
+              |<-self.fixSignatureParameters(filesAt: "\(outputPath.sources)/APIs"),
+              |<-self.renderHelpersForHeaders(filesAt: "\(outputPath.sources)/APIs", inFile: "\(outputPath.sources)/APIs.swift"),
+              |<-self.removeHeadersDefinition(filesAt: "\(outputPath.sources)/APIs"),
         yield: ())^
     }
     
@@ -31,11 +31,13 @@ class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    private func reorganizeFiles(in output: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    private func reorganizeFiles(in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             binding(
-                |<-fileSystem.move(from: "\(output)/SwaggerClient/Classes/Swaggers", to: output),
-                |<-fileSystem.remove(from: output, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.moveFiles(in: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
+                |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
+                |<-fileSystem.copy(items: ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"], from: templatePath, to: outputPath.tests),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }

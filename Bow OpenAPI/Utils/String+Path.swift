@@ -12,6 +12,10 @@ public extension String {
         removeLastComponent(separatedBy: ".")
     }
     
+    var `extension`: String {
+        components(separatedBy: ".").last ?? ""
+    }
+    
     var expandingTildeInPath: String {
         NSString(string: self).expandingTildeInPath
     }

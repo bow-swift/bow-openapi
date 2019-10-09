@@ -12,7 +12,10 @@ enum APIClient {
             return binding(
                 template <- getTemplatePath(),
                          |<-createStructure(atPath: output).provide(env.fileSystem),
-                         |<-env.generator.generate(scheme: scheme, output: output, template: template.get, logPath: env.logPath).provide(env.fileSystem),
+                         |<-env.generator.generate(schemePath: scheme,
+                                                   outputPath: OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest"),
+                                                   templatePath: template.get,
+                                                   logPath: env.logPath).provide(env.fileSystem),
             yield: "RENDER SUCCEEDED")^
         }
     }
@@ -29,8 +32,10 @@ enum APIClient {
     // MARK: steps
     private static func createStructure(atPath path: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { (fileSystem: FileSystem) in
-            fileSystem.removeDirectory(output: path).handleError({ _ in })^
+            fileSystem.removeDirectory(path).handleError({ _ in })^
                       .followedBy(fileSystem.createDirectory(atPath: path))^
+                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/Sources"))^
+                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/XCTest"))^
                       .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }

@@ -41,7 +41,7 @@ extension {{classname}} {
 
      You should configure the `API.Config` using the following headers:
      {{/secondaryParam}}
-     - Parameter {{paramName}}: (header) {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+        + {{paramName}}: {{description}} {{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
      {{/headerParams}}
 
      {{#allParams}}{{^isHeaderParam}}
@@ -83,13 +83,13 @@ public class {{classname}}Client: {{classname}} {
                 {{> _param}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
             ]
-            let parameters: [String: Any]? = API.Helper.mapValuesItems(formParams){{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
+            let parameters: [String: Any]? = formParams.encodingValues{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
             var components = URLComponents(string: path)
-            components?.queryItems = API.Helper.mapValuesToQueryItems([
-        {{#queryParams}}
-        {{> _param}}{{#hasMore}}, {{/hasMore}}
-        {{/queryParams}}
-            ]){{/hasQueryParams}}
+            components?.queryItems = [
+            {{#queryParams}}
+            {{> _param}}{{#hasMore}}, {{/hasMore}}
+            {{/queryParams}}
+            ].toQueryItems{{/hasQueryParams}}
             {{^hasQueryParams}}
             let components = URLComponents(string: path)
             {{/hasQueryParams}}
@@ -106,7 +106,7 @@ public class {{classname}}Client: {{classname}} {
             request.setParameters(parameters)
 
             // launch request
-            return API.Helper.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
+            return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }
     }
 {{/operation}}

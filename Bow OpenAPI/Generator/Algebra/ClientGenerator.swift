@@ -4,6 +4,11 @@ import Foundation
 import Bow
 import BowEffects
 
+struct OutputPath {
+    let sources: String
+    let tests: String
+}
+
 protocol ClientGenerator {
-    func generate(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()>
+    func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()>
 }

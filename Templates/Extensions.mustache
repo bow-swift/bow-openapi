@@ -17,7 +17,6 @@ extension URLRequest {
     
     mutating func setParameters(_ parameters: [String: Any]?) {
         guard let body = parameters?.jsonData else { return }
-        
         httpBody = body
         setValue(String(body.count), forHTTPHeaderField: "Content-Length")
     }
@@ -25,17 +24,34 @@ extension URLRequest {
 
 extension Dictionary where Key == String {
     var jsonData: Data? {
-        return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+        try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
 }
 
 extension Dictionary {
-    func combine(_ other: [Key: Value]) -> [Key: Value] {
-        var result = self
-        for (key, value) in other {
-            result[key] = value
+    init(fromTuples array: [(Key, Value)]) {
+        self = array.reduce([Key: Value]()) { partial, next in
+            partial.combine([next.0: next.1])
         }
-        return result
+    }
+}
+
+extension Dictionary where Key == String, Value == Any? {
+    var encodingValues: [String: String] {
+        Dictionary<String, String>(fromTuples: self.compactMap { item -> (String, String)? in
+            guard let value = item.value, "\(value)" != "nil" else { return nil }
+            
+            if let collection = value as? [Any] {
+                return (item.key, collection.compactMap { "\($0)" }.joined(separator: ","))
+            } else {
+                return (item.key, "\(value)")
+            }
+        })
+    }
+    
+    var toQueryItems: [URLQueryItem]? {
+        let destination = self.encodingValues.map(URLQueryItem.init)
+        return destination.isEmpty ? nil : destination
     }
 }
 

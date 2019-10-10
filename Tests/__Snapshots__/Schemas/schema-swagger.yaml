@@ -2,4 +2,4 @@ swagger: "2.0"
 paths:
   /pet:
     get:
-      operationId: testSchemaSwagger
+      operationId: testSchema

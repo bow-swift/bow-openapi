@@ -19,17 +19,17 @@ public extension API {
 
 /// Protocol to define networking operations in `default`
 public protocol DefaultAPI {
-    func _testSchemaYAML() -> EnvIO<API.Config, API.HTTPError, NoResponse>
+    func _findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]>
 }
 
 extension DefaultAPI {
 
     /**
 
-     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, NoResponse>`.
+     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `[Pet]`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, [Pet]>`.
      */
-    public func testSchemaYAML() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
-        _testSchemaYAML()
+    public func findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]> {
+        _findPetsByStatus()
     }
 }
 
@@ -37,10 +37,10 @@ extension DefaultAPI {
 /// An HTTP client to perform networking operations related to `default`
 public class DefaultAPIClient: DefaultAPI {
 
-    public func _testSchemaYAML() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    public func _findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]> {
         return EnvIO { apiConfig in
             // build request path
-            let resourcePath = "/pet"
+            let resourcePath = "/pet/findByStatus"
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
@@ -49,7 +49,7 @@ public class DefaultAPIClient: DefaultAPI {
             
             // request configuration
             guard let url = components?.url ?? URL(string: path) else {
-                let data = "DefaultAPI.testSchemaYAML.URL".data(using: .utf8)!
+                let data = "DefaultAPI.findPetsByStatus.URL".data(using: .utf8)!
                 return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
             }
 

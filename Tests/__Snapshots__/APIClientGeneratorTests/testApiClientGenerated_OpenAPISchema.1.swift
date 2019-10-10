@@ -19,7 +19,7 @@ public extension API {
 
 /// Protocol to define networking operations in `default`
 public protocol DefaultAPI {
-    func _testSchemaSwagger() -> EnvIO<API.Config, API.HTTPError, NoResponse>
+    func _testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse>
 }
 
 extension DefaultAPI {
@@ -28,8 +28,8 @@ extension DefaultAPI {
 
      - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, NoResponse>`.
      */
-    public func testSchemaSwagger() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
-        _testSchemaSwagger()
+    public func testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+        _testSchema()
     }
 }
 
@@ -37,7 +37,7 @@ extension DefaultAPI {
 /// An HTTP client to perform networking operations related to `default`
 public class DefaultAPIClient: DefaultAPI {
 
-    public func _testSchemaSwagger() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    public func _testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet"
@@ -49,7 +49,7 @@ public class DefaultAPIClient: DefaultAPI {
             
             // request configuration
             guard let url = components?.url ?? URL(string: path) else {
-                let data = "DefaultAPI.testSchemaSwagger.URL".data(using: .utf8)!
+                let data = "DefaultAPI.testSchema.URL".data(using: .utf8)!
                 return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
             }
 

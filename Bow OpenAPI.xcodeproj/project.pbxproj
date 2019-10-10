@@ -91,12 +91,15 @@
 		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
 		8BDE68ED23326E42009342AD /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Console.swift */; };
 		8BDE691B23328538009342AD /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691A23328538009342AD /* CommandLine.swift */; };
-		8BFE7E41234E10D4003E97BF /* APIClientSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */; };
+		8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */; };
 		8BFE7E43234E11FA003E97BF /* URL+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E42234E11FA003E97BF /* URL+Paths.swift */; };
 		8BFE7E4E234E1732003E97BF /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4D234E1732003E97BF /* Bow */; };
 		8BFE7E50234E1732003E97BF /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4F234E1732003E97BF /* BowEffects */; };
 		8BFE7E52234E1732003E97BF /* BowOptics in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E51234E1732003E97BF /* BowOptics */; };
 		8BFE7E56234E1D21003E97BF /* URL+FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E55234E1D21003E97BF /* URL+FileSystem.swift */; };
+		8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */; };
+		8BFE7E64234F7130003E97BF /* APIClientHttpOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */; };
+		8BFE7E66234F7192003E97BF /* APIClientParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,10 +219,13 @@
 		8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorError.swift; sourceTree = "<group>"; };
 		8BDEB0B92340DBC10095A6E0 /* SwaggerClientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaggerClientGenerator.swift; sourceTree = "<group>"; };
 		8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFileSystem.swift; sourceTree = "<group>"; };
-		8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSnapshotTests.swift; sourceTree = "<group>"; };
+		8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientModelsTests.swift; sourceTree = "<group>"; };
 		8BFE7E42234E11FA003E97BF /* URL+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Paths.swift"; sourceTree = "<group>"; };
 		8BFE7E55234E1D21003E97BF /* URL+FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FileSystem.swift"; sourceTree = "<group>"; };
 		8BFE7E60234E2CFD003E97BF /* __Snapshots__ */ = {isa = PBXFileReference; lastKnownFileType = text; name = __Snapshots__; path = Tests/__Snapshots__; sourceTree = SOURCE_ROOT; };
+		8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientGeneratorTests.swift; sourceTree = "<group>"; };
+		8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientHttpOperationTests.swift; sourceTree = "<group>"; };
+		8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientParametersTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,14 +337,17 @@
 		8B8B19B623426AE4009D195A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */,
+				8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */,
+				8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */,
+				8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */,
+				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
-				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
-				8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */,
-				8B8B1C152343617A009D195A /* Utils */,
-				8BFE7E60234E2CFD003E97BF /* __Snapshots__ */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
+				8B8B1C152343617A009D195A /* Utils */,
+				8BFE7E60234E2CFD003E97BF /* __Snapshots__ */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -667,7 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8B1C1723436195009D195A /* API+Generators.swift in Sources */,
-				8BFE7E41234E10D4003E97BF /* APIClientSnapshotTests.swift in Sources */,
+				8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */,
 				8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */,
 				8B30B8832348FC1A00E4D852 /* DefaultAPI.swift in Sources */,
 				8B30B87F2348FC1A00E4D852 /* StubURL.swift in Sources */,
@@ -681,9 +690,11 @@
 				8B30B88E2348FC1A00E4D852 /* Configuration.swift in Sources */,
 				8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */,
 				8B30B8822348FC1A00E4D852 /* APIConfiguration.swift in Sources */,
+				8BFE7E64234F7130003E97BF /* APIClientHttpOperationTests.swift in Sources */,
 				8B30B8862348FC1A00E4D852 /* PetError.swift in Sources */,
 				8B30B88D2348FC1A00E4D852 /* Extensions.swift in Sources */,
 				8B30B88C2348FC1A00E4D852 /* Owner.swift in Sources */,
+				8BFE7E66234F7192003E97BF /* APIClientParametersTests.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
 				8B30B87E2348FC1A00E4D852 /* APIConfigTesting.swift in Sources */,
 				8BFE7E56234E1D21003E97BF /* URL+FileSystem.swift in Sources */,
@@ -691,6 +702,7 @@
 				8B30B88B2348FC1A00E4D852 /* NewPet.swift in Sources */,
 				8B30B8882348FC1A00E4D852 /* OwnerPerson.swift in Sources */,
 				8B30B8892348FC1A00E4D852 /* Pet.swift in Sources */,
+				8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */,
 				8B30B8852348FC1A00E4D852 /* APIs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

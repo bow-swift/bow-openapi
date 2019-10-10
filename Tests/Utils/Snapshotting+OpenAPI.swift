@@ -15,11 +15,12 @@ extension Snapshotting where Value == URL, Format == String {
         var strategy = Snapshotting<String, String>.lines.pullback { (url: URL) -> String in
             let testName = "\(file.string.filename.removeExtension)-focusIn\(focus.removeExtension)"
             let directory = URL.temp(subfolder: testName)
+            let either = APIClient.bow(scheme: url.path, output: directory.path, templatePath: URL.templates.path)
+                                  .provide(environment(named: testName))
+                                  .unsafeRunSyncEither()
             
-            guard let _ = try? APIClient.bow(scheme: url.path, output: directory.path, templatePath: URL.templates.path)
-                                        .provide(environment(named: testName))
-                                        .unsafeRunSync() else {
-                                            return "error: run bow openAPI in scheme: '\(url.path)', output: '\(directory.path)', template: '\(URL.templates.path)'"
+            guard either.isRight else {
+                return "error: \(either.leftValue): run bow openAPI in scheme: '\(url.path)', output: '\(directory.path)', template: '\(URL.templates.path)'"
             }
             
             let focusURL = directory.find(file: focus)

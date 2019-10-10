@@ -13,7 +13,7 @@
       "/pets": {
         "get": {
           "summary": "List all pets",
-          "operationId": "testSchemaJSON"
+          "operationId": "testSchemaFormat"
         }
       }
     }

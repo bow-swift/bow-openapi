@@ -1,5 +1,6 @@
 openapi: "3.0.0"
 paths:
-  /pet:
+  /pets:
     get:
-      operationId: testSchemaYAML
+      summary: List all pets
+      operationId: testSchemaFormat

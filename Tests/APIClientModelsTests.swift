@@ -6,7 +6,7 @@ import SnapshotTesting
 
 class APIClientModelsTests: XCTestCase {
     
-    func testRequestWithReference_BuildModel() {
+    func testRequestWithPetReference_BuildPetModel() {
         assertSnapshot(matching: URL.schemas.file(.referenceModel), as: .generated(file: "Pet.swift"))
     }
     

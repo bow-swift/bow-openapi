@@ -48,6 +48,11 @@ extension URL {
         case modelOptional = "schema-model-norequired.yaml"
         case modelInline = "schema-model-inline.yaml"
         case responseWithModel = "schema-model-response.yaml"
+        case modelWithRefs = "schema-model-with-refs.yaml"
+        
+        // documentation
+        case requestDocumentation = "schema-request-docs.yaml"
+        case modelDocumentation = "schema-model-docs.yaml"
     }
     
     func file(_ file: File) -> URL { appendingPathComponent(file.rawValue) }

@@ -100,6 +100,7 @@
 		8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */; };
 		8BFE7E64234F7130003E97BF /* APIClientHttpOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */; };
 		8BFE7E66234F7192003E97BF /* APIClientParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */; };
+		8BFE7E68234F7EF0003E97BF /* APIClientDocumentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E67234F7EF0003E97BF /* APIClientDocumentationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +227,7 @@
 		8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientGeneratorTests.swift; sourceTree = "<group>"; };
 		8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientHttpOperationTests.swift; sourceTree = "<group>"; };
 		8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientParametersTests.swift; sourceTree = "<group>"; };
+		8BFE7E67234F7EF0003E97BF /* APIClientDocumentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientDocumentationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 		8B8B19B623426AE4009D195A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8BFE7E67234F7EF0003E97BF /* APIClientDocumentationTests.swift */,
 				8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */,
 				8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */,
 				8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */,
@@ -694,6 +697,7 @@
 				8B30B8862348FC1A00E4D852 /* PetError.swift in Sources */,
 				8B30B88D2348FC1A00E4D852 /* Extensions.swift in Sources */,
 				8B30B88C2348FC1A00E4D852 /* Owner.swift in Sources */,
+				8BFE7E68234F7EF0003E97BF /* APIClientDocumentationTests.swift in Sources */,
 				8BFE7E66234F7192003E97BF /* APIClientParametersTests.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
 				8B30B87E2348FC1A00E4D852 /* APIConfigTesting.swift in Sources */,

@@ -18,6 +18,10 @@ class APIClientModelsTests: XCTestCase {
         assertSnapshot(matching: URL.schemas.file(.modelOptional), as: .generated(file: "Pet.swift"))
     }
     
+    func testModelWithReferences() {
+        assertSnapshot(matching: URL.schemas.file(.modelWithRefs), as: .generated(file: "Pet.swift"))
+    }
+    
     func testModelInlineInRequest() {
         assertSnapshot(matching: URL.schemas.file(.modelInline), as: .generated(file: "InlineAPI.swift"))
     }

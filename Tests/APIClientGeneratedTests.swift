@@ -20,6 +20,23 @@ class APIClientGeneratedTests: XCTestCase {
         assertSnapshot(matching: URL.schemes.file(.noDefinedOperationId), as: .generated(file: "DefaultAPI.swift"))
     }
     
+    // MARK: api-client http methods
+    func testRequestPOST() {
+        assertSnapshot(matching: URL.schemes.file(.post), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestGET() {
+        assertSnapshot(matching: URL.schemes.file(.get), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestPUT() {
+        assertSnapshot(matching: URL.schemes.file(.put), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestDELETE() {
+        assertSnapshot(matching: URL.schemes.file(.delete), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
     // MARK: api-client parameters
     func testRequestWithQueryParam_URLComponentsAndQueryItems() {
         assertSnapshot(matching: URL.schemes.file(.queryParam), as: .generated(file: "DefaultAPI.swift"))

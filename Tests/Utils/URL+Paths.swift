@@ -37,9 +37,13 @@ extension URL {
         case queryParam = "schema-query-param.yaml"
         case headerParam = "schema-header-param.yaml"
         case bodyParam = "schema-body-param.yaml"
+        case pathParamOptional = "schema-path-param-optional.yaml"
+        case queryParamOptional = "schema-query-param-optional.yaml"
+        case headerParamOptional = "schema-header-param-optional.yaml"
+        case bodyParamOptional = "schema-body-param-optional.yaml"
         
         // models
-        case requestWithReference = "schema-request-reference.yaml"
+        case referenceModel = "schema-request-reference.yaml"
     }
     
     func file(_ file: File) -> URL { appendingPathComponent(file.rawValue) }

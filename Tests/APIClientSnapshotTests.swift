@@ -62,7 +62,7 @@ class APIClientSnapshotTests: XCTestCase {
         assertSnapshot(matching: URL.schemas.file(.pathParam), as: .generated(file: "DefaultAPI.swift"))
     }
     
-    func testRequestWithHeaderParam_GenerateHelpersMethods() {
+    func testRequestWithHeaderParam_GenerateHelperMethod() {
         assertSnapshot(matching: URL.schemas.file(.headerParam), as: .generated(file: "APIs.swift"))
     }
     
@@ -70,8 +70,24 @@ class APIClientSnapshotTests: XCTestCase {
         assertSnapshot(matching: URL.schemas.file(.bodyParam), as: .generated(file: "DefaultAPI.swift"))
     }
     
+    func testRequestWithQueryParamOptional_URLComponentsAndQueryItems() {
+        assertSnapshot(matching: URL.schemas.file(.queryParamOptional), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestWithPathParamOptional_BuildRequestPathNoOptional() {
+        assertSnapshot(matching: URL.schemas.file(.pathParamOptional), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestWithHeaderParamOptional_GenerateHelperMethodNoOptional() {
+        assertSnapshot(matching: URL.schemas.file(.headerParamOptional), as: .generated(file: "APIs.swift"))
+    }
+    
+    func testRequestWithBodyParamOptional_BuildRequestPath() {
+        assertSnapshot(matching: URL.schemas.file(.bodyParamOptional), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
     // MARK: models
     func testRequestWithReference_BuildModel() {
-        assertSnapshot(matching: URL.schemas.file(.requestWithReference), as: .generated(file: "Pet.swift"))
+        assertSnapshot(matching: URL.schemas.file(.referenceModel), as: .generated(file: "Pet.swift"))
     }
 }

@@ -10,24 +10,36 @@ extension URL {
     
     static func temp(subfolder: String) -> URL { FileManager.default.temporaryDirectory.appendingPathComponent(subfolder) }
     static func currentFile(_ file: StaticString = #file) -> URL { URL(fileURLWithPath: "\(file)") }
-    static let schemes = URL.tests.appendingPathComponent("__Snapshots__").appendingPathComponent("Schemes")
+    static let schemas = URL.tests.appendingPathComponent("__Snapshots__").appendingPathComponent("Schemas")
     static let templates = URL.xcproj.appendingPathComponent("Templates")
 }
 
 /// Concat to url path
 extension URL {
     enum File: String {
-        case noDefinedTags = "scheme-no-tags.yaml"
-        case tags = "scheme-tags.yaml"
-        case noDefinedOperationId = "scheme-no-operationid.yaml"
-        case post = "scheme-post.yaml"
-        case get = "scheme-get.yaml"
-        case put = "scheme-put.yaml"
-        case delete = "scheme-delete.yaml"
-        case pathParam = "scheme-path-param.yaml"
-        case queryParam = "scheme-query-param.yaml"
-        case headerParam = "scheme-header-param.yaml"
-        case bodyParam = "scheme-body-param.yaml"
+        // api-client
+        case noDefinedTags = "schema-no-tags.yaml"
+        case tags = "schema-tags.yaml"
+        case swagger = "schema-swagger.yaml"
+        case openapi = "schema-openapi.yaml"
+        case json = "schema-json.json"
+        case yaml = "schema-yaml.yaml"
+        
+        // http operations
+        case noDefinedOperationId = "schema-no-operationid.yaml"
+        case post = "schema-post.yaml"
+        case get = "schema-get.yaml"
+        case put = "schema-put.yaml"
+        case delete = "schema-delete.yaml"
+        
+        // parameters
+        case pathParam = "schema-path-param.yaml"
+        case queryParam = "schema-query-param.yaml"
+        case headerParam = "schema-header-param.yaml"
+        case bodyParam = "schema-body-param.yaml"
+        
+        // models
+        case requestWithReference = "schema-request-reference.yaml"
     }
     
     func file(_ file: File) -> URL { appendingPathComponent(file.rawValue) }

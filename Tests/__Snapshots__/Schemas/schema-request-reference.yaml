@@ -1,0 +1,18 @@
+swagger: '2.0'
+paths:
+  /pet:
+    post:
+      operationId: addPet
+      parameters:
+        - in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Pet'
+definitions:
+  Pet:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string

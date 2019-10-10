@@ -91,7 +91,7 @@
 		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
 		8BDE68ED23326E42009342AD /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Console.swift */; };
 		8BDE691B23328538009342AD /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691A23328538009342AD /* CommandLine.swift */; };
-		8BFE7E41234E10D4003E97BF /* APIClientGeneratedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientGeneratedTests.swift */; };
+		8BFE7E41234E10D4003E97BF /* APIClientSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */; };
 		8BFE7E43234E11FA003E97BF /* URL+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E42234E11FA003E97BF /* URL+Paths.swift */; };
 		8BFE7E4E234E1732003E97BF /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4D234E1732003E97BF /* Bow */; };
 		8BFE7E50234E1732003E97BF /* BowEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4F234E1732003E97BF /* BowEffects */; };
@@ -216,7 +216,7 @@
 		8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorError.swift; sourceTree = "<group>"; };
 		8BDEB0B92340DBC10095A6E0 /* SwaggerClientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaggerClientGenerator.swift; sourceTree = "<group>"; };
 		8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFileSystem.swift; sourceTree = "<group>"; };
-		8BFE7E40234E10D4003E97BF /* APIClientGeneratedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientGeneratedTests.swift; sourceTree = "<group>"; };
+		8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSnapshotTests.swift; sourceTree = "<group>"; };
 		8BFE7E42234E11FA003E97BF /* URL+Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Paths.swift"; sourceTree = "<group>"; };
 		8BFE7E55234E1D21003E97BF /* URL+FileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FileSystem.swift"; sourceTree = "<group>"; };
 		8BFE7E60234E2CFD003E97BF /* __Snapshots__ */ = {isa = PBXFileReference; lastKnownFileType = text; name = __Snapshots__; path = Tests/__Snapshots__; sourceTree = SOURCE_ROOT; };
@@ -334,7 +334,7 @@
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
 				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
-				8BFE7E40234E10D4003E97BF /* APIClientGeneratedTests.swift */,
+				8BFE7E40234E10D4003E97BF /* APIClientSnapshotTests.swift */,
 				8B8B1C152343617A009D195A /* Utils */,
 				8BFE7E60234E2CFD003E97BF /* __Snapshots__ */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
@@ -667,7 +667,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8B1C1723436195009D195A /* API+Generators.swift in Sources */,
-				8BFE7E41234E10D4003E97BF /* APIClientGeneratedTests.swift in Sources */,
+				8BFE7E41234E10D4003E97BF /* APIClientSnapshotTests.swift in Sources */,
 				8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */,
 				8B30B8832348FC1A00E4D852 /* DefaultAPI.swift in Sources */,
 				8B30B87F2348FC1A00E4D852 /* StubURL.swift in Sources */,

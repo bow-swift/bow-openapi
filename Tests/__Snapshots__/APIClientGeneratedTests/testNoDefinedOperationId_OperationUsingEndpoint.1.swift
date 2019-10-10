@@ -19,7 +19,7 @@ public extension API {
 
 /// Protocol to define networking operations in `default`
 public protocol DefaultAPI {
-    func _getPet(petId: Int) -> EnvIO<API.Config, API.HTTPError, NoResponse>
+    func _v1TestingPetGet() -> EnvIO<API.Config, API.HTTPError, NoResponse>
 }
 
 extension DefaultAPI {
@@ -27,11 +27,10 @@ extension DefaultAPI {
     /**
      Info for a specific pet
 
-     - Parameter petId: (path) The id of the pet to retrieve 
      - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, NoResponse>`.
      */
-    public func getPet(petId: Int) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
-        _getPet(petId: petId)
+    public func v1TestingPetGet() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+        _v1TestingPetGet()
     }
 }
 
@@ -39,13 +38,10 @@ extension DefaultAPI {
 /// An HTTP client to perform networking operations related to `default`
 public class DefaultAPIClient: DefaultAPI {
 
-    public func _getPet(petId: Int) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    public func _v1TestingPetGet() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
-            var resourcePath = "/pets/{petId}"
-            let petIdPreEscape = "\(petId)"
-            let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-            resourcePath = resourcePath.replacingOccurrences(of: "{petId}", with: petIdPostEscape, options: .literal, range: nil)
+            let resourcePath = "/v1/testing/pet"
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
@@ -54,7 +50,7 @@ public class DefaultAPIClient: DefaultAPI {
             
             // request configuration
             guard let url = components?.url ?? URL(string: path) else {
-                let data = "DefaultAPI.getPet.URL".data(using: .utf8)!
+                let data = "DefaultAPI.v1TestingPetGet.URL".data(using: .utf8)!
                 return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
             }
 

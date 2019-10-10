@@ -17,7 +17,13 @@ extension URL {
 /// Concat to url path
 extension URL {
     enum File: String {
+        case noDefinedTags = "scheme-no-tags.yaml"
+        case tags = "scheme-tags.yaml"
+        case noDefinedOperationId = "scheme-no-operationid.yaml"
         case pathParam = "scheme-path-param.yaml"
+        case queryParam = "scheme-query-param.yaml"
+        case headerParam = "scheme-header-param.yaml"
+        case bodyParam = "scheme-body-param.yaml"
     }
     
     func file(_ file: File) -> URL { appendingPathComponent(file.rawValue) }

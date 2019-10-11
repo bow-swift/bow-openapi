@@ -102,6 +102,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8B5F75722350A96200CE3E57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BDE68CE233233CE009342AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B6B3636234CE1F800D3DE25;
+			remoteInfo = OpenApiGenerator;
+		};
 		8B8B19C323426B4E009D195A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8BDE68CE233233CE009342AD /* Project object */;
@@ -560,6 +567,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8B5F75732350A96200CE3E57 /* PBXTargetDependency */,
 			);
 			name = "Bow OpenAPI";
 			packageProductDependencies = (
@@ -708,6 +716,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8B5F75732350A96200CE3E57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B6B3636234CE1F800D3DE25 /* OpenApiGenerator */;
+			targetProxy = 8B5F75722350A96200CE3E57 /* PBXContainerItemProxy */;
+		};
 		8B8B19C423426B4E009D195A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8BDE68D5233233CE009342AD /* Bow OpenAPI */;

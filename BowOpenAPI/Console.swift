@@ -4,10 +4,10 @@ import Foundation
 
 enum Console {
     static func help() -> Never {
-        print("\(SCRIPT_NAME) --scheme <scheme json|yaml> --output <output path>")
+        print("\(SCRIPT_NAME) --schema <schema json|yaml> --output <output path>")
         print("""
 
-                    scheme: path to scheme open api. ex. `/home/scheme-openapi.json`
+                    schema: path to schema open api. ex. `/home/schema-openapi.json`
                     output: path where bow client will be generate. ex. `/home`
 
               """)

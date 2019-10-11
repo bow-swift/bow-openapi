@@ -47,8 +47,6 @@
 		8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */; };
 		8B631A56234CD05F0045BF05 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8B631A55234CD05F0045BF05 /* SnapshotTesting */; };
 		8B631A58234CDB570045BF05 /* Snapshotting+OpenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */; };
-		8B6B363A234CE1F800D3DE25 /* Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6B3639234CE1F800D3DE25 /* Generator.h */; };
-		8B6B363C234CE1F800D3DE25 /* Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B363B234CE1F800D3DE25 /* Generator.m */; };
 		8B6B3640234CE22500D3DE25 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
 		8B6B3641234CE23000D3DE25 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70917233E3F0E0018E06B /* Environment.swift */; };
 		8B6B3642234CE23000D3DE25 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691D233286CC009342AD /* APIClient.swift */; };
@@ -174,8 +172,6 @@
 		8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelperTests.swift; sourceTree = "<group>"; };
 		8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+OpenAPI.swift"; sourceTree = "<group>"; };
 		8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenApiGenerator.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B6B3639234CE1F800D3DE25 /* Generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
-		8B6B363B234CE1F800D3DE25 /* Generator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Generator.m; sourceTree = "<group>"; };
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -318,15 +314,6 @@
 				8B30B8782348FC1A00E4D852 /* UpdatePet.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		8B631A77234CE11C0045BF05 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8B6B3639234CE1F800D3DE25 /* Generator.h */,
-				8B6B363B234CE1F800D3DE25 /* Generator.m */,
-			);
-			path = "Support Files";
 			sourceTree = "<group>";
 		};
 		8B8B199523426961009D195A /* Frameworks */ = {
@@ -472,7 +459,6 @@
 				8BDEB0BB2340DBE10095A6E0 /* MacFileSystem.swift */,
 				8BDEB0B72340DB340095A6E0 /* Algebra */,
 				8BDEB0B82340DB4B0095A6E0 /* Error */,
-				8B631A77234CE11C0045BF05 /* Support Files */,
 			);
 			path = Generator;
 			sourceTree = "<group>";
@@ -514,7 +500,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6B363A234CE1F800D3DE25 /* Generator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,7 +644,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6B363C234CE1F800D3DE25 /* Generator.m in Sources */,
 				8B6B3655234CE74200D3DE25 /* String+Path.swift in Sources */,
 				8B6B3648234CE23000D3DE25 /* FileSystemError.swift in Sources */,
 				8B6B3643234CE23000D3DE25 /* SwaggerClientGenerator.swift in Sources */,

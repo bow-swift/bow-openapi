@@ -184,6 +184,7 @@
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
 		8B8B1C1623436195009D195A /* API+Generators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Generators.swift"; sourceTree = "<group>"; };
+		8BC6CF8C2350B69A00163BD2 /* bow-openapi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "bow-openapi.entitlements"; sourceTree = "<group>"; };
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
 		8BD0851C23453DAE006D33DE /* Mock+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock+Utility.swift"; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
@@ -378,6 +379,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		8BC6CF8D2350B6AE00163BD2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8BC6CF8C2350B69A00163BD2 /* bow-openapi.entitlements */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
 		8BD90F4323328E1D00281786 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +424,7 @@
 				8BDE691C2332854C009342AD /* UI */,
 				8BDE691F233286F7009342AD /* Generator */,
 				8BD90F4323328E1D00281786 /* Utils */,
+				8BC6CF8D2350B6AE00163BD2 /* Support Files */,
 			);
 			path = "Bow OpenAPI";
 			sourceTree = "<group>";
@@ -732,7 +742,6 @@
 		8B6B363E234CE1F800D3DE25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -742,7 +751,6 @@
 		8B6B363F234CE1F800D3DE25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -752,7 +760,6 @@
 		8B8B19BB23426AE4009D195A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
@@ -772,7 +779,6 @@
 		8B8B19BC23426AE4009D195A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
@@ -792,7 +798,6 @@
 		8B8B19C123426B47009D195A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -800,7 +805,6 @@
 		8B8B19C223426B47009D195A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -923,8 +927,7 @@
 		8BDE68DE233233CE009342AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = "Bow OpenAPI/Support Files/bow-openapi.entitlements";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
@@ -938,8 +941,7 @@
 		8BDE68DF233233CE009342AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = "Bow OpenAPI/Support Files/bow-openapi.entitlements";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";

@@ -2,9 +2,10 @@
 
 import Foundation
 
-typealias SubstringType = (ouput: String, range: NSRange)
+public typealias SubstringType = (ouput: String, range: NSRange)
 
-extension String {
+public extension String {
+    
     func substring(pattern: String) -> SubstringType? {
         let range = NSRange(location: 0, length: self.count)
         guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),

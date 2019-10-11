@@ -1,0 +1,11 @@
+swagger: '2.0'
+paths:
+  /pet:
+    get:
+        summary: Info for a specific pet
+definitions:
+  Pet:
+    type: object
+    properties:
+      name:
+        type: string

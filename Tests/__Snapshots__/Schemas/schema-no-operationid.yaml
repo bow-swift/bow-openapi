@@ -1,0 +1,5 @@
+openapi: "3.0.0"
+paths:
+  /v1/testing/pet:
+    get:
+      summary: Info for a specific pet

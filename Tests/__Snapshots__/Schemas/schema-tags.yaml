@@ -1,0 +1,8 @@
+openapi: "3.0.0"
+paths:
+  /pet:
+    get:
+      tags:
+        - pet
+      summary: Info for a specific pet
+      operationId: getPet

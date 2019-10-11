@@ -4,7 +4,7 @@ import Foundation
 import Bow
 import BowEffects
 
-protocol FileSystem {
+public protocol FileSystem {
     func createDirectory(atPath: String) -> IO<FileSystemError, ()>
     func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
     func remove(itemPath: String) -> IO<FileSystemError, ()>
@@ -13,7 +13,7 @@ protocol FileSystem {
     func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
 }
 
-extension FileSystem {
+public extension FileSystem {
     func copy(item: String, from input: String, to output: String) -> IO<FileSystemError, ()> {
         copy(itemPath: "\(input)/\(item)", toPath: "\(output)/\(item)")
     }

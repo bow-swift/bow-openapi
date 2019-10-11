@@ -1,0 +1,11 @@
+openapi: "3.0.0"
+paths:
+  /pet:
+    get:
+      operationId: getPet
+      parameters:
+        - name: petId
+          in: query
+          required: true
+          schema:
+            type: integer

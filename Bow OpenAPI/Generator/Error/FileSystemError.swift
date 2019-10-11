@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum FileSystemError: Error {
+public enum FileSystemError: Error {
     case create(item: String)
     case copy(from: String, to: String)
     case remove(item: String)
@@ -13,7 +13,7 @@ enum FileSystemError: Error {
 }
 
 extension FileSystemError: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         switch self {
         case .create(let item):
             return "cannot create item '\(item)'"

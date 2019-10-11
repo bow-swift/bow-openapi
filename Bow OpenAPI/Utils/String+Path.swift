@@ -30,3 +30,7 @@ public extension String {
         return pathComponents.joined(separator: separator)
     }
 }
+
+public extension StaticString {
+    var `string`: String { "\(self)" }
+}

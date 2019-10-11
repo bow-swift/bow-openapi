@@ -2,10 +2,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "BowOpenAPI",
+    name: "Bow OpenAPI",
     platforms: [.macOS(.v10_14)],
     products: [
-        .executable(name: "bow-openapi", targets: ["BowOpenAPI"])
+        .executable(name: "bow-openapi", targets: ["CLI"])
     ],
 
     dependencies: [
@@ -18,8 +18,8 @@ let package = Package(
                 dependencies: ["Bow", "BowEffects", "BowOptics", "Swiftline"],
                 path: "OpenApiGenerator"),
 
-        .target(name: "BowOpenAPI",
+        .target(name: "CLI",
                 dependencies: ["OpenApiGenerator"],
-                path: "BowOpenApi")
+                path: "BowOpenAPI")
     ]
 )

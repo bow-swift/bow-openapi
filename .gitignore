@@ -33,3 +33,4 @@ Carthage/
 .build/
 .swiftpm
 Pods/
+Package.resolved

@@ -752,8 +752,9 @@
 		8B8B19BB23426AE4009D195A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -763,6 +764,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendegress.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -770,8 +772,9 @@
 		8B8B19BC23426AE4009D195A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Tests/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -781,6 +784,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendegress.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -920,11 +924,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -932,11 +939,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

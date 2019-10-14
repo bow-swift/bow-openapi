@@ -36,9 +36,9 @@ extension DefaultAPI {
 
 
 /// An HTTP client to perform networking operations related to `default`
-public class DefaultAPIClient: DefaultAPI {
+class DefaultAPIClient: DefaultAPI {
 
-    public func _addPet(body: Pet?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _addPet(body: Pet?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             guard let parameters = body?.encodingParameters else {
                 let error = API.HTTPError.other(error: NSError(domain: "DefaultAPI.addPet.Parameter.body", code: 69, userInfo: nil))

@@ -23,6 +23,7 @@ public enum APIClient {
                                           outputPath: OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest"),
                                           templatePath: templatePath,
                                           logPath: env.logPath).provide(env.fileSystem),
+                |<-createSwiftPackage(outputPath: output, templatePath: templatePath).provide(env.fileSystem),
             yield: "RENDER SUCCEEDED")^
         }
     }
@@ -38,12 +39,18 @@ public enum APIClient {
     
     // MARK: steps
     private static func createStructure(atPath path: String) -> EnvIO<FileSystem, APIClientError, ()> {
-        EnvIO { (fileSystem: FileSystem) in
+        EnvIO { fileSystem in
             fileSystem.removeDirectory(path).handleError({ _ in })^
                       .followedBy(fileSystem.createDirectory(atPath: path))^
                       .followedBy(fileSystem.createDirectory(atPath: "\(path)/Sources"))^
                       .followedBy(fileSystem.createDirectory(atPath: "\(path)/XCTest"))^
                       .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
+    }
+    
+    private static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+        EnvIO { fileSystem in
+            fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
+        }.mapError(FileSystemError.toAPIClientError)
     }
 }

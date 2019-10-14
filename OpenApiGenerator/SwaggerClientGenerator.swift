@@ -99,7 +99,7 @@ public class SwaggerClientGenerator: ClientGenerator {
                 let (key, (type, header)) = arg
                 return """
                 
-                    func appendHeader(\(key): \(type)) -> API.Config {
+                    public func appendHeader(\(key): \(type)) -> API.Config {
                         self.copy(headers: self.headers.combine(["\(header)": \(key)]))
                     }
                 """

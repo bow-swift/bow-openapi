@@ -6,12 +6,12 @@ import OpenApiGenerator
 
 func main() {
     guard let arguments = CommandLine.input else { Console.help() }
-    guard FileManager.default.fileExists(atPath: arguments.scheme) else { Console.exit(failure: "received invalid scheme path") }
+    guard FileManager.default.fileExists(atPath: arguments.schema) else { Console.exit(failure: "received invalid schema path") }
     
-    APIClient.bow(scheme: arguments.scheme, output: arguments.output)
+    APIClient.bow(scheme: arguments.schema, output: arguments.output)
              .provide(Environment(logPath: "/tmp/bow-openapi.log", fileSystem: MacFileSystem(), generator: SwaggerClientGenerator()))
              .unsafeRunSyncEither()
-             .mapLeft { apiError in "could not generate api client for scheme '\(arguments.scheme)'\ninformation: \(apiError)" }
+             .mapLeft { apiError in "could not generate api client for schema '\(arguments.schema)'\ninformation: \(apiError)" }
              .fold({ failure in Console.exit(failure: failure) },
                    { success in Console.exit(success: success) })
 }

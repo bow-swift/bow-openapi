@@ -8,7 +8,7 @@ addons:
 
 env:
   global:
-    - PROJECT="Bow OpenAPI.xcodeproj"
+    - PROJECT="BowOpenAPI.xcodeproj"
     - JOB="XCODE"
     - DEST="platform=macOS,arch=x86_64"
 

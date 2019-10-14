@@ -1,9 +1,12 @@
-//
-//  PackageGeneratedTests.swift
-//  Tests
-//
-//  Created by Miguel Angel on 14/10/2019.
-//  Copyright © 2019 47 Degrees. All rights reserved.
-//
+//  Copyright © 2019 The Bow Authors.
 
-import Foundation
+import XCTest
+import SnapshotTesting
+
+
+class PackageGeneratedTests: XCTestCase {
+
+    func testBuildProjectWithSwiftPackage() {
+        assertSnapshot(matching: URL.schemas.file(.json), as: .generated(file: "Package.swift"))
+    }
+}

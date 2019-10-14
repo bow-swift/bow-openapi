@@ -60,6 +60,7 @@
 		8B6B3655234CE74200D3DE25 /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD90F4423328E2600281786 /* String+Path.swift */; };
 		8B6B3656234CE74200D3DE25 /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
 		8B7E06652354E299003ED8E2 /* Package.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8B7E06642354E014003ED8E2 /* Package.swift */; };
+		8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */; };
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
 		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Generators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Generators.swift */; };
@@ -182,6 +183,7 @@
 		8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+OpenAPI.swift"; sourceTree = "<group>"; };
 		8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenApiGenerator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7E06642354E014003ED8E2 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageGeneratedTests.swift; sourceTree = "<group>"; };
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
+				8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
 				8B8B1C152343617A009D195A /* Utils */,
@@ -702,6 +705,7 @@
 				8B30B88B2348FC1A00E4D852 /* NewPet.swift in Sources */,
 				8B30B8882348FC1A00E4D852 /* OwnerPerson.swift in Sources */,
 				8B30B8892348FC1A00E4D852 /* Pet.swift in Sources */,
+				8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */,
 				8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */,
 				8B30B8852348FC1A00E4D852 /* APIs.swift in Sources */,
 			);

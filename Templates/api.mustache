@@ -58,10 +58,10 @@ extension {{classname}} {
 
 
 /// An HTTP client to perform networking operations related to `{{classVarName}}`
-public class {{classname}}Client: {{classname}} {
+class {{classname}}Client: {{classname}} {
 {{#operation}}
 
-    public func _{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}NoResponse{{/returnType}}> {
+    func _{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}NoResponse{{/returnType}}> {
         return EnvIO { apiConfig in
             {{#bodyParam}}
             guard let parameters = {{paramName}}{{^required}}?{{/required}}.encodingParameters else {

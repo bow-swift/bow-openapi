@@ -36,9 +36,9 @@ extension PetAPI {
 
 
 /// An HTTP client to perform networking operations related to `pet`
-public class PetAPIClient: PetAPI {
+class PetAPIClient: PetAPI {
 
-    public func _getPet() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _getPet() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet"

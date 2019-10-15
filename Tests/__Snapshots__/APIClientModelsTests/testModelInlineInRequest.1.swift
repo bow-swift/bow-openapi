@@ -36,9 +36,9 @@ extension InlineAPI {
 
 
 /// An HTTP client to perform networking operations related to `inline`
-public class InlineAPIClient: InlineAPI {
+class InlineAPIClient: InlineAPI {
 
-    public func _findPetsByStatus(status: [String]) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _findPetsByStatus(status: [String]) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet/findByStatus"

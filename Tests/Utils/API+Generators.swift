@@ -28,7 +28,7 @@ extension API.Config: Arbitrary {
     
     public static var arbitraryWithHeaders: Gen<API.Config> {
         Gen.zip(API.Config.arbitrary, [String: String].arbitrary).map { config, headers in
-            config.append(headers: headers)
+            config.appending(headers: headers)
         }
     }
 }

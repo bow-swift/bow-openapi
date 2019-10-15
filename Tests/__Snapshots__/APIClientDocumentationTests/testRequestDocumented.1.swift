@@ -37,9 +37,9 @@ extension RequestDocAPI {
 
 
 /// An HTTP client to perform networking operations related to `requestDoc`
-public class RequestDocAPIClient: RequestDocAPI {
+class RequestDocAPIClient: RequestDocAPI {
 
-    public func _findPetsByStatus(status: Object?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _findPetsByStatus(status: Object?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet/findByStatus"

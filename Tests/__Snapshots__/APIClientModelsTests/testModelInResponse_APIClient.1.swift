@@ -35,9 +35,9 @@ extension DefaultAPI {
 
 
 /// An HTTP client to perform networking operations related to `default`
-public class DefaultAPIClient: DefaultAPI {
+class DefaultAPIClient: DefaultAPI {
 
-    public func _findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]> {
+    func _findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet/findByStatus"

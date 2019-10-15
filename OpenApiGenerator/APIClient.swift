@@ -17,10 +17,12 @@ public enum APIClient {
     
     public static func bow(scheme: String, output: String, templatePath: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
-            binding(
-                |<-createStructure(atPath: output).provide(env.fileSystem),
+            let outputPath = OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest")
+            
+            return binding(
+                |<-createStructure(outputPath: outputPath).provide(env.fileSystem),
                 |<-env.generator.generate(schemePath: scheme,
-                                          outputPath: OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest"),
+                                          outputPath: outputPath,
                                           templatePath: templatePath,
                                           logPath: env.logPath).provide(env.fileSystem),
                 |<-createSwiftPackage(outputPath: output, templatePath: templatePath).provide(env.fileSystem),
@@ -38,17 +40,19 @@ public enum APIClient {
     }
     
     // MARK: steps
-    private static func createStructure(atPath path: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    static func createStructure(outputPath: OutputPath) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
-            fileSystem.removeDirectory(path).handleError({ _ in })^
-                      .followedBy(fileSystem.createDirectory(atPath: path))^
-                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/Sources"))^
-                      .followedBy(fileSystem.createDirectory(atPath: "\(path)/XCTest"))^
-                      .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
+            let parentPath = outputPath.sources.parentPath
+            
+            return fileSystem.removeDirectory(parentPath).handleError({ _ in })^
+                             .followedBy(fileSystem.createDirectory(atPath: parentPath))^
+                             .followedBy(fileSystem.createDirectory(atPath: outputPath.sources))^
+                             .followedBy(fileSystem.createDirectory(atPath: outputPath.tests))^
+                             .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }
     
-    private static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
         }.mapError(FileSystemError.toAPIClientError)

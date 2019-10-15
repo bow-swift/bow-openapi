@@ -23,7 +23,7 @@ extension Snapshotting where Value == URL, Format == String {
                 return "error: \(either.leftValue): run bow openAPI in scheme: '\(url.path)', output: '\(directory.path)', template: '\(URL.templates.path)'"
             }
             
-            let focusURL = directory.find(file: focus)
+            let focusURL = directory.find(item: focus)
             let content = focusURL.flatMap { url in try? String(contentsOf: url, encoding: .utf8) }
             return content ?? "error: get the content file '\(focusURL?.path ?? focus)' in directory '\(directory.path)'"
         }

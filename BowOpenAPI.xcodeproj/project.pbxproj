@@ -64,9 +64,11 @@
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
 		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Generators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Generators.swift */; };
-		8BC6CF912350DD3400163BD2 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
+		8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */; };
+		8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */; };
+		8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
 		8BC6CF922350DF0400163BD2 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
-		8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* Mock+Utility.swift */; };
+		8BD0851D23453DAE006D33DE /* MockRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* MockRequests.swift */; };
 		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
 		8BD90F2F23328DAF00281786 /* AlamofireImplementations.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE690E233280FE009342AD /* AlamofireImplementations.mustache */; };
 		8BD90F3023328DAF00281786 /* api.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6911233280FE009342AD /* api.mustache */; };
@@ -189,8 +191,10 @@
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
 		8B8B1C1623436195009D195A /* API+Generators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Generators.swift"; sourceTree = "<group>"; };
+		8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorAPIClientTests.swift; sourceTree = "<group>"; };
+		8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGeneratorMock.swift; sourceTree = "<group>"; };
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
-		8BD0851C23453DAE006D33DE /* Mock+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mock+Utility.swift"; sourceTree = "<group>"; };
+		8BD0851C23453DAE006D33DE /* MockRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequests.swift; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
 		8BD0866E23476792006D33DE /* APIConfigTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTesting.swift; sourceTree = "<group>"; };
 		8BD70860233D23280018E06B /* String+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Format.swift"; sourceTree = "<group>"; };
@@ -254,7 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC6CF912350DD3400163BD2 /* libOpenApiGenerator.a in Frameworks */,
+				8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */,
 				8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */,
 				8B631A56234CD05F0045BF05 /* SnapshotTesting in Frameworks */,
 			);
@@ -346,17 +350,19 @@
 		8B8B19B623426AE4009D195A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */,
+				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
+				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
+				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
 				8BFE7E67234F7EF0003E97BF /* APIClientDocumentationTests.swift */,
 				8BFE7E61234F7107003E97BF /* APIClientGeneratorTests.swift */,
 				8BFE7E63234F7130003E97BF /* APIClientHttpOperationTests.swift */,
 				8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */,
 				8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */,
-				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
-				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
-				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
 				8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
+				8BA3B6D3235620AC005D6278 /* Mocks */,
 				8B8B1C152343617A009D195A /* Utils */,
 				8BFE7E60234E2CFD003E97BF /* __Snapshots__ */,
 			);
@@ -384,12 +390,20 @@
 			isa = PBXGroup;
 			children = (
 				8B8B1C1623436195009D195A /* API+Generators.swift */,
-				8BD0851C23453DAE006D33DE /* Mock+Utility.swift */,
 				8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */,
 				8BFE7E42234E11FA003E97BF /* URL+Paths.swift */,
 				8BFE7E55234E1D21003E97BF /* URL+FileSystem.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8BA3B6D3235620AC005D6278 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */,
+				8BD0851C23453DAE006D33DE /* MockRequests.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		8BC6CF8E2350D9FE00163BD2 /* OpenApiGenerator */ = {
@@ -679,9 +693,11 @@
 			files = (
 				8B8B1C1723436195009D195A /* API+Generators.swift in Sources */,
 				8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */,
-				8BD0851D23453DAE006D33DE /* Mock+Utility.swift in Sources */,
+				8BD0851D23453DAE006D33DE /* MockRequests.swift in Sources */,
 				8B30B8832348FC1A00E4D852 /* DefaultAPI.swift in Sources */,
+				8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */,
 				8B30B87F2348FC1A00E4D852 /* StubURL.swift in Sources */,
+				8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */,
 				8B30B8842348FC1A00E4D852 /* CodableHelper.swift in Sources */,
 				8B30B8802348FC1A00E4D852 /* API+XCTest.swift in Sources */,
 				8B30B88A2348FC1A00E4D852 /* UpdatePet.swift in Sources */,

@@ -67,6 +67,7 @@
 		8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */; };
 		8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */; };
 		8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
+		8BA3B6DF23562730005D6278 /* FileSystemMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6DE23562730005D6278 /* FileSystemMock.swift */; };
 		8BC6CF922350DF0400163BD2 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
 		8BD0851D23453DAE006D33DE /* MockRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* MockRequests.swift */; };
 		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
@@ -193,6 +194,7 @@
 		8B8B1C1623436195009D195A /* API+Generators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Generators.swift"; sourceTree = "<group>"; };
 		8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorAPIClientTests.swift; sourceTree = "<group>"; };
 		8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGeneratorMock.swift; sourceTree = "<group>"; };
+		8BA3B6DE23562730005D6278 /* FileSystemMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemMock.swift; sourceTree = "<group>"; };
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
 		8BD0851C23453DAE006D33DE /* MockRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequests.swift; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */,
+				8BA3B6DE23562730005D6278 /* FileSystemMock.swift */,
 				8BD0851C23453DAE006D33DE /* MockRequests.swift */,
 			);
 			path = Mocks;
@@ -697,6 +700,7 @@
 				8B30B8832348FC1A00E4D852 /* DefaultAPI.swift in Sources */,
 				8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */,
 				8B30B87F2348FC1A00E4D852 /* StubURL.swift in Sources */,
+				8BA3B6DF23562730005D6278 /* FileSystemMock.swift in Sources */,
 				8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */,
 				8B30B8842348FC1A00E4D852 /* CodableHelper.swift in Sources */,
 				8B30B8802348FC1A00E4D852 /* API+XCTest.swift in Sources */,

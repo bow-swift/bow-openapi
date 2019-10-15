@@ -40,7 +40,7 @@ public enum APIClient {
     }
     
     // MARK: steps
-    static func createStructure(outputPath: OutputPath) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal static func createStructure(outputPath: OutputPath) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             let parentPath = outputPath.sources.parentPath
             
@@ -52,7 +52,7 @@ public enum APIClient {
         }
     }
     
-    static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
         }.mapError(FileSystemError.toAPIClientError)

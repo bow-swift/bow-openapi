@@ -23,6 +23,7 @@ class GeneratorAPIClientTests: XCTestCase {
         super.tearDown()
     }
     
+    
     func testCreateSwiftPackage() {
         try? APIClient.createSwiftPackage(outputPath: output.path, templatePath: template.path)
                       .provide(fileSystem)
@@ -71,6 +72,30 @@ class GeneratorAPIClientTests: XCTestCase {
                               .unsafeRunSyncEither()
         
         XCTAssertTrue(clientGeneratorMock.generateInvoked)
+        XCTAssertTrue(either.isLeft)
+    }
+    
+    func testBow_GeneratorAndFileSystemSuccess_ReturnSuccess() {
+        let clientGeneratorMock = ClientGeneratorMock(shouldFail: false)
+        let fileSystemMock = FileSystemMock(shouldFail: false)
+        
+        let environment = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystemMock, generator: clientGeneratorMock)
+        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+                              .provide(environment)
+                              .unsafeRunSyncEither()
+        
+        XCTAssertTrue(either.isRight)
+    }
+    
+    func testBow_FileSystemFails_ReturnError() {
+        let clientGeneratorMock = ClientGeneratorMock(shouldFail: false)
+        let fileSystemMock = FileSystemMock(shouldFail: true)
+        
+        let environment = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystemMock, generator: clientGeneratorMock)
+        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+                              .provide(environment)
+                              .unsafeRunSyncEither()
+        
         XCTAssertTrue(either.isLeft)
     }
 }

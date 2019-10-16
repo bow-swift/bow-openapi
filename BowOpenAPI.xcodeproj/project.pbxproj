@@ -44,6 +44,7 @@
 		8B30B88C2348FC1A00E4D852 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30B87A2348FC1A00E4D852 /* Owner.swift */; };
 		8B30B88D2348FC1A00E4D852 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30B87B2348FC1A00E4D852 /* Extensions.swift */; };
 		8B30B88E2348FC1A00E4D852 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30B87D2348FC1A00E4D852 /* Configuration.swift */; };
+		8B3B857423574D1C00C0A68D /* GeneratorClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B857323574D1C00C0A68D /* GeneratorClientTests.swift */; };
 		8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */; };
 		8B631A56234CD05F0045BF05 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8B631A55234CD05F0045BF05 /* SnapshotTesting */; };
 		8B631A58234CDB570045BF05 /* Snapshotting+OpenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */; };
@@ -182,6 +183,7 @@
 		8B30B87A2348FC1A00E4D852 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		8B30B87B2348FC1A00E4D852 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8B30B87D2348FC1A00E4D852 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8B3B857323574D1C00C0A68D /* GeneratorClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorClientTests.swift; sourceTree = "<group>"; };
 		8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelperTests.swift; sourceTree = "<group>"; };
 		8B631A57234CDB570045BF05 /* Snapshotting+OpenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshotting+OpenAPI.swift"; sourceTree = "<group>"; };
 		8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOpenApiGenerator.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */,
+				8B3B857323574D1C00C0A68D /* GeneratorClientTests.swift */,
 				8BD085222345E9BD006D33DE /* APIClientSendTests.swift */,
 				8B8B19B723426AE4009D195A /* APIConfigTests.swift */,
 				8B48DAC52344DCBB0053CCC9 /* APIHelperTests.swift */,
@@ -725,6 +728,7 @@
 				8B30B88B2348FC1A00E4D852 /* NewPet.swift in Sources */,
 				8B30B8882348FC1A00E4D852 /* OwnerPerson.swift in Sources */,
 				8B30B8892348FC1A00E4D852 /* Pet.swift in Sources */,
+				8B3B857423574D1C00C0A68D /* GeneratorClientTests.swift in Sources */,
 				8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */,
 				8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */,
 				8B30B8852348FC1A00E4D852 /* APIs.swift in Sources */,

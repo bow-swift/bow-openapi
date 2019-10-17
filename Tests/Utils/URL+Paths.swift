@@ -12,6 +12,8 @@ extension URL {
     static func currentFile(_ file: StaticString = #file) -> URL { URL(fileURLWithPath: "\(file)") }
     static let schemas = URL.tests.appendingPathComponent("__Snapshots__").appendingPathComponent("Schemas")
     static let templates = URL.xcproj.appendingPathComponent("Templates")
+    
+    var parent: URL { deletingLastPathComponent() }
 }
 
 /// Concat to url path

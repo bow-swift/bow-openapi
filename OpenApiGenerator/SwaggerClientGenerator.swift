@@ -57,7 +57,8 @@ public class SwaggerClientGenerator: ClientGenerator {
                 
                 return binding(
                      content <- fileSystem.readFile(atPath: path),
-                fixedContent <- IO.pure(content.get.replacingOccurrences(of: "(, ", with: "(")),
+                fixedContent <- IO.pure(content.get.replacingOccurrences(of: "(, ", with: "(")
+                                                   .replacingOccurrences(of: "(,", with: "(")),
                              |<-fileSystem.write(content: fixedContent.get, toFile: path),
                 yield: ())
             }
@@ -98,11 +99,11 @@ public class SwaggerClientGenerator: ClientGenerator {
             let methods = headers.map { (arg) -> String in
                 let (key, (type, header)) = arg
                 return """
-                
-                    public func appendingHeader(\(key): \(type)) -> API.Config {
-                        self.copy(headers: self.headers.combine(["\(header)": \(key)]))
-                    }
-                """
+                       
+                           public func appendingHeader(\(key): \(type)) -> API.Config {
+                               self.copy(headers: self.headers.combine(["\(header)": \(key)]))
+                           }
+                       """
             }
             
             return """

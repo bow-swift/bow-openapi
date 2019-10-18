@@ -1,16 +1,14 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
-import OpenApiGenerator
-import Bow
-import BowEffects
+
 
 extension URL {
     
-    func find(file: String) -> URL? {
+    func find(item: String) -> URL? {
         FileManager.default.enumerator(atPath: self.path)?
                            .compactMap { $0 as? String }
-                           .first { item in item.filename == file }
+                           .first { _item in _item.filename == item }
                            .flatMap { relativePath in self.appendingPathComponent(relativePath) }
         
     }

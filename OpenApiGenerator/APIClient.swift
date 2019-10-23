@@ -32,7 +32,12 @@ public enum APIClient {
     
     // MARK: attributes
     private static func getTemplatePath() -> IO<APIClientError, String> {
-        guard let template = Bundle(path: "bow/openapi/templates")?.resourcePath else {
+        let libPath = "/usr/local/lib"
+        let templateSource1 = Bundle(path: "bow/openapi/templates").toOption()
+        let templateSource2 = Bundle(path: "\(libPath)/bow/openapi/templates").toOption()
+        
+        guard let bundle = templateSource1.orElse(templateSource2).toOptional(),
+              let template = bundle.resourcePath else {
             return IO.raiseError(APIClientError(operation: "getTemplatePath()", error: GeneratorError.templateNotFound))^
         }
         

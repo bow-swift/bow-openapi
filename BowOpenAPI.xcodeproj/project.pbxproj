@@ -950,12 +950,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
-				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -963,12 +960,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
-				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "/usr/local/lib/bow/openapi/templates bow/openapi/templates";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
 				PRODUCT_NAME = "bow-openapi";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

@@ -60,6 +60,22 @@ public enum APIClient {
     internal static func createSwiftPackage(moduleName: String, outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
-        }.mapError(FileSystemError.toAPIClientError)
+        }.followedBy(package(moduleName: moduleName, outputPath: outputPath))^
+        .mapError(FileSystemError.toAPIClientError)
+    }
+    
+    internal static func package(moduleName: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+        EnvIO { fileSystem in
+            let content = IO<FileSystemError, String>.var()
+            let fixedContent = IO<FileSystemError, String>.var()
+            let path = outputPath + "/Package.swift"
+            
+            return binding(
+                content <- fileSystem.readFile(atPath: path),
+                fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: moduleName)),
+                |<-fileSystem.write(content: fixedContent.get, toFile: path),
+                yield: ()
+            )^
+        }
     }
 }

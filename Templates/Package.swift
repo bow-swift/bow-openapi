@@ -2,10 +2,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "Bow API Client",
+    name: "{{ moduleName }}",
     products: [
-        .library(name: "BowAPIClient", targets: ["BowAPIClient"]),
-        .library(name: "BowAPIClientTest", targets: ["BowAPIClientTest"])
+        .library(name: "{{ moduleName }}", targets: ["{{ moduleName }}"]),
+        .library(name: "{{ moduleName }}Test", targets: ["{{ moduleName }}Test"])
     ],
 
     dependencies: [
@@ -13,7 +13,7 @@ let package = Package(
     ],
 
     targets: [
-        .target(name: "BowAPIClient",     dependencies: ["Bow", "BowEffects", "BowOptics"], path: "Sources"),
-        .target(name: "BowAPIClientTest", dependencies: ["Bow", "BowEffects", "BowOptics"], path: "XCTest")
+        .target(name: "{{ moduleName }}",     dependencies: ["Bow", "BowEffects"], path: "Sources"),
+        .target(name: "{{ moduleName }}Test", dependencies: ["Bow", "BowEffects"], path: "XCTest")
     ]
 )

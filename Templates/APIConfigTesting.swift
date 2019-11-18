@@ -8,9 +8,8 @@ public extension API.Config {
     /// - Parameter data: Contents of the response to the next request.
     /// - Parameter code: HTTP status code for the response. Defaults to 200.
     /// - Parameter endpoint: Path to the endpoint which the stubbed data should respond to. Defaults to a generic endpoint that responds to any requests.
-    func stub(data: Data, code: Int = 200, endpoint: String = StubURL.anyEndpoint) -> API.Config {
-        StubURL.reset()
-        StubURL.stub(data: data, code: code)
+    func stub(data: Data, code: Int = 200, endpoint: String? = nil) -> API.Config {
+        StubURL.stub(data: data, code: code, endpoint: endpoint ?? StubURL.anyEndpoint)
         return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
     }
     
@@ -18,9 +17,8 @@ public extension API.Config {
     /// - Parameter dataRaw: Contents of the response as String to the next request.
     /// - Parameter code: HTTP status code for the response. Defaults to 200.
     /// - Parameter endpoint: Path to the endpoint which the stubbed data should respond to. Defaults to a generic endpoint that responds to any requests.
-    func stub(dataRaw raw: String, code: Int = 200, endpoint: String = StubURL.anyEndpoint) -> API.Config {
-        StubURL.reset()
-        StubURL.stub(data: raw.data(using: .utf8)!, code: code)
+    func stub(dataRaw raw: String, code: Int = 200, endpoint: String? = nil) -> API.Config {
+        StubURL.stub(data: raw.data(using: .utf8)!, code: code, endpoint: endpoint ?? StubURL.anyEndpoint)
         return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
     }
     
@@ -28,9 +26,8 @@ public extension API.Config {
     /// - Parameter error: error of the response to the next request.
     /// - Parameter code: HTTP status code for the response. Defaults to 400.
     /// - Parameter endpoint: Path to the endpoint which the stubbed data should respond to. Defaults to a generic endpoint that responds to any requests.
-    func stub(error: Error, code: Int = 400, endpoint: String = StubURL.anyEndpoint) -> API.Config {
-        StubURL.reset()
-        StubURL.stub(error: error, code: code)
+    func stub(error: Error, code: Int = 400, endpoint: String? = nil) -> API.Config {
+        StubURL.stub(error: error, code: code, endpoint: endpoint ?? StubURL.anyEndpoint)
         return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
     }
     
@@ -38,9 +35,8 @@ public extension API.Config {
     /// - Parameter json: A string in JSON format with the contents of the response to the next request.
     /// - Parameter code: HTTP status code for the response. Defaults to 200.
     /// - Parameter endpoint: Path to the endpoint which the stubbed data should respond to. Defaults to a generic endpoint that responds to any requests.
-    func stub(json: String, code: Int = 200, endpoint: String = StubURL.anyEndpoint) -> API.Config {
-        StubURL.reset()
-        StubURL.stub(json: json, code: code)
+    func stub(json: String, code: Int = 200, endpoint: String? = nil) -> API.Config {
+        StubURL.stub(json: json, code: code, endpoint: endpoint ?? StubURL.anyEndpoint)
         return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
     }
     
@@ -48,9 +44,14 @@ public extension API.Config {
     /// - Parameter url: URL of the file containing the response to the next request.
     /// - Parameter code: HTTP status code for the response. Defaults to 200.
     /// - Parameter endpoint: Path to the endpoint which the stubbed data should respond to. Defaults to a generic endpoint that responds to any requests.
-    func stub(contentsOfFile url: URL, code: Int = 200, endpoint: String = StubURL.anyEndpoint) -> API.Config {
+    func stub(contentsOfFile url: URL, code: Int = 200, endpoint: String? = nil) -> API.Config {
+        StubURL.stub(contentsOfFile: url, code: code, endpoint: endpoint ?? StubURL.anyEndpoint)
+        return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
+    }
+    
+    /// Clears all stubs.
+    func reset() -> API.Config {
         StubURL.reset()
-        StubURL.stub(contentsOfFile: url, code: code)
         return copy(session: URLSession(configuration: URLSessionConfiguration.testing))
     }
 }

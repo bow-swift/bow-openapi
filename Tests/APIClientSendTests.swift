@@ -8,8 +8,8 @@ import BowEffects
 class APIClientSendTests: XCTestCase {
     
     func testAPIClient_ValidRequestAndData_ShouldReceiveValidData() {
-        let apiConfig = Mock.apiConfig.copy(decoder: StringUTF8Decoder())
-                                      .stub(dataRaw: "data-success")
+        let apiConfig = Mother.apiConfig.copy(decoder: StringUTF8Decoder())
+            .stub(dataRaw: "data-success")
         
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -17,16 +17,16 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_ValidRequestAndInvalidData_ReturnError() {
-        let apiConfig = Mock.apiConfig.stub(error: Mock.Error.general)
+        let apiConfig = Mother.apiConfig.stub(error: Mother.Error.general)
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               fails: .otherError(Mock.Error.general))
+               fails: .otherError(Mother.Error.general))
     }
 
     func testAPIClient_ValidRequestAndInvalidDecoder_ReturnParsingError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success")
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success")
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -34,8 +34,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_ValidRequestWithWrongDecoder_ReturnParsingError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: JSONDecoder()) // expected: StringUTF8Decoder()
-                                      .stub(dataRaw: "data-success")
+        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder()) // expected: StringUTF8Decoder()
+            .stub(dataRaw: "data-success")
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -43,8 +43,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode400_ReturnBadRequest() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 400)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 400)
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -52,8 +52,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode403_ReturnForbiddenError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 403)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 403)
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -61,8 +61,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode404_ReturnNotFoundError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 404)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 404)
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -70,8 +70,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode500_ReturnServerError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 500)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 500)
         
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -79,24 +79,25 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode503_ReturnServiceUnavailable() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 503)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 503)
+        
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
                fails: .serviceUnavailable)
     }
 
     func testAPIClient_InvalidResponseWithUnknownCode_ReturnUnknownError() {
-        let apiConfig = Mock.apiConfig.copy(decoder: Mock.Decoder.invalid)
-                                      .stub(dataRaw: "data-success", code: 69)
+        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+            .stub(dataRaw: "data-success", code: 69)
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
                fails: .unknown)
     }
 
     func testAPIClient_EmptyJSONResponse_ReturnNoResponse() {
-        let apiConfig = Mock.apiConfig.copy(decoder: JSONDecoder())
-                                      .stub(dataRaw: "{}")
+        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+            .stub(dataRaw: "{}")
         
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -104,8 +105,8 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_EmptyStringResponse_ReturnNoResponse() {
-        let apiConfig = Mock.apiConfig.copy(decoder: StringUTF8Decoder())
-                                      .stub(dataRaw: "")
+        let apiConfig = Mother.apiConfig.copy(decoder: StringUTF8Decoder())
+            .stub(dataRaw: "")
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
@@ -113,8 +114,8 @@ class APIClientSendTests: XCTestCase {
     }
     
     func testAPIClient_RoutingStubs() {
-        let apiConfig = Mock.apiConfig.copy(decoder: JSONDecoder())
-            .stub(error: Mock.Error.general, endpoint: "/failing-endpoint")
+        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+            .stub(error: Mother.Error.general, endpoint: "/failing-endpoint")
             .stub(dataRaw: "{}", endpoint: "/test")
             
         let request = URLRequest(url: URL(string: apiConfig.basePath + "/test")!)
@@ -125,15 +126,15 @@ class APIClientSendTests: XCTestCase {
     }
     
     func testAPIClient_StackingResponses() {
-        let apiConfig = Mock.apiConfig.copy(decoder: JSONDecoder())
-            .stub(error: Mock.Error.general, endpoint: "/test")
+        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+            .stub(error: Mother.Error.general, endpoint: "/test")
             .stub(dataRaw: "{}", endpoint: "/test")
             
         let request = URLRequest(url: URL(string: apiConfig.basePath + "/test")!)
         
         assert(send(request: request),
                withConfig: apiConfig,
-               fails: .otherError(Mock.Error.general))
+               fails: .otherError(Mother.Error.general))
         
         assert(send(request: request),
                withConfig: apiConfig,

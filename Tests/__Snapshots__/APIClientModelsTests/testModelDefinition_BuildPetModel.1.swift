@@ -10,7 +10,7 @@ import Foundation
 
 public struct Pet: Codable {
 
-    public var name: String
+    public let name: String
 
     public init(name: String) {
         self.name = name

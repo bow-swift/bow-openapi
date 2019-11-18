@@ -124,6 +124,22 @@ class APIClientSendTests: XCTestCase {
                succeeds: NoResponse())
     }
     
+    func testAPIClient_StackingResponses() {
+        let apiConfig = Mock.apiConfig.copy(decoder: JSONDecoder())
+            .stub(error: Mock.Error.general, endpoint: "/test")
+            .stub(dataRaw: "{}", endpoint: "/test")
+            
+        let request = URLRequest(url: URL(string: apiConfig.basePath + "/test")!)
+        
+        assert(send(request: request),
+               withConfig: apiConfig,
+               fails: .otherError(Mock.Error.general))
+        
+        assert(send(request: request),
+               withConfig: apiConfig,
+               succeeds: NoResponse())
+    }
+    
     // MARK: helpers for testing
     private func send<T: Codable>(request: URLRequest) -> EnvIO<API.Config, API.HTTPError, T> {
         EnvIO { apiConfig in

@@ -5,17 +5,17 @@ import Bow
 import BowEffects
 
 public enum APIClient {
-    public static func bow(scheme: String, output: String) -> EnvIO<Environment, APIClientError, String> {
+    public static func bow(moduleName: String, scheme: String, output: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
             let template = IO<APIClientError, String>.var()
             return binding(
                 template <- getTemplatePath(),
-                         |<-bow(scheme: scheme, output: output, templatePath: template.get).provide(env),
+                         |<-bow(moduleName: moduleName, scheme: scheme, output: output, templatePath: template.get).provide(env),
             yield: "RENDER SUCCEEDED")^
         }
     }
     
-    public static func bow(scheme: String, output: String, templatePath: String) -> EnvIO<Environment, APIClientError, String> {
+    public static func bow(moduleName: String, scheme: String, output: String, templatePath: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
             let outputPath = OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest")
             
@@ -25,7 +25,7 @@ public enum APIClient {
                                           outputPath: outputPath,
                                           templatePath: templatePath,
                                           logPath: env.logPath).provide(env.fileSystem),
-                |<-createSwiftPackage(outputPath: output, templatePath: templatePath).provide(env.fileSystem),
+                |<-createSwiftPackage(moduleName: moduleName, outputPath: output, templatePath: templatePath).provide(env.fileSystem),
             yield: "RENDER SUCCEEDED")^
         }
     }
@@ -57,7 +57,7 @@ public enum APIClient {
         }
     }
     
-    internal static func createSwiftPackage(outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal static func createSwiftPackage(moduleName: String, outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
         }.mapError(FileSystemError.toAPIClientError)

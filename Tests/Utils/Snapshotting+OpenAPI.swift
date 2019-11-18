@@ -4,10 +4,9 @@ import Foundation
 import OpenApiGenerator
 import SnapshotTesting
 
-
 extension Snapshotting where Value == URL, Format == String {
     
-    static func generated(file focus: String, _ file: StaticString = #file) -> Snapshotting<URL, String> {
+    static func generated(file focus: String, module: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {
         func environment(named: String) -> Environment {
             Environment(logPath: "/tmp/test\(named).log", fileSystem: MacFileSystem(), generator: SwaggerClientGenerator())
         }
@@ -15,7 +14,7 @@ extension Snapshotting where Value == URL, Format == String {
         var strategy = Snapshotting<String, String>.lines.pullback { (url: URL) -> String in
             let testName = "\(file.string.filename.removeExtension)-focusIn\(focus.removeExtension)"
             let directory = URL.temp(subfolder: testName)
-            let either = APIClient.bow(scheme: url.path, output: directory.path, templatePath: URL.templates.path)
+            let either = APIClient.bow(moduleName: module, scheme: url.path, output: directory.path, templatePath: URL.templates.path)
                                   .provide(environment(named: testName))
                                   .unsafeRunSyncEither()
             

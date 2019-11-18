@@ -9,6 +9,7 @@ import BowEffects
 
 class GeneratorAPIClientTests: XCTestCase {
     
+    private let moduleName = "TestModule"
     private let fileSystem = MacFileSystem()
     private let output = URL.temp(subfolder: String(#file).filename.removeExtension)
     private let template = URL.templates
@@ -25,7 +26,7 @@ class GeneratorAPIClientTests: XCTestCase {
     
     
     func testCreateSwiftPackage() {
-        try? APIClient.createSwiftPackage(outputPath: output.path, templatePath: template.path)
+        try? APIClient.createSwiftPackage(moduleName: moduleName, outputPath: output.path, templatePath: template.path)
                       .provide(fileSystem)
                       .unsafeRunSync()
         
@@ -47,7 +48,7 @@ class GeneratorAPIClientTests: XCTestCase {
         let clientGeneratorMock = ClientGeneratorMock(shouldFail: false)
         let environmentMock = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystem, generator: clientGeneratorMock)
         
-        _ = try? APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+        _ = try? APIClient.bow(moduleName: moduleName, scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
                           .provide(environmentMock)
                           .unsafeRunSync()
         
@@ -59,7 +60,7 @@ class GeneratorAPIClientTests: XCTestCase {
         let clientGeneratorMock = ClientGeneratorMock(shouldFail: false)
         let environmentMock = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystem, generator: clientGeneratorMock)
         
-        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+        let either = APIClient.bow(moduleName: moduleName, scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
                               .provide(environmentMock)
                               .unsafeRunSyncEither()
         
@@ -71,7 +72,7 @@ class GeneratorAPIClientTests: XCTestCase {
         let clientGeneratorMock = ClientGeneratorMock(shouldFail: true)
         let environmentMock = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystem, generator: clientGeneratorMock)
         
-        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+        let either = APIClient.bow(moduleName: moduleName, scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
                               .provide(environmentMock)
                               .unsafeRunSyncEither()
         
@@ -84,7 +85,7 @@ class GeneratorAPIClientTests: XCTestCase {
         let fileSystemMock = FileSystemMock(shouldFail: false)
         let environmentMock = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystemMock, generator: clientGeneratorMock)
         
-        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+        let either = APIClient.bow(moduleName: moduleName, scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
                               .provide(environmentMock)
                               .unsafeRunSyncEither()
         
@@ -96,7 +97,7 @@ class GeneratorAPIClientTests: XCTestCase {
         let fileSystemMock = FileSystemMock(shouldFail: true)
         let environmentMock = Environment(logPath: "\(output.path)/log.1.txt", fileSystem: fileSystemMock, generator: clientGeneratorMock)
         
-        let either = APIClient.bow(scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
+        let either = APIClient.bow(moduleName: moduleName, scheme: URL.schemas.file(.model).path, output: output.path, templatePath: template.path)
                               .provide(environmentMock)
                               .unsafeRunSyncEither()
         

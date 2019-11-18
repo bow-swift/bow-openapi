@@ -6,7 +6,6 @@ import BowEffects
 
 
 class APIClientSendTests: XCTestCase {
-    
     func testAPIClient_ValidRequestAndData_ShouldReceiveValidData() {
         let apiConfig = Mother.stringDecoderApiConfig
             .stub(dataRaw: "data-success")
@@ -34,7 +33,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_ValidRequestWithWrongDecoder_ReturnParsingError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder()) // expected: StringUTF8Decoder()
+        let apiConfig = Mother.jsonDecoderApiConfig // expected: StringUTF8Decoder()
             .stub(dataRaw: "data-success")
 
         assert(send(request: apiConfig.request),
@@ -96,7 +95,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_EmptyJSONResponse_ReturnNoResponse() {
-        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+        let apiConfig = Mother.jsonDecoderApiConfig
             .stub(dataRaw: "{}")
         
         assert(send(request: apiConfig.request),
@@ -114,7 +113,7 @@ class APIClientSendTests: XCTestCase {
     }
     
     func testAPIClient_RoutingStubs() {
-        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+        let apiConfig = Mother.jsonDecoderApiConfig
             .stub(error: Mother.Error.general, endpoint: "/failing-endpoint")
             .stub(dataRaw: "{}", endpoint: "/test")
             
@@ -126,7 +125,7 @@ class APIClientSendTests: XCTestCase {
     }
     
     func testAPIClient_StackingResponses() {
-        let apiConfig = Mother.apiConfig.copy(decoder: JSONDecoder())
+        let apiConfig = Mother.jsonDecoderApiConfig
             .stub(error: Mother.Error.general, endpoint: "/test")
             .stub(dataRaw: "{}", endpoint: "/test")
             

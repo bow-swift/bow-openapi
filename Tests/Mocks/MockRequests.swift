@@ -15,6 +15,12 @@ extension Mother {
 }
 
 extension Mother {
+    static func request(endpoint: String = "") -> URLRequest {
+        URLRequest(url: URL(string: baseURL + endpoint)!)
+    }
+}
+
+extension Mother {
     public enum URLRequestProvider {
         static var `default`: URLRequest { URLRequest(url: URL(string: baseURL)!) }
     }

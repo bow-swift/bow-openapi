@@ -1,6 +1,22 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+import Bow
+
+struct StubbedResponse {
+    let statusCode: Int
+    let content: Either<Error, Data>
+    
+    init(data: Data, statusCode: Int = 200) {
+        self.statusCode = statusCode
+        self.content = .right(data)
+    }
+    
+    init(error: Error, statusCode: Int = 200) {
+        self.statusCode = statusCode
+        self.content = .left(error)
+    }
+}
 
 class StubURL: URLProtocol {
     private(set) static var data: Data?

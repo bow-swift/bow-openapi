@@ -9,6 +9,7 @@ public enum Mother { }
 extension Mother {
     static let baseURL = "http://www.bow-swift.io"
     static let apiConfig = API.Config(basePath: baseURL)
+    static let stringDecoderApiConfig = apiConfig.copy(decoder: StringUTF8Decoder())
 }
 
 extension Mother {

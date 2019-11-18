@@ -8,7 +8,7 @@ import BowEffects
 class APIClientSendTests: XCTestCase {
     
     func testAPIClient_ValidRequestAndData_ShouldReceiveValidData() {
-        let apiConfig = Mother.apiConfig.copy(decoder: StringUTF8Decoder())
+        let apiConfig = Mother.stringDecoderApiConfig
             .stub(dataRaw: "data-success")
         
         assert(send(request: apiConfig.request),
@@ -105,7 +105,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_EmptyStringResponse_ReturnNoResponse() {
-        let apiConfig = Mother.apiConfig.copy(decoder: StringUTF8Decoder())
+        let apiConfig = Mother.stringDecoderApiConfig
             .stub(dataRaw: "")
 
         assert(send(request: apiConfig.request),
@@ -141,7 +141,7 @@ class APIClientSendTests: XCTestCase {
                succeeds: NoResponse())
     }
     
-    // MARK: helpers for testing
+    // MARK: Helpers for testing
     private func send<T: Codable>(request: URLRequest) -> EnvIO<API.Config, API.HTTPError, T> {
         EnvIO { apiConfig in
             API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)

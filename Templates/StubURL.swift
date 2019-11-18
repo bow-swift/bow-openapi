@@ -51,7 +51,7 @@ class StubURL: URLProtocol {
         stub(json: content, code: code, endpoint: endpoint)
     }
     
-    /// Reset the stub to default values: data to nil, error to nil and status code to 200.
+    /// Clears all stubs.
     static func reset() {
         stubs = [:]
     }

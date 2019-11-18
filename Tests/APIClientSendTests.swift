@@ -24,7 +24,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_ValidRequestAndInvalidDecoder_ReturnParsingError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success")
 
         assert(send(request: apiConfig.request),
@@ -42,7 +42,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode400_ReturnBadRequest() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 400)
 
         assert(send(request: apiConfig.request),
@@ -51,7 +51,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode403_ReturnForbiddenError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 403)
 
         assert(send(request: apiConfig.request),
@@ -60,7 +60,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode404_ReturnNotFoundError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 404)
 
         assert(send(request: apiConfig.request),
@@ -69,7 +69,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode500_ReturnServerError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 500)
         
         assert(send(request: apiConfig.request),
@@ -78,7 +78,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithCode503_ReturnServiceUnavailable() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 503)
         
         assert(send(request: apiConfig.request),
@@ -87,7 +87,7 @@ class APIClientSendTests: XCTestCase {
     }
 
     func testAPIClient_InvalidResponseWithUnknownCode_ReturnUnknownError() {
-        let apiConfig = Mother.apiConfig.copy(decoder: Mother.Decoder.invalid)
+        let apiConfig = Mother.invalidDecoderApiConfig
             .stub(dataRaw: "data-success", code: 69)
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,

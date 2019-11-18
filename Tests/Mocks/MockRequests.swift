@@ -11,6 +11,7 @@ extension Mother {
     static let apiConfig = API.Config(basePath: baseURL)
     static let stringDecoderApiConfig = apiConfig.copy(decoder: StringUTF8Decoder())
     static let jsonDecoderApiConfig = apiConfig.copy(decoder: JSONDecoder())
+    static let invalidDecoderApiConfig = apiConfig.copy(decoder: Mother.Decoder.invalid)
 }
 
 extension Mother {

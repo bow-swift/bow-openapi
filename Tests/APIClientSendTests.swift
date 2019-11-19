@@ -21,7 +21,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: apiConfig.request),
                withConfig: apiConfig,
-               fails: .otherError(Mock.Error.general))
+               fails: .other(error: Mock.Error.general))
     }
 
     func testAPIClient_ValidRequestAndInvalidDecoder_ReturnParsingError() {

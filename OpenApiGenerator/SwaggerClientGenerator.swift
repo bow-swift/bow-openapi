@@ -9,10 +9,10 @@ public class SwaggerClientGenerator: ClientGenerator {
     
     public init() { }
     
-    public func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    public func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
               |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
-              |<-self.reorganizeFiles(in: outputPath, fromTemplate: templatePath),
+              |<-self.reorganizeFiles(moduleName: moduleName, in: outputPath, fromTemplate: templatePath),
               |<-self.fixSignatureParameters(filesAt: "\(outputPath.sources)/APIs"),
               |<-self.renderHelpersForHeaders(filesAt: "\(outputPath.sources)/APIs", inFile: "\(outputPath.sources)/APIs.swift"),
               |<-self.removeHeadersDefinition(filesAt: "\(outputPath.sources)/APIs"),
@@ -34,13 +34,13 @@ public class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    internal func reorganizeFiles(in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func reorganizeFiles(moduleName: String, in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             binding(
                 |<-fileSystem.moveFiles(in: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
                 |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
                 |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
-                |<-fileSystem.copy(items: ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"], from: templatePath, to: outputPath.tests),
+                |<-self.copyTestFiles(moduleName: moduleName, templatePath: templatePath, outputPath: outputPath.tests).provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
@@ -156,6 +156,31 @@ public class SwaggerClientGenerator: ClientGenerator {
                 items <- fileSystem.items(atPath: path),
                       |<-items.get.traverse(removeHeadersDefinition(atFile:))^.provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
+        }
+    }
+    
+    internal func copyTestFiles(moduleName: String, templatePath: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+        let files = ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"]
+        
+        return EnvIO { fileSystem in
+            binding(
+                |<-fileSystem.copy(items: files, from: templatePath, to: outputPath),
+                |<-files.traverse { file in self.fixTestFile(moduleName: moduleName, fileName: file, outputPath: outputPath).provide(fileSystem) },
+                yield: ())
+        }^
+    }
+    
+    internal func fixTestFile(moduleName: String, fileName: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+        let content = IO<FileSystemError, String>.var()
+        let fixedContent = IO<FileSystemError, String>.var()
+        let path = outputPath + "/" + fileName
+        
+        return EnvIO { fileSystem in
+            binding(
+                content <- fileSystem.readFile(atPath: path),
+                fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: moduleName)),
+                |<-fileSystem.write(content: fixedContent.get, toFile: path),
+                yield: ())
         }
     }
 }

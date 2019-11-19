@@ -21,7 +21,8 @@ public enum APIClient {
             
             return binding(
                 |<-createStructure(outputPath: outputPath).provide(env.fileSystem),
-                |<-env.generator.generate(schemePath: scheme,
+                |<-env.generator.generate(moduleName: moduleName,
+                                          schemePath: scheme,
                                           outputPath: outputPath,
                                           templatePath: templatePath,
                                           logPath: env.logPath).provide(env.fileSystem),

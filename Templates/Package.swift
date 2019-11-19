@@ -14,6 +14,6 @@ let package = Package(
 
     targets: [
         .target(name: "{{ moduleName }}",     dependencies: ["Bow", "BowEffects"], path: "Sources"),
-        .target(name: "{{ moduleName }}Test", dependencies: ["Bow", "BowEffects"], path: "XCTest")
+        .target(name: "{{ moduleName }}Test", dependencies: ["Bow", "BowEffects", "{{ moduleName }}"], path: "XCTest")
     ]
 )

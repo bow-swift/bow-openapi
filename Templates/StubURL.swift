@@ -1,6 +1,7 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+import Bow
 import {{ moduleName }}
 
 struct StubbedResponse {

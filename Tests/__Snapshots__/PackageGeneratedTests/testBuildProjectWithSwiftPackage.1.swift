@@ -13,7 +13,7 @@ let package = Package(
     ],
 
     targets: [
-        .target(name: "BowAPIClient",     dependencies: ["Bow", "BowEffects", "BowOptics"], path: "Sources"),
-        .target(name: "BowAPIClientTest", dependencies: ["Bow", "BowEffects", "BowOptics"], path: "XCTest")
+        .target(name: "BowAPIClient",     dependencies: ["Bow", "BowEffects"], path: "Sources"),
+        .target(name: "BowAPIClientTest", dependencies: ["Bow", "BowEffects"], path: "XCTest")
     ]
 )

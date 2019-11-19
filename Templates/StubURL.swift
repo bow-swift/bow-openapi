@@ -1,6 +1,7 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+import {{ moduleName }}
 
 class StubURL: URLProtocol {
     private(set) static var data: Data?

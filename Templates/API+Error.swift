@@ -1,6 +1,7 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+import {{ moduleName }}
 
 public enum HTTPErrorTest {
     case malformedURL

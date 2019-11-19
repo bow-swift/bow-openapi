@@ -17,12 +17,12 @@ public struct PetDocumented: Codable {
         case sold = "sold"
     }
 
-    public var _id: Int64?
-    public var name: String
+    public let _id: Int64?
+    public let name: String
     /// pet docs for photoUrls
-    public var photoUrls: [String]
+    public let photoUrls: [String]
     /// pet status in the store
-    public var status: Status?
+    public let status: Status?
 
     public init(_id: Int64?, name: String, photoUrls: [String], status: Status?) {
         self._id = _id

@@ -16,10 +16,10 @@ public struct Pet: Codable {
         case sold = "sold"
     }
 
-    public var _id: Int64?
-    public var name: String?
-    public var photoUrls: [String]?
-    public var status: Status?
+    public let _id: Int64?
+    public let name: String?
+    public let photoUrls: [String]?
+    public let status: Status?
 
     public init(_id: Int64?, name: String?, photoUrls: [String]?, status: Status?) {
         self._id = _id

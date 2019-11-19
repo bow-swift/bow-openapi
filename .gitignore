@@ -7,8 +7,8 @@ build/
 DerivedData
 **/.DS_Store
 api
-**/xcuserdata
-**/xcshareddata
+xcuserdata/
+xcshareddata/
 
 ## Various settings
 *.pbxuser
@@ -33,4 +33,7 @@ Carthage/
 .build/
 .swiftpm
 Pods/
-Package.resolved
+Podfile.lock
+
+## nef
+**/*/nef

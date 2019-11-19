@@ -12,8 +12,7 @@ public enum HTTPErrorTest {
     case serverError
     case serviceUnavailable
     case unknown
-    case otherError(Error)
-    case other
+    case other(error: Error? = nil)
 }
 
 extension HTTPErrorTest {
@@ -29,8 +28,7 @@ extension HTTPErrorTest {
         case .serverError: return .serverError(response: dataError!.response, data: dataError!.data)
         case .serviceUnavailable: return .serviceUnavailable(response: dataError!.response, data: dataError!.data)
         case .unknown: return .unknown(response: dataError!.response, data: dataError!.data)
-        case .otherError(let error): return .other(error: error)
-        case .other: return .other(error: apiError.error)
+        case .other(let error): return .other(error: error ?? apiError.error)
         }
     }
 }

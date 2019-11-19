@@ -14,6 +14,6 @@ let package = Package(
 
     targets: [
         .target(name: "PetStore",     dependencies: ["Bow", "BowEffects"], path: "Sources"),
-        .target(name: "PetStoreTest", dependencies: ["Bow", "BowEffects"], path: "XCTest")
+        .target(name: "PetStoreTest", dependencies: ["Bow", "BowEffects", "PetStore"], path: "XCTest")
     ]
 )

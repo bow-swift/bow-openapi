@@ -2,6 +2,7 @@
 
 import Foundation
 import Bow
+import {{ moduleName }}
 
 struct StubbedResponse {
     let statusCode: Int

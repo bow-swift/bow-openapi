@@ -670,7 +670,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${BUILT_PRODUCTS_DIR}\ntests=${SRCROOT}/Tests/Fixtures\n\n./bow-openapi --schema \"$tests/petstore.yaml\" --output \"$tests/api\"\n";
+			shellScript = "cd ${BUILT_PRODUCTS_DIR}\ntests=${SRCROOT}/Tests/Fixtures\n\n./bow-openapi --name Tests --schema \"$tests/petstore.yaml\" --output \"$tests/api\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -3,7 +3,7 @@
 import XCTest
 import Bow
 import BowEffects
-
+import {{ moduleName }}
 
 public extension XCTest {
     

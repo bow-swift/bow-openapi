@@ -10,5 +10,5 @@ public struct OutputPath {
 }
 
 public protocol ClientGenerator {
-    func generate(schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()>
+    func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()>
 }

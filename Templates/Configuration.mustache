@@ -26,7 +26,7 @@ extension API {
             self.decoder = decoder
         }
         
-        func copy(basePath: String? = nil, headers: [String: String]? = nil, session: URLSession? = nil, decoder: ResponseDecoder? = nil) -> API.Config {
+        public func copy(basePath: String? = nil, headers: [String: String]? = nil, session: URLSession? = nil, decoder: ResponseDecoder? = nil) -> API.Config {
             return API.Config(basePath: basePath ?? self.basePath,
                               headers: headers ?? self.headers,
                               session: session ?? self.session,

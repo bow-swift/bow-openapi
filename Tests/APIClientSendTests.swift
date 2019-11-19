@@ -19,7 +19,7 @@ class APIClientSendTests: XCTestCase {
 
         assert(send(request: Mother.request()),
                withConfig: apiConfig,
-               fails: .otherError(Mother.Error.general))
+               fails: .other(error: Mother.Error.general))
     }
 
     func testAPIClient_ValidRequestAndInvalidDecoder_ReturnParsingError() {
@@ -132,7 +132,7 @@ class APIClientSendTests: XCTestCase {
         
         assert(send(request: request),
                withConfig: apiConfig,
-               fails: .otherError(Mother.Error.general))
+               fails: .other(error: Mother.Error.general))
         
         assert(send(request: request),
                withConfig: apiConfig,

@@ -10,4 +10,3 @@ target 'Documentation' do
   pod "BowRecursionSchemes", "~> 0.6.0"
   pod "BowFree", "~> 0.6.0"
 end
-workspace 'nef'

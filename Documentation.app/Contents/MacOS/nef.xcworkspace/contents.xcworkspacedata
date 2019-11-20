@@ -5,7 +5,10 @@
       location = "group:../../Jekyll/Home.md">
    </FileRef>
    <FileRef
-      location = "group:Documentation.playground">
+      location = "group:/Users/tomasruizlopez/Development/bow-openapi/Documentation.app/Contents/MacOS/Quick start.playground">
+   </FileRef>
+   <FileRef
+      location = "group:Legal.playground">
    </FileRef>
    <FileRef
       location = "group:Documentation.xcodeproj">

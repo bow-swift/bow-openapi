@@ -11,6 +11,9 @@
       location = "group:Generation examples.playground">
    </FileRef>
    <FileRef
+      location = "group:Consuming generated code.playground">
+   </FileRef>
+   <FileRef
       location = "group:Legal.playground">
    </FileRef>
    <FileRef

@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='rendered'/>
+<playground version='6.0' target-platform='ios' display-mode='rendered'>
+    <pages>
+        <page name='Installation guide'/>
+        <page name='How to run Bow OpenAPI'/>
+        <page name='Integration in Xcode'/>
+        <page name='Resources'/>
+    </pages>
+</playground>

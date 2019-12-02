@@ -1,7 +1,10 @@
-//: [Previous](@previous)
-
-import Foundation
-
-var str = "Hello, playground"
-
-//: [Next](@next)
+// nef:begin:header
+/*
+ layout: docs
+ title: Basic generation
+ */
+// nef:end
+/*:
+ # Basic generation
+ 
+ */

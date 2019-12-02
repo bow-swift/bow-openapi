@@ -4,13 +4,13 @@ title: Home
 permalink: /docs/
 ---
 
-# Bow Open API
+# Bow OpenAPI
 
-Bow Open API is a command line tool to generate a network client written in Swift from an Open API specification that uses the environmental effect type `EnvIO` from [Bow](https://bow-swift.io/). Its main features are:
+Bow OpenAPI is a command line tool to generate a network client written in Swift from an OpenAPI specification that uses the environmental effect type `EnvIO` from [Bow](https://bow-swift.io/). Its main features are:
 
-## Parsing of Open API specifications
+## Parsing of OpenAPI specifications
 
-Bow Open API is able to consume Open API / Swagger specifications as either JSON or YAML files. It relies on the `swagger-codegen` command line tool to parse these files, and then provides a set of templates to customize the output of the tool, together with an additional processing of the result.
+Bow OpenAPI is able to consume OpenAPI / Swagger specifications as either JSON or YAML files. It relies on the `swagger-codegen` command line tool to parse these files, and then provides a set of templates to customize the output of the tool, together with an additional processing of the result.
 
 ## Pure functional Swift code
 

@@ -1,5 +1,10 @@
-// nef:begin:hidden
-import UIKit
-
-Nef.Playground.needsIndefiniteExecution(true)
+// nef:begin:header
+/*
+ layout: docs
+ title: Installation guide
+ */
 // nef:end
+/*:
+ # Installation guide
+ 
+ */

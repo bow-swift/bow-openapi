@@ -1,7 +1,10 @@
-//: [Previous](@previous)
-
-import Foundation
-
-var str = "Hello, playground"
-
-//: [Next](@next)
+// nef:begin:header
+/*
+ layout: docs
+ title: How to run Bow OpenAPI
+ */
+// nef:end
+/*:
+ # How to run Bow OpenAPI
+ 
+ */

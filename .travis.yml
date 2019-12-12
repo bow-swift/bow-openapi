@@ -4,7 +4,10 @@ sudo: required
 
 addons:
   homebrew:
-    casks: homebrew/cask-versions/adoptopenjdk8
+    taps:
+      - adoptopenjdk/openjdk
+    casks:
+      - adoptopenjdk/openjdk/adoptopenjdk8
 
 env:
   global:

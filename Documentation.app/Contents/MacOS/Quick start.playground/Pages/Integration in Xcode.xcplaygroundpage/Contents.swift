@@ -1,7 +1,10 @@
-//: [Previous](@previous)
-
-import Foundation
-
-var str = "Hello, playground"
-
-//: [Next](@next)
+// nef:begin:header
+/*
+ layout: docs
+ title: Integration in Xcode
+ */
+// nef:end
+/*:
+ # Integration in Xcode
+ 
+ */

@@ -20,7 +20,7 @@
        tags:
          - Product
        operationId: getProducts
-       description: Obtains all products sold by the store.
+       summary: Obtains all products sold by the store.
        parameters:
          - name: sortBy
            in: query
@@ -37,5 +37,5 @@
                  $ref: '#/components/schemas/Products'
  ```
  
- The generator will take all the metadata in the fields named `description` and will use that information for documentation of the corresponding artifacts.
+ The generator will take all the metadata in the fields named `summary` and `description` and will use that information for documentation of the corresponding artifacts.
  */

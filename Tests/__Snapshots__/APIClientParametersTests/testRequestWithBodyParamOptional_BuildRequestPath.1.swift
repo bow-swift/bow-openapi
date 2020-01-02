@@ -27,7 +27,7 @@ extension DefaultAPI {
     /**
 
      - Parameter body: (body)  (optional)
-     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, NoResponse>`.
+     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`.
      */
     public func addPet(body: Pet? = nil) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         _addPet(body: body)

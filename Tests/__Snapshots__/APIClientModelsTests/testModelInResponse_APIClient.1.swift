@@ -26,7 +26,7 @@ extension DefaultAPI {
 
     /**
 
-     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `[Pet]`, having access to an immutable environment of type `API.Config`. It can be seen as a Kleisli function `(API.Config) -> IO<API.HTTPError, [Pet]>`.
+     - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `[Pet]`, having access to an immutable environment of type `API.Config`.
      */
     public func findPetsByStatus() -> EnvIO<API.Config, API.HTTPError, [Pet]> {
         _findPetsByStatus()

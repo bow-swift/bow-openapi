@@ -98,7 +98,7 @@
            description: Customer created
  ```
  
- This request requires a `Customer` to be sent as part of the body. The generated code will add a parameter to the `newCustomer` where a value of type `Customer` needs to be passed, and the generated implementation will know where to encode it.
+ This request requires a `Customer` to be sent as part of the body. The generated code will add a parameter to the `newCustomer` where a value of type `Customer` needs to be passed, and the generated implementation will know where to encode it. Currently, the only encoding that is supported is JSON.
  
  ## Header parameters
  

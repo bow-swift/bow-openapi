@@ -65,6 +65,7 @@ let baseConfig = API.Config(basePath: "https://url-to-my-server.com")
  */
 let configWithHeaders1 = baseConfig.appending(headers: ["Accept": "application/json"])
 let configWithHeaders2 = baseConfig.appendingHeader(value: "application/json", forKey: "Accept")
+let configWithHeaders3 = baseConfig.appending(contentType: .json)
 /*:
  Besides this, all methods in our specification that require a header parameter will add an extension method to `API.Config`, where, if we provide a value, it will add it to the headers with the right key. For instance, if our methods require an authentication token, we may have a method like:
  */

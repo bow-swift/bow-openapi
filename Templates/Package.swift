@@ -9,7 +9,7 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/bow-swift/bow.git", .exact("0.6.0"))
+        .package(url: "https://github.com/bow-swift/bow.git", .exact("0.7.0"))
     ],
 
     targets: [

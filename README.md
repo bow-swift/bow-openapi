@@ -10,7 +10,7 @@
 
 </p>
 
-*Bow OpenAPI* is a command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the [project website](https://openapi.bow-swift.io) for extensive and detailed documentation about the project.
+**Bow OpenAPI** is a command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the [project website](https://openapi.bow-swift.io) for extensive and detailed documentation about the project.
 
 ### Features
 

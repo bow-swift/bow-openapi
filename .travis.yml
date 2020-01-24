@@ -46,7 +46,7 @@ jobs:
     - stage: deploy microsite
       if: branch = master AND type != pull_request
       script:
-        - nef jekyll --project Documentation.app --output docs --main-page contents/Home.md
+        - nef jekyll --project Documentation.app --output docs --main-page Documentation.app/Jekyll/Home.md
       deploy:
         provider: pages
         skip-cleanup: true

@@ -38,16 +38,16 @@ protocol CustomerAPI {
 // nef:begin:hidden
 struct CustomerAPIClient: CustomerAPI {
     func getCustomers() -> EnvIO<API.Config, API.HTTPError, Customers> {
-        EnvIO { _ in
+        EnvIO { _ in
             IO.invoke {
-                [ Customer(id: 1, name: "Tomás") ]
+                [ Customer(identifier: 1, name: "Tomás") ]
             }
         }
     }
 }
 
 extension API {
-    var customer: CustomerAPI {
+    static var customer: CustomerAPI {
         CustomerAPIClient()
     }
 }
@@ -81,4 +81,4 @@ customersRequest.provide(config).unsafeRunAsync { either in
 }
 
 // Changing queue
-let customers: Customers? = try? customersRequest.provide(config).unsafeRunSync(on: .background)
+try? customersRequest.provide(config).unsafeRunSync(on: .global(qos: .background))

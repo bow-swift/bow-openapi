@@ -76,9 +76,14 @@ let either: Either<API.HTTPError, Customers> =
 
 // Asynchronous run
 customersRequest.provide(config).unsafeRunAsync { either in
-    either.fold({ httpError in /* ... */ },
-                { customers in /* ... */ })
+    either.fold({ httpError in
+                    // ...
+                },
+                { customers in
+                    // ...
+                })
 }
+
 
 // Changing queue
 try? customersRequest.provide(config).unsafeRunSync(on: .global(qos: .background))

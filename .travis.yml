@@ -6,6 +6,9 @@ addons:
   homebrew:
     taps:
       - adoptopenjdk/openjdk
+      - bow-swift/nef
+    packages:
+      - nef
     casks:
       - adoptopenjdk/openjdk/adoptopenjdk8
 
@@ -14,6 +17,9 @@ env:
     - PROJECT="BowOpenAPI.xcodeproj"
     - JOB="XCODE"
     - DEST="platform=macOS,arch=x86_64"
+    - SCHEME="Markup"
+    - SDK="macosx"
+    - ACTION="test"
 
 jobs:
   include:
@@ -31,3 +37,22 @@ jobs:
       script:
         - set -o pipefail
         - xcodebuild test -project "$PROJECT" -scheme "Tests" -destination "$DEST" | xcpretty -c
+    - stage: verify documentation
+      before_install:
+        - gem update --system
+        - gem install cocoapods
+      script:
+        - nef compile Documentation.app
+    - stage: deploy microsite
+      if: branch = master AND type != pull_request
+      script:
+        - nef jekyll --project Documentation.app --output docs --main-page Documentation.app/Jekyll/Home.md
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        local-dir: docs
+        target-branch: gh-pages
+        on:
+          all_branches: true

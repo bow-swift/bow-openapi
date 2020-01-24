@@ -21,7 +21,7 @@ enum API {
         }
     }
     
-    enum HTTPError {}
+    enum HTTPError: Error {}
 }
 
 struct Customer: Codable, Equatable {
@@ -42,7 +42,7 @@ struct CustomerAPIClient: CustomerAPI {
 }
 
 extension API {
-    var customer: CustomerAPI {
+    static var customer: CustomerAPI {
         CustomerAPIClient()
     }
 }

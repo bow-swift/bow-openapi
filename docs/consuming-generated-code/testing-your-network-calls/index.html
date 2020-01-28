@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+
+    
+
+    <title>Bow OpenAPI: Testing your network calls</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the project website for extensive and detailed documentation about the project.">
+    <meta name="keywords" content="functional-programming, monads, monad-transformers, functional-data-structure, swift, bow, xcode, xcode-playgrounds, playgrounds, fp-types, adt, free-monads, tagless-final, mtl, for-comprehension, category-theory">
+
+    <meta property="og:image" content="/img/poster.png" />
+    <meta property="og:title" content="Bow OpenAPI: Testing your network calls" />
+    <meta property="og:site_name" content="Bow OpenAPI: Testing your network calls" />
+    <meta property="og:url" content="https://openapi.bow-swift.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="A command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the project website for extensive and detailed documentation about the project." />
+    <meta property="og:keywords" content="functional-programming, monads, monad-transformers, functional-data-structure, swift, bow, xcode, xcode-playgrounds, playgrounds, fp-types, adt, free-monads, tagless-final, mtl, for-comprehension, category-theory" />
+
+    <meta name="twitter:text:description" content="A command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the project website for extensive and detailed documentation about the project." />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@47deg">
+    <meta name="twitter:creator" content="@47deg">
+    <meta name="twitter:image" content="/img/poster.png" />
+
+    <meta property="github-info" data-github-owner="bow-swift" data-github-repo="bow-openapi" />
+
+    <script defer src="/js/docs.js"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <!-- Docs css -->
+    <link rel="stylesheet" type="text/css" href="/css/docs.css">
+</head>
+
+    <body>
+        <div id="site-sidebar" class="site-sidebar">
+  <div class="sidebar-brand">
+    <a href="/" class="brand" title="Bow OpenAPI">
+      <img
+        src="/img/nav-brand-white.svg"
+        alt="Bow OpenAPI"
+        class="brand-wrapper"
+      />
+      <span>Bow OpenAPI</span>
+    </a>
+    <button
+      id="main-toggle"
+      type="button"
+      title="Close"
+      class="button sidebar-toggle"
+    >
+      <span class="close"></span>
+    </button>
+  </div>
+  <div class="sidebar-menu">
+    
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+      
+
+    <div class="sidebar-menu-item  ">
+       
+      <button
+        type="button"
+        title="Open Quick start"
+        class="button drop-nested"
+      >
+        Quick start
+      </button>
+      <div class="caret"></div>
+      
+
+      <div class="sub-menu">
+        
+        
+        
+        <a
+          class=""
+          href="/docs/quick-start/installation-guide/"
+          title="Installation guide"
+        >
+          Installation guide
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/quick-start/how-to-run-bow-openapi/"
+          title="How to run Bow OpenAPI"
+        >
+          How to run Bow OpenAPI
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/quick-start/integration-in-xcode/"
+          title="Integration in Xcode"
+        >
+          Integration in Xcode
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/quick-start/resources/"
+          title="Resources"
+        >
+          Resources
+        </a>
+        
+      </div>
+      
+    </div>
+    
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+      
+
+    <div class="sidebar-menu-item  ">
+       
+      <button
+        type="button"
+        title="Open Generation examples"
+        class="button drop-nested"
+      >
+        Generation examples
+      </button>
+      <div class="caret"></div>
+      
+
+      <div class="sub-menu">
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/basic-generation/"
+          title="Basic generation"
+        >
+          Basic generation
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/grouping-endpoints/"
+          title="Grouping endpoints"
+        >
+          Grouping endpoints
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/data-types/"
+          title="Data types"
+        >
+          Data types
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/parameters/"
+          title="Parameters"
+        >
+          Parameters
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/documentation/"
+          title="Documentation"
+        >
+          Documentation
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/generation-examples/limitations/"
+          title="Limitations"
+        >
+          Limitations
+        </a>
+        
+      </div>
+      
+    </div>
+    
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+      
+
+    <div class="sidebar-menu-item  open">
+       
+      <button
+        type="button"
+        title="Open Consuming generated code"
+        class="button drop-nested"
+      >
+        Consuming generated code
+      </button>
+      <div class="caret"></div>
+      
+
+      <div class="sub-menu">
+        
+        
+        
+        <a
+          class=""
+          href="/docs/consuming-generated-code/adding-the-module-to-your-project/"
+          title="Adding the module to your project"
+        >
+          Adding the module to your project
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/consuming-generated-code/running-a-network-request/"
+          title="Running a network request"
+        >
+          Running a network request
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/consuming-generated-code/customizing-the-configuration/"
+          title="Customizing the configuration"
+        >
+          Customizing the configuration
+        </a>
+        
+        
+        
+        <a
+          class="active"
+          href="/docs/consuming-generated-code/testing-your-network-calls/"
+          title="Testing your network calls"
+        >
+          Testing your network calls
+        </a>
+        
+      </div>
+      
+    </div>
+    
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+      
+
+    <div class="sidebar-menu-item  ">
+       
+      <button
+        type="button"
+        title="Open Legal"
+        class="button drop-nested"
+      >
+        Legal
+      </button>
+      <div class="caret"></div>
+      
+
+      <div class="sub-menu">
+        
+        
+        
+        <a
+          class=""
+          href="/docs/legal/credits/"
+          title="Credits"
+        >
+          Credits
+        </a>
+        
+        
+        
+        <a
+          class=""
+          href="/docs/legal/license/"
+          title="License"
+        >
+          License
+        </a>
+        
+      </div>
+      
+    </div>
+    
+    
+  </div>
+</div>
+
+        <main id="site-doc" class="site-doc">
+    <div class="doc-header">
+      <button
+        id="menu-toggle"
+        type="button"
+        class="button doc-toggle"
+        title="Toggle">
+          <img src="/img/sidebar-icon-open.svg" alt="Toggle" title="Toggle">
+      </button>
+
+      <div class="link-container">
+        <!-- 
+        <div id="version-dropdown" class="link-item">
+
+    <button class="button link-like strong" onclick="openDropdown(event)" title="Version">
+      
+        <i class="nav-item-icon fa fa-lg " aria-hidden="true"></i>
+        <span class="nav-item-text">Version</span>
+      
+    </button>
+
+    <ul class="dropdown dropdown-content">
+      
+      <li class="dropdown-item">
+        <a class="dropdown-item-link" title="Stable" href="https://openapi.bow-swift.io/" target="_blank" rel="noopener noreferrer">
+            <span>
+              Stable
+            </span>
+        </a>
+      </li>
+      
+      <li class="dropdown-item">
+        <a class="dropdown-item-link" title="Next" href="https://openapi.bow-swift.io/" target="_blank" rel="noopener noreferrer">
+            <span>
+              Next
+            </span>
+        </a>
+      </li>
+      
+    </ul>
+
+</div>
+
+        
+        <div id="api-docs-dropdown" class="link-item">
+
+    <button class="button link-like strong" onclick="openDropdown(event)" title="API Docs">
+      
+        <i class="nav-item-icon fa fa-lg " aria-hidden="true"></i>
+        <span class="nav-item-text">API Docs</span>
+      
+    </button>
+
+    <ul class="dropdown dropdown-content">
+      
+      <li class="dropdown-item">
+        <a class="dropdown-item-link" title="Stable" href="https://openapi.bow-swift.io/" target="_blank" rel="noopener noreferrer">
+            <span>
+              Stable
+            </span>
+        </a>
+      </li>
+      
+      <li class="dropdown-item">
+        <a class="dropdown-item-link" title="Next" href="https://openapi.bow-swift.io/" target="_blank" rel="noopener noreferrer">
+            <span>
+              Next
+            </span>
+        </a>
+      </li>
+      
+    </ul>
+
+</div>
+
+         -->
+        <div class="link-item">
+          <a href="https://github.com/bow-swift/bow-openapi" title="GitHub repo" target="_blank" rel="noopener noreferrer">
+            <span class="strong">GitHub</span>
+            <span id="stars-count"></span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="doc-content">
+        <h1 id="testing-your-network-calls">Testing your network calls</h1>
+
+<p>An important part of software development is testing. However, testing networking operations is usually cumbersome. It involves mocking dependencies in order to control the results of the network calls, and often we feel uncertain if we are actually testing our code or the mocks.</p>
+
+<p>Bow OpenAPI generates testing tools as part of its output, so that you can easily test your network calls behave as you expect, without actually going to the network. The tool produces a Swift Package that contains two libraries: one that contains the actual APIs described in the specification, and one with the same name and the suffix <code class="highlighter-rouge">Test</code> that provides some test utilities. For instance, assuming you invoke the tool as:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$&gt;</span> bow-openapi <span class="nt">--name</span> SampleAPI <span class="nt">--schema</span> swagger.yaml <span class="nt">--output</span> ./Folder
+</code></pre></div></div>
+
+<p>It will create a Swift Package with two modules: <code class="highlighter-rouge">SampleAPI</code> and <code class="highlighter-rouge">SampleAPITest</code>. In order to use the testing utilities, you would only need to import them:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">import</span> <span class="kt">SampleAPI</span>
+ <span class="kd">import</span> <span class="kt">SampleAPITest</span>
+</code></pre></div></div>
+
+<p>In the following sections we will describe the utilities you have for testing.</p>
+
+<h2 id="stubbing-responses">Stubbing responses</h2>
+
+<p>In order to test our code, we need to control the scenarios that we want to test. When it comes to network calls, we usually need to stub the content we want in response of out requests.</p>
+
+<p>All this is done through the <code class="highlighter-rouge">API.Config</code> object. That means we do not need to modify our production code, but only provide a special configuration for testing. We can actually pass the same configuration that we use for production code, but with a small modification.</p>
+
+<p>Importing the testing module generated by Bow OpenAPI will add some extension methods on <code class="highlighter-rouge">API.Config</code> to let us stub content. The provided methods are:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">stub(data: Data)</code>: stubs a <code class="highlighter-rouge">Data</code> object in response to any network call.</li>
+  <li><code class="highlighter-rouge">stub(error: Error)</code>: stubs an <code class="highlighter-rouge">Error</code> in response to any network call.</li>
+  <li><code class="highlighter-rouge">stub(json: String)</code>: stubs a JSON formatted String in response to any network call.</li>
+  <li><code class="highlighter-rouge">stub(contentsOfFile: URL)</code>: stubs the content of a file at a given <code class="highlighter-rouge">URL</code> in response to any network call.</li>
+</ul>
+
+<p>All these methods allow us to provide content in response to any network call, regardless of the endpoint that is being called. They also have an optional parameter <code class="highlighter-rouge">code</code>, where we can provide the HTTP response code that we want to receive (e.g. 404, 500, etc.).</p>
+
+<p>For instance, we can stub the response of some JSON content with code 200:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="s">"""
+{
+    "</span><span class="n">identifier</span><span class="s">": 1234,
+    "</span><span class="n">name</span><span class="s">": "</span><span class="kt">Tomás</span><span class="s">"
+}
+"""</span>
+<span class="k">let</span> <span class="nv">successConfig</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="kt">Config</span><span class="p">(</span><span class="nv">basePath</span><span class="p">:</span> <span class="s">"https://url-to-my-server.com"</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">stub</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="n">json</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Or we can stub an error with a 404 code:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">CustomerError</span><span class="p">:</span> <span class="kt">Error</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">notFound</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">failureConfig</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="kt">Config</span><span class="p">(</span><span class="nv">basePath</span><span class="p">:</span> <span class="s">"https://url-to-my-server.com"</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">stub</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">CustomerError</span><span class="o">.</span><span class="n">notFound</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">404</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then, depending on the scenario you want to test, you only need use the right configuration:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">API</span><span class="o">.</span><span class="n">customer</span><span class="o">.</span><span class="nf">getCustomers</span><span class="p">()</span><span class="o">.</span><span class="nf">provide</span><span class="p">(</span><span class="n">successConfig</span><span class="p">)</span> <span class="c1">// Tests the happy path</span>
+<span class="kt">API</span><span class="o">.</span><span class="n">customer</span><span class="o">.</span><span class="nf">getCustomers</span><span class="p">()</span><span class="o">.</span><span class="nf">provide</span><span class="p">(</span><span class="n">failureConfig</span><span class="p">)</span> <span class="c1">// Tests the unhappy path</span>
+</code></pre></div></div>
+
+<h2 id="stacking-responses">Stacking responses</h2>
+
+<p>Stubs can be stacked in the <code class="highlighter-rouge">API.Config</code>, and they are removed as they are consumed. You can call several times to <code class="highlighter-rouge">stub</code> and those responses will be returned sequentially.</p>
+
+<p>If your code requires more responses than you have stubbed, you will get an error. Similarly, if you stub more content than you consume in the test, you should call <code class="highlighter-rouge">config.reset()</code> in order to clear the extra stubbed content.</p>
+
+<h2 id="routing-responses">Routing responses</h2>
+
+<p>If you are doing integration or end-to-end testing, your tests may perform several network calls in an order that you may not know beforehand. The testing tools provided in the module also let you stub content for a specific endpoint:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">routingConfig</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="kt">Config</span><span class="p">(</span><span class="nv">basePath</span><span class="p">:</span> <span class="s">"https://url-to-my-server.com"</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">stub</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="n">json</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="s">"/customers"</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">stub</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="s">"[]"</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">endpoint</span><span class="p">:</span> <span class="s">"/products"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="custom-assertions">Custom assertions</h2>
+
+<p>Finally, the testing module provides custom assertions to test the success and failure scenarios. They are available as extension methods in <code class="highlighter-rouge">XCTest</code>. Therefore, you could write a test like:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">testHappyPath</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">json</span> <span class="o">=</span> <span class="s">"""
+    {
+        "</span><span class="n">identifier</span><span class="s">": 1234,
+        "</span><span class="n">name</span><span class="s">": "</span><span class="kt">Tomás</span><span class="s">"
+    }
+    """</span>
+    <span class="k">let</span> <span class="nv">successConfig</span> <span class="o">=</span> <span class="kt">API</span><span class="o">.</span><span class="kt">Config</span><span class="p">(</span><span class="nv">basePath</span><span class="p">:</span> <span class="s">"https://url-to-my-server.com"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">stub</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="n">json</span><span class="p">,</span> <span class="nv">code</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">expected</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Customer</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Tomás"</span><span class="p">)]</span>
+    
+    <span class="nf">assert</span><span class="p">(</span><span class="kt">API</span><span class="o">.</span><span class="n">customer</span><span class="o">.</span><span class="nf">getCustomers</span><span class="p">(),</span>
+           <span class="nv">withConfig</span><span class="p">:</span> <span class="n">successConfig</span><span class="p">,</span>
+           <span class="nv">succeeds</span><span class="p">:</span> <span class="n">expected</span><span class="p">,</span>
+           <span class="s">"Customer API did not return the expected result"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice that Bow OpenAPI does not add conformance to <code class="highlighter-rouge">Equatable</code> in the generated code. Therefore, is up to the user to define when two value objects are equal by adding the corresponding extension.</p>
+
+    </div>
+</main>
+
+    </body>
+</html>

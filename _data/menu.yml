@@ -1,9 +1,0 @@
-nav:
-    - title: Documentation
-      url: /docs
-
-    - title: Github
-      url: https://github.com/bow-swift/bow-openapi
-
-    - title: License
-      url: https://github.com/bow-swift/bow-openapi/blob/develop/LICENSE

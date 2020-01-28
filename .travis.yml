@@ -45,14 +45,18 @@ jobs:
         - nef compile Documentation.app
     - stage: deploy microsite
       if: branch = master AND type != pull_request
+      install:
+        - gem install bundler --force
+        - bundle install --gemfile docs/Gemfile --path vendor/bundle
       script:
         - nef jekyll --project Documentation.app --output docs --main-page Documentation.app/Jekyll/Home.md
+        - BUNDLE_GEMFILE=./docs/Gemfile bundle exec jekyll build -s docs -d gen-docs
       deploy:
         provider: pages
         skip-cleanup: true
         github-token: $GITHUB_TOKEN
         keep-history: true
-        local-dir: docs
+        local-dir: gen-docs
         target-branch: gh-pages
         on:
           all_branches: true

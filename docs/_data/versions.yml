@@ -1,9 +1,9 @@
 - name: Version
   links:
-    stable: https://higherkindness.io/mu-haskell/
-    next: https://higherkindness.io/mu-haskell/wip
+    stable: https://openapi.bow-swift.io/
+    next: https://openapi.bow-swift.io/
 
 - name: API Docs
   links:
-    stable: https://higherkindness.io/mu-haskell/haddock
-    next: https://higherkindness.io/mu-haskell/wip/haddock
+    stable: https://openapi.bow-swift.io/
+    next: https://openapi.bow-swift.io/

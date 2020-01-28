@@ -1,11 +1,15 @@
-title: Bow-OpenAPI
 #-------------------------
-name: Bow-OpenAPI
+title: Bow OpenAPI
+#-------------------------
+name: Bow OpenAPI # To be used on meta tags mainly
 #-------------------------
 description: A command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the project website for extensive and detailed documentation about the project.
 #-------------------------
 author: 47 Degrees
 keywords: functional-programming, monads, monad-transformers, functional-data-structure, swift, bow, xcode, xcode-playgrounds, playgrounds, fp-types, adt, free-monads, tagless-final, mtl, for-comprehension, category-theory
+#-------------------------
+github-owner: bow-swift
+github-repo: bow-openapi
 #-------------------------
 url: https://openapi.bow-swift.io
 #-------------------------
@@ -13,6 +17,7 @@ markdown: kramdown
 sass:
     sass_dir: _sass
     style: compressed
+    sourcemap: never
 #-------------------------
 permalink: pretty
 #-------------------------

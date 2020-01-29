@@ -78,19 +78,19 @@
 
     .nav-icon-close {
       display: none;
-      padding: 6px;
+      padding: ($base-point-grid * 3);
       position: absolute;
-      background: rgba($brand-primary, 0.96);
+      background: rgba($gray-primary, 0.96);
       right: 100%;
-      top: 32px;
+      top: ($base-point-grid * 5);
 
       img {
         display: block;
         transition: transform 0.3s ease;
+      }
 
-        &:hover {
-          transform: rotate(180deg);
-        }
+      &:hover img {
+        transform: rotate(180deg);
       }
     }
   }
@@ -102,25 +102,27 @@
   #site-nav {
     .nav-flex {
       .nav-menu {
+        font-size: 1.4rem;
         position: fixed;
-        padding: ($base-point-grid * 4) ($base-point-grid * 6);
-        background: rgba($brand-primary, 0.96);
+        padding: ($base-point-grid * 5) ($base-point-grid * 6);
+        background: rgba($gray-primary, 0.96);
         height: 100%;
         right: -100%;
         top: 0;
-        width: 50%;
+        width: 70%;
         z-index: 2;
         transition: right $base-duration $base-timing;
 
         &.open {
           right: 0;
+          box-shadow: 0 0 100px $gray-primary;
         }
 
         ul {
           flex-direction: column;
 
           .nav-menu-item {
-            padding: $base-point-grid 0;
+            padding: ($base-point-grid * 2) 0;
 
             &:not(:last-child) {
               margin-right: 0;

@@ -45,6 +45,7 @@
           {% assign sub_url_slash = sub_url | append: '/' %}
           {% if sub_url == page_url or sub_url_slash == page_url %}
             {% assign open_submenu = 'open' %}
+            {% assign active_item = 'active' %}
           {% endif %}
         {% endfor %}
       {% endif %}

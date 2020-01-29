@@ -11,17 +11,33 @@
     flex-direction: column;
     position: relative;
 
+    &::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 9px;
+      height: 48px;
+      width: 16px;
+      background-image: url("../img/sidebar-bullet.svg");
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      transition: background-position 0.1s ease;
+    }
+
     .sub-menu {
-      background: $sidebar-active-color;
+      // background: $sidebar-active-color;
       max-height: 0;
       transition: max-height 0.3s ease-in-out;
       overflow: hidden;
+      margin-left: 26px;
+      box-shadow: 3px 0 rgba($white, 0.1) inset;
 
       a {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: $base-point-grid * 2 $base-point-grid * 4;
+        padding: $base-point-grid * 2 $base-point-grid * 3;
         font-size: 0.875rem;
         height: auto;
 
@@ -40,8 +56,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: $base-point-grid * 2;
+      padding: $base-point-grid * 3 $base-point-grid * 2 $base-point-grid * 3 $base-point-grid * 6;
       line-height: $base-point-grid * 2;
+      text-align: left;
       width: 100%;
       color: $white;
 
@@ -57,7 +74,7 @@
     .caret {
       position: absolute;
       right: ($base-point-grid * 3);
-      top: $base-point-grid * 2;
+      top: $base-point-grid * 3;
       pointer-events: none;
       transform-origin: 0% 75%;
       height: 8px;
@@ -85,16 +102,20 @@
     }
 
     &.active {
+      &::before {
+        background-image: url("../img/sidebar-bullet-active.svg");
+      }
+
       > a,
       button {
-        box-shadow: 3px 0 $brand-primary inset;
+        // box-shadow: 3px 0 $brand-primary inset;
       }
     }
 
     &.open {
       > a,
       button {
-        background: $sidebar-head-active-color;
+        // background: $sidebar-head-active-color;
       }
 
       .caret {
@@ -102,7 +123,7 @@
       }
 
       .caret::after {
-        border-left-color: $sidebar-head-active-color;
+        // border-left-color: $sidebar-head-active-color;
       }
 
       .sub-menu {

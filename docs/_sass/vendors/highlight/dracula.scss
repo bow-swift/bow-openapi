@@ -11,23 +11,37 @@
  * @author Chris Bracco <chris@cbracco.me>
  * @author Zeno Rocha <hi@zenorocha.com>
  * @author Piruin Panichphol <piruin.p@gmail.com>
+ *
+ * This has been modified to adapt the theme to Bow OpenAPI visual identity
  */
 
 /*
  * Variables
  */
 
+// $dt-gray-dark: #282a36;  // Background
+// $dt-gray: #44475a;       // Current Line & Selection
+// $dt-gray-light: #f8f8f2; // Foreground
+// $dt-blue: #6272a4;       // Comment
+// $dt-cyan: #8be9fd;
+// $dt-green: #50fa7b;
+// $dt-orange: #ffb86c;
+// $dt-pink: #ff79c6;
+// $dt-purple: #bd93f9;
+// $dt-red: #ff5555;
+// $dt-yellow: #f1fa8c;
+
 $dt-gray-dark: #282a36;  // Background
 $dt-gray: #44475a;       // Current Line & Selection
 $dt-gray-light: #f8f8f2; // Foreground
 $dt-blue: #6272a4;       // Comment
-$dt-cyan: #8be9fd;
-$dt-green: #50fa7b;
-$dt-orange: #ffb86c;
-$dt-pink: #ff79c6;
-$dt-purple: #bd93f9;
-$dt-red: #ff5555;
-$dt-yellow: #f1fa8c;
+$dt-cyan: #4bbacd;
+$dt-green: lighten(#4bbacd, 5);
+$dt-orange: lighten(#4bbacd, 35);
+$dt-pink: lighten(#1d263f, 45);
+$dt-purple: lighten(#4bbacd, 15);
+$dt-red: darken(#4bbacd, 20);
+$dt-yellow: #f8f8f2;
 
 /*
  * Styles
@@ -97,7 +111,7 @@ $dt-yellow: #f1fa8c;
   }
 
   .bp {
-    font-style: italic;
+    // font-style: italic;
   }
 
   .c,
@@ -129,7 +143,7 @@ $dt-yellow: #f1fa8c;
   .vg,
   .vi,
   .vm {
-    font-style: italic;
+    // font-style: italic;
   }
 
   .na,

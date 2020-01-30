@@ -3,7 +3,6 @@
 // -----------------------------------------------
 #site-footer {
   flex: 0 0 0;
-  height: 200px;
   padding: ($base-point-grid * 10) 0;
   background: $gray-primary;
   color: rgba($white, 0.5);
@@ -62,14 +61,14 @@
       }
 
       .footer-dev {
-        padding-bottom: ($base-point-grid * 2);
-        margin-bottom: ($base-point-grid * 2);
+        padding-bottom: ($base-point-grid * 4);
+        margin-bottom: ($base-point-grid * 4);
         text-align: center;
-        border-bottom: 1px solid rgba($white, 0.2);
+        border-bottom: 1px solid rgba($white, 0.1);
       }
 
       .footer-menu {
-        justify-content: center;
+        justify-content: space-evenly;
 
         li {
           &:not(:last-child) {

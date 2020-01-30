@@ -55,17 +55,15 @@
   }
 
   .doc-content {
-    padding: ($base-point-grid * 4);
+    padding: ($base-point-grid * 2) ($base-point-grid * 4);
   }
 
   h1 {
     font-size: 2.5rem;
-    border-bottom: 1px solid $border-color;
   }
 
   h2 {
     font-size: 2rem;
-    border-bottom: 1px solid $border-color;
   }
 
   h3 {
@@ -102,6 +100,10 @@
 
   p {
     margin: ($base-point-grid * 2) 0;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   ol,

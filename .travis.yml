@@ -1,6 +1,6 @@
-language: swift
+os: osx
+language: objective-c
 osx_image: xcode11
-sudo: required
 
 addons:
   homebrew:
@@ -53,10 +53,10 @@ jobs:
         - BUNDLE_GEMFILE=./docs/Gemfile bundle exec jekyll build -s docs -d gen-docs
       deploy:
         provider: pages
-        skip-cleanup: true
-        github-token: $GITHUB_TOKEN
-        keep-history: true
-        local-dir: gen-docs
-        target-branch: gh-pages
+        cleanup: true
+        token: $GITHUB_TOKEN
+        keep_history: true
+        local_dir: gen-docs
+        target_branch: gh-pages
         on:
           all_branches: true

@@ -1,3 +1,5 @@
+![Bow OpenAPI](assets/header-bow-openapi.png)
+
 <p align="center">
 
 <a href="https://github.com/bow-swift/nef">

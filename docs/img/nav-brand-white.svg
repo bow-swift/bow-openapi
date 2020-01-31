@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>sidebar-brand</title>
+    <g id="sidebar-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Stroke-1" stroke="#4BBACD" stroke-width="2" points="25 2.1542 19.07 5.5782 9 11.3922 9 39.1062 25 48.3442 41 39.1062 41 29.8662 33 25.2482 41 20.6302 41 11.3922"></polygon>
+        <polygon id="Stroke-3" stroke="#4BBACD" stroke-width="2" points="33 6.7734 25 11.3934 25 20.6314 33 25.2474 41 20.6314 41 11.3934"></polygon>
+        <polygon id="Stroke-5" stroke="#4BBACD" stroke-width="2" points="17 25.248 9 29.868 9 39.106 17 43.724 25 39.106 25 29.868"></polygon>
+        <polyline id="Stroke-7" stroke="#4BBACD" stroke-width="2" points="25 11.3924 33 16.0124 41 11.3924"></polyline>
+        <polyline id="Stroke-9" stroke="#4BBACD" stroke-width="2" points="25 29.867 17 34.487 9 29.867"></polyline>
+        <line x1="17" y1="34.4862" x2="17" y2="43.7242" id="Stroke-12" stroke="#4BBACD" stroke-width="2"></line>
+        <line x1="33" y1="16.0116" x2="33" y2="25.2476" id="Stroke-13" stroke="#4BBACD" stroke-width="2"></line>
+        <line x1="33" y1="25.248" x2="25" y2="29.868" id="Stroke-14" stroke="#4BBACD" stroke-width="2"></line>
+        <line x1="25" y1="20.6308" x2="17" y2="25.2488" id="Stroke-15" stroke="#4BBACD" stroke-width="2"></line>
+    </g>
+</svg>

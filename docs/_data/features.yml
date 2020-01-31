@@ -1,0 +1,16 @@
+content:
+    - title: Specification
+      description: Consumes your OpenAPI specification file with all your endpoints.
+      icon: img/main-image-primary.svg
+
+    - title: Generation
+      description: Creates a Swift Package containing your networking code using pure FP.
+      icon: img/main-image-secondary.svg
+
+    - title: Composition
+      description: Uses the power of Bow Effects to let you compose and build on top of your network layer.
+      icon: img/main-image-tertiary.svg
+
+    - title: Testing
+      description: Eases testing networking operations, without mocks.
+      icon: img/main-image-quaternary.svg

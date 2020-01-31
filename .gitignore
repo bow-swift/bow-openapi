@@ -37,3 +37,16 @@ Podfile.lock
 
 ## nef
 **/*/nef
+
+## Jekyll
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
+
+## Ruby environment normalization:
+.bundle/
+vendor/
+/lib/bundler/man/
+docs/docs/*
+/docs/_data/sidebar.yml

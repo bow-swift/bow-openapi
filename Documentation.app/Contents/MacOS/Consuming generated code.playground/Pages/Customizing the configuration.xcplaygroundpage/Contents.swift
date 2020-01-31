@@ -9,9 +9,9 @@ import Bow
 import BowEffects
 import Foundation
 
-public enum DecodingError: Error {}
+enum DecodingError: Error {}
 
-public protocol ResponseDecoder {
+protocol ResponseDecoder {
     func safeDecode<T: Decodable>(_ type: T.Type, from: Data) -> IO<DecodingError, T>
 }
 
@@ -40,6 +40,14 @@ enum API {
             self.session = session
             self.decoder = decoder
         }
+        
+        static func ==(lhs: Config, rhs: Config) -> Bool {
+            lhs.basePath == rhs.basePath && lhs.headers == rhs.headers
+        }
+    }
+    
+    enum ContentType {
+        case json
     }
 }
 
@@ -47,7 +55,7 @@ extension API.Config {
     func appending(headers: [String: String]) -> API.Config { self }
     func appending(contentType: API.ContentType) -> API.Config { self }
     func appendingHeader(value: String, forKey key: String) -> API.Config { self }
-    func appendingHeader(token: String) -> API.Config { self }
+    func appendingHeader(token: String) -> API.Config { self }
 }
 // nef:end
 /*:

@@ -16,19 +16,19 @@
 
 ### Features
 
-💡 Automatic generation of network clients written in Swift from an OpenAPI / Swagger specification file, in YAML or JSON formats.
+💡 [Automatic generation](https://openapi.bow-swift.io/docs/generation-examples/basic-generation/) of network clients written in Swift from an OpenAPI / Swagger specification file, in YAML or JSON formats.
 
-📦 Provision of a Swift Package that can be consumed from Swift Package Manager.
+📦 Provision of a [Swift Package](https://openapi.bow-swift.io/docs/consuming-generated-code/adding-the-module-to-your-project/) that can be consumed from Swift Package Manager.
 
-🔨 Integration with Xcode as a build phase to always keep your code in sync with your specification.
+🔨 [Integration with Xcode](https://openapi.bow-swift.io/docs/quick-start/integration-in-xcode/) as a build phase to always keep your code in sync with your specification.
 
-💥 Usage of Environmental Effects from [Bow](https://bow-swift.io) to suspend side-effects, and improve their composition and testability.
+💥 Usage of [Environmental Effects](https://openapi.bow-swift.io/docs/consuming-generated-code/running-a-network-request/) from [Bow](https://bow-swift.io) to suspend side-effects, and improve their composition and testability.
 
-✅ Enhanced test support for integration or end-to-end test with no mocks.
+✅ [Enhanced test support](https://openapi.bow-swift.io/docs/consuming-generated-code/testing-your-network-calls/) for integration or end-to-end test with no mocks.
 
 ## 💻 Installation
 
-You can install Bow OpenAPI using [Homebrew](https://brew.sh/index_es). Its formula is not still in the main repository; therefore, you need to tap it first, before installing it:
+You can [install Bow OpenAPI](https://openapi.bow-swift.io/docs/quick-start/installation-guide/) using [Homebrew](https://brew.sh/index_es). Its formula is not still in the main repository; therefore, you need to tap it first, before installing it:
 
 ```bash
 brew tap bow-swift/bow
@@ -37,7 +37,7 @@ brew install bow-openapi
 
 ## ⚙️ Usage
 
-You can invoke the tool with the following parameters:
+You can [invoke the tool](https://openapi.bow-swift.io/docs/quick-start/how-to-run-bow-openapi/) with the following parameters:
 
 ```bash
 bow-openapi --name <NAME> --schema <YAML | JSON> --output <FOLDER>

@@ -6,55 +6,50 @@ import BowEffects
 
 public protocol FileSystem {
     func createDirectory(at folder: URL, withIntermediates: Bool) -> IO<FileSystemError, ()>
-    func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
-    func remove(itemPath: String) -> IO<FileSystemError, ()>
-    func items(atPath path: String) -> IO<FileSystemError, [String]>
-    func readFile(atPath path: String) -> IO<FileSystemError, String>
-    func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
+    func copy(item: URL, to output: URL) -> IO<FileSystemError, ()>
+    func remove(item: URL) -> IO<FileSystemError, ()>
+    func items(at folder: URL) -> IO<FileSystemError, [URL]>
+    func readFile(at file: URL) -> IO<FileSystemError, String>
+    func write(content: String, toFile file: URL) -> IO<FileSystemError, ()>
 }
 
 public extension FileSystem {
-    func copy(item: String, from input: String, to output: String) -> IO<FileSystemError, ()> {
-        copy(itemPath: "\(input)/\(item)", toPath: "\(output)/\(item)")
+    func copy(item: String, from input: URL, to output: URL) -> IO<FileSystemError, ()> {
+        copy(item: input.appendingPathComponent(item), to: output.appendingPathComponent(item))
     }
     
-    func copy(items: [String], from input: String, to output: String) -> IO<FileSystemError, ()> {
-        items.traverse { (itemPath: String) in
-            self.copy(item: itemPath.filename, from: input, to: output)
+    func copy(items: [String], from input: URL, to output: URL) -> IO<FileSystemError, ()> {
+        items.traverse { item in
+            self.copy(item: item, from: input, to: output)
         }.void()^
     }
     
-    func remove(from folder: String, files: String...) -> IO<FileSystemError, ()> {
-        files.traverse { file in self.remove(itemPath: "\(folder)/\(file)") }.void()^
+    func remove(from folder: URL, files: String...) -> IO<FileSystemError, ()> {
+        files.traverse { file in self.remove(item: folder.appendingPathComponent(file)) }.void()^
     }
     
-    func removeDirectory(_ output: String) -> IO<FileSystemError, ()> {
-        let outputURL = URL(fileURLWithPath: output, isDirectory: true)
-        return remove(itemPath: outputURL.path)
+    func removeFiles(_ files: URL...) -> IO<FileSystemError, ()> {
+        files.traverse(remove(item:)).void()^
     }
     
-    func removeFiles(_ files: String...) -> IO<FileSystemError, ()> {
-        files.traverse(remove(itemPath:)).void()^
-    }
-    
-    func moveFile(from origin: String, to destination: String) -> IO<FileSystemError, Void> {
-        copy(itemPath: origin, toPath: destination)
+    func moveFile(from origin: URL, to destination: URL) -> IO<FileSystemError, Void> {
+        copy(item: origin, to: destination)
             .followedBy(removeFiles(origin))^
-            .mapLeft { _ in .move(from: origin, to: destination) }
+            .mapLeft { _ in .move(from: origin.path, to: destination.path) }
     }
     
-    func moveFiles(in input: String, to output: String) -> IO<FileSystemError, ()> {
+    func moveFiles(in input: URL, to output: URL) -> IO<FileSystemError, ()> {
         let items = IO<FileSystemError, [String]>.var()
         
         return binding(
-            items <- self.items(atPath: input),
+            items <- self.items(at: input).map { files in files.map { file in file.lastPathComponent } },
                   |<-self.copy(items: items.get, from: input, to: output),
-                  |<-self.removeDirectory(input),
+                  |<-self.remove(item: input),
             yield: ()
-        )^.mapLeft { _ in .move(from: input, to: output) }
+            )^.mapLeft { _ in .move(from: input.path, to: output.path) }
     }
     
-    func rename(_ newName: String, itemAt: String) -> IO<FileSystemError, ()> {
-        moveFile(from: itemAt, to: "\(itemAt.parentPath)/\(newName)")
+    func rename(_ newName: String, itemAt: URL) -> IO<FileSystemError, ()> {
+        moveFile(from: itemAt, to: itemAt.deletingLastPathComponent().appendingPathComponent(newName))
     }
 }

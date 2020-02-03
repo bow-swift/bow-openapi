@@ -1,5 +1,6 @@
 //  Copyright © 2019 The Bow Authors.
 
+import Foundation
 import Bow
 import BowEffects
 
@@ -15,7 +16,7 @@ class ClientGeneratorMock: ClientGenerator {
         self.shouldFail = shouldFail
     }
     
-    func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    func generate(moduleName: String, scheme: URL, output: OutputURL, template: URL, log: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { _ in
             self.generateInvoked = true
             let error = APIClientError(operation: "Testing", error: GeneratorError.structure)

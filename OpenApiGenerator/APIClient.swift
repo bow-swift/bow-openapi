@@ -50,16 +50,18 @@ public enum APIClient {
     // MARK: steps
     internal static func createStructure(output: OutputURL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
-            fileSystem.removeDirectory(output.sources.path.parentPath).handleError({ _ in })^
-                      .followedBy(fileSystem.createDirectory(at: output.sources, withIntermediates: true))^
-                      .followedBy(fileSystem.createDirectory(at: output.tests, withIntermediates: true))^
+            let emptyProject = fileSystem.remove(item: output.sources.deletingLastPathComponent()).handleError { _ in }
+            let createSourcesIO = fileSystem.createDirectory(at: output.sources, withIntermediates: true)
+            let createTestsIO = fileSystem.createDirectory(at: output.tests, withIntermediates: true)
+            
+            return emptyProject.followedBy(createSourcesIO).followedBy(createTestsIO)^
                       .mapLeft { _ in APIClientError(operation: "createStructure(output:)", error: GeneratorError.structure) }
         }
     }
     
     internal static func createSwiftPackage(moduleName: String, output: URL, template: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
-            fileSystem.copy(item: "Package.swift", from: template.path, to: output.path)^
+            fileSystem.copy(item: "Package.swift", from: template, to: output)^
         }.followedBy(package(moduleName: moduleName, output: output))^
          .mapError(FileSystemError.toAPIClientError)
     }
@@ -71,9 +73,9 @@ public enum APIClient {
             let package = output.appendingPathComponent("/Package.swift")
             
             return binding(
-                     content <- fileSystem.readFile(atPath: package.path),
+                     content <- fileSystem.readFile(at: package),
                 fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: moduleName)),
-                             |<-fileSystem.write(content: fixedContent.get, toFile: package.path),
+                             |<-fileSystem.write(content: fixedContent.get, toFile: package),
             yield: ())^
         }
     }

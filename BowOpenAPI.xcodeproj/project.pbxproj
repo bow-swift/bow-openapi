@@ -297,7 +297,8 @@
 				8B30B8692348FC1A00E4D852 /* APIConfigTesting.swift */,
 				8B30B86A2348FC1A00E4D852 /* StubURL.swift */,
 			);
-			path = XCTest;
+			name = XCTest;
+			path = Tests/XCTest;
 			sourceTree = "<group>";
 		};
 		8B30B86D2348FC1A00E4D852 /* Sources */ = {
@@ -311,7 +312,8 @@
 				8B30B86F2348FC1A00E4D852 /* APIs */,
 				8B30B8732348FC1A00E4D852 /* Models */,
 			);
-			path = Sources;
+			name = Sources;
+			path = Tests/Sources;
 			sourceTree = "<group>";
 		};
 		8B30B86F2348FC1A00E4D852 /* APIs */ = {

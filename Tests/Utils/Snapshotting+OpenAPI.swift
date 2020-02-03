@@ -8,13 +8,13 @@ extension Snapshotting where Value == URL, Format == String {
     
     static func generated(file focus: String, module: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {
         func environment(named: String) -> Environment {
-            Environment(logPath: "/tmp/test\(named).log", fileSystem: MacFileSystem(), generator: SwaggerClientGenerator())
+            Environment(log: URL(fileURLWithPath: "/tmp/test\(named).log"), fileSystem: MacFileSystem(), generator: SwaggerClientGenerator())
         }
         
         var strategy = Snapshotting<String, String>.lines.pullback { (url: URL) -> String in
             let testName = "\(file.string.filename.removeExtension)-focusIn\(focus.removeExtension)"
             let directory = URL.temp(subfolder: testName)
-            let either = APIClient.bow(moduleName: module, scheme: url.path, output: directory.path, templatePath: URL.templates.path)
+            let either = APIClient.bow(moduleName: module, scheme: url, output: directory, template: URL.templates)
                                   .provide(environment(named: testName))
                                   .unsafeRunSyncEither()
             

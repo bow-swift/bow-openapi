@@ -43,38 +43,38 @@ public class SwaggerClientGenerator: ClientGenerator {
             let apiHelper = output.sources.appendingPathComponent("APIHelper.swift")
             
             return binding(
-                |<-fileSystem.moveFiles(in: swaggerFolder.path, to: output.sources.path),
-                |<-fileSystem.remove(from: output.sources.path, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
-                |<-fileSystem.rename("APIConfiguration.swift", itemAt: apiHelper.path),
+                |<-fileSystem.moveFiles(in: swaggerFolder, to: output.sources),
+                |<-fileSystem.remove(from: output.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration.swift", itemAt: apiHelper),
                 |<-self.copyTestFiles(moduleName: moduleName, template: template, output: output.tests).provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
     
     internal func fixSignatureParameters(filesAt folder: URL) -> EnvIO<FileSystem, APIClientError, ()> {
-        func fixSignatureParameters(toFiles files: [String]) -> EnvIO<FileSystem, FileSystemError, ()> {
+        func fixSignatureParameters(toFiles files: [URL]) -> EnvIO<FileSystem, FileSystemError, ()> {
             files.traverse(fixSignatureParameters(atFile:)).void()^
         }
         
-        func fixSignatureParameters(atFile path: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+        func fixSignatureParameters(atFile file: URL) -> EnvIO<FileSystem, FileSystemError, ()> {
             EnvIO { fileSystem in
                 let content = IO<FileSystemError, String>.var()
                 let fixedContent = IO<FileSystemError, String>.var()
                 
                 return binding(
-                     content <- fileSystem.readFile(atPath: path),
+                     content <- fileSystem.readFile(at: file),
                 fixedContent <- IO.pure(content.get.replacingOccurrences(of: "(, ", with: "(")
                                                    .replacingOccurrences(of: "(,", with: "(")),
-                             |<-fileSystem.write(content: fixedContent.get, toFile: path),
+                             |<-fileSystem.write(content: fixedContent.get, toFile: file),
                 yield: ())
             }
         }
         
         return EnvIO { fileSystem in
-            let items = IO<FileSystemError, [String]>.var()
+            let items = IO<FileSystemError, [URL]>.var()
             
             return binding(
-                items <- fileSystem.items(atPath: folder.path),
+                items <- fileSystem.items(at: folder),
                       |<-fixSignatureParameters(toFiles: items.get).provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
@@ -120,7 +120,7 @@ public class SwaggerClientGenerator: ClientGenerator {
         }
         
         return EnvIO { fileSystem in
-            let items = IO<FileSystemError, [String]>.var()
+            let items = IO<FileSystemError, [URL]>.var()
             let contents = IO<FileSystemError, [String]>.var()
             let headers = IO<FileSystemError, [[String: HeaderValue]]>.var()
             let flattenHeaders = IO<FileSystemError, [String: HeaderValue]>.var()
@@ -128,26 +128,26 @@ public class SwaggerClientGenerator: ClientGenerator {
             let file = IO<FileSystemError, String>.var()
             
             return binding(
-                         items <- fileSystem.items(atPath: folder.path),
-                      contents <- items.get.traverse(fileSystem.readFile(atPath:)),
+                         items <- fileSystem.items(at: folder),
+                      contents <- items.get.traverse(fileSystem.readFile(at:)),
                        headers <- contents.get.traverse(headerInformation),
                 flattenHeaders <- IO.pure(headers.get.combineAll()),
                        helpers <- IO.pure(renderHelpers(headers: flattenHeaders.get)),
-                          file <- fileSystem.readFile(atPath: inFile.path),
-                               |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: inFile.path),
+                          file <- fileSystem.readFile(at: inFile),
+                               |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: inFile),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
     
     internal func removeHeadersDefinition(filesAt folder: URL) -> EnvIO<FileSystem, APIClientError, ()> {
-        func removeHeadersDefinition(atFile file: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+        func removeHeadersDefinition(atFile file: URL) -> EnvIO<FileSystem, FileSystemError, ()> {
             EnvIO { fileSystem in
                 let content = IO<FileSystemError, String>.var()
                 let headers = IO<FileSystemError, String>.var()
                 let contentWithoutHeaders = IO<FileSystemError, String>.var()
                 
                 return binding(
-                                  content <- fileSystem.readFile(atPath: file),
+                                  content <- fileSystem.readFile(at: file),
                                   headers <- IO.pure(content.get.substring(pattern: self.regexHeaders)?.output ?? ""),
                     contentWithoutHeaders <- IO.pure(content.get.clean(headers.get)),
                                           |<-fileSystem.write(content: contentWithoutHeaders.get, toFile: file),
@@ -156,10 +156,10 @@ public class SwaggerClientGenerator: ClientGenerator {
         }
         
         return EnvIO { fileSystem in
-            let items = IO<FileSystemError, [String]>.var()
+            let items = IO<FileSystemError, [URL]>.var()
             
             return binding(
-                items <- fileSystem.items(atPath: folder.path),
+                items <- fileSystem.items(at: folder),
                       |<-items.get.traverse(removeHeadersDefinition(atFile:))^.provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
@@ -170,22 +170,22 @@ public class SwaggerClientGenerator: ClientGenerator {
         
         return EnvIO { fileSystem in
             binding(
-                |<-fileSystem.copy(items: files, from: template.path, to: output.path),
+                |<-fileSystem.copy(items: files, from: template, to: output),
                 |<-files.traverse { filename in self.fixTestFile(moduleName: moduleName, filename: filename, output: output).provide(fileSystem) },
-            yield: ())
+            yield: ())^
         }^
     }
     
     internal func fixTestFile(moduleName: String, filename: String, output: URL) -> EnvIO<FileSystem, FileSystemError, ()> {
         let content = IO<FileSystemError, String>.var()
         let fixedContent = IO<FileSystemError, String>.var()
-        let fileNameURL = output.appendingPathComponent(filename)
+        let file = output.appendingPathComponent(filename)
         
         return EnvIO { fileSystem in
             binding(
-                     content <- fileSystem.readFile(atPath: fileNameURL.path),
+                     content <- fileSystem.readFile(at: file),
                 fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: moduleName)),
-                             |<-fileSystem.write(content: fixedContent.get, toFile: fileNameURL.path),
+                             |<-fileSystem.write(content: fixedContent.get, toFile: file),
             yield: ())
         }
     }

@@ -192,11 +192,11 @@
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B8B19CC23426B83009D195A /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
 		8B8B1C1623436195009D195A /* API+Generators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Generators.swift"; sourceTree = "<group>"; };
 		8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorAPIClientTests.swift; sourceTree = "<group>"; };
 		8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGeneratorMock.swift; sourceTree = "<group>"; };
 		8BA3B6DE23562730005D6278 /* FileSystemMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemMock.swift; sourceTree = "<group>"; };
+		8BADDD0E23E79392006D2204 /* petstore.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = petstore.yaml; sourceTree = "<group>"; };
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
 		8BD0851C23453DAE006D33DE /* Mother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mother.swift; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 		8B8B19BD23426AEF009D195A /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				8B8B19CC23426B83009D195A /* petstore.yaml */,
+				8BADDD0E23E79392006D2204 /* petstore.yaml */,
 				8B30B8672348FC1A00E4D852 /* api */,
 			);
 			path = Fixtures;
@@ -610,7 +610,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
 					8B6B3636234CE1F800D3DE25 = {
@@ -949,6 +949,7 @@
 		8BDE68DE233233CE009342AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
@@ -959,6 +960,7 @@
 		8BDE68DF233233CE009342AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;

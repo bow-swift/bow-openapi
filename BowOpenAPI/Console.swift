@@ -4,7 +4,7 @@ import Foundation
 
 enum Console {
     static func help() -> Never {
-        print("\(SCRIPT_NAME) --name <name> --schema <schema json|yaml> --output <output path>")
+        print("\(SCRIPT_NAME) --name <name> --schema <scheme json|yaml> --output <output path>")
         print("""
 
                     name: name for the output module.

@@ -8,13 +8,14 @@ public class MacFileSystem: FileSystem {
     
     public init() { }
     
-    public func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
-        FileManager.default.createDirectoryIO(atPath: path, withIntermediateDirectories: false)
-            .mapLeft { _ in .create(item: path) }
+    public func createDirectory(at folder: URL, withIntermediates: Bool = false) -> IO<FileSystemError, ()> {
+        FileManager.default.createDirectoryIO(atPath: folder.path, withIntermediateDirectories: withIntermediates)
+                           .mapLeft { _ in .create(item: folder.path) }
     }
     
     public func copy(itemPath atPath: String, toPath: String) -> IO<FileSystemError, ()> {
-        FileManager.default.copyItemIO(atPath: atPath, toPath: toPath)
+        print("File: \(atPath)\nTo:\(toPath)")
+        return FileManager.default.copyItemIO(atPath: atPath, toPath: toPath)
             .mapLeft { _ in .copy(from: atPath, to: toPath) }
     }
     

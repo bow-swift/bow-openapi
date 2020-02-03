@@ -3,12 +3,12 @@
 import Foundation
 
 public struct Environment {
-    let logPath: String
+    let log: URL
     let fileSystem: FileSystem
     let generator: ClientGenerator
     
-    public init(logPath: String, fileSystem: FileSystem, generator: ClientGenerator) {
-        self.logPath = logPath
+    public init(log: URL, fileSystem: FileSystem, generator: ClientGenerator) {
+        self.log = log
         self.fileSystem = fileSystem
         self.generator = generator
     }

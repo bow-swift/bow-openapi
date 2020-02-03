@@ -9,21 +9,24 @@ public class SwaggerClientGenerator: ClientGenerator {
     
     public init() { }
     
-    public func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    public func generate(moduleName: String, scheme: URL, output: OutputURL, template: URL, log: URL) -> EnvIO<FileSystem, APIClientError, ()> {
+        let apiFolder = output.sources.appendingPathComponent("APIs")
+        let apiFile = output.sources.appendingPathComponent("APIs.swift")
+        
         return binding(
-              |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
-              |<-self.reorganizeFiles(moduleName: moduleName, in: outputPath, fromTemplate: templatePath),
-              |<-self.fixSignatureParameters(filesAt: "\(outputPath.sources)/APIs"),
-              |<-self.renderHelpersForHeaders(filesAt: "\(outputPath.sources)/APIs", inFile: "\(outputPath.sources)/APIs.swift"),
-              |<-self.removeHeadersDefinition(filesAt: "\(outputPath.sources)/APIs"),
+              |<-self.swaggerGenerator(scheme: scheme, output: output.sources, template: template, log: log),
+              |<-self.reorganizeFiles(moduleName: moduleName, in: output, fromTemplate: template),
+              |<-self.fixSignatureParameters(filesAt: apiFolder),
+              |<-self.renderHelpersForHeaders(filesAt: apiFolder, inFile: apiFile),
+              |<-self.removeHeadersDefinition(filesAt: apiFolder),
         yield: ())^
     }
     
-    internal func swaggerGenerator(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func swaggerGenerator(scheme: URL, output: URL, template: URL, log: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         func runSwagger() -> IO<APIClientError, ()> {
             IO.invoke {
-                let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"]) { settings in
-                    settings.execution = .log(file: logPath)
+                let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme.path)", "--output", "\(output.path)", "--template-dir", "\(template.path)"]) { settings in
+                    settings.execution = .log(file: log.path)
                 }
                 
                 let hasError = result.exitStatus != 0 || result.stdout.contains("ERROR")
@@ -34,18 +37,21 @@ public class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    internal func reorganizeFiles(moduleName: String, in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func reorganizeFiles(moduleName: String, in output: OutputURL, fromTemplate template: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
-            binding(
-                |<-fileSystem.moveFiles(in: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
-                |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
-                |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
-                |<-self.copyTestFiles(moduleName: moduleName, templatePath: templatePath, outputPath: outputPath.tests).provide(fileSystem),
+            let swaggerFolder = output.sources.appendingPathComponent("SwaggerClient").appendingPathComponent("Classes").appendingPathComponent("Swaggers")
+            let apiHelper = output.sources.appendingPathComponent("APIHelper.swift")
+            
+            return binding(
+                |<-fileSystem.moveFiles(in: swaggerFolder.path, to: output.sources.path),
+                |<-fileSystem.remove(from: output.sources.path, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
+                |<-fileSystem.rename("APIConfiguration.swift", itemAt: apiHelper.path),
+                |<-self.copyTestFiles(moduleName: moduleName, template: template, output: output.tests).provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
     
-    internal func fixSignatureParameters(filesAt path: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func fixSignatureParameters(filesAt folder: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         func fixSignatureParameters(toFiles files: [String]) -> EnvIO<FileSystem, FileSystemError, ()> {
             files.traverse(fixSignatureParameters(atFile:)).void()^
         }
@@ -68,7 +74,7 @@ public class SwaggerClientGenerator: ClientGenerator {
             let items = IO<FileSystemError, [String]>.var()
             
             return binding(
-                items <- fileSystem.items(atPath: path),
+                items <- fileSystem.items(atPath: folder.path),
                       |<-fixSignatureParameters(toFiles: items.get).provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
@@ -76,11 +82,11 @@ public class SwaggerClientGenerator: ClientGenerator {
     
     private var regexHeaders: String { "(?s)(/\\* API.CONFIG.HEADERS.*\n).*(\\*/)" }
     
-    internal func renderHelpersForHeaders(filesAt path: String, inFile output: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func renderHelpersForHeaders(filesAt folder: URL, inFile: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         typealias HeaderValue = (type: String, header: String)
         
         func headerInformation(content: String) -> IO<FileSystemError, [String: HeaderValue]> {
-            guard let plainHeaders = content.substring(pattern: regexHeaders)?.ouput.components(separatedBy: "\n") else {
+            guard let plainHeaders = content.substring(pattern: regexHeaders)?.output.components(separatedBy: "\n") else {
                 return IO.raiseError(FileSystemError.read(file: "::headerInformation"))^
             }
             
@@ -122,18 +128,18 @@ public class SwaggerClientGenerator: ClientGenerator {
             let file = IO<FileSystemError, String>.var()
             
             return binding(
-                         items <- fileSystem.items(atPath: path),
+                         items <- fileSystem.items(atPath: folder.path),
                       contents <- items.get.traverse(fileSystem.readFile(atPath:)),
                        headers <- contents.get.traverse(headerInformation),
                 flattenHeaders <- IO.pure(headers.get.combineAll()),
                        helpers <- IO.pure(renderHelpers(headers: flattenHeaders.get)),
-                          file <- fileSystem.readFile(atPath: output),
-                               |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: output),
+                          file <- fileSystem.readFile(atPath: inFile.path),
+                               |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: inFile.path),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
     
-    internal func removeHeadersDefinition(filesAt path: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func removeHeadersDefinition(filesAt folder: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         func removeHeadersDefinition(atFile file: String) -> EnvIO<FileSystem, FileSystemError, ()> {
             EnvIO { fileSystem in
                 let content = IO<FileSystemError, String>.var()
@@ -142,7 +148,7 @@ public class SwaggerClientGenerator: ClientGenerator {
                 
                 return binding(
                                   content <- fileSystem.readFile(atPath: file),
-                                  headers <- IO.pure(content.get.substring(pattern: self.regexHeaders)?.ouput ?? ""),
+                                  headers <- IO.pure(content.get.substring(pattern: self.regexHeaders)?.output ?? ""),
                     contentWithoutHeaders <- IO.pure(content.get.clean(headers.get)),
                                           |<-fileSystem.write(content: contentWithoutHeaders.get, toFile: file),
                 yield: ())^
@@ -153,34 +159,34 @@ public class SwaggerClientGenerator: ClientGenerator {
             let items = IO<FileSystemError, [String]>.var()
             
             return binding(
-                items <- fileSystem.items(atPath: path),
+                items <- fileSystem.items(atPath: folder.path),
                       |<-items.get.traverse(removeHeadersDefinition(atFile:))^.provide(fileSystem),
             yield: ())^.mapLeft(FileSystemError.toAPIClientError)
         }
     }
     
-    internal func copyTestFiles(moduleName: String, templatePath: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+    internal func copyTestFiles(moduleName: String, template: URL, output: URL) -> EnvIO<FileSystem, FileSystemError, ()> {
         let files = ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"]
         
         return EnvIO { fileSystem in
             binding(
-                |<-fileSystem.copy(items: files, from: templatePath, to: outputPath),
-                |<-files.traverse { file in self.fixTestFile(moduleName: moduleName, fileName: file, outputPath: outputPath).provide(fileSystem) },
-                yield: ())
+                |<-fileSystem.copy(items: files, from: template.path, to: output.path),
+                |<-files.traverse { filename in self.fixTestFile(moduleName: moduleName, filename: filename, output: output).provide(fileSystem) },
+            yield: ())
         }^
     }
     
-    internal func fixTestFile(moduleName: String, fileName: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+    internal func fixTestFile(moduleName: String, filename: String, output: URL) -> EnvIO<FileSystem, FileSystemError, ()> {
         let content = IO<FileSystemError, String>.var()
         let fixedContent = IO<FileSystemError, String>.var()
-        let path = outputPath + "/" + fileName
+        let fileNameURL = output.appendingPathComponent(filename)
         
         return EnvIO { fileSystem in
             binding(
-                content <- fileSystem.readFile(atPath: path),
+                     content <- fileSystem.readFile(atPath: fileNameURL.path),
                 fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: moduleName)),
-                |<-fileSystem.write(content: fixedContent.get, toFile: path),
-                yield: ())
+                             |<-fileSystem.write(content: fixedContent.get, toFile: fileNameURL.path),
+            yield: ())
         }
     }
 }

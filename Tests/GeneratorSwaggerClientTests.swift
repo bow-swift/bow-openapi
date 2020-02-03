@@ -28,7 +28,6 @@ class GeneratorSwaggerClientTests: XCTestCase {
     
     
     // MARK: - Headers operations
-    
     func testRemoveHeaderSection_ReturnFileUpdated() {
         let fileURL = output.appendingPathComponent("TestRemoveHeaderSection_Valid.swift")
         let contentFile = """
@@ -39,7 +38,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                           """
 
         try? contentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(fileSystem).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(fileSystem).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -57,7 +56,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                                """
 
         try? extraContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(fileSystem).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(fileSystem).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -69,7 +68,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
         let noContentFile = "/* \(Constants.headerKey) */"
 
         try? noContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(fileSystem).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(fileSystem).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -86,7 +85,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                                  """
 
         try? invalidContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(fileSystem).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(fileSystem).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)

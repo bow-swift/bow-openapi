@@ -5,7 +5,7 @@ import Bow
 import BowEffects
 
 public protocol FileSystem {
-    func createDirectory(atPath: String) -> IO<FileSystemError, ()>
+    func createDirectory(at folder: URL, withIntermediates: Bool) -> IO<FileSystemError, ()>
     func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
     func remove(itemPath: String) -> IO<FileSystemError, ()>
     func items(atPath path: String) -> IO<FileSystemError, [String]>

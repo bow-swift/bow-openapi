@@ -440,6 +440,16 @@
 
 <p>Bow OpenAPI is a command line tool to generate a network client written in Swift from an OpenAPI specification that uses the environmental effect type <code class="highlighter-rouge">EnvIO</code> from <a href="https://bow-swift.io/">Bow</a>. Its main features are:</p>
 
+<p>💡 <a href="https://openapi.bow-swift.io/docs/generation-examples/basic-generation/">Automatic generation</a> of network clients written in Swift from an OpenAPI / Swagger specification file, in YAML or JSON formats.</p>
+
+<p>📦 Provision of a <a href="https://openapi.bow-swift.io/docs/consuming-generated-code/adding-the-module-to-your-project/">Swift Package</a> that can be consumed from Swift Package Manager.</p>
+
+<p>🔨 <a href="https://openapi.bow-swift.io/docs/quick-start/integration-in-xcode/">Integration with Xcode</a> as a build phase to always keep your code in sync with your specification.</p>
+
+<p>💥 Usage of <a href="https://openapi.bow-swift.io/docs/consuming-generated-code/running-a-network-request/">Environmental Effects</a> from <a href="https://bow-swift.io">Bow</a> to suspend side-effects, and improve their composition and testability.</p>
+
+<p>✅ <a href="https://openapi.bow-swift.io/docs/consuming-generated-code/testing-your-network-calls/">Enhanced test support</a> for integration or end-to-end test with no mocks.</p>
+
 <h2 id="parsing-of-openapi-specifications">Parsing of OpenAPI specifications</h2>
 
 <p>Bow OpenAPI is able to consume OpenAPI / Swagger specifications as either JSON or YAML files. It relies on the <code class="highlighter-rouge">swagger-codegen</code> command line tool to parse these files, and then provides a set of templates to customize the output of the tool, together with an additional processing of the result.</p>

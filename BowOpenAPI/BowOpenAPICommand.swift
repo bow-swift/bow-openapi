@@ -12,6 +12,6 @@ struct BowOpenAPICommand: ParsableCommand {
     @Option(help: "Path to the OpenAPI/Swagger schema. ex. `/home/schema-openapi.json`.")
     var schema: String
     
-    @Option(help: "The path where bow client will be generate. ex. `/home`.")
+    @Option(help: "Path where the Swift package containing the network client will be generated. ex. `/home`.")
     var output: String
 }

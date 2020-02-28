@@ -10,6 +10,7 @@ let package = Package(
 
     dependencies: [
         .package(url: "https://github.com/bow-swift/bow.git", .exact("0.6.0")),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.0.1"),
         .package(url: "https://github.com/bow-swift/Swiftline.git", .exact("0.5.3"))
     ],
 
@@ -19,7 +20,7 @@ let package = Package(
                 path: "OpenApiGenerator"),
 
         .target(name: "CLI",
-                dependencies: ["OpenApiGenerator"],
+                dependencies: ["OpenApiGenerator", "ArgumentParser"],
                 path: "BowOpenAPI")
     ]
 )

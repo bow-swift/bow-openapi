@@ -9,9 +9,9 @@ struct BowOpenAPICommand: ParsableCommand {
     @Option(help: "Name for the output module.")
     var name: String
     
-    @Option(help: ArgumentHelp("Path to the OpenAPI/Swagger schema. ex. `/home/schema-openapi.json`.", valueName: "json | yaml"))
+    @Option(help: ArgumentHelp("Path to the OpenAPI/Swagger schema. ex. `/home/schema-openapi.json`.", valueName: "json|yaml"))
     var schema: String
     
-    @Option(help: "Path where the Swift package containing the network client will be generated. ex. `/home`.")
+    @Option(help: ArgumentHelp("Path where the Swift package containing the network client will be generated. ex. `/home`.", valueName: "output path"))
     var output: String
 }

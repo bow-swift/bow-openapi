@@ -9,7 +9,7 @@ struct BowOpenAPICommand: ParsableCommand {
     @Option(help: "Name for the output module.")
     var name: String
     
-    @Option(help: "The path to schema open api. ex. `/home/schema-openapi.json`.")
+    @Option(help: "Path to the OpenAPI/Swagger schema. ex. `/home/schema-openapi.json`.")
     var schema: String
     
     @Option(help: "The path where bow client will be generate. ex. `/home`.")

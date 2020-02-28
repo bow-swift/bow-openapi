@@ -7,16 +7,18 @@ let prodEnv = Environment(logPath: "/tmp/bow-openapi.log",
                           fileSystem: MacFileSystem(),
                           generator: SwaggerClientGenerator())
 
-func main() {
-    guard let arguments = CommandLine.input else { Console.help() }
-    guard FileManager.default.fileExists(atPath: arguments.schema) else { Console.exit(failure: "received invalid schema path") }
-    
-    APIClient.bow(moduleName: arguments.name, scheme: arguments.schema, output: arguments.output)
-             .provide(prodEnv)
-             .unsafeRunSyncEither()
-             .mapLeft { apiError in "could not generate api client for schema '\(arguments.schema)'\ninformation: \(apiError)" }
-             .fold(Console.exit(failure:), Console.exit(success:))
+extension BowOpenAPICommand {
+    func run() throws {
+        guard FileManager.default.fileExists(atPath: schema) else {
+            Console.exit(failure: "received invalid schema path")
+        }
+        
+        APIClient.bow(moduleName: name, scheme: schema, output: output)
+            .provide(prodEnv)
+            .unsafeRunSyncEither()
+            .mapLeft { apiError in "could not generate api client for schema '\(schema)'\ninformation: \(apiError)" }
+            .fold(Console.exit(failure:), Console.exit(success:))
+    }
 }
 
-// #: - MAIN <launcher>
-main()
+BowOpenAPICommand.main()

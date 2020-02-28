@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1E946BF92409121C005A3A4B /* BowOpenAPICommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E946BF82409121C005A3A4B /* BowOpenAPICommand.swift */; };
+		1E946BFC24091347005A3A4B /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 1E946BFB24091347005A3A4B /* ArgumentParser */; };
 		8B017DA52347AC86003975CF /* APIClientSendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD085222345E9BD006D33DE /* APIClientSendTests.swift */; };
 		8B30B8632348FBFD00E4D852 /* API+XCTest.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8B017D7D2347A373003975CF /* API+XCTest.swift */; };
 		8B30B8642348FBFD00E4D852 /* API+Error.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8B30B8612348FB7600E4D852 /* API+Error.swift */; };
@@ -94,7 +96,6 @@
 		8BD90F4223328DAF00281786 /* README.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6913233280FF009342AD /* README.mustache */; };
 		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
 		8BDE68ED23326E42009342AD /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Console.swift */; };
-		8BDE691B23328538009342AD /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE691A23328538009342AD /* CommandLine.swift */; };
 		8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */; };
 		8BFE7E43234E11FA003E97BF /* URL+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E42234E11FA003E97BF /* URL+Paths.swift */; };
 		8BFE7E4E234E1732003E97BF /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4D234E1732003E97BF /* Bow */; };
@@ -163,6 +164,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1E946BF82409121C005A3A4B /* BowOpenAPICommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowOpenAPICommand.swift; sourceTree = "<group>"; };
 		8B017D7D2347A373003975CF /* API+XCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+XCTest.swift"; sourceTree = "<group>"; };
 		8B22DD6B2338D2000000CED9 /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		8B30B8612348FB7600E4D852 /* API+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Error.swift"; sourceTree = "<group>"; };
@@ -230,7 +232,6 @@
 		8BDE6915233280FF009342AD /* modelArray.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelArray.mustache; sourceTree = "<group>"; };
 		8BDE6916233280FF009342AD /* Configuration.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Configuration.mustache; sourceTree = "<group>"; };
 		8BDE6917233280FF009342AD /* JSONEncodingHelper.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JSONEncodingHelper.mustache; sourceTree = "<group>"; };
-		8BDE691A23328538009342AD /* CommandLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLine.swift; sourceTree = "<group>"; };
 		8BDE691D233286CC009342AD /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		8BDEB0B32340D5850095A6E0 /* FileSystemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemError.swift; sourceTree = "<group>"; };
 		8BDEB0B52340DAAF0095A6E0 /* GeneratorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorError.swift; sourceTree = "<group>"; };
@@ -272,6 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E946BFC24091347005A3A4B /* ArgumentParser in Frameworks */,
 				8BC6CF922350DF0400163BD2 /* libOpenApiGenerator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,7 +464,7 @@
 			children = (
 				8BDE68D9233233CE009342AD /* main.swift */,
 				8BDE68EC23326E42009342AD /* Console.swift */,
-				8BDE691A23328538009342AD /* CommandLine.swift */,
+				1E946BF82409121C005A3A4B /* BowOpenAPICommand.swift */,
 			);
 			path = BowOpenAPI;
 			sourceTree = "<group>";
@@ -598,6 +600,7 @@
 			);
 			name = BowOpenAPI;
 			packageProductDependencies = (
+				1E946BFB24091347005A3A4B /* ArgumentParser */,
 			);
 			productName = "Bow OpenAPI";
 			productReference = 8BDE68D6233233CE009342AD /* bow-openapi */;
@@ -641,6 +644,7 @@
 				8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */,
 				8B631A54234CD05F0045BF05 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				8BFE7E46234E1720003E97BF /* XCRemoteSwiftPackageReference "bow" */,
+				1E946BFA24091347005A3A4B /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -739,7 +743,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDE691B23328538009342AD /* CommandLine.swift in Sources */,
+				1E946BF92409121C005A3A4B /* BowOpenAPICommand.swift in Sources */,
 				8BDE68ED23326E42009342AD /* Console.swift in Sources */,
 				8BDE68DA233233CE009342AD /* main.swift in Sources */,
 			);
@@ -1017,6 +1021,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1E946BFA24091347005A3A4B /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 		8B631A54234CD05F0045BF05 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
@@ -1052,6 +1064,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1E946BFB24091347005A3A4B /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E946BFA24091347005A3A4B /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
 		8B631A55234CD05F0045BF05 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B631A54234CD05F0045BF05 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;

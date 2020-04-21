@@ -12,7 +12,7 @@ import BowEffects
 extension API {
     static func send<T: Codable>(request: URLRequest, session: URLSession, decoder: ResponseDecoder) -> IO<API.HTTPError, T> {
         session.dataTaskIO(with: request)
-               .mapLeft { error in .other(error: error) }
+               .mapError { error in .other(error: error) }
                .flatMap { response, data in
                     guard let httpResponse = response as? HTTPURLResponse else {
                         return IO.raiseError(.malformedURL(response: response, data: data))
@@ -20,7 +20,7 @@ extension API {
                   
                     switch httpResponse.statusCode {
                     case 200 ..< 300:
-                        return decoder.safeDecode(T.self, from: data).mapLeft { _ in .parsingError(response: response, data: data) }
+                        return decoder.safeDecode(T.self, from: data).mapError { _ in .parsingError(response: response, data: data) }
                     case 400:
                         return IO.raiseError(.badRequest(response: response, data: data))
                     case 403:

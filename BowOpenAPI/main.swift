@@ -2,6 +2,8 @@
 
 import Foundation
 import OpenApiGenerator
+import Bow
+import BowEffects
 
 let prodEnv = Environment(logPath: "/tmp/bow-openapi.log",
                           fileSystem: MacFileSystem(),
@@ -9,15 +11,28 @@ let prodEnv = Environment(logPath: "/tmp/bow-openapi.log",
 
 extension BowOpenAPICommand {
     func run() throws {
-        guard FileManager.default.fileExists(atPath: schema) else {
-            Console.exit(failure: "received invalid schema path")
-        }
-        
-        APIClient.bow(moduleName: name, scheme: schema, output: output)
-            .provide(prodEnv)
-            .unsafeRunSyncEither()
-            .mapLeft { apiError in "could not generate api client for schema '\(schema)'\ninformation: \(apiError)" }
-            .fold(Console.exit(failure:), Console.exit(success:))
+        try run().provide(prodEnv).unsafeRunSync()
+    }
+
+    func run() -> EnvIO<Environment, APIClientError, Void> {
+        APIClient.bow(moduleName: name, schema: schema, output: output)
+            .reportStatus(
+                { apiError in
+                    """
+                    Could not generate API client:
+                    • SCHEMA '\(self.schema)'
+                    
+                    \(apiError)
+                    
+                    \(self.verbose ?
+                    "   • LOG \n\n\(prodEnv.logPath.contentOfFile)\n" :
+                    "   • LOG: \(prodEnv.logPath)")
+                    """
+                },
+                { success in
+                    "\(success)"
+                }
+            ).finish()
     }
 }
 

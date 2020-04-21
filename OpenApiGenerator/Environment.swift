@@ -3,9 +3,9 @@
 import Foundation
 
 public struct Environment {
-    let logPath: String
-    let fileSystem: FileSystem
-    let generator: ClientGenerator
+    public let logPath: String
+    public let fileSystem: FileSystem
+    public let generator: ClientGenerator
     
     public init(logPath: String, fileSystem: FileSystem, generator: ClientGenerator) {
         self.logPath = logPath

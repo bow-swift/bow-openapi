@@ -44,7 +44,7 @@ class DefaultAPIClient: DefaultAPI {
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
-            let parameters: [String: Any]? = nil
+            
             let components = URLComponents(string: path)
             
             // request configuration
@@ -56,8 +56,7 @@ class DefaultAPIClient: DefaultAPI {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addHeaders(apiConfig.headers)
-            request.setParameters(parameters)
-
+            
             // launch request
             return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }

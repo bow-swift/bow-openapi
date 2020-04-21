@@ -19,17 +19,18 @@ public extension API {
 
 /// Protocol to define networking operations in `default`
 public protocol DefaultAPI {
-    func _testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse>
+    func _postPet(petId: Int?) -> EnvIO<API.Config, API.HTTPError, NoResponse>
 }
 
 extension DefaultAPI {
 
     /**
 
+     - Parameter petId: (form)  (optional)
      - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`.
      */
-    public func testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
-        _testSchema()
+    public func postPet(petId: Int? = nil) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+        _postPet(petId: petId)
     }
 }
 
@@ -37,25 +38,29 @@ extension DefaultAPI {
 /// An HTTP client to perform networking operations related to `default`
 class DefaultAPIClient: DefaultAPI {
 
-    func _testSchema() -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _postPet(petId: Int?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             // build request path
             let resourcePath = "/pet"
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
-            
+            let formParams: [String: Any?] = [
+                                "petId": petId?.encodeToJSON()
+            ]
+            let parameters: [String: Any]? = formParams.encodingValues
             let components = URLComponents(string: path)
             
             // request configuration
             guard let url = components?.url ?? URL(string: path) else {
-                let data = "DefaultAPI.testSchema.URL".data(using: .utf8)!
+                let data = "DefaultAPI.postPet.URL".data(using: .utf8)!
                 return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
             }
 
             var request = URLRequest(url: url)
-            request.httpMethod = "GET"
+            request.httpMethod = "POST"
             request.addHeaders(apiConfig.headers)
+            request.setWWWFormParameters(parameters)
             
             // launch request
             return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)

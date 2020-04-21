@@ -9,8 +9,7 @@ import Foundation
 
 extension URLRequest {
     mutating func addHeaders(_ headers: [String: String]) {
-        headers.forEach { (arg) in
-            let (key, value) = arg
+        headers.forEach { key, value in
             self.setValue(value, forHTTPHeaderField: key)
         }
     }
@@ -20,11 +19,30 @@ extension URLRequest {
         httpBody = body
         setValue(String(body.count), forHTTPHeaderField: "Content-Length")
     }
+    
+    mutating func setWWWFormParameters(_ parameters: [String: Any]?) {
+        guard let encodedValues = parameters?.encodingValues,
+              let wwwFormData = encodedValues.wwwFormData else { return }
+        httpBody = wwwFormData
+        setValue(String(wwwFormData.count), forHTTPHeaderField: "Content-Length")
+    }
+    
+    mutating func setMultipartParameters(_ parameters: [String: Any]?) {
+        fatalError("Bow OpenAPI does not support content type multipart/form-data")
+    }
 }
 
 extension Dictionary where Key == String {
     var jsonData: Data? {
         try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+    }
+}
+
+extension Dictionary where Key == String, Value == String {
+    var wwwFormData: Data? {
+        map { key, value in "\(key)=\(value)" }
+            .joined(separator: "&")
+            .data(using: .utf8)
     }
 }
 
@@ -38,20 +56,26 @@ extension Dictionary {
 
 extension Dictionary where Key == String, Value == Any? {
     var encodingValues: [String: String] {
-        Dictionary<String, String>(fromTuples: self.compactMap { item -> (String, String)? in
-            guard let value = item.value, "\(value)" != "nil" else { return nil }
-            
-            if let collection = value as? [Any] {
-                return (item.key, collection.compactMap { "\($0)" }.joined(separator: ","))
-            } else {
-                return (item.key, "\(value)")
-            }
-        })
+        compactMapValues { $0 }.encodingValues
     }
     
     var toQueryItems: [URLQueryItem]? {
         let destination = self.encodingValues.map(URLQueryItem.init)
         return destination.isEmpty ? nil : destination
+    }
+}
+
+extension Dictionary where Key == String, Value == Any {
+    var encodingValues: [String: String] {
+        Dictionary<String, String>(fromTuples: self.compactMap { item -> (String, String)? in
+            guard "\(item.value)" != "nil" else { return nil }
+            
+            if let collection = item.value as? [Any] {
+                return (item.key, collection.compactMap { "\($0)" }.joined(separator: ","))
+            } else {
+                return (item.key, "\(item.value)")
+            }
+        })
     }
 }
 

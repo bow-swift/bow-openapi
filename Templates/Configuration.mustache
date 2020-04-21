@@ -50,9 +50,10 @@ extension API {
 extension API {
     public enum ContentType: String, CaseIterable {
         case json = "application/json"
+        case wwwFormUrlencoded = "application/x-www-form-urlencoded"
         
         var headers: [String: String] {
-            return ["Accept": rawValue,
+            return ["Accept": "*/*",
                     "Content-Type": rawValue]
         }
     }

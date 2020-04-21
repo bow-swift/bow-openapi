@@ -61,7 +61,7 @@ class DefaultAPIClient: DefaultAPI {
             request.httpMethod = "GET"
             request.addHeaders(apiConfig.headers)
             request.setParameters(parameters)
-
+            
             // launch request
             return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }

@@ -63,13 +63,13 @@ class {{classname}}Client: {{classname}} {
 
     func _{{operationId}}({{#allParams}}{{^isHeaderParam}}, {{paramName}}: {{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}{{{datatypeWithEnum}}}_{{operationId}}{{/isContainer}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{/isEnum}}{{^required}}?{{/required}}{{/isHeaderParam}}{{/allParams}}) -> EnvIO<API.Config, API.HTTPError, {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}NoResponse{{/returnType}}> {
         return EnvIO { apiConfig in
-            {{#bodyParam}}
+            {{#bodyParam}}{{#allParams.0}}
             guard let parameters = {{paramName}}{{^required}}?{{/required}}.encodingParameters else {
                 let error = API.HTTPError.other(error: NSError(domain: "{{classname}}.{{operationId}}.Parameter.{{paramName}}", code: 69, userInfo: nil))
                 return IO.raiseError(.other(error: error))
             }
 
-            {{/bodyParam}}
+            {{/allParams.0}}{{/bodyParam}}
             // build request path
             {{^pathParams}}let{{/pathParams}}{{#pathParams}}{{^secondaryParam}}var{{/secondaryParam}}{{/pathParams}} resourcePath = "{{{path}}}"{{#pathParams}}
             let {{paramName}}PreEscape = "\({{paramName}}{{#isEnum}}{{#isContainer}}{{{dataType}}}{{/isContainer}}{{^isContainer}}.rawValue{{/isContainer}}{{/isEnum}})"
@@ -78,12 +78,12 @@ class {{classname}}Client: {{classname}} {
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
-            {{^bodyParam}}{{#hasFormParams}}let formParams: [String: Any?] = [
+            {{^bodyParam}}{{#allParams.0}}{{#hasFormParams}}let formParams: [String: Any?] = [
                 {{#formParams}}
                 {{> _param}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
             ]
-            let parameters: [String: Any]? = formParams.encodingValues{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/bodyParam}}{{#hasQueryParams}}
+            let parameters: [String: Any]? = formParams.encodingValues{{/hasFormParams}}{{^hasFormParams}}let parameters: [String: Any]? = nil{{/hasFormParams}}{{/allParams.0}}{{/bodyParam}}{{#hasQueryParams}}
             var components = URLComponents(string: path)
             components?.queryItems = [
             {{#queryParams}}
@@ -102,9 +102,11 @@ class {{classname}}Client: {{classname}} {
 
             var request = URLRequest(url: url)
             request.httpMethod = "{{httpMethod}}"
-            request.addHeaders(apiConfig.headers)
-            request.setParameters(parameters)
-
+            request.addHeaders(apiConfig.headers){{#allParams.0}}{{#vendorExtensions}}{{^x-is-form-param}}
+            request.setParameters(parameters){{/x-is-form-param}}{{#x-is-form-param}}{{^x-is-multipart}}
+            request.setWWWFormParameters(parameters){{/x-is-multipart}}{{#x-is-multipart}}
+            request.setMultipartParameters(parameters){{/x-is-multipart}}{{/x-is-form-param}}{{/vendorExtensions}}{{/allParams.0}}
+            
             // launch request
             return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }

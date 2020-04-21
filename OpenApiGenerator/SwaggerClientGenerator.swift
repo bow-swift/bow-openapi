@@ -41,7 +41,7 @@ public class SwaggerClientGenerator: ClientGenerator {
                 |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
                 |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
                 |<-self.copyTestFiles(moduleName: moduleName, templatePath: templatePath, outputPath: outputPath.tests).provide(fileSystem),
-            yield: ())^.mapLeft(FileSystemError.toAPIClientError)
+            yield: ())^.mapError(FileSystemError.toAPIClientError)
         }
     }
     
@@ -70,7 +70,7 @@ public class SwaggerClientGenerator: ClientGenerator {
             return binding(
                 items <- fileSystem.items(atPath: path),
                       |<-fixSignatureParameters(toFiles: items.get).provide(fileSystem),
-            yield: ())^.mapLeft(FileSystemError.toAPIClientError)
+            yield: ())^.mapError(FileSystemError.toAPIClientError)
         }
     }
     
@@ -129,7 +129,7 @@ public class SwaggerClientGenerator: ClientGenerator {
                        helpers <- IO.pure(renderHelpers(headers: flattenHeaders.get)),
                           file <- fileSystem.readFile(atPath: output),
                                |<-fileSystem.write(content: "\(file.get)\n\n\(helpers.get)", toFile: output),
-            yield: ())^.mapLeft(FileSystemError.toAPIClientError)
+            yield: ())^.mapError(FileSystemError.toAPIClientError)
         }
     }
     
@@ -155,7 +155,7 @@ public class SwaggerClientGenerator: ClientGenerator {
             return binding(
                 items <- fileSystem.items(atPath: path),
                       |<-items.get.traverse(removeHeadersDefinition(atFile:))^.provide(fileSystem),
-            yield: ())^.mapLeft(FileSystemError.toAPIClientError)
+            yield: ())^.mapError(FileSystemError.toAPIClientError)
         }
     }
     

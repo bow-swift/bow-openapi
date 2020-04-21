@@ -4,6 +4,7 @@ import Foundation
 
 /// General information about the errors in the generator
 enum GeneratorError: Error {
+    case invalidParameters
     case templateNotFound
     case structure
     case generator
@@ -12,6 +13,8 @@ enum GeneratorError: Error {
 extension GeneratorError: CustomStringConvertible {
     var description: String {
         switch self {
+        case .invalidParameters:
+            return "received invalid parameters"
         case .templateNotFound:
             return "templates for generating Bow client have not been found"
         case .structure:

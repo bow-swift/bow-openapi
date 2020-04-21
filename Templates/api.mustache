@@ -102,9 +102,11 @@ class {{classname}}Client: {{classname}} {
 
             var request = URLRequest(url: url)
             request.httpMethod = "{{httpMethod}}"
-            request.addHeaders(apiConfig.headers)
-            request.setParameters(parameters)
-
+            request.addHeaders(apiConfig.headers){{#allParams}}{{#vendorExtensions}}{{^x-is-form-param}}
+            request.setParameters(parameters){{/x-is-form-param}}{{#x-is-form-param}}{{^x-is-multipart}}
+            request.setWWWFormParameters(parameters){{/x-is-multipart}}{{#x-is-multipart}}
+            request.setMultipartParameters(parameters){{/x-is-multipart}}{{/x-is-form-param}}{{/vendorExtensions}}{{/allParams}}
+            
             // launch request
             return API.send(request: request, session: apiConfig.session, decoder: apiConfig.decoder)
         }

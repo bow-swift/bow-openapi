@@ -9,14 +9,10 @@ let prodEnv = Environment(logPath: "/tmp/bow-openapi.log",
 
 extension BowOpenAPICommand {
     func run() throws {
-        guard FileManager.default.fileExists(atPath: schema) else {
-            Console.exit(failure: "received invalid schema path")
-        }
-        
-        APIClient.bow(moduleName: name, scheme: schema, output: output)
+        APIClient.bow(moduleName: name, schema: schema, output: output)
             .provide(prodEnv)
             .unsafeRunSyncEither()
-            .mapLeft { apiError in "could not generate api client for schema '\(schema)'\ninformation: \(apiError)" }
+            .mapLeft { apiError in "could not generate api client for schema '\(schema)'\ninformation: \(apiError)\nlog: \(prodEnv.logPath)" }
             .fold(Console.exit(failure:), Console.exit(success:))
     }
 }

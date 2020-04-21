@@ -5,12 +5,16 @@ import Bow
 import BowEffects
 
 public enum APIClient {
-    public static func bow(moduleName: String, scheme: String, output: String) -> EnvIO<Environment, APIClientError, String> {
+    public static func bow(moduleName: String, schema: String, output: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
             let template = IO<APIClientError, String>.var()
+            let schema = schema.expandingTildeInPath
+            let output = output.expandingTildeInPath
+            
             return binding(
+                         |<-validate(schema: schema),
                 template <- getTemplatePath(),
-                         |<-bow(moduleName: moduleName, scheme: scheme, output: output, templatePath: template.get).provide(env),
+                         |<-bow(moduleName: moduleName, scheme: schema, output: output, templatePath: template.get).provide(env),
             yield: "RENDER SUCCEEDED")^
         }
     }
@@ -32,6 +36,15 @@ public enum APIClient {
     }
     
     // MARK: attributes
+    private static func validate(schema: String) -> IO<APIClientError, Void> {
+        IO.invoke {
+            guard FileManager.default.fileExists(atPath: schema) else {
+                throw APIClientError(operation: "validate(schema:output:)",
+                                    error: GeneratorError.invalidParameters)
+            }
+        }
+    }
+    
     private static func getTemplatePath() -> IO<APIClientError, String> {
         let libPath = "/usr/local/lib"
         let templateSource1 = Bundle(path: "bow/openapi/templates").toOption()

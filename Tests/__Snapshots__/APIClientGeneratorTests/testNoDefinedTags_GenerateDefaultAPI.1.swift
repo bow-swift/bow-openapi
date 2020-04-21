@@ -45,7 +45,7 @@ class DefaultAPIClient: DefaultAPI {
             let path = apiConfig.basePath + resourcePath
             
             // make parameters
-            let parameters: [String: Any]? = nil
+            
             let components = URLComponents(string: path)
             
             // request configuration

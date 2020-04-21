@@ -10,22 +10,22 @@ public class MacFileSystem: FileSystem {
     
     public func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
         FileManager.default.createDirectoryIO(atPath: path, withIntermediateDirectories: false)
-            .mapLeft { _ in .create(item: path) }
+            .mapError { _ in .create(item: path) }
     }
     
     public func copy(itemPath atPath: String, toPath: String) -> IO<FileSystemError, ()> {
         FileManager.default.copyItemIO(atPath: atPath, toPath: toPath)
-            .mapLeft { _ in .copy(from: atPath, to: toPath) }
+            .mapError { _ in .copy(from: atPath, to: toPath) }
     }
     
     public func remove(itemPath: String) -> IO<FileSystemError, ()> {
         FileManager.default.removeItemIO(atPath: itemPath)
-            .mapLeft { _ in .remove(item: itemPath) }
+            .mapError { _ in .remove(item: itemPath) }
     }
     
     public func items(atPath path: String) -> IO<FileSystemError, [String]> {
         FileManager.default.contentsOfDirectoryIO(atPath: path)
-                           .mapLeft { _ in .get(from: path) }
+                           .mapError { _ in .get(from: path) }
                            .map { files in files.map({ file in "\(path)/\(file)"}) }^
     }
     

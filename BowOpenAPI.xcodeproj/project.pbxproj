@@ -65,12 +65,12 @@
 		8B7E06652354E299003ED8E2 /* Package.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8B7E06642354E014003ED8E2 /* Package.swift */; };
 		8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */; };
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
-		8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B1C1323435AC0009D195A /* SwiftCheck */; };
 		8B8B1C1723436195009D195A /* API+Generators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1C1623436195009D195A /* API+Generators.swift */; };
 		8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */; };
 		8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */; };
 		8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
 		8BA3B6DF23562730005D6278 /* FileSystemMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA3B6DE23562730005D6278 /* FileSystemMock.swift */; };
+		8BB2AEF5244F23510022A4D1 /* String+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2AEF4244F23510022A4D1 /* String+File.swift */; };
 		8BC6CF922350DF0400163BD2 /* libOpenApiGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6B3637234CE1F800D3DE25 /* libOpenApiGenerator.a */; };
 		8BD0851D23453DAE006D33DE /* Mother.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD0851C23453DAE006D33DE /* Mother.swift */; };
 		8BD90F2E23328DAF00281786 /* _param.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6909233280FE009342AD /* _param.mustache */; };
@@ -95,7 +95,7 @@
 		8BD90F4123328DAF00281786 /* Podspec.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6912233280FE009342AD /* Podspec.mustache */; };
 		8BD90F4223328DAF00281786 /* README.mustache in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BDE6913233280FF009342AD /* README.mustache */; };
 		8BDE68DA233233CE009342AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68D9233233CE009342AD /* main.swift */; };
-		8BDE68ED23326E42009342AD /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Console.swift */; };
+		8BDE68ED23326E42009342AD /* Kleisli+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE68EC23326E42009342AD /* Kleisli+Console.swift */; };
 		8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */; };
 		8BFE7E43234E11FA003E97BF /* URL+Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFE7E42234E11FA003E97BF /* URL+Paths.swift */; };
 		8BFE7E4E234E1732003E97BF /* Bow in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFE7E4D234E1732003E97BF /* Bow */; };
@@ -199,6 +199,7 @@
 		8BA3B6D1235613AD005D6278 /* GeneratorAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorAPIClientTests.swift; sourceTree = "<group>"; };
 		8BA3B6D4235620B8005D6278 /* ClientGeneratorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGeneratorMock.swift; sourceTree = "<group>"; };
 		8BA3B6DE23562730005D6278 /* FileSystemMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystemMock.swift; sourceTree = "<group>"; };
+		8BB2AEF4244F23510022A4D1 /* String+File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+File.swift"; sourceTree = "<group>"; };
 		8BD0851923453A1F006D33DE /* StubURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubURL.swift; sourceTree = "<group>"; };
 		8BD0851C23453DAE006D33DE /* Mother.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mother.swift; sourceTree = "<group>"; };
 		8BD085222345E9BD006D33DE /* APIClientSendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSendTests.swift; sourceTree = "<group>"; };
@@ -210,7 +211,7 @@
 		8BD90F4423328E2600281786 /* String+Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		8BDE68D6233233CE009342AD /* bow-openapi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bow-openapi"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BDE68D9233233CE009342AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		8BDE68EC23326E42009342AD /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		8BDE68EC23326E42009342AD /* Kleisli+Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kleisli+Console.swift"; sourceTree = "<group>"; };
 		8BDE6903233280FE009342AD /* modelEnum.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelEnum.mustache; sourceTree = "<group>"; };
 		8BDE6904233280FE009342AD /* Extensions.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Extensions.mustache; sourceTree = "<group>"; };
 		8BDE6905233280FE009342AD /* modelObject.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modelObject.mustache; sourceTree = "<group>"; };
@@ -264,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */,
-				8B8B1C1423435AC0009D195A /* SwiftCheck in Frameworks */,
 				8B631A56234CD05F0045BF05 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +414,15 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		8BB2AEF3244F23350022A4D1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8BDE68EC23326E42009342AD /* Kleisli+Console.swift */,
+				8BB2AEF4244F23510022A4D1 /* String+File.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		8BC6CF8E2350D9FE00163BD2 /* OpenApiGenerator */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,9 +471,9 @@
 		8BDE68D8233233CE009342AD /* BowOpenAPI */ = {
 			isa = PBXGroup;
 			children = (
-				8BDE68D9233233CE009342AD /* main.swift */,
-				8BDE68EC23326E42009342AD /* Console.swift */,
 				1E946BF82409121C005A3A4B /* BowOpenAPICommand.swift */,
+				8BDE68D9233233CE009342AD /* main.swift */,
+				8BB2AEF3244F23350022A4D1 /* Utils */,
 			);
 			path = BowOpenAPI;
 			sourceTree = "<group>";
@@ -578,7 +587,6 @@
 			);
 			name = Tests;
 			packageProductDependencies = (
-				8B8B1C1323435AC0009D195A /* SwiftCheck */,
 				8B631A55234CD05F0045BF05 /* SnapshotTesting */,
 			);
 			productName = Tests;
@@ -613,7 +621,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
 					8B6B3636234CE1F800D3DE25 = {
@@ -641,7 +649,6 @@
 			mainGroup = 8BDE68CD233233CE009342AD;
 			packageReferences = (
 				8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */,
-				8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */,
 				8B631A54234CD05F0045BF05 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				8BFE7E46234E1720003E97BF /* XCRemoteSwiftPackageReference "bow" */,
 				1E946BFA24091347005A3A4B /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
@@ -743,8 +750,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB2AEF5244F23510022A4D1 /* String+File.swift in Sources */,
 				1E946BF92409121C005A3A4B /* BowOpenAPICommand.swift in Sources */,
-				8BDE68ED23326E42009342AD /* Console.swift in Sources */,
+				8BDE68ED23326E42009342AD /* Kleisli+Console.swift in Sources */,
 				8BDE68DA233233CE009342AD /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -953,6 +961,7 @@
 		8BDE68DE233233CE009342AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
@@ -963,6 +972,7 @@
 		8BDE68DF233233CE009342AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEFINES_MODULE = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg;
 				PRODUCT_MODULE_NAME = BowOpenAPI;
@@ -1037,14 +1047,6 @@
 				minimumVersion = 1.6.0;
 			};
 		};
-		8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.0;
-			};
-		};
 		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bow-swift/Swiftline.git";
@@ -1057,8 +1059,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bow-swift/bow.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1078,11 +1080,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */;
 			productName = Swiftline;
-		};
-		8B8B1C1323435AC0009D195A /* SwiftCheck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B8B1C1223435AC0009D195A /* XCRemoteSwiftPackageReference "SwiftCheck" */;
-			productName = SwiftCheck;
 		};
 		8BFE7E4D234E1732003E97BF /* Bow */ = {
 			isa = XCSwiftPackageProductDependency;

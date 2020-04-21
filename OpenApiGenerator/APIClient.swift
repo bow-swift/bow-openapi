@@ -67,7 +67,7 @@ public enum APIClient {
                              .followedBy(fileSystem.createDirectory(atPath: parentPath))^
                              .followedBy(fileSystem.createDirectory(atPath: outputPath.sources))^
                              .followedBy(fileSystem.createDirectory(atPath: outputPath.tests))^
-                             .mapLeft { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
+                             .mapError { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }
     

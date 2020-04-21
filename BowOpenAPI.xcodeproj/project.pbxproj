@@ -45,7 +45,24 @@
 		8B6B364E234CE66A00D3DE25 /* Swiftline in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6B364D234CE66A00D3DE25 /* Swiftline */; };
 		8B6B3655234CE74200D3DE25 /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD90F4423328E2600281786 /* String+Path.swift */; };
 		8B6B3656234CE74200D3DE25 /* String+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD70860233D23280018E06B /* String+Format.swift */; };
-		8B7AD44A244F2BA400991B6B /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7AD449244F2BA400991B6B /* SwiftCheck */; };
+		8B7AD44D244F2DE800991B6B /* SwiftCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7AD44C244F2DE800991B6B /* SwiftCheck */; };
+		8B7AD44E244F2E2200991B6B /* APIConfigTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD42A244F27C500991B6B /* APIConfigTesting.swift */; };
+		8B7AD44F244F2E2200991B6B /* StubURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD42B244F27C500991B6B /* StubURL.swift */; };
+		8B7AD450244F2E2200991B6B /* API+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD42C244F27C500991B6B /* API+XCTest.swift */; };
+		8B7AD451244F2E2200991B6B /* API+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD42D244F27C500991B6B /* API+Error.swift */; };
+		8B7AD452244F2E2200991B6B /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD42F244F27C500991B6B /* APIConfiguration.swift */; };
+		8B7AD453244F2E2200991B6B /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD433244F27C500991B6B /* APIs.swift */; };
+		8B7AD454244F2E2300991B6B /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD432244F27C500991B6B /* CodableHelper.swift */; };
+		8B7AD455244F2E2300991B6B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD43E244F27C500991B6B /* Configuration.swift */; };
+		8B7AD456244F2E2300991B6B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD43C244F27C500991B6B /* Extensions.swift */; };
+		8B7AD457244F2E2300991B6B /* DefaultAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD431244F27C500991B6B /* DefaultAPI.swift */; };
+		8B7AD458244F2E2300991B6B /* PetError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD435244F27C500991B6B /* PetError.swift */; };
+		8B7AD459244F2E2300991B6B /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD436244F27C500991B6B /* Pets.swift */; };
+		8B7AD45A244F2E2300991B6B /* OwnerPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD437244F27C500991B6B /* OwnerPerson.swift */; };
+		8B7AD45B244F2E2300991B6B /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD438244F27C500991B6B /* Pet.swift */; };
+		8B7AD45C244F2E2300991B6B /* UpdatePet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD439244F27C500991B6B /* UpdatePet.swift */; };
+		8B7AD45D244F2E2300991B6B /* NewPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD43A244F27C500991B6B /* NewPet.swift */; };
+		8B7AD45E244F2E2300991B6B /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7AD43B244F27C500991B6B /* Owner.swift */; };
 		8B7E06652354E299003ED8E2 /* Package.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8B7E06642354E014003ED8E2 /* Package.swift */; };
 		8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */; };
 		8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B19B723426AE4009D195A /* APIConfigTests.swift */; };
@@ -249,7 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B7AD44A244F2BA400991B6B /* SwiftCheck in Frameworks */,
+				8B7AD44D244F2DE800991B6B /* SwiftCheck in Frameworks */,
 				8BA3B6DD235625F5005D6278 /* libOpenApiGenerator.a in Frameworks */,
 				8B631A56234CD05F0045BF05 /* SnapshotTesting in Frameworks */,
 			);
@@ -574,7 +591,7 @@
 			name = Tests;
 			packageProductDependencies = (
 				8B631A55234CD05F0045BF05 /* SnapshotTesting */,
-				8B7AD449244F2BA400991B6B /* SwiftCheck */,
+				8B7AD44C244F2DE800991B6B /* SwiftCheck */,
 			);
 			productName = Tests;
 			productReference = 8B8B19B523426AE4009D195A /* Tests.xctest */;
@@ -640,7 +657,7 @@
 				8B631A54234CD05F0045BF05 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				8BFE7E46234E1720003E97BF /* XCRemoteSwiftPackageReference "bow" */,
 				1E946BFA24091347005A3A4B /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
-				8B7AD448244F2BA400991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */,
+				8B7AD44B244F2DE800991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */,
 			);
 			productRefGroup = 8BDE68D7233233CE009342AD /* Products */;
 			projectDirPath = "";
@@ -697,24 +714,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7AD45A244F2E2300991B6B /* OwnerPerson.swift in Sources */,
+				8B7AD450244F2E2200991B6B /* API+XCTest.swift in Sources */,
+				8B7AD456244F2E2300991B6B /* Extensions.swift in Sources */,
 				8B8B1C1723436195009D195A /* API+Generators.swift in Sources */,
+				8B7AD452244F2E2200991B6B /* APIConfiguration.swift in Sources */,
 				8BFE7E41234E10D4003E97BF /* APIClientModelsTests.swift in Sources */,
 				8BD0851D23453DAE006D33DE /* Mother.swift in Sources */,
 				8BA3B6D2235613AD005D6278 /* GeneratorAPIClientTests.swift in Sources */,
 				8BA3B6DF23562730005D6278 /* FileSystemMock.swift in Sources */,
+				8B7AD45C244F2E2300991B6B /* UpdatePet.swift in Sources */,
+				8B7AD44F244F2E2200991B6B /* StubURL.swift in Sources */,
+				8B7AD44E244F2E2200991B6B /* APIConfigTesting.swift in Sources */,
 				8BA3B6D5235620B8005D6278 /* ClientGeneratorMock.swift in Sources */,
+				8B7AD453244F2E2200991B6B /* APIs.swift in Sources */,
+				8B7AD45B244F2E2300991B6B /* Pet.swift in Sources */,
 				8B631A58234CDB570045BF05 /* Snapshotting+OpenAPI.swift in Sources */,
 				8B017DA52347AC86003975CF /* APIClientSendTests.swift in Sources */,
 				8B48DAC62344DCBB0053CCC9 /* APIHelperTests.swift in Sources */,
 				8BFE7E64234F7130003E97BF /* APIClientHttpOperationTests.swift in Sources */,
 				8BFE7E68234F7EF0003E97BF /* APIClientDocumentationTests.swift in Sources */,
+				8B7AD45D244F2E2300991B6B /* NewPet.swift in Sources */,
 				8BFE7E66234F7192003E97BF /* APIClientParametersTests.swift in Sources */,
+				8B7AD458244F2E2300991B6B /* PetError.swift in Sources */,
+				8B7AD45E244F2E2300991B6B /* Owner.swift in Sources */,
 				8B8B19B823426AE4009D195A /* APIConfigTests.swift in Sources */,
 				8BFE7E56234E1D21003E97BF /* URL+FileSystem.swift in Sources */,
 				8BFE7E43234E11FA003E97BF /* URL+Paths.swift in Sources */,
+				8B7AD455244F2E2300991B6B /* Configuration.swift in Sources */,
+				8B7AD459244F2E2300991B6B /* Pets.swift in Sources */,
+				8B7AD457244F2E2300991B6B /* DefaultAPI.swift in Sources */,
 				8B3B857423574D1C00C0A68D /* GeneratorSwaggerClientTests.swift in Sources */,
 				8B7E066A2354E7D5003ED8E2 /* PackageGeneratedTests.swift in Sources */,
 				8BFE7E62234F7107003E97BF /* APIClientGeneratorTests.swift in Sources */,
+				8B7AD454244F2E2300991B6B /* CodableHelper.swift in Sources */,
+				8B7AD451244F2E2200991B6B /* API+Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,12 +1068,12 @@
 				minimumVersion = 1.6.0;
 			};
 		};
-		8B7AD448244F2BA400991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
+		8B7AD44B244F2DE800991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/typelift/SwiftCheck.git";
+			repositoryURL = "https://github.com/bow-swift/SwiftCheck.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.0;
+				minimumVersion = 0.12.1;
 			};
 		};
 		8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */ = {
@@ -1076,9 +1110,9 @@
 			package = 8BDE68E02332347D009342AD /* XCRemoteSwiftPackageReference "Swiftline" */;
 			productName = Swiftline;
 		};
-		8B7AD449244F2BA400991B6B /* SwiftCheck */ = {
+		8B7AD44C244F2DE800991B6B /* SwiftCheck */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B7AD448244F2BA400991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */;
+			package = 8B7AD44B244F2DE800991B6B /* XCRemoteSwiftPackageReference "SwiftCheck" */;
 			productName = SwiftCheck;
 		};
 		8BFE7E4D234E1732003E97BF /* Bow */ = {

@@ -19,7 +19,7 @@ extension BowOpenAPICommand {
             .reportStatus(
                 { apiError in
                     """
-                    Could not generate api client:
+                    Could not generate API client:
                     • SCHEMA '\(self.schema)'
                     
                     \(apiError)

@@ -14,7 +14,6 @@ paths:
       parameters:
         - name: idToken
           in: header
-          name: Test-Token
           description: How many items to return at one time
           required: true
           schema:
@@ -69,7 +68,6 @@ paths:
       parameters:
         - name: idToken
           in: header
-          name: Test-Token
           description: How many items to return at one time
           required: false
           schema:

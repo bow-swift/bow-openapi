@@ -43,6 +43,8 @@ extension URL {
         case queryParamOptional = "schema-query-param-optional.yaml"
         case headerParamOptional = "schema-header-param-optional.yaml"
         case bodyParamOptional = "schema-body-param-optional.yaml"
+        case contentTypeJSON = "schema-contenttype-json.yaml"
+        case contentTypeWWWFormURLEncoded = "schema-contenttype-wwwformurlencoded.yaml"
         
         // models
         case referenceModel = "schema-request-reference.yaml"

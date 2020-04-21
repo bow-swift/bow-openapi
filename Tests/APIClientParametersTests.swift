@@ -33,7 +33,15 @@ class APIClientParametersTests: XCTestCase {
     func testRequestWithHeaderParamOptional_GenerateHelperMethodNoOptional() {
         assertSnapshot(matching: URL.schemas.file(.headerParamOptional), as: .generated(file: "APIs.swift"))
     }
-
+    
+    func testRequestWithContentType_ApplicationJson() {
+        assertSnapshot(matching: URL.schemas.file(.contentTypeJSON), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
+    func testRequestWithContentType_WWWFormURLEncoded() {
+        assertSnapshot(matching: URL.schemas.file(.contentTypeWWWFormURLEncoded), as: .generated(file: "DefaultAPI.swift"))
+    }
+    
     func testRequestWithBodyParamOptional_BuildRequestPath() {
         assertSnapshot(matching: URL.schemas.file(.bodyParamOptional), as: .generated(file: "DefaultAPI.swift"))
     }

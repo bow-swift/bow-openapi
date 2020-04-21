@@ -1,0 +1,15 @@
+openapi: "3.0.0"
+paths:
+  /pet:
+    post:
+      operationId: postPet
+      requestBody:
+        content:
+            application/x-www-form-urlencoded:
+                schema:
+                    type: object
+                    required:
+                        - petId
+                    properties:
+                        petId:
+                            type: integer

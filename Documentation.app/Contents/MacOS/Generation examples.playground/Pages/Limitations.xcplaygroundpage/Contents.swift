@@ -21,5 +21,5 @@
  
  ## Body parameters encoding
  
- Currently, the only supported encoding for body parameters is `application/json`.
+ Currently, the only supported encodings for body parameters are `application/json` and `application/x-www-form-urlencoded`.
  */

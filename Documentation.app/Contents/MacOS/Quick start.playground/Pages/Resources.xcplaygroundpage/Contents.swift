@@ -19,7 +19,7 @@
    
  ## Presentations
  
- Be the first one showing here!
+ - Functional Networking ([slides](https://speakerdeck.com/truizlop/functional-networking-the-directors-cut), [video](https://www.dotconferences.com/2020/02/tomas-ruiz-lopez-functional-networking))
  
  ## Blog posts
  

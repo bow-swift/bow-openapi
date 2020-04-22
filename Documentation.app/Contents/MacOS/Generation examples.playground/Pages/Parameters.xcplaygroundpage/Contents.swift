@@ -18,6 +18,7 @@
  info:
    title: My Store
    version: "1.0.0"
+ paths:
    /{category}/product:
      get:
        tags:

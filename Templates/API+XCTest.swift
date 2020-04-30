@@ -27,8 +27,7 @@ public extension XCTest {
 }
 
 
-// MARK: helpers
-
+// MARK: - helpers
 fileprivate extension Either where A == API.HTTPError, B: Equatable {
     func assert(success expected: B, information: String? = nil, file: StaticString = #file, line: UInt = #line) {
         fold({ error in XCTFail(information ?? "Expected successful value \(expected), but found an error: \(error).", file: file, line: line) },

@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 extension URLRequest {
     mutating func addHeaders(_ headers: [String: String]) {
@@ -79,6 +82,19 @@ extension Dictionary where Key == String, Value == Any {
     }
 }
 
+/// URLResponse - compatibility
+extension URLResponse {
+    static var empty: URLResponse {
+        #if os(Linux)
+        return URLResponse(url: URL(fileURLWithPath: ""),
+                           mimeType: nil,
+                           expectedContentLength: 0,
+                           textEncodingName: nil)
+        #else
+        return URLResponse()
+        #endif
+    }
+}
 
 /// Definition to JSON Encodable
 protocol JSONEncodable {

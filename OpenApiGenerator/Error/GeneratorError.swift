@@ -3,7 +3,7 @@
 import Foundation
 
 /// General information about the errors in the generator
-enum GeneratorError: Error {
+public enum GeneratorError: Error {
     case invalidParameters
     case templateNotFound
     case structure
@@ -11,7 +11,7 @@ enum GeneratorError: Error {
 }
 
 extension GeneratorError: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         switch self {
         case .invalidParameters:
             return "received invalid parameters"

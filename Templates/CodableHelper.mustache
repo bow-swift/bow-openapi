@@ -67,4 +67,6 @@ extension Encodable {
 }
 
 // MARK: - response helpers
-public struct NoResponse: Codable, Equatable {}
+public struct NoResponse: Codable, Equatable {
+    public init() {}
+}

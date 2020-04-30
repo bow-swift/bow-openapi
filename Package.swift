@@ -49,16 +49,10 @@ extension Target {
 // MARK: - Libraries
 extension Target {
     static var libraries: [Target] {
-        #if os(Linux)
-        return [
-            .openApiGenerator
-        ]
-        #else
-        return [
+        [
             .openApiGenerator,
             .cli
         ]
-        #endif
     }
     
     static var openApiGenerator: Target {
@@ -97,7 +91,9 @@ extension Target {
                                    .fixturesAPI,
                                    .fixturesAPITest],
                     path: "Tests",
-        exclude: ["__Snapshots__", "Fixtures", "Support Files"])
+                    exclude: ["__Snapshots__",
+                              "Fixtures",
+                              "Support Files"])
     }
 }
 

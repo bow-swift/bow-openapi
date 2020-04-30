@@ -1,10 +1,15 @@
 //  Copyright © 2019 The Bow Authors.
 
 import XCTest
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import Bow
 import BowEffects
 @testable import FixturesAPI
 import FixturesAPITest
+
 
 class APIClientSendTests: XCTestCase {
     func testAPIClient_ValidRequestAndData_ShouldReceiveValidData() {

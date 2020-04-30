@@ -4,6 +4,7 @@ import Foundation
 import OpenApiGenerator
 import SnapshotTesting
 
+
 extension Snapshotting where Value == URL, Format == String {
     
     static func generated(file focus: String, module: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {

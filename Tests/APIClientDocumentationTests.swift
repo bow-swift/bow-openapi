@@ -3,6 +3,7 @@
 import XCTest
 import SnapshotTesting
 
+
 class APIClientDocumentationTests: XCTestCase {
 
     func testRequestDocumented() {

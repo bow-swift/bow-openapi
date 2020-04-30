@@ -50,7 +50,3 @@ vendor/
 /lib/bundler/man/
 docs/docs/*
 /docs/_data/sidebar.yml
-
-## Linux
-**/XCTestManifests.swift
-**/LinuxMain.swift

@@ -4,6 +4,7 @@ import XCTest
 import SwiftCheck
 @testable import FixturesAPI
 
+
 class APIHelperTests: XCTestCase {
     let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.mapValues { x in x as String? } }
     let nonePresentGen: Gen<[String: String?]> = [String: String?].arbitrary.map { dict in dict.mapValues { _ -> String? in nil } }
@@ -13,16 +14,16 @@ class APIHelperTests: XCTestCase {
             let both: [String: Any?] = present.combine(absent).any
             let removed: [String: String]  = both.encodingValues
             let expected: [String: String] = present.any.encodingValues
-            
+
             return removed == expected
         }
-        
+
         property("toQueryItems remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
             let both: [String: Any?] = present.combine(absent).any
             let removed: Set<URLQueryItem>  = Set(both.toQueryItems ?? [])
             let expected: Set<URLQueryItem> = Set(present.any.toQueryItems ?? [])
             
-            return removed == expected
+            return expected == removed
         }
         
         property("Only items with nil values generate an empty URLQueryItem") <- forAll(self.nonePresentGen) { (absent) in

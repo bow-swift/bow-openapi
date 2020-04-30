@@ -5,6 +5,7 @@ import Bow
 import BowEffects
 @testable import OpenApiGenerator
 
+
 class GeneratorSwaggerClientTests: XCTestCase {
     
     private let sut = SwaggerClientGenerator()

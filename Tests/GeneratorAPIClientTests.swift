@@ -5,6 +5,7 @@ import Bow
 import BowEffects
 @testable import OpenApiGenerator
 
+
 class GeneratorAPIClientTests: XCTestCase {
     
     private let moduleName = "TestModule"

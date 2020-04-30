@@ -1,8 +1,12 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import SwiftCheck
 import FixturesAPI
+
 
 // MARK: - API.Config <generator>
 extension API.ContentType: Arbitrary {

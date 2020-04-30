@@ -3,6 +3,7 @@
 import XCTest
 import SnapshotTesting
 
+
 class APIClientParametersTests: XCTestCase {
 
     func testRequestWithQueryParam_URLComponentsAndQueryItems() {

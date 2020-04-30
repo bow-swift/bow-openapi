@@ -3,6 +3,8 @@
 import XCTest
 import Bow
 import BowEffects
+@testable import FixturesAPI
+import FixturesAPITest
 
 class APIClientSendTests: XCTestCase {
     func testAPIClient_ValidRequestAndData_ShouldReceiveValidData() {

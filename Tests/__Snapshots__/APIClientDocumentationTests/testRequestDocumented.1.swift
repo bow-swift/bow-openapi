@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import Bow
 import BowEffects
 
@@ -55,7 +58,7 @@ class RequestDocAPIClient: RequestDocAPI {
             // request configuration
             guard let url = components?.url ?? URL(string: path) else {
                 let data = "RequestDocAPI.findPetsByStatus.URL".data(using: .utf8)!
-                return IO.raiseError(.malformedURL(response: URLResponse(), data: data))
+                return IO.raiseError(.malformedURL(response: URLResponse.empty, data: data))
             }
 
             var request = URLRequest(url: url)

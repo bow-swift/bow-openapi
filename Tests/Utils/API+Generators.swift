@@ -2,6 +2,7 @@
 
 import Foundation
 import SwiftCheck
+import FixturesAPI
 
 // MARK: - API.Config <generator>
 extension API.ContentType: Arbitrary {

@@ -3,9 +3,7 @@
 import XCTest
 import Bow
 import BowEffects
-
 @testable import OpenApiGenerator
-
 
 class GeneratorSwaggerClientTests: XCTestCase {
     

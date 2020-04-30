@@ -3,7 +3,6 @@
 import XCTest
 import SnapshotTesting
 
-
 class APIClientHttpOperationTests: XCTestCase {
     
     func testNoDefinedOperationId_OperationUsingEndpointNaming() {

@@ -2,7 +2,7 @@
 
 import XCTest
 import SwiftCheck
-
+import FixturesAPI
 
 class APIConfigTests: XCTestCase {
 

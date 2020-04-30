@@ -2,7 +2,7 @@
 
 import XCTest
 import SwiftCheck
-
+@testable import FixturesAPI
 
 class APIHelperTests: XCTestCase {
     let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.mapValues { x in x as String? } }

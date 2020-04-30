@@ -3,7 +3,6 @@
 import XCTest
 import SnapshotTesting
 
-
 class APIClientGeneratorTests: XCTestCase {
     
     func testNoDefinedTags_GenerateDefaultAPI() {

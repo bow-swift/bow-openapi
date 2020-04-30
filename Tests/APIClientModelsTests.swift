@@ -3,7 +3,6 @@
 import XCTest
 import SnapshotTesting
 
-
 class APIClientModelsTests: XCTestCase {
     
     func testRequestWithPetReference_BuildPetModel() {

@@ -12,7 +12,14 @@ jobs:
     - name: Switch Xcode version
       run: sudo xcode-select -s /Applications/Xcode_11.4.1.app/Contents/Developer
     - name: Run tests
-      run: swift test
+      run: |
+        brew cask install adoptopenjdk8
+        export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+        export PATH=${JAVA_HOME}/bin:$PATH
+        brew install swagger-codegen
+        swift build -c release
+        .build/release/bow-openapi --name FixturesAPI --schema Tests/Fixtures/petstore.yaml --output Tests/Fixtures/FixturesAPI --verbose
+        swift test
     - name: Generate linux tests
       run: swift test --generate-linuxmain
     - name: Cached auto-generate linux tests

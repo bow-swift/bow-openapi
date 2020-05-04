@@ -19,12 +19,13 @@ xcode: macos
 
 .PHONY: basic
 basic:
+		sudo tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
 		swift build -c release --build-path $(BUILD_PATH)
 		sudo mv $(BINARIES_PATH)/bow-openapi $(PREFIX_BIN)/bow-openapi
 		sudo chmod +x $(PREFIX_BIN)/bow-openapi
 		sudo mkdir -p $(TEMPLATES_PATH)
 		sudo cp -R ./Templates/* $(TEMPLATES_PATH)
-		sudo chmod +rx -R $(TEMPLATES_PATH)
+		sudo chmod +x $(TEMPLATES_PATH)
 
 .PHONY: fixtures
 fixtures:

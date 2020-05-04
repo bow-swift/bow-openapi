@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: generate-linuxmain
-        path: project/Tests
+        path: .
 
   linux:
     name: linux
@@ -33,14 +33,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Clean Tests
-      run: rm -rf Tests
     - name: Get auto-generate linux tests
       uses: actions/download-artifact@v1
       with:
         name: generate-linuxmain
-        path: Tests
+        path: .
     - name: Remove generated artifact
       uses: geekyeggo/delete-artifact@v1
       with:

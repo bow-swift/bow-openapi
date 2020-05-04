@@ -6,7 +6,7 @@
 build/
 DerivedData
 **/.DS_Store
-FixturesAPI
+**/FixturesAPI
 xcuserdata/
 xcshareddata/
 Bow OpenAPI.xcodeproj

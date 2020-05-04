@@ -1,15 +1,18 @@
 ![Bow OpenAPI](assets/header-bow-openapi.png)
 
 <p align="center">
+<img src="https://github.com/bow-swift/nef/workflows/Compile and test/badge.svg" alt="Build">
+<img src="https://github.com/bow-swift/nef/workflows/Deploy docs/badge.svg" alt="Site">
 
 <a href="https://github.com/bow-swift/nef">
-<img src="https://img.shields.io/badge/Dependency%20Manager-Swift%20PM-orange" alt="Swift Package Manager compatible">
+<img src="https://img.shields.io/badge/Dependency%20Manager-Swift%20PM-orange" alt="SPM compatible">
 </a>
 
 <a href="https://gitter.im/bowswift/bow">
 <img src="https://img.shields.io/badge/Gitter-Bow%20OpenAPI-red" alt="Gitter">
 </a>
 
+<img src="https://img.shields.io/badge/platform-macos%20%7C%20linux-blueviolet">
 </p>
 
 **Bow OpenAPI** is a command-line tool to generate a Swift network client from an OpenAPI / Swagger specification file. Please, refer to the [project website](https://openapi.bow-swift.io) for extensive and detailed documentation about the project.
@@ -30,12 +33,33 @@
 
 ## 💻 Installation
 
+# Installation guide
+
+Bow OpenAPI is compatible with Unix systems.
+
+## 💻 OS X users
+
 You can [install Bow OpenAPI](https://openapi.bow-swift.io/docs/quick-start/installation-guide/) using [Homebrew](https://brew.sh/index_es). Its formula is not still in the main repository; therefore, you need to tap it first, before installing it:
 
 ```bash
 brew tap bow-swift/bow
 brew install bow-openapi
 ```
+
+## 🐧 Linux users
+
+```bash
+curl -s https://api.github.com/repos/bow-swift/bow-openapi/releases/latest \
+| grep -oP '"tag_name": "\K(.*)(?=")' \
+| xargs -I {} wget -O - https://github.com/bow-swift/bow-openapi/archive/{}.tar.gz \
+| tar xz \
+&& cd bow-openapi-* \
+&& make
+```
+
+> It will install the last stable version.
+
+Bow OpenAPI depends on `Java 8+` and `swagger-codegen`; both will be installed from `Makefile`. After the installation, you can type `bow-openapi -h` in a new termintal to check it.
 
 ## ⚙️ Usage
 

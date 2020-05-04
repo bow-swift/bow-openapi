@@ -17,17 +17,22 @@ class APIHelperTests: XCTestCase {
 
             return removed == expected
         }
-
+        
+//        let replayArgs = CheckerArguments(replay: .some((StdGen(1135383763, 1709600634), 2)))
         property("toQueryItems remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
-            let both: [String: Any?] = present.combine(absent).any
+            let both: [String: Any?] = absent.combine(present).any
             let removed: Set<URLQueryItem>  = Set(both.toQueryItems ?? [])
             let expected: Set<URLQueryItem> = Set(present.any.toQueryItems ?? [])
             
-            return expected == removed
+            return removed == expected
         }
         
         property("Only items with nil values generate an empty URLQueryItem") <- forAll(self.nonePresentGen) { (absent) in
-            return absent.any.toQueryItems == nil
+            absent.any.toQueryItems == nil
+        }
+        
+        property("Items with none nil values generate valid URLQueryItems") <- forAll(self.allPresentGen) { (present) in
+            (present.any.toQueryItems?.count ?? 0) == present.count
         }
     }
 }

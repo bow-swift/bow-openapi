@@ -20,7 +20,7 @@ extension Snapshotting where Value == URL, Format == String {
                                   .unsafeRunSyncEither()
             
             guard either.isRight else {
-                return "error: \(either.leftValue): run bow openAPI in scheme: '\(url.path)', output: '\(directory.path)', template: '\(URL.templates.path)'"
+                return "error: \(either.leftValue). Run bow openAPI using: \n\t - Scheme: '\(url.path)' \n\t - Output: '\(directory.path)' \n\t - Template: '\(URL.templates.path)'"
             }
             
             let focusURL = directory.find(item: focus)

@@ -161,7 +161,6 @@
 		8B7E06642354E014003ED8E2 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageGeneratedTests.swift; sourceTree = "<group>"; };
 		8B8438F9245B4F1400DDA92B /* FixturesAPI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FixturesAPI; sourceTree = "<group>"; };
-		8B8438FE245B55E800DDA92B /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		8B8B19B523426AE4009D195A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8B19B723426AE4009D195A /* APIConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigTests.swift; sourceTree = "<group>"; };
 		8B8B19B923426AE4009D195A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -284,7 +283,6 @@
 				8BFE7E40234E10D4003E97BF /* APIClientModelsTests.swift */,
 				8BFE7E65234F7192003E97BF /* APIClientParametersTests.swift */,
 				8B7E06692354E7D5003ED8E2 /* PackageGeneratedTests.swift */,
-				8B8438FE245B55E800DDA92B /* XCTestManifests.swift */,
 				8B8B19BD23426AEF009D195A /* Fixtures */,
 				8B8B19BE23426B15009D195A /* Support Files */,
 				8BA3B6D3235620AC005D6278 /* Mocks */,

@@ -9,6 +9,7 @@ DerivedData
 FixturesAPI
 xcuserdata/
 xcshareddata/
+Bow OpenAPI.xcodeproj
 
 ## Various settings
 *.pbxuser
@@ -51,6 +52,6 @@ vendor/
 docs/docs/*
 /docs/_data/sidebar.yml
 
-# Linux auto-generated tests
+# Linux auto-generated files
 **/LinuxMain.swift
 **/Tests/XCTestManifests.swift

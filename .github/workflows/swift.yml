@@ -17,9 +17,7 @@ jobs:
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
         export PATH=${JAVA_HOME}/bin:$PATH
         brew install swagger-codegen
-        mkdir -p Tests/Fixtures/FixturesAPI
-        swift build -c release
-        .build/release/bow-openapi --name FixturesAPI --schema Tests/Fixtures/petstore.yaml --output Tests/Fixtures --verbose
+        make macos
         swift test
     - name: Generate linux tests
       run: swift test --generate-linuxmain

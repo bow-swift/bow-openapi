@@ -21,7 +21,8 @@ public enum APIClient {
     
     public static func bow(moduleName: String, scheme: String, output: String, templatePath: String) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
-            let outputPath = OutputPath(sources: "\(output)/Sources", tests: "\(output)/XCTest")
+            let outputPath = OutputPath(sources: "\(output)/Sources",
+                                        tests: "\(output)/XCTest")
             
             return binding(
                 |<-createStructure(outputPath: outputPath).provide(env.fileSystem),
@@ -46,11 +47,8 @@ public enum APIClient {
     }
     
     private static func getTemplatePath() -> IO<APIClientError, String> {
-        let libPath = "/usr/local/lib"
-        let templateSource1 = Bundle(path: "bow/openapi/templates").toOption()
-        let templateSource2 = Bundle(path: "\(libPath)/bow/openapi/templates").toOption()
-        
-        guard let bundle = templateSource1.orElse(templateSource2).toOptional(),
+        let libPath = "/usr/local/bin"
+        guard let bundle = Bundle(path: "\(libPath)/bow/openapi/templates/"),
               let template = bundle.resourcePath else {
             return IO.raiseError(APIClientError(operation: "getTemplatePath()", error: GeneratorError.templateNotFound))^
         }

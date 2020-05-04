@@ -6,8 +6,8 @@ import SwiftCheck
 
 
 class APIHelperTests: XCTestCase {
-    let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.mapValues { x in x as String? } }
-    let nonePresentGen: Gen<[String: String?]> = [String: String?].arbitrary.map { dict in dict.mapValues { _ -> String? in nil } }
+    let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.map { (k, v) in ["\(k)-present": v as String?] }.combineAll() }
+    let nonePresentGen: Gen<[String: String?]> = [String: String?].arbitrary.map { dict in dict.map { (k, _) in ["\(k)-none": nil] }.combineAll() }
     
     func testQueryItems() {
         property("encodingValues remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
@@ -18,13 +18,12 @@ class APIHelperTests: XCTestCase {
             return removed == expected
         }
         
-//        let replayArgs = CheckerArguments(replay: .some((StdGen(1135383763, 1709600634), 2)))
         property("toQueryItems remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in
-            let both: [String: Any?] = absent.combine(present).any
-            let removed: Set<URLQueryItem>  = Set(both.toQueryItems ?? [])
-            let expected: Set<URLQueryItem> = Set(present.any.toQueryItems ?? [])
+            let both: [String: Any?] = present.combine(absent).any
+            let removed: [URLQueryItem]  = Array(Set(both.toQueryItems ?? [])).sorted { $0.name > $1.name }
+            let expected: [URLQueryItem] = Array(Set(present.any.toQueryItems ?? [])).sorted { $0.name > $1.name }
             
-            return removed == expected
+            return expected == removed
         }
         
         property("Only items with nil values generate an empty URLQueryItem") <- forAll(self.nonePresentGen) { (absent) in
@@ -36,7 +35,6 @@ class APIHelperTests: XCTestCase {
         }
     }
 }
-
 
 // MARK: helpers
 fileprivate extension Dictionary {

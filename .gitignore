@@ -10,6 +10,7 @@ DerivedData
 xcuserdata/
 xcshareddata/
 Bow OpenAPI.xcodeproj
+BowOpenAPI.xcodeproj
 
 ## Various settings
 *.pbxuser

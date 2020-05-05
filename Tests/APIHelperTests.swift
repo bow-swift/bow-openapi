@@ -6,8 +6,10 @@ import SwiftCheck
 
 
 class APIHelperTests: XCTestCase {
-    let allPresentGen: Gen<[String: String?]>  = [String: String].arbitrary.map { dict in dict.map { (k, v) in ["\(k)-present": v as String?] }.combineAll() }
-    let nonePresentGen: Gen<[String: String?]> = [String: String?].arbitrary.map { dict in dict.map { (k, _) in ["\(k)-none": nil] }.combineAll() }
+    let allPresentGen = [String: String].arbitrary.suchThat { $0.first?.key.isEmpty == false }
+                                                  .map { $0 as [String: String?] }
+    let nonePresentGen = [String: String?].arbitrary.suchThat { $0.first?.key.isEmpty == false  }
+                                                    .map { dict in dict.mapValues { _ -> String? in nil } }
     
     func testQueryItems() {
         property("encodingValues remove nil values") <- forAll(self.allPresentGen, self.nonePresentGen) { (present, absent) in

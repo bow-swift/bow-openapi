@@ -31,13 +31,11 @@
 
 &nbsp;
 
-## 💻 Installation
-
-# Installation guide
+## Installation guide
 
 Bow OpenAPI is compatible with Unix systems.
 
-## 💻 OS X users
+### 💻 OS X users
 
 You can [install Bow OpenAPI](https://openapi.bow-swift.io/docs/quick-start/installation-guide/) using [Homebrew](https://brew.sh/index_es). Its formula is not still in the main repository; therefore, you need to tap it first, before installing it:
 
@@ -46,7 +44,7 @@ brew tap bow-swift/bow
 brew install bow-openapi
 ```
 
-## 🐧 Linux users
+### 🐧 Linux users
 
 ```bash
 curl -s https://api.github.com/repos/bow-swift/bow-openapi/releases/latest \

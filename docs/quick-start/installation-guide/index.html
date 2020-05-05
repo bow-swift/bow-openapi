@@ -438,6 +438,10 @@
     <div class="doc-content">
         <h1 id="installation-guide">Installation guide</h1>
 
+<p>Bow OpenAPI is compatible with Unix systems.</p>
+
+<h2 id="-os-x-users">💻 OS X users</h2>
+
 <p>Bow OpenAPI is available via <a href="https://brew.sh/">Homebrew</a>. If you still don’t have it installed in your Mac, you can follow the steps in <a href="https://brew.sh/">this link</a> to set it up.</p>
 
 <p>Once you have it, you need to run the following commands:</p>
@@ -447,6 +451,23 @@
 </code></pre></div></div>
 
 <p>Bow OpenAPI depends on the tool <code class="highlighter-rouge">swagger-codegen</code>; if you do not have it installed, Homebrew will install this package prior to installing Bow OpenAPI.</p>
+
+<h2 id="-linux-users">🐧 Linux users</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-s</span> https://api.github.com/repos/bow-swift/bow-openapi/releases/latest <span class="se">\</span>
+ | <span class="nb">grep</span> <span class="nt">-oP</span> <span class="s1">'"tag_name": "\K(.*)(?=")'</span> <span class="se">\</span>
+ | xargs <span class="nt">-I</span> <span class="o">{}</span> wget <span class="nt">-O</span> - https://github.com/bow-swift/bow-openapi/archive/<span class="o">{}</span>.tar.gz <span class="se">\</span>
+ | <span class="nb">tar </span>xz <span class="se">\</span>
+ <span class="o">&amp;&amp;</span> <span class="nb">cd </span>bow-openapi-<span class="k">*</span> <span class="se">\</span>
+ <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>make linux
+</code></pre></div></div>
+
+<blockquote>
+  <p>It will install the last stable version.</p>
+</blockquote>
+
+<p>Bow OpenAPI depends on <code class="highlighter-rouge">Java 8+</code> and <code class="highlighter-rouge">swagger-codegen</code>; both will be installed from <code class="highlighter-rouge">Makefile</code>. After the installation, you can type <code class="highlighter-rouge">bow-openapi -h</code> in a new terminal to use it.</p>
+
 
     </div>
 </main>

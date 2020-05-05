@@ -4,6 +4,7 @@ import Foundation
 import OpenApiGenerator
 import SnapshotTesting
 
+
 extension Snapshotting where Value == URL, Format == String {
     
     static func generated(file focus: String, module: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {
@@ -19,7 +20,12 @@ extension Snapshotting where Value == URL, Format == String {
                                   .unsafeRunSyncEither()
             
             guard either.isRight else {
-                return "error: \(either.leftValue): run bow openAPI in scheme: '\(url.path)', output: '\(directory.path)', template: '\(URL.templates.path)'"
+                return  """
+                        error: \(either.leftValue). Run bow openAPI using:
+                            - Scheme: \(url.path)
+                            - Output: \(directory.path)
+                            - Template: \(URL.templates.path)
+                        """
             }
             
             let focusURL = directory.find(item: focus)

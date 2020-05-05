@@ -1,10 +1,9 @@
 //  Copyright © 2019 The Bow Authors.
 
+import Foundation
 import Bow
 import BowEffects
-
-@testable import OpenApiGenerator
-
+import OpenApiGenerator
 
 class ClientGeneratorMock: ClientGenerator {
     

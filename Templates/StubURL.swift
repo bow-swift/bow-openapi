@@ -1,6 +1,9 @@
 //  Copyright © 2019 The Bow Authors.
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import Bow
 import {{ moduleName }}
 

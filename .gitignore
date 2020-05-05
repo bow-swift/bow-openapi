@@ -6,9 +6,11 @@
 build/
 DerivedData
 **/.DS_Store
-api
+**/FixturesAPI
 xcuserdata/
 xcshareddata/
+Bow OpenAPI.xcodeproj
+BowOpenAPI.xcodeproj
 
 ## Various settings
 *.pbxuser
@@ -50,3 +52,7 @@ vendor/
 /lib/bundler/man/
 docs/docs/*
 /docs/_data/sidebar.yml
+
+# Linux auto-generated files
+**/LinuxMain.swift
+**/Tests/XCTestManifests.swift

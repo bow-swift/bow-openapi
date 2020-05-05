@@ -5,6 +5,7 @@ import Bow
 import BowEffects
 import OpenApiGenerator
 
+
 public extension Kleisli where F == IOPartial<APIClientError> {
     
     func reportStatus(
@@ -27,10 +28,10 @@ public extension Kleisli where F == IOPartial<APIClientError> {
     func finish() -> EnvIO<D, APIClientError, Void>  {
         self.foldM(
             { _ in
-                EnvIO.invoke { _ in Darwin.exit(-1) }
+                EnvIO.invoke { _ in exit(-1) }
             },
             { _ in
-                EnvIO.invoke { _ in Darwin.exit(0) }
+                EnvIO.invoke { _ in exit(0) }
             })
     }
 }

@@ -22,9 +22,13 @@ public class SwaggerClientGenerator: ClientGenerator {
     internal func swaggerGenerator(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         func runSwagger() -> IO<APIClientError, ()> {
             IO.invoke {
+                #if os(Linux)
+                let result = run("java", args: ["-jar", "/usr/local/bin/swagger-codegen-cli.jar"] + ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"])
+                #else
                 let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"]) { settings in
                     settings.execution = .log(file: logPath)
                 }
+                #endif
                 
                 let hasError = result.exitStatus != 0 || result.stdout.contains("ERROR")
                 if hasError { throw APIClientError(operation: "swaggerGenerator(scheme:output:template:logPath:)", error: GeneratorError.generator) }

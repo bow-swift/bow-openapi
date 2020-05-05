@@ -4,8 +4,13 @@ import Foundation
 
 /// API Client <Error>
 public struct APIClientError: Error {
-    let operation: String
-    let error: Error & CustomStringConvertible
+    public let operation: String
+    public let error: Error & CustomStringConvertible
+    
+    public init(operation: String, error: Error & CustomStringConvertible) {
+        self.operation = operation
+        self.error = error
+    }
 }
 
 extension APIClientError: CustomStringConvertible {

@@ -2,6 +2,7 @@
 
 import Foundation
 
+
 extension String {
     var contentOfFile: String {
         let fileURL = URL(fileURLWithPath: expandingTildeInPath)

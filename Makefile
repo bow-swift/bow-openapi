@@ -2,7 +2,8 @@
 
 TOOL_NAME = bow-openapi
 PREFIX_BIN = /usr/local/bin
-TEMPLATES_PATH = $(PREFIX_BIN)/bow/openapi/templates
+BASE_TEMPLATES_PATH = $(PREFIX_BIN)/bow
+TEMPLATES_PATH = $(BASE_TEMPLATES_PATH)/openapi/templates
 BUILD_PATH = /tmp/$(TOOL_NAME)
 BINARIES_PATH = $(BUILD_PATH)/release
 SWAGGER_JAR = "https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.19/swagger-codegen-cli-3.0.19.jar"
@@ -19,29 +20,27 @@ xcode: macos
 
 .PHONY: basic
 basic:
-		sudo tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
+	 	tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
 		swift build -c release --build-path $(BUILD_PATH)
-		sudo mv $(BINARIES_PATH)/bow-openapi $(PREFIX_BIN)/bow-openapi
-		sudo chmod +x $(PREFIX_BIN)/bow-openapi
-		sudo mkdir -p $(TEMPLATES_PATH)
-		sudo cp -R ./Templates/* $(TEMPLATES_PATH)
-		sudo chmod +x $(TEMPLATES_PATH)
+		mkdir -p $(TEMPLATES_PATH)
+		@install $(BINARIES_PATH)/bow-openapi $(PREFIX_BIN)/bow-openapi
+		@install ./Templates/* $(TEMPLATES_PATH)
 
 .PHONY: fixtures
 fixtures:
-		rm -rf ./Tests/Fixtures/FixturesAPI
+		@rm -rf ./Tests/Fixtures/FixturesAPI
 		bow-openapi --name FixturesAPI --schema ./Tests/Fixtures/petstore.yaml --output ./Tests/Fixtures/FixturesAPI --verbose
 
 .PHONY: dependencies
 dependencies:
-		sudo apt update
-		sudo apt install openjdk-8-jre-headless
-		sudo wget $(SWAGGER_JAR) --output-document $(PREFIX_BIN)/swagger-codegen-cli.jar
-		sudo chmod +x $(PREFIX_BIN)/swagger-codegen-cli.jar
+		apt update && apt install openjdk-8-jre-headless
+		mkdir -p $(BUILD_PATH)
+		wget $(SWAGGER_JAR) --output-document $(BUILD_PATH)/swagger-codegen-cli.jar
+		@install $(BUILD_PATH)/swagger-codegen-cli.jar $(PREFIX_BIN)/swagger-codegen-cli.jar
 
 .PHONY: clean
 clean:
-		sudo rm -rf $(PREFIX_BIN)/swagger-codegen-cli.jar
-		sudo rm -rf $(PREFIX_BIN)/bow-openapi
-		sudo rm -rf $(TEMPLATES_PATH)
-		sudo rm -rf $(BUILD_PATH)
+		@rm -rf  $(PREFIX_BIN)/swagger-codegen-cli.jar
+		@rm -rf  $(PREFIX_BIN)/bow-openapi
+		@rm -rf  $(BASE_TEMPLATES_PATH)
+		@rm -rf  $(BUILD_PATH)

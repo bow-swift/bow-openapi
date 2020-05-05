@@ -30,7 +30,7 @@ class APIHelperTests: XCTestCase {
             absent.any.toQueryItems == nil
         }
         
-        property("Items with none nil values generate valid URLQueryItems") <- forAll(self.allPresentGen) { (present) in
+        property("Items with no nil values generate valid URLQueryItems") <- forAll(self.allPresentGen) { (present) in
             (present.any.toQueryItems?.count ?? 0) == present.count
         }
     }

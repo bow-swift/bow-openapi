@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 import PackageDescription
 
 let package = Package(
@@ -9,11 +9,19 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/bow-swift/bow.git", .exact("0.8.0"))
+        .package(name: "Bow", url: "https://github.com/bow-swift/bow.git", .exact("0.8.0"))
     ],
 
     targets: [
-        .target(name: "PetStore",     dependencies: ["Bow", "BowEffects"], path: "Sources"),
-        .target(name: "PetStoreTest", dependencies: ["Bow", "BowEffects", "PetStore"], path: "XCTest")
+        .target(name: "PetStore",
+                dependencies: [.product(name: "Bow", package: "Bow"),
+                               .product(name: "BowEffects", package: "Bow")],
+                path: "Sources"),
+        
+        .target(name: "PetStoreTest",
+                dependencies: [.target(name: "PetStore"),
+                               .product(name: "Bow", package: "Bow"),
+                               .product(name: "BowEffects", package: "Bow")],
+                path: "XCTest")
     ]
 )

@@ -20,7 +20,9 @@ jobs:
         make macos
         swift test
     - name: Generate linux tests
-      run: swift test --generate-linuxmain
+      run: |
+        swift test --generate-linuxmain
+        rm -rf .build
     - name: Cached auto-generate linux tests
       uses: actions/upload-artifact@v1
       with:
@@ -44,4 +46,6 @@ jobs:
         name: generate-linuxmain
         failOnError: false
     - name: Run tests
-      run: swift test
+      run: |
+        sudo make linux
+        swift test

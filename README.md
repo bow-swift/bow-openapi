@@ -54,7 +54,7 @@ curl -s https://api.github.com/repos/bow-swift/bow-openapi/releases/latest \
 | xargs -I {} wget -O - https://github.com/bow-swift/bow-openapi/archive/{}.tar.gz \
 | tar xz \
 && cd bow-openapi-* \
-&& make linux
+&& sudo make linux
 ```
 
 > It will install the last stable version.

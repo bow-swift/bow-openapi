@@ -1,7 +1,9 @@
 #/bin/bash
 
+prefix ?= /usr/local
+
 TOOL_NAME = bow-openapi
-PREFIX_BIN = /usr/local/bin
+PREFIX_BIN = $(prefix)/bin
 BASE_TEMPLATES_PATH = $(PREFIX_BIN)/bow
 TEMPLATES_PATH = $(BASE_TEMPLATES_PATH)/openapi/templates
 BUILD_PATH = /tmp/$(TOOL_NAME)
@@ -21,10 +23,10 @@ xcode: macos
 .PHONY: basic
 basic:
 	 	tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
-		swift build -c release --build-path $(BUILD_PATH)
-		mkdir -p $(TEMPLATES_PATH)
+		swift build --disable-sandbox -c release --build-path $(BUILD_PATH)
 		@install $(BINARIES_PATH)/bow-openapi $(PREFIX_BIN)/bow-openapi
-		@install ./Templates/* $(TEMPLATES_PATH)
+		@mkdir -p $(TEMPLATES_PATH)
+		cp ./Templates/* $(TEMPLATES_PATH)
 
 .PHONY: fixtures
 fixtures:
@@ -34,7 +36,7 @@ fixtures:
 .PHONY: dependencies
 dependencies:
 		apt update && apt install openjdk-8-jre-headless
-		mkdir -p $(BUILD_PATH)
+		@mkdir -p $(BUILD_PATH)
 		wget $(SWAGGER_JAR) --output-document $(BUILD_PATH)/swagger-codegen-cli.jar
 		@install $(BUILD_PATH)/swagger-codegen-cli.jar $(PREFIX_BIN)/swagger-codegen-cli.jar
 

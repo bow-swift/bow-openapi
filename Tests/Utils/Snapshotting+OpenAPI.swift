@@ -15,7 +15,7 @@ extension Snapshotting where Value == URL, Format == String {
         var strategy = Snapshotting<String, String>.lines.pullback { (url: URL) -> String in
             let testName = "\(file.string.filename.removeExtension)-focusIn\(focus.removeExtension)"
             let directory = URL.temp(subfolder: testName)
-            let either = APIClient.bow(moduleName: module, scheme: url.path, output: directory.path, templatePath: URL.templates.path)
+            let either = APIClient.bow(moduleName: module, scheme: url.path, output: directory.path, template: URL.templates)
                                   .provide(environment(named: testName))
                                   .unsafeRunSyncEither()
             

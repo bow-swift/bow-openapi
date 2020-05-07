@@ -9,23 +9,36 @@ public class SwaggerClientGenerator: ClientGenerator {
     
     public init() { }
     
-    public func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    public func generate(moduleName: String, schemePath: String, outputPath: OutputPath, template: URL, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         return binding(
-              |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: templatePath, logPath: logPath),
-              |<-self.reorganizeFiles(moduleName: moduleName, in: outputPath, fromTemplate: templatePath),
+              |<-self.swaggerGenerator(scheme: schemePath, output: outputPath.sources, template: template, logPath: logPath),
+              |<-self.reorganizeFiles(moduleName: moduleName, in: outputPath, fromTemplate: template),
               |<-self.fixSignatureParameters(filesAt: "\(outputPath.sources)/APIs"),
               |<-self.renderHelpersForHeaders(filesAt: "\(outputPath.sources)/APIs", inFile: "\(outputPath.sources)/APIs.swift"),
               |<-self.removeHeadersDefinition(filesAt: "\(outputPath.sources)/APIs"),
         yield: ())^
     }
     
-    internal func swaggerGenerator(scheme: String, output: String, template: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    public func getTemplates() -> EnvIO<FileSystem, APIClientError, URL> {
+        EnvIO.invoke { _ in
+            let result = run("which", args: ["bow-openapi"])
+            guard result.exitStatus == 0 && !result.stdout.contains("ERROR") else {
+               throw APIClientError(operation: "getTemplates", error: GeneratorError.templateNotFound)
+            }
+            
+            return URL(fileURLWithPath: result.stdout)
+                .deletingLastPathComponent()
+                .appendingPathComponent("bowopenapi-templates")
+        }
+    }
+    
+    internal func swaggerGenerator(scheme: String, output: String, template: URL, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         func runSwagger() -> IO<APIClientError, ()> {
             IO.invoke {
                 #if os(Linux)
-                let result = run("java", args: ["-jar", "/usr/local/bin/swagger-codegen-cli.jar"] + ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"])
+                let result = run("java", args: ["-jar", "/usr/local/bin/swagger-codegen-cli.jar"] + ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template.path)"])
                 #else
-                let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template)"]) { settings in
+                let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(scheme)", "--output", "\(output)", "--template-dir", "\(template.path)"]) { settings in
                     settings.execution = .log(file: logPath)
                 }
                 #endif
@@ -38,13 +51,13 @@ public class SwaggerClientGenerator: ClientGenerator {
         return EnvIO { _ in runSwagger() }
     }
     
-    internal func reorganizeFiles(moduleName: String, in outputPath: OutputPath, fromTemplate templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal func reorganizeFiles(moduleName: String, in outputPath: OutputPath, fromTemplate template: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
             binding(
                 |<-fileSystem.moveFiles(in: "\(outputPath.sources)/SwaggerClient/Classes/Swaggers", to: outputPath.sources),
                 |<-fileSystem.remove(from: outputPath.sources, files: "Cartfile", "AlamofireImplementations.swift", "Models.swift", "git_push.sh", "SwaggerClient.podspec", "SwaggerClient", ".swagger-codegen", ".swagger-codegen-ignore", "JSONEncodableEncoding.swift", "JSONEncodingHelper.swift"),
                 |<-fileSystem.rename("APIConfiguration.swift", itemAt: "\(outputPath.sources)/APIHelper.swift"),
-                |<-self.copyTestFiles(moduleName: moduleName, templatePath: templatePath, outputPath: outputPath.tests).provide(fileSystem),
+                |<-self.copyTestFiles(moduleName: moduleName, template: template, outputPath: outputPath.tests).provide(fileSystem),
             yield: ())^.mapError(FileSystemError.toAPIClientError)
         }
     }
@@ -163,12 +176,12 @@ public class SwaggerClientGenerator: ClientGenerator {
         }
     }
     
-    internal func copyTestFiles(moduleName: String, templatePath: String, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
+    internal func copyTestFiles(moduleName: String, template: URL, outputPath: String) -> EnvIO<FileSystem, FileSystemError, ()> {
         let files = ["API+XCTest.swift", "API+Error.swift", "APIConfigTesting.swift", "StubURL.swift"]
         
         return EnvIO { fileSystem in
             binding(
-                |<-fileSystem.copy(items: files, from: templatePath, to: outputPath),
+                |<-fileSystem.copy(items: files, from: template.path, to: outputPath),
                 |<-files.traverse { file in self.fixTestFile(moduleName: moduleName, fileName: file, outputPath: outputPath).provide(fileSystem) },
                 yield: ())
         }^

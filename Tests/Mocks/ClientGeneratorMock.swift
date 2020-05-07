@@ -6,7 +6,6 @@ import BowEffects
 import OpenApiGenerator
 
 class ClientGeneratorMock: ClientGenerator {
-    
     private(set) var generateInvoked = false
     private let shouldFail: Bool
     
@@ -14,11 +13,15 @@ class ClientGeneratorMock: ClientGenerator {
         self.shouldFail = shouldFail
     }
     
-    func generate(moduleName: String, schemePath: String, outputPath: OutputPath, templatePath: String, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    func generate(moduleName: String, schemePath: String, outputPath: OutputPath, template: URL, logPath: String) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { _ in
             self.generateInvoked = true
             let error = APIClientError(operation: "Testing", error: GeneratorError.structure)
             return self.shouldFail ? IO.raiseError(error): IO.pure(())^
         }
+    }
+    
+    func getTemplates() -> EnvIO<FileSystem, APIClientError, URL> {
+        EnvIO.pure(URL.templates)^
     }
 }

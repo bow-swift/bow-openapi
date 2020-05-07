@@ -21,15 +21,13 @@ public class SwaggerClientGenerator: ClientGenerator {
     
     public func getTemplates() -> EnvIO<FileSystem, APIClientError, URL> {
         EnvIO.invoke { _ in
-            let result = run("which", args: ["bow-openapi"])
-            guard result.exitStatus == 0 && !result.stdout.contains("ERROR") else {
-               throw APIClientError(operation: "getTemplates", error: GeneratorError.templateNotFound)
+            let libPath = "/usr/local/lib"
+            guard let bundle = Bundle(path: "\(libPath)/bowopenapi/Templates"),
+                  let template = bundle.resourcePath else {
+                throw APIClientError(operation: "getTemplatePath()", error: GeneratorError.templateNotFound)
             }
             
-            let binaryURL = URL(fileURLWithPath: result.stdout)
-            return binaryURL.deletingLastPathComponent()
-                .appendingPathComponent("bowopenapi")
-                .appendingPathComponent("Templates")
+            return URL(fileURLWithPath: template)
         }
     }
     

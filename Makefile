@@ -2,7 +2,7 @@ prefix ?= /usr/local
 
 TOOL_NAME = bow-openapi
 PREFIX_BIN = $(prefix)/bin
-RESOURCES_PATH = $(PREFIX_BIN)/bowopenapi
+RESOURCES_PATH = $(prefix)/lib/bowopenapi
 BUILD_PATH = /tmp/$(TOOL_NAME)
 SWAGGER_JAR = "https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.19/swagger-codegen-cli-3.0.19.jar"
 
@@ -13,19 +13,23 @@ linux: clean structure dependencies install
 macos: clean structure install
 		swift test --generate-linuxmain
 
+.PHONY: fixtures
+fixtures:
+		@rm -rf ./Tests/Fixtures/FixturesAPI
+		$(TOOL_NAME) --name FixturesAPI --schema ./Tests/Fixtures/petstore.yaml --output ./Tests/Fixtures/FixturesAPI --verbose
+
 .PHONY: xcode
-xcode: macos
+xcode: macos fixtures
 		swift package generate-xcodeproj
 
 .PHONY: install
 install:
+		@rm -rf ./Tests/Fixtures/FixturesAPI
 	 	@tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
 		@swift build --disable-sandbox --configuration release --build-path $(BUILD_PATH)/build
-		@rm -rf ./Tests/Fixtures/FixturesAPI
 		@install $(BUILD_PATH)/build/release/$(TOOL_NAME) $(PREFIX_BIN)/$(TOOL_NAME)
 		@cp -R ./Templates $(RESOURCES_PATH)
 		@cp ./Tests/Fixtures/petstore.yaml $(RESOURCES_PATH)
-		$(PREFIX_BIN)/$(TOOL_NAME) --name FixturesAPI --schema ./Tests/Fixtures/petstore.yaml --output ./Tests/Fixtures/FixturesAPI --verbose
 
 .PHONY: dependencies
 dependencies:

@@ -18,6 +18,7 @@ jobs:
         export PATH=${JAVA_HOME}/bin:$PATH
         brew install swagger-codegen
         make macos
+        make fixtures
         swift test
     - name: Generate linux tests
       run: |
@@ -48,4 +49,5 @@ jobs:
     - name: Run tests
       run: |
         sudo make linux
+        sudo make fixtures
         swift test

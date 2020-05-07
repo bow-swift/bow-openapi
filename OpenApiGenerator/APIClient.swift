@@ -5,21 +5,23 @@ import Bow
 import BowEffects
 
 public enum APIClient {
+    
     public static func bow(moduleName: String, schema: String, output: String) -> EnvIO<Environment, APIClientError, String> {
-        EnvIO { env in
-            let template = IO<APIClientError, String>.var()
-            let schema = schema.expandingTildeInPath
-            let output = output.expandingTildeInPath
-            
-            return binding(
-                         |<-validate(schema: schema),
-                template <- getTemplatePath(),
-                         |<-bow(moduleName: moduleName, scheme: schema, output: output, templatePath: template.get).provide(env),
-            yield: "RENDER SUCCEEDED")^
-        }
+        let env = EnvIO<Environment, APIClientError, Environment>.var()
+        let validated = EnvIO<Environment, APIClientError, String>.var()
+        let template = EnvIO<Environment, APIClientError, URL>.var()
+        let schema = schema.expandingTildeInPath
+        let output = output.expandingTildeInPath
+        
+        return binding(
+                env <- .ask(),
+           validated <- validate(schema: schema),
+            template <- env.get.generator.getTemplates().contramap(\.fileSystem),
+                     |<-bow(moduleName: moduleName, scheme: validated.get, output: output, template: template.get),
+        yield: "RENDER SUCCEEDED")^
     }
     
-    public static func bow(moduleName: String, scheme: String, output: String, templatePath: String) -> EnvIO<Environment, APIClientError, String> {
+    public static func bow(moduleName: String, scheme: String, output: String, template: URL) -> EnvIO<Environment, APIClientError, String> {
         EnvIO { env in
             let outputPath = OutputPath(sources: "\(output)/Sources",
                                         tests: "\(output)/XCTest")
@@ -29,31 +31,23 @@ public enum APIClient {
                 |<-env.generator.generate(moduleName: moduleName,
                                           schemePath: scheme,
                                           outputPath: outputPath,
-                                          templatePath: templatePath,
+                                          template: template,
                                           logPath: env.logPath).provide(env.fileSystem),
-                |<-createSwiftPackage(moduleName: moduleName, outputPath: output, templatePath: templatePath).provide(env.fileSystem),
+                |<-createSwiftPackage(moduleName: moduleName, outputPath: output, template: template).provide(env.fileSystem),
             yield: "RENDER SUCCEEDED")^
         }
     }
     
     // MARK: attributes
-    private static func validate(schema: String) -> IO<APIClientError, Void> {
-        IO.invoke {
+    private static func validate(schema: String) -> EnvIO<Environment, APIClientError, String> {
+        EnvIO.invoke { _ in
             guard FileManager.default.fileExists(atPath: schema) else {
                 throw APIClientError(operation: "validate(schema:output:)",
                                     error: GeneratorError.invalidParameters)
             }
+            
+            return schema
         }
-    }
-    
-    private static func getTemplatePath() -> IO<APIClientError, String> {
-        let libPath = "/usr/local/bin"
-        guard let bundle = Bundle(path: "\(libPath)/bow/openapi/templates/"),
-              let template = bundle.resourcePath else {
-            return IO.raiseError(APIClientError(operation: "getTemplatePath()", error: GeneratorError.templateNotFound))^
-        }
-        
-        return IO.pure(template)^
     }
     
     // MARK: steps
@@ -69,9 +63,9 @@ public enum APIClient {
         }
     }
     
-    internal static func createSwiftPackage(moduleName: String, outputPath: String, templatePath: String) -> EnvIO<FileSystem, APIClientError, ()> {
+    internal static func createSwiftPackage(moduleName: String, outputPath: String, template: URL) -> EnvIO<FileSystem, APIClientError, ()> {
         EnvIO { fileSystem in
-            fileSystem.copy(item: "Package.swift", from: templatePath, to: outputPath)^
+            fileSystem.copy(item: "Package.swift", from: template.path, to: outputPath)^
         }.followedBy(package(moduleName: moduleName, outputPath: outputPath))^
         .mapError(FileSystemError.toAPIClientError)
     }

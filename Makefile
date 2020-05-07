@@ -26,7 +26,7 @@ xcode: macos fixtures
 install:
 		@rm -rf ./Tests/Fixtures/FixturesAPI
 	 	@tar -xvf ./Tests/Fixtures/FixturesAPI.tar.gz -C ./Tests/Fixtures/
-		@swift build --disable-sandbox --configuration release --build-path $(BUILD_PATH)/build
+		@swift build --disable-sandbox --enable-test-discovery --configuration release --build-path $(BUILD_PATH)/build
 		@install $(BUILD_PATH)/build/release/$(TOOL_NAME) $(PREFIX_BIN)/$(TOOL_NAME)
 		@cp -R ./Templates $(RESOURCES_PATH)
 		@cp ./Tests/Fixtures/petstore.yaml $(RESOURCES_PATH)

@@ -26,9 +26,10 @@ public class SwaggerClientGenerator: ClientGenerator {
                throw APIClientError(operation: "getTemplates", error: GeneratorError.templateNotFound)
             }
             
-            return URL(fileURLWithPath: result.stdout)
-                .deletingLastPathComponent()
-                .appendingPathComponent("bowopenapi-templates")
+            let binaryURL = URL(fileURLWithPath: result.stdout)
+            return binaryURL.deletingLastPathComponent()
+                .appendingPathComponent("bowopenapi")
+                .appendingPathComponent("Templates")
         }
     }
     

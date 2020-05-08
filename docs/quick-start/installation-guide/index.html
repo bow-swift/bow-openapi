@@ -458,8 +458,7 @@
  | <span class="nb">grep</span> <span class="nt">-oP</span> <span class="s1">'"tag_name": "\K(.*)(?=")'</span> <span class="se">\</span>
  | xargs <span class="nt">-I</span> <span class="o">{}</span> wget <span class="nt">-O</span> - https://github.com/bow-swift/bow-openapi/archive/<span class="o">{}</span>.tar.gz <span class="se">\</span>
  | <span class="nb">tar </span>xz <span class="se">\</span>
- <span class="o">&amp;&amp;</span> <span class="nb">cd </span>bow-openapi-<span class="k">*</span> <span class="se">\</span>
- <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>make linux
+ <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>make linux <span class="nt">-C</span> bow-openapi-<span class="k">*</span>
 </code></pre></div></div>
 
 <blockquote>

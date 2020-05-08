@@ -18,9 +18,7 @@ extension Snapshotting where Value == URL, Format == String {
             let env = environment(named: testName)
             let directory = URL.temp(subfolder: testName)
             let apiClientIO = APIClient.bow(moduleName: moduleName, scheme: url.path, output: directory.path, templates: URL.templates)
-            let removeDirectoryIO: EnvIO<Environment, APIClientError, Void> = env.fileSystem.removeDirectory(directory)
-                .handleError { _ in }^
-                .mapError { e in e as! APIClientError }^.env()
+            let removeDirectoryIO: EnvIO<Environment, APIClientError, Void> = env.fileSystem.removeDirectory(directory).ignoreError().env()
                 
             let either = removeDirectoryIO.followedBy(apiClientIO)^.provide(env).unsafeRunSyncEither()
             

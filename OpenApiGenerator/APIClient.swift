@@ -58,7 +58,7 @@ public enum APIClient {
     internal static func createStructure(module: OpenAPIModule) -> EnvIO<Environment, APIClientError, Void> {
         EnvIO { env in
             guard !env.fileSystem.exist(item: module.url) else {
-                return .raiseError(APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure))^
+                return .raiseError(APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.existOutput(directory: module.url)))^
             }
             
             return env.fileSystem.createDirectory(at: module.url, withIntermediateDirectories: true)^

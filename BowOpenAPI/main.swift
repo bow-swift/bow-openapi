@@ -21,12 +21,11 @@ extension BowOpenAPICommand {
                     """
                     Could not generate API client:
                     • SCHEMA '\(self.schema)'
-                    
                     \(apiError)
                     
                     \(self.verbose ?
-                    "   • LOG \n\n\(prodEnv.logPath.contentOfFile)\n" :
-                    "   • LOG: \(prodEnv.logPath)")
+                    "• LOG \n\n\(prodEnv.logPath.contentOfFile)\n" :
+                    "• LOG: \(prodEnv.logPath)")
                     """
                 },
                 { success in

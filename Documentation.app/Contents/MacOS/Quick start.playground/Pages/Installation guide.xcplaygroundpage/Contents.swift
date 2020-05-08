@@ -29,8 +29,7 @@
  | grep -oP '"tag_name": "\K(.*)(?=")' \
  | xargs -I {} wget -O - https://github.com/bow-swift/bow-openapi/archive/{}.tar.gz \
  | tar xz \
- && cd bow-openapi-* \
- && sudo make linux
+ && sudo make linux -C bow-openapi-*
  ```
 
  > It will install the last stable version.

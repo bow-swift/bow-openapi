@@ -19,51 +19,49 @@ class FileSystemMock: FileSystem {
     }
     
     
-    func createDirectory(atPath: String, withIntermediateDirectories: Bool) -> IO<FileSystemError, ()> {
+    func createDirectory(at: URL, withIntermediateDirectories: Bool) -> IO<FileSystemError, Void> {
         IO.invoke {
             self.createDirectoryInvoked = true
-            if self.shouldFail { throw FileSystemError.create(item: atPath) }
+            if self.shouldFail { throw FileSystemError.create(item: at) }
         }
     }
     
-    func items(atPath path: String) -> IO<FileSystemError, [String]> {
+    func items(at: URL) -> IO<FileSystemError, [URL]> {
         IO.invoke {
             self.itemsAtPathInvoked = true
-            if self.shouldFail { throw FileSystemError.get(from: path) }
-            else { return [""] }
+            if self.shouldFail { throw FileSystemError.get(from: at) }
+            else { return [URL(fileURLWithPath: "")] }
         }
     }
     
-    func readFile(atPath path: String) -> IO<FileSystemError, String> {
+    func readFile(at: URL) -> IO<FileSystemError, String> {
         IO.invoke {
             self.readFileAtPathInvoked = true
-            if self.shouldFail { throw FileSystemError.read(file: path) }
+            if self.shouldFail { throw FileSystemError.read(file: at) }
             else { return "" }
         }
     }
     
-    func write(content: String, toFile path: String) -> IO<FileSystemError, ()> {
+    func write(content: String, toFile: URL) -> IO<FileSystemError, Void> {
         IO.invoke {
             self.writeContentInvoked = true
-            if self.shouldFail { throw FileSystemError.write(file: path) }
+            if self.shouldFail { throw FileSystemError.write(file: toFile) }
         }
     }
     
-    func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()> {
+    func copy(item: URL, to: URL) -> IO<FileSystemError, Void> {
         IO.invoke {
             self.copyItemPathInvoked = true
-            if self.shouldFail { throw FileSystemError.copy(from: itemPath, to: toPath) }
+            if self.shouldFail { throw FileSystemError.copy(from: item, to: to) }
         }
     }
     
-    func remove(itemPath: String) -> IO<FileSystemError, ()> {
+    func remove(item: URL) -> IO<FileSystemError, Void> {
         IO.invoke {
             self.removeItemPathInvoked = true
-            if self.shouldFail { throw FileSystemError.remove(item: itemPath) }
+            if self.shouldFail { throw FileSystemError.remove(item: item) }
         }
     }
     
-    func exist(item: URL) -> Bool {
-        true
-    }
+    func exist(item: URL) -> Bool { true }
 }

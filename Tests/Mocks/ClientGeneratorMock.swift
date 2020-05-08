@@ -13,7 +13,7 @@ class ClientGeneratorMock: ClientGenerator {
         self.shouldFail = shouldFail
     }
     
-    func generate(module: OpenAPIModule) -> EnvIO<Environment, APIClientError, ()> {
+    func generate(module: OpenAPIModule) -> EnvIO<Environment, APIClientError, Void> {
         EnvIO { _ in
             self.generateInvoked = true
             let error = APIClientError(operation: "Testing", error: GeneratorError.structure)

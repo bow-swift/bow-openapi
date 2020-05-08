@@ -11,43 +11,43 @@ public class MacFileSystem: FileSystem {
         self.fileManager = fileManager
     }
     
-    public func createDirectory(atPath path: String, withIntermediateDirectories: Bool) -> IO<FileSystemError, ()> {
-        fileManager.createDirectoryIO(atPath: path, withIntermediateDirectories: withIntermediateDirectories)
-            .mapError { _ in .create(item: path) }
+    public func createDirectory(at directory: URL, withIntermediateDirectories: Bool) -> IO<FileSystemError, Void> {
+        fileManager.createDirectoryIO(atPath: directory.path, withIntermediateDirectories: withIntermediateDirectories)
+            .mapError { _ in .create(item: directory) }
     }
     
-    public func copy(itemPath atPath: String, toPath: String) -> IO<FileSystemError, ()> {
-        fileManager.copyItemIO(atPath: atPath, toPath: toPath)
-            .mapError { _ in .copy(from: atPath, to: toPath) }
+    public func copy(item: URL, to: URL) -> IO<FileSystemError, Void> {
+        fileManager.copyItemIO(atPath: item.path, toPath: to.path)
+            .mapError { _ in .copy(from: item, to: to) }
     }
     
-    public func remove(itemPath: String) -> IO<FileSystemError, ()> {
-        fileManager.removeItemIO(atPath: itemPath)
-            .mapError { _ in .remove(item: itemPath) }
+    public func remove(item: URL) -> IO<FileSystemError, Void> {
+        fileManager.removeItemIO(atPath: item.path)
+            .mapError { _ in .remove(item: item) }
     }
     
-    public func items(atPath path: String) -> IO<FileSystemError, [String]> {
-        fileManager.contentsOfDirectoryIO(atPath: path)
-            .mapError { _ in .get(from: path) }
-            .map { files in files.map({ file in "\(path)/\(file)"}) }^
+    public func items(at: URL) -> IO<FileSystemError, [URL]> {
+        fileManager.contentsOfDirectoryIO(atPath: at.path)
+            .mapError { _ in .get(from: at) }
+            .map { files in files.map({ file in at.appendingPathComponent(file) }) }^
     }
     
-    public func readFile(atPath path: String) -> IO<FileSystemError, String> {
+    public func readFile(at: URL) -> IO<FileSystemError, String> {
         IO.invoke {
             do {
-                return try String(contentsOfFile: path)
+                return try String(contentsOfFile: at.path)
             } catch {
-                throw FileSystemError.read(file: path)
+                throw FileSystemError.read(file: at)
             }
         }
     }
     
-    public func write(content: String, toFile path: String) -> IO<FileSystemError, ()> {
+    public func write(content: String, toFile item: URL) -> IO<FileSystemError, Void> {
         IO.invoke {
             do {
-                try content.write(toFile: path, atomically: true, encoding: .utf8)
+                try content.write(toFile: item.path, atomically: true, encoding: .utf8)
             } catch {
-                throw FileSystemError.write(file: path)
+                throw FileSystemError.write(file: item)
             }
         }
     }

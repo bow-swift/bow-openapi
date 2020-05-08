@@ -3,32 +3,35 @@
 import Foundation
 
 public enum FileSystemError: Error {
-    case create(item: String)
-    case copy(from: String, to: String)
-    case remove(item: String)
-    case move(from: String, to: String)
-    case get(from: String)
-    case read(file: String)
-    case write(file: String)
+    case create(item: URL)
+    case copy(from: URL, to: URL)
+    case remove(item: URL)
+    case move(from: URL, to: URL)
+    case get(from: URL)
+    case read(file: URL)
+    case invalidContent(info: String)
+    case write(file: URL)
 }
 
 extension FileSystemError: CustomStringConvertible {
     public var description: String {
         switch self {
         case .create(let item):
-            return "cannot create item '\(item)'"
+            return "cannot create item '\(item.path)'"
         case .copy(let from, let to):
-            return "cannot copy item at '\(from)' to '\(to)'"
+            return "cannot copy item at '\(from.path)' to '\(to.path)'"
         case .remove(let item):
-            return "cannot remove item at '\(item)'"
+            return "cannot remove item at '\(item.path)'"
         case .move(let from, let to):
-            return "cannot move item from '\(from)' to '\(to)'"
+            return "cannot move item from '\(from.path)' to '\(to.path)'"
         case .get(let from):
-            return "cannot get items from '\(from)'"
+            return "cannot get items from '\(from.path)'"
         case .read(let file):
-            return "cannot read content of file '\(file)'"
+            return "cannot read content of file '\(file.path)'"
+        case .invalidContent(let info):
+            return "invalid content file \(info)"
         case .write(let file):
-            return "cannot write in file '\(file)'"
+            return "cannot write in file '\(file.path)'"
         }
     }
 }

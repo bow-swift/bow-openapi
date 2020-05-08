@@ -61,9 +61,9 @@ public enum APIClient {
                 return .raiseError(APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure))^
             }
             
-            return env.fileSystem.createDirectory(atPath: module.url.path, withIntermediateDirectories: true)^
-                .followedBy(env.fileSystem.createDirectory(atPath: module.sources.path))^
-                .followedBy(env.fileSystem.createDirectory(atPath: module.tests.path))^
+            return env.fileSystem.createDirectory(at: module.url, withIntermediateDirectories: true)^
+                .followedBy(env.fileSystem.createDirectory(at: module.sources))^
+                .followedBy(env.fileSystem.createDirectory(at: module.tests))^
                 .mapError { _ in APIClientError(operation: "createStructure(atPath:)", error: GeneratorError.structure) }
         }
     }
@@ -71,7 +71,7 @@ public enum APIClient {
     internal static func createSwiftPackage(module: OpenAPIModule) -> EnvIO<Environment, APIClientError, Void> {
         func installPackage(module: OpenAPIModule) -> EnvIO<FileSystem, FileSystemError, Void> {
             EnvIO { fileSystem in
-                fileSystem.copy(item: "Package.swift", from: module.templates.path, to: module.url.path)^
+                fileSystem.copy(item: "Package.swift", from: module.templates, to: module.url)^
             }
         }
         
@@ -82,9 +82,9 @@ public enum APIClient {
                 let output = module.url.appendingPathComponent("Package.swift")
                 
                 return binding(
-                         content <- fileSystem.readFile(atPath: output.path),
+                         content <- fileSystem.readFile(at: output),
                     fixedContent <- IO.pure(content.get.replacingOccurrences(of: "{{ moduleName }}", with: module.name)),
-                                 |<-fileSystem.write(content: fixedContent.get, toFile: output.path),
+                                 |<-fileSystem.write(content: fixedContent.get, toFile: output),
                 yield: ())^
             }
         }

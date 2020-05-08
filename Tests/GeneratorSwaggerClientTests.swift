@@ -41,7 +41,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                           """
 
         try? contentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -59,7 +59,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                                """
 
         try? extraContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -71,7 +71,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
         let noContentFile = "/* \(Constants.headerKey) */"
 
         try? noContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -88,7 +88,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                                  """
 
         try? invalidContentFile.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.removeHeadersDefinition(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.removeHeadersDefinition(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let newContentFile = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -109,7 +109,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                        """
 
         try? headerSection.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.renderHelpersForHeaders(filesAt: output.path, inFile: outputFile.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.renderHelpersForHeaders(filesAt: output, intoFile: outputFile).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: outputFile)
         
         XCTAssert(either.isRight)
@@ -136,7 +136,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                         """
 
         try? headerSection.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.renderHelpersForHeaders(filesAt: output.path, inFile: outputFile.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.renderHelpersForHeaders(filesAt: output, intoFile: outputFile).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: outputFile)
         
         XCTAssert(either.isRight)
@@ -162,7 +162,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                        """
 
         try? headerSection.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.renderHelpersForHeaders(filesAt: output.path, inFile: outputFile.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.renderHelpersForHeaders(filesAt: output, intoFile: outputFile).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: outputFile)
         
         XCTAssert(either.isRight)
@@ -187,7 +187,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
         try? headerSection.write(to: file1URL, atomically: true, encoding: .utf8)
         try? headerSection.write(to: file2URL, atomically: true, encoding: .utf8)
         try? headerSection.write(to: file3URL, atomically: true, encoding: .utf8)
-        let either = sut.renderHelpersForHeaders(filesAt: output.path, inFile: outputFile.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.renderHelpersForHeaders(filesAt: output, intoFile: outputFile).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: outputFile)
         
         XCTAssert(either.isRight)
@@ -208,7 +208,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                        """
 
         try? invalidSignature.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.fixSignatureParameters(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.fixSignatureParameters(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)
@@ -223,7 +223,7 @@ class GeneratorSwaggerClientTests: XCTestCase {
                              """
 
         try? validSignature.write(to: fileURL, atomically: true, encoding: .utf8)
-        let either = sut.fixSignatureParameters(filesAt: output.path).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
+        let either = sut.fixSignatureParameters(filesAt: output).provide(env(fileSystem: fileSystem)).unsafeRunSyncEither()
         let rendered = try! String(contentsOf: fileURL)
         
         XCTAssert(either.isRight)

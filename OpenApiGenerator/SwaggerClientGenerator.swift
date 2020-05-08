@@ -36,7 +36,7 @@ public class SwaggerClientGenerator: ClientGenerator {
     internal func swaggerGenerator(module: OpenAPIModule) -> EnvIO<Environment, APIClientError, Void> {
         EnvIO.invoke { env in
             #if os(Linux)
-            let result = run("java", args: ["-jar", "/usr/local/bin/swagger-codegen-cli.jar"] + ["generate", "--lang", "swift4", "--input-spec", "\(module.scheme.path)", "--output", "\(module.sources.path)", "--template-dir", "\(module.templates.path)"])
+            let result = run("java", args: ["-jar", "/usr/local/bin/swagger-codegen-cli.jar"] + ["generate", "--lang", "swift4", "--input-spec", "\(module.schema.path)", "--output", "\(module.sources.path)", "--template-dir", "\(module.templates.path)"])
             #else
             let result = run("/usr/local/bin/swagger-codegen", args: ["generate", "--lang", "swift4", "--input-spec", "\(module.schema.path)", "--output", "\(module.sources.path)", "--template-dir", "\(module.templates.path)"]) { settings in
                 settings.execution = .log(file: env.logPath)

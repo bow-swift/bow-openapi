@@ -44,10 +44,8 @@ class GeneratorAPIClientTests: XCTestCase {
         let module = OpenAPIModule(name: moduleName,
                                    url: output,
                                    schema: URL(fileURLWithPath: ""),
-                                   templates: templates,
-                                   sources: URL(fileURLWithPath: "\(output.path)/sources-testing"),
-                                   tests: URL(fileURLWithPath: "\(output.path)/tests-testing"))
-        
+                                   templates: templates)
+                                   
         try? APIClient.createStructure(module: module)
                       .provide(env(fileSystem: fileSystem))
                       .unsafeRunSync()

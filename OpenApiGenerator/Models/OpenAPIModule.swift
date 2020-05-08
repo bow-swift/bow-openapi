@@ -7,24 +7,17 @@ public struct OpenAPIModule {
     let url: URL
     let schema: URL
     let templates: URL
-    let sources: URL
-    let tests: URL
+    var sources: URL
+    var tests: URL
     
     public init(name: String, url: URL, schema: URL, templates: URL) {
-        self.init(name: name,
-                  url: url,
-                  schema: schema,
-                  templates: templates,
-                  sources: url.appendingPathComponent("Sources"),
-                  tests: url.appendingPathComponent("XCTest"))
-    }
-    
-    public init(name: String, url: URL, schema: URL, templates: URL, sources: URL, tests: URL) {
+        let output = url.appendingPathComponent(name)
+        
         self.name = name
-        self.url = url.appendingPathComponent(name)
+        self.url = output
         self.schema = schema
         self.templates = templates
-        self.sources = sources
-        self.tests = tests
+        self.sources = output.appendingPathComponent("Sources")
+        self.tests = output.appendingPathComponent("XCTest")
     }
 }

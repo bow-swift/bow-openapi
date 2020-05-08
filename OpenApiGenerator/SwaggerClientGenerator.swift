@@ -75,7 +75,7 @@ public class SwaggerClientGenerator: ClientGenerator {
         
         return binding(
             env <- .ask(),
-                |<-env.get.fileSystem.copy(items: files, from: module.templates, to: module.url).toAPIClientEnv(),
+                |<-env.get.fileSystem.copy(items: files, from: module.templates, to: module.tests).toAPIClientEnv(),
                 |<-files.traverse(fixTextFilename),
         yield: ())^
     }
@@ -85,7 +85,7 @@ public class SwaggerClientGenerator: ClientGenerator {
         EnvIO { env in
             let content = IO<FileSystemError, String>.var()
             let fixedContent = IO<FileSystemError, String>.var()
-            let file = module.url.appendingPathComponent(filename)
+            let file = module.tests.appendingPathComponent(filename)
             
             return binding(
                     content <- env.fileSystem.readFile(at: file),

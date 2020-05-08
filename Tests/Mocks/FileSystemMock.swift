@@ -6,7 +6,6 @@ import BowEffects
 import OpenApiGenerator
 
 class FileSystemMock: FileSystem {
-    
     private let shouldFail: Bool
     private(set) var createDirectoryInvoked = false
     private(set) var itemsAtPathInvoked = false
@@ -20,7 +19,7 @@ class FileSystemMock: FileSystem {
     }
     
     
-    func createDirectory(atPath: String) -> IO<FileSystemError, ()> {
+    func createDirectory(atPath: String, withIntermediateDirectories: Bool) -> IO<FileSystemError, ()> {
         IO.invoke {
             self.createDirectoryInvoked = true
             if self.shouldFail { throw FileSystemError.create(item: atPath) }
@@ -64,4 +63,7 @@ class FileSystemMock: FileSystem {
         }
     }
     
+    func exist(item: URL) -> Bool {
+        true
+    }
 }

@@ -5,15 +5,20 @@ import Bow
 import BowEffects
 
 public protocol FileSystem {
-    func createDirectory(atPath: String) -> IO<FileSystemError, ()>
+    func createDirectory(atPath path: String, withIntermediateDirectories: Bool) -> IO<FileSystemError, ()>
     func copy(itemPath: String, toPath: String) -> IO<FileSystemError, ()>
     func remove(itemPath: String) -> IO<FileSystemError, ()>
     func items(atPath path: String) -> IO<FileSystemError, [String]>
     func readFile(atPath path: String) -> IO<FileSystemError, String>
     func write(content: String, toFile path: String) -> IO<FileSystemError, ()>
+    func exist(item: URL) -> Bool
 }
 
 public extension FileSystem {
+    func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
+        createDirectory(atPath: path, withIntermediateDirectories: false)
+    }
+    
     func copy(item: String, from input: String, to output: String) -> IO<FileSystemError, ()> {
         copy(itemPath: "\(input)/\(item)", toPath: "\(output)/\(item)")
     }

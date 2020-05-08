@@ -5,28 +5,31 @@ import Bow
 import BowEffects
 
 public class MacFileSystem: FileSystem {
+    let fileManager: FileManager
     
-    public init() { }
+    public init(fileManager: FileManager = .default) {
+        self.fileManager = fileManager
+    }
     
-    public func createDirectory(atPath path: String) -> IO<FileSystemError, ()> {
-        FileManager.default.createDirectoryIO(atPath: path, withIntermediateDirectories: false)
+    public func createDirectory(atPath path: String, withIntermediateDirectories: Bool) -> IO<FileSystemError, ()> {
+        fileManager.createDirectoryIO(atPath: path, withIntermediateDirectories: withIntermediateDirectories)
             .mapError { _ in .create(item: path) }
     }
     
     public func copy(itemPath atPath: String, toPath: String) -> IO<FileSystemError, ()> {
-        FileManager.default.copyItemIO(atPath: atPath, toPath: toPath)
+        fileManager.copyItemIO(atPath: atPath, toPath: toPath)
             .mapError { _ in .copy(from: atPath, to: toPath) }
     }
     
     public func remove(itemPath: String) -> IO<FileSystemError, ()> {
-        FileManager.default.removeItemIO(atPath: itemPath)
+        fileManager.removeItemIO(atPath: itemPath)
             .mapError { _ in .remove(item: itemPath) }
     }
     
     public func items(atPath path: String) -> IO<FileSystemError, [String]> {
-        FileManager.default.contentsOfDirectoryIO(atPath: path)
-                           .mapError { _ in .get(from: path) }
-                           .map { files in files.map({ file in "\(path)/\(file)"}) }^
+        fileManager.contentsOfDirectoryIO(atPath: path)
+            .mapError { _ in .get(from: path) }
+            .map { files in files.map({ file in "\(path)/\(file)"}) }^
     }
     
     public func readFile(atPath path: String) -> IO<FileSystemError, String> {
@@ -47,5 +50,9 @@ public class MacFileSystem: FileSystem {
                 throw FileSystemError.write(file: path)
             }
         }
+    }
+    
+    public func exist(item: URL) -> Bool {
+        fileManager.fileExists(atPath: item.path)
     }
 }

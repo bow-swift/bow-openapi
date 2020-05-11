@@ -3,21 +3,24 @@
 import Foundation
 import OpenApiGenerator
 import SnapshotTesting
-
+import Bow
+import BowEffects
 
 extension Snapshotting where Value == URL, Format == String {
     
-    static func generated(file focus: String, module: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {
+    static func generated(file focus: String, moduleName: String = "", _ file: StaticString = #file) -> Snapshotting<URL, String> {
         func environment(named: String) -> Environment {
             Environment(logPath: "/tmp/test\(named).log", fileSystem: MacFileSystem(), generator: SwaggerClientGenerator())
         }
         
         var strategy = Snapshotting<String, String>.lines.pullback { (url: URL) -> String in
             let testName = "\(file.string.filename.removeExtension)-focusIn\(focus.removeExtension)"
+            let env = environment(named: testName)
             let directory = URL.temp(subfolder: testName)
-            let either = APIClient.bow(moduleName: module, scheme: url.path, output: directory.path, template: URL.templates)
-                                  .provide(environment(named: testName))
-                                  .unsafeRunSyncEither()
+            let apiClientIO = APIClient.bow(moduleName: moduleName, scheme: url.path, output: directory.path, templates: URL.templates)
+            let removeDirectoryIO: EnvIO<Environment, APIClientError, Void> = env.fileSystem.removeDirectory(directory).ignoreError().env()
+                
+            let either = removeDirectoryIO.followedBy(apiClientIO)^.provide(env).unsafeRunSyncEither()
             
             guard either.isRight else {
                 return  """

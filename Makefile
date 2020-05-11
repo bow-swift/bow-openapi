@@ -16,7 +16,7 @@ macos: clean structure install
 .PHONY: fixtures
 fixtures:
 		@rm -rf ./Tests/Fixtures/FixturesAPI
-		$(TOOL_NAME) --name FixturesAPI --schema ./Tests/Fixtures/petstore.yaml --output ./Tests/Fixtures/FixturesAPI --verbose
+		$(TOOL_NAME) --name FixturesAPI --schema ./Tests/Fixtures/petstore.yaml --output ./Tests/Fixtures --verbose
 
 .PHONY: xcode
 xcode: macos fixtures

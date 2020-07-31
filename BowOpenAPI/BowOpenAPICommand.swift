@@ -15,6 +15,6 @@ struct BowOpenAPICommand: ParsableCommand {
     @Option(help: ArgumentHelp("Path where the Swift package containing the network client will be generated. ex. `/home`.", valueName: "output path"))
     var output: String
     
-    @ArgumentParser.Flag (help: "Run in verbose mode")
-    var verbose: Bool
+    @ArgumentParser.Flag(help: "Run in verbose mode")
+    var verbose: Bool = false
 }

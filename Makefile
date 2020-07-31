@@ -30,6 +30,8 @@ install:
 		@install $(BUILD_PATH)/build/release/$(TOOL_NAME) $(PREFIX_BIN)/$(TOOL_NAME)
 		@cp -R ./Templates $(RESOURCES_PATH)
 		@cp ./Tests/Fixtures/petstore.yaml $(RESOURCES_PATH)
+		$(MAKE) bash
+		$(MAKE) zsh
 
 .PHONY: dependencies
 dependencies:
@@ -52,3 +54,17 @@ uninstall:
 .PHONY: clean
 clean: uninstall
 		@rm -rf $(BUILD_PATH)
+
+.PHONY: zsh
+zsh:
+	@mkdir -p ~/.zsh/completion
+	@mkdir -p ~/.oh-my-zsh/completions
+	@$(TOOL_NAME) --generate-completion-script zsh > ~/.oh-my-zsh/completions/_$(TOOL_NAME)
+	@$(TOOL_NAME) --generate-completion-script zsh > ~/.zsh/completion/$(TOOL_NAME).zsh
+	$(shell if [[ ! -f ~/.zshrc ]] || [[ ! `grep "~/.zsh/completion" ~/.zshrc` ]]; then echo -e '\n# Enable Zsh completions\nfpath=(~/.zsh/completion $$fpath)\nautoload -U compinit\ncompinit\n' >> ~/.zshrc; fi)
+
+.PHONY: bash
+bash:
+	@mkdir -p ~/.bash_completions
+	@$(TOOL_NAME) --generate-completion-script bash > ~/.bash_completions/$(TOOL_NAME).bash
+	$(shell if [[ ! -f ~/.bashrc ]] || [[ ! `grep "$(TOOL_NAME).bash" ~/.bashrc` ]]; then echo "source ~/.bash_completions/$(TOOL_NAME).bash" >> ~/.bashrc; fi)

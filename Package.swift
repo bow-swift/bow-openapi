@@ -112,7 +112,7 @@ let package = Package(
 
     dependencies: [
         .package(name: "Bow", url: "https://github.com/bow-swift/bow.git", .exact("0.8.0")),
-        .package(url: "https://github.com/apple/swift-argument-parser.git", .exact("0.0.5")),
+        .package(url: "https://github.com/apple/swift-argument-parser.git", .exact("0.2.1")),
         .package(url: "https://github.com/bow-swift/Swiftline.git", .exact("0.5.5")),
         .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", .exact("1.7.2")),
         .package(url: "https://github.com/bow-swift/SwiftCheck.git", .exact("0.12.1")),

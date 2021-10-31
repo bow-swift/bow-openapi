@@ -22,7 +22,7 @@ public extension API {
 
 /// Protocol to define networking operations in `default`
 public protocol DefaultAPI {
-    func _postPet(body: Body?) -> EnvIO<API.Config, API.HTTPError, NoResponse>
+    func _postPet(body: PetBody?) -> EnvIO<API.Config, API.HTTPError, NoResponse>
 }
 
 extension DefaultAPI {
@@ -32,7 +32,7 @@ extension DefaultAPI {
      - Parameter body: (body)  (optional)
      - Returns: An `EnvIO` to perform IO operations that produce errors of type `HTTPError` and values of type `Void`, having access to an immutable environment of type `API.Config`.
      */
-    public func postPet(body: Body? = nil) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    public func postPet(body: PetBody? = nil) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         _postPet(body: body)
     }
 }
@@ -41,7 +41,7 @@ extension DefaultAPI {
 /// An HTTP client to perform networking operations related to `default`
 class DefaultAPIClient: DefaultAPI {
 
-    func _postPet(body: Body?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
+    func _postPet(body: PetBody?) -> EnvIO<API.Config, API.HTTPError, NoResponse> {
         return EnvIO { apiConfig in
             guard let parameters = body?.encodingParameters else {
                 let error = API.HTTPError.other(error: NSError(domain: "DefaultAPI.postPet.Parameter.body", code: 69, userInfo: nil))

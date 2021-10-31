@@ -84,7 +84,7 @@ We welcome your contributions! Help us make Bow OpenAPI better:
 
 # ⚖️ License
 
-    Copyright (C) 2020 The Bow Authors
+    Copyright (C) 2020-2021 The Bow Authors
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
